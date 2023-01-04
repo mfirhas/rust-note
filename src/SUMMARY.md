@@ -23,3 +23,7 @@
   - [Error Handling](basic/17_error_handling.md)
   - [Unit Test](basic/18_unit_test.md)
   - [Cargo dan Konfigurasi(Draft)]()
+
+- [Intermediate](intermediate/0_intermediate.md)
+  - [DRAFT]()
+  - [...]()

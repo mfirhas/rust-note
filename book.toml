@@ -1,0 +1,7 @@
+[book]
+authors = ["mfathirirhas"]
+language = "id"
+multilingual = false
+src = "src"
+title = "Rust Note"
+description = "Rust dalam Bahasa Indonesia"

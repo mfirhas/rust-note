@@ -228,3 +228,15 @@ sample_workspace/
 |--Cargo.lock
 |--Cargo.toml
 ```
+
+Workspace punya toml sendiri yang berisi deklarasi member2 package di dalamnya:
+contoh:
+```ini
+[workspace]
+
+members = [
+    "package_1_binary",
+    "package_2_binary",
+    "package_3_library",
+]
+```

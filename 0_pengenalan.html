@@ -149,6 +149,9 @@
 <li><em>null pointer</em>, terjadi ketika mengakses pointer yang kosong.</li>
 <li><em>data-race</em>, terjadi ketika data diakses oleh lebih dari satu <em>thread</em> secara konkuren. Hal ini bisa menjadikan data tidak konsisten khususnya ketika ada proses write dan read terhadap data tersebut.</li>
 <li><em>memory-leaks</em>, terjadi ketika banyak resources yang sudah tidak diperlukan akan tetapi masih mendiami memory sehingga memakan resource yang diperlukan oleh proses lain.</li>
+</ul>
+<p>(<em>NOTE: dangling pointer masih mungkin terjadi untuk beberapa skenario seperti cyclic reference menggunakan smart pointer seperti Rc atau Arc, hal ini bisa diatasi dengan menggunakan weak reference</em>)</p>
+<ul>
 <li>dan lainnya.</li>
 </ul>
 <p>Rust merupakan bahasa <em>compiled</em> ke <em>binary</em> sehingga berjalan secara <em>native</em> di OS target. Compiler Rust bernama <code>rustc</code> yang secara simple terdiri dari <em>frontend</em> yang menghasilkan IR(<em>Intermediate Representation</em>) dan <em>backend</em> menggunakan LLVM yang menghasilkan hasil akhir berupa binary.</p>

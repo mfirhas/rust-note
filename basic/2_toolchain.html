@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html lang="id" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Toolchain - Rust Note</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="Rust dalam Bahasa Indonesia">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Rust ID</a></li><li class="chapter-item expanded affix "><a href="../0_pengenalan.html">Pengenalan</a></li><li class="chapter-item expanded "><a href="../basic/0_basic.html"><strong aria-hidden="true">1.</strong> Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic/1_instalasi.html"><strong aria-hidden="true">1.1.</strong> Instalasi</a></li><li class="chapter-item expanded "><a href="../basic/2_toolchain.html" class="active"><strong aria-hidden="true">1.2.</strong> Toolchain</a></li><li class="chapter-item expanded "><a href="../basic/3_hello_world.html"><strong aria-hidden="true">1.3.</strong> Hello World!</a></li><li class="chapter-item expanded "><a href="../basic/4_struktur_codebase.html"><strong aria-hidden="true">1.4.</strong> Struktur Codebase</a></li><li class="chapter-item expanded "><a href="../basic/5_variables_function_closure.html"><strong aria-hidden="true">1.5.</strong> Variables, Functions, and Closures</a></li><li class="chapter-item expanded "><a href="../basic/6_primitive_types.html"><strong aria-hidden="true">1.6.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../basic/7_string_types.html"><strong aria-hidden="true">1.7.</strong> String Types</a></li><li class="chapter-item expanded "><a href="../basic/8_compound_types.html"><strong aria-hidden="true">1.8.</strong> Compound Types</a></li><li class="chapter-item expanded "><a href="../basic/9_algebraic_types.html"><strong aria-hidden="true">1.9.</strong> Algebraic Types</a></li><li class="chapter-item expanded "><a href="../basic/10_collection_types.html"><strong aria-hidden="true">1.10.</strong> Collection Types</a></li><li class="chapter-item expanded "><a href="../basic/11_ownership_and_borrowing.html"><strong aria-hidden="true">1.11.</strong> Ownership and Borrowing</a></li><li class="chapter-item expanded "><a href="../basic/12_associated_items.html"><strong aria-hidden="true">1.12.</strong> Associated Items</a></li><li class="chapter-item expanded "><a href="../basic/13_trait.html"><strong aria-hidden="true">1.13.</strong> Trait</a></li><li class="chapter-item expanded "><a href="../basic/14_generic.html"><strong aria-hidden="true">1.14.</strong> Generic</a></li><li class="chapter-item expanded "><a href="../basic/15_generic_bound_with_trait.html"><strong aria-hidden="true">1.15.</strong> Generic Bound with Trait</a></li><li class="chapter-item expanded "><a href="../basic/16_lifetime.html"><strong aria-hidden="true">1.16.</strong> Lifetime</a></li><li class="chapter-item expanded "><a href="../basic/17_error_handling.html"><strong aria-hidden="true">1.17.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="../basic/18_unit_test.html"><strong aria-hidden="true">1.18.</strong> Unit Test</a></li><li class="chapter-item expanded "><a href="../basic/19_cargo_dan_konfigurasi.html"><strong aria-hidden="true">1.19.</strong> Cargo dan Konfigurasi</a></li></ol></li><li class="chapter-item expanded "><a href="../intermediate/0_intermediate.html"><strong aria-hidden="true">2.</strong> Intermediate</a></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> DRAFT</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> ...</div></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Note</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="toolchain"><a class="header" href="#toolchain">Toolchain</a></h1>
+<p>Rust memiliki beberapa toolchain untuk berinteraksi dengan program rust yang digunakan untuk berbagai macam keperluan seperti kompilasi, build, formatting, linting, dan testing. Semua fungsionalitas ini ada di dalam program <code>cargo</code> yang telah kita install sebelumnya.</p>
+<p>Untuk menjalankan program Rust, terdapat dua tool utama yang digunakan yaitu <code>rustc</code> yang merupakan compiler rust itu sendiri, dan <code>cargo</code> package management serta build tool untuk rust. Jika kita ingin mengkompilasi sebuah file saja, atau ingin memiliki opsi build untuk program rust yang ditulis, maka bisa menggunakan <code>rustc</code>. Tool kedua <code>cargo</code> lebih direkomendasikan untuk mem-<em>build</em> program yang sudah lebih dari 1 file serta memiliki depedensi satu sama lain termasuk dari 3rd party library. Cargo juga sudah mengabstraksikan banyak hal yang dibutuhkan untuk membangun artifak program dari banyak file dan depedensi dengan perintah yang lebih sederhana.</p>
+<h2 id="rustc"><a class="header" href="#rustc">rustc</a></h2>
+<p>Contoh penggunaan <code>rustc</code>:
+Tulis contoh <code>Hello, World!</code> sederhana berikut dan compile dengan perintah <code>rustc &lt;nama-file&gt;</code>, maka akan menghasilkan binary output yang langsung dapat dieksekusi dengan menjalankan <code>./&lt;nama-binary&gt;</code>(asumsi menggunakan unix-based OS).</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    println!(&quot;Hello, World!&quot;);
+}</code></pre></pre>
+<h2 id="cargo"><a class="header" href="#cargo">cargo</a></h2>
+<p>Cargo lebih digunakan untuk projek dengan codebase yang multi depedensi satu sama lain serta juga dengan library luar. Cargo juga menyediakan banyak perintah untuk manage codebase dengan lebih mudah termasuk meng-inisialisasi codebase.</p>
+<h3 id="codebase-baru"><a class="header" href="#codebase-baru">Codebase baru</a></h3>
+<p>Ketika ingin memulai projek rust, dimulai dengan perintah <code>cargo init</code> atau <code>cargo new</code>. Kedua perintah ini terlihat mirip, bedanya <code>init</code> akan menciptakan source pada current directory, sedangkan <code>new</code> menciptakan source baru pada path dengan nama yang ditentukan.
+Contoh:
+<code>cargo new $HOME/code/rust/test-cargo --bin --vcs none</code>
+Perintah di atas akan membuat projek rust baru pada path yang ditentukan dengan nama projek. Flag <code>--bin</code> digunakan untuk memberi tau cargo kita akan membuat projek yang akan menghasilkan executable binary. Alternatif lain adalah <code>--lib</code> untuk projek non-executable yang digunakan sebagai library. Kita akan bahas hal-hal ini pada pembahasan selanjutnya tentang struktur projek pada rust. Untuk <code>--vcs none</code> menginisiasi projek tanpa git, karena secara default cargo new akan menginisiasi projek dengan git.</p>
+<h3 id="build"><a class="header" href="#build">Build</a></h3>
+<p>Untuk membangun program serta menghasilkan runnable artifak maka kita bisa menjalankan perintah:
+<code>cargo build</code> pada direktori projek. Default <code>build</code> adalah mode <em>debug</em> atau mode ketika dalam proses development. Ketika kode yang kita buat sudah pantas untuk naik ke production, maka ditambahkan flag release menjadi <code>cargo build --release</code>. Flag tambahan ini melakukan optimisasi program pada compile time sehingga artifak yang dihasilkan berjalan dengan optimal dan maksimal di production.</p>
+<h3 id="run"><a class="header" href="#run">Run</a></h3>
+<p>Ketika development tentunya kita tidak ingin setiap menjalankan program harus build ulang dan menghasilkan artifak lagi untuk sekedar testing. Oleh sebab itu kita bisa melakukan mode run dengan command <code>cargo run</code> pada direktori projek. Perintah ini mem-<em>build</em> serta menjalankan program secara langsung.</p>
+<h3 id="test"><a class="header" href="#test">Test</a></h3>
+<p>Perintah <code>cargo test</code> digunakan untuk menjalankan semua bagian program yang ditandai sebagai <code>test</code>. Kita akan bahas ini pada pembahasan lebih lanjut.</p>
+<h3 id="clippy"><a class="header" href="#clippy">Clippy</a></h3>
+<p>Perintah <code>cargo clippy</code> digunakan untuk menjalankan linter terhadap codebase kita untuk melakukan pengecekkan terhadap hal-hal yang berkaitan dengan style, convention, code organization, dan lainnya. Ada banyak opsi linting pada rust yang bisa digunakan atau kita buat sendiri. Tersedia banyak tools linting pada <a href="https://rust-lang.github.io/rust-clippy/master/">clippy</a> dengan berbagai kategori.</p>
+<h3 id="formatting"><a class="header" href="#formatting">Formatting</a></h3>
+<p>Perintah <code>cargo fmt</code> akan meng-format seluruh code di semua file-file dengan ekstensi <code>.rs</code> menyesuaikan dengan format standar pada rust yang tentunya untuk tampilah kode yang lebih nyaman dibaca.</p>
+<p>Masih banyak hal lain yang tersedia pada <code>cargo</code> beserta flag-flagnya yang harus dieksplorasi sendiri menyesuaikan kebutuhan.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../basic/1_instalasi.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../basic/3_hello_world.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../basic/1_instalasi.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../basic/3_hello_world.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

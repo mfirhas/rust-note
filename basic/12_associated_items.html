@@ -1,0 +1,466 @@
+<!DOCTYPE HTML>
+<html lang="id" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Associated Items - Rust Note</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="Rust dalam Bahasa Indonesia">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Rust ID</a></li><li class="chapter-item expanded affix "><a href="../0_pengenalan.html">Pengenalan</a></li><li class="chapter-item expanded "><a href="../basic/0_basic.html"><strong aria-hidden="true">1.</strong> Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic/1_instalasi.html"><strong aria-hidden="true">1.1.</strong> Instalasi</a></li><li class="chapter-item expanded "><a href="../basic/2_toolchain.html"><strong aria-hidden="true">1.2.</strong> Toolchain</a></li><li class="chapter-item expanded "><a href="../basic/3_hello_world.html"><strong aria-hidden="true">1.3.</strong> Hello World!</a></li><li class="chapter-item expanded "><a href="../basic/4_struktur_codebase.html"><strong aria-hidden="true">1.4.</strong> Struktur Codebase</a></li><li class="chapter-item expanded "><a href="../basic/5_variables_function_closure.html"><strong aria-hidden="true">1.5.</strong> Variables, Functions, and Closures</a></li><li class="chapter-item expanded "><a href="../basic/6_primitive_types.html"><strong aria-hidden="true">1.6.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../basic/7_string_types.html"><strong aria-hidden="true">1.7.</strong> String Types</a></li><li class="chapter-item expanded "><a href="../basic/8_compound_types.html"><strong aria-hidden="true">1.8.</strong> Compound Types</a></li><li class="chapter-item expanded "><a href="../basic/9_algebraic_types.html"><strong aria-hidden="true">1.9.</strong> Algebraic Types</a></li><li class="chapter-item expanded "><a href="../basic/10_collection_types.html"><strong aria-hidden="true">1.10.</strong> Collection Types</a></li><li class="chapter-item expanded "><a href="../basic/11_ownership_and_borrowing.html"><strong aria-hidden="true">1.11.</strong> Ownership and Borrowing</a></li><li class="chapter-item expanded "><a href="../basic/12_associated_items.html" class="active"><strong aria-hidden="true">1.12.</strong> Associated Items</a></li><li class="chapter-item expanded "><a href="../basic/13_trait.html"><strong aria-hidden="true">1.13.</strong> Trait</a></li><li class="chapter-item expanded "><a href="../basic/14_generic.html"><strong aria-hidden="true">1.14.</strong> Generic</a></li><li class="chapter-item expanded "><a href="../basic/15_generic_bound_with_trait.html"><strong aria-hidden="true">1.15.</strong> Generic Bound with Trait</a></li><li class="chapter-item expanded "><a href="../basic/16_lifetime.html"><strong aria-hidden="true">1.16.</strong> Lifetime</a></li><li class="chapter-item expanded "><a href="../basic/17_error_handling.html"><strong aria-hidden="true">1.17.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="../basic/18_unit_test.html"><strong aria-hidden="true">1.18.</strong> Unit Test</a></li><li class="chapter-item expanded "><a href="../basic/19_cargo_dan_konfigurasi.html"><strong aria-hidden="true">1.19.</strong> Cargo dan Konfigurasi</a></li></ol></li><li class="chapter-item expanded "><a href="../intermediate/0_intermediate.html"><strong aria-hidden="true">2.</strong> Intermediate</a></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> DRAFT</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> ...</div></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Note</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="associated-item"><a class="header" href="#associated-item">Associated Item</a></h1>
+<p>Associated Items merupakan tipe data yang memiliki kaitan dengan tipe, constants, fungsi, atau method. Hal ini juga bisa digunakan sebagai salah satu metode untuk <em>&quot;namespacing&quot;</em> di dalam Rust.</p>
+<p>Associated items bisa dilakukan di dalam traits atau type implementations.</p>
+<p>Associated items secara keseluruhan bisa dibagi kedalam 3 jenis:</p>
+<ul>
+<li>Associated functions and methods</li>
+<li>Associated types</li>
+<li>Associated constants</li>
+</ul>
+<h2 id="associated-functions-and-methods"><a class="header" href="#associated-functions-and-methods">Associated functions and methods</a></h2>
+<p>Fungsi dan method yang berhubungan dengan suatu type. Jenis deklarasi seperti ini disebut <em>inherent functions/methods</em>. Type-type yang bisa mendeklarasi <em>inherent functions/methods</em> adalah non-primitive types dan harus dideklarasikan di dalam 1 crate yang sama dengan type bersangkutan. Jika selain dari itu, gunakan trait.</p>
+<h3 id="associated-functions--methods"><a class="header" href="#associated-functions--methods">Associated Functions &amp; Methods</a></h3>
+<p>Di Rust, perbedaan antara <strong>function</strong> dan <strong>method</strong> adalah:</p>
+<ul>
+<li><strong>function</strong>: <em>standalone</em>, <em>pure</em> dan tidak memiliki objek yang berkait, bisa dideklarasikan tanpa <code>impl</code>.</li>
+<li><strong>method</strong>: berkait dengan suatu objek(self) dengan berbagai macam tipe(struct, enum, dll), hanya bisa dideklarasikan dengan <code>impl</code>.</li>
+</ul>
+<p>Contoh function:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// free function
+fn function_name() {
+    // body
+}
+
+struct Type;
+
+// associated function
+impl Type {
+    fn function_name() {
+
+    }
+}
+
+// cara memanggil associated function
+Type::function_name();
+<span class="boring">}</span></code></pre></pre>
+<p>Contoh method:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Type {
+    id: i32;
+}
+
+impl Type {
+    // self merupakan parameter sekaligus argumen yang merepresentasikan tipe terkait dengan method.
+    fn method_name(&amp;self) {
+        println!(&quot;{}&quot;, self.id);
+    }
+}
+
+// cara memanggil method
+let t = Type {
+    id: 123,
+}
+t.method_name()
+<span class="boring">}</span></code></pre></pre>
+<h3 id="self-type-pada-method"><a class="header" href="#self-type-pada-method">Self type pada method</a></h3>
+<p>Setiap method harus diawali oleh parameter sekaligus argumen pertama berupa <code>self</code>. Terdapat beberapa jenis/bentuk tipe <code>self</code> yaitu:
+|   1st form                                  | ref with lifetime     | Short form(with lifetime) |
+|---------------------------------------------|-----------------------|---------------------------|
+| self: Self                                  | self                  |                           |
+| self: &amp;Self                                 | self: &amp;'a Self        | &amp;'a self                  |
+| self: mut Self                              | mut self              |                           |
+| self: &amp;mut Self                             | self: &amp;'a mut Self    | &amp;'a mut self              |
+| self: Box<Self>                             |                       |                           |
+| self: Rc<Self>                              |                       |                           |
+| self: Arc<Self>                             |                       |                           |
+| self: Pin&lt;&amp;Self&gt;                            |                       |                           |
+| self: <code>&lt;MyType as MyTrait&gt;::associated_type</code>|                       |                           | </p>
+<p><em>Note: untuk <code>self: &lt;MyType as MyTrait&gt;::associated_type</code>, <code>associated_type</code> harus refer ke tipe implementor, tidak bisa ke tipe lainnya.</em></p>
+<p>Contoh inherent functions/methods pada struct:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct MyStruct {
+    a: i32,
+    b: String,
+}
+
+impl MyStruct {
+    pub fn function1() -&gt; i32 {
+        123
+    }
+
+    pub fn function2(&amp;self) -&gt; String {
+        String::from(&quot;anu&quot;)
+    }
+
+    fn function3() -&gt; f32 {
+        234_f32
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Contoh memanggil inherent functions/methods pada struct:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let resp = MyStruct::function1();
+println!(&quot;{}&quot;, resp);
+println!(&quot;{}&quot;, MyStruct::function3());
+let s = MyStruct {
+    a: 123,
+    b: String::from(&quot;lskmdf&quot;),
+};
+println!(&quot;{}&quot;, s.function2());
+<span class="boring">}</span></code></pre></pre>
+<p>Contoh inherent functions/methods pada enum:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum MyEnum {
+    A(String),
+    B(i32),
+    C(f32),
+}
+
+impl MyEnum {
+    pub fn function1() -&gt; i32 {
+        123
+    }
+
+    pub fn function2(&amp;self) -&gt; String {
+        match *self {
+            MyEnum::A(ref s) =&gt; s.clone(),
+            _ =&gt; String::from(&quot;null&quot;)
+        }
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Contoh memanggil inherent functions/methods pada enum:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>println!(&quot;{}&quot;,MyEnum::A(&quot;halo&quot;.to_string()).function2());
+println!(&quot;{}&quot;,MyEnum::B(123).function2());
+<span class="boring">}</span></code></pre></pre>
+<h3 id="associated-traits"><a class="header" href="#associated-traits">Associated Traits</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>trait MyTrait {
+    fn method1() -&gt; i32;
+    fn method2(&amp;self) -&gt; String;
+}
+
+struct MyStruct {
+    a: i32,
+    b: String,
+}
+
+impl MyTrait for MyStruct {
+    fn method1() -&gt; i32 {
+        123
+    }
+
+    fn method2(&amp;self) -&gt; String {
+        self.b
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Berikut 4 cara memanggil associated trait:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Karena function method3() mengembalikan tipe `Self`, maka memanggil function tersebut dari `MyTrait` akan secara otomatis memanggil implementasi oleh `MyStruct`
+// karena MyStruct dijadikan tipe data return oleh variable penerima.
+let _: MyStruct = MyTrait::method3();
+
+// Wildcard akan membaca return method3 yang `Self` dan mencocokkan dengan tipe data variable penerima sebelah kiri.
+let _: MyStruct = &lt;_ as MyTrait&gt;::method3();
+
+// Implementor sudah didefine ketika memanggil method3 dengan menggunakan Fully Qualified Syntax
+let _ = &lt;MyStruct as MyTrait&gt;::method3();
+
+// Langsung menggunakan tipe implementor dengan syarat tipe trait sudah dimasukkan ke dalam scope caller berada.
+let _ = MyStruct::method3();
+
+// sebagai contoh, jika dipanggil dari module lain:
+// MyTrait harus dibawa ke dalam scope module untuk dapat memanggil method yang diimplement oleh MyStruct
+mod a {
+    use super::{MyStruct, MyTrait};
+
+    fn sdf() {
+        let d = MyStruct::method3();
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="associated-types"><a class="header" href="#associated-types">Associated Types</a></h2>
+<p>Associated Types hanya dideklarasi di dalam <code>trait</code> dan didefinisikan di dalam implementor. </p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>trait MyTrait {
+    type Error: Display + Debug + Clone;
+
+    fn method1() -&gt; i32;
+    fn method2(&amp;self) -&gt; String;
+    fn method3() -&gt; Self;
+    fn method4() -&gt; Result&lt;(), Self::Error&gt;;
+}
+
+impl MyTrait for MyStruct {
+    type Error = String;
+
+    fn method1() -&gt; i32 {
+        123
+    }
+
+    fn method2(&amp;self) -&gt; String {
+        self.b.clone()
+    }
+
+    fn method3() -&gt; Self {
+        MyStruct { a: 123, b: &quot;sdf&quot;.to_string() }
+    }
+
+    fn method4() -&gt; Result&lt;(), Self::Error&gt; {
+        return Err(&quot;error bung&quot;.to_string());
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Ketika memanggil tipe tersebut:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>println!(&quot;{}&quot;, MyStruct::method4().unwrap_err());
+<span class="boring">}</span></code></pre></pre>
+<h2 id="associated-constant"><a class="header" href="#associated-constant">Associated Constant</a></h2>
+<p>Sama dengan associated type, constants juga bisa di-declare pada trait, dan di-definisikan pada implementor.
+Hal yang beda adalah kita bisa memberi default value pada constant yang di-declare di trait bersangkutan. Jika kita memberi default value pada constant trait,
+dan mendefinisikannya juga pada implementor, maka value pada implementor akan meng-overwrite default value pada trait.
+Associated Constant bisa dideklarasi dan didefinisikan langsung pada <code>impl</code> tanpa trait.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl MyStruct {
+    pub const C: &amp;str = &quot;nganu&quot;;
+}
+
+trait MyTrait {
+    const D: i32;
+    // const D: i32 = 0; // default value, 
+    type Error: Display + Debug + Clone;
+
+    fn method1() -&gt; i32;
+    fn method2(&amp;self) -&gt; String;
+    fn method3() -&gt; Self;
+    fn method4() -&gt; Result&lt;(), Self::Error&gt;;
+}
+
+impl MyTrait for MyStruct {
+    const D: i32 = 123; // -&gt; will overwrite default value in trait if declared
+    type Error = String;
+
+    fn method1() -&gt; i32 {
+        123
+    }
+
+    fn method2(&amp;self) -&gt; String {
+        self.b.clone()
+    }
+
+    fn method3() -&gt; Self {
+        MyStruct { a: 123, b: &quot;sdf&quot;.to_string() }
+    }
+
+    fn method4() -&gt; Result&lt;(), Self::Error&gt; {
+        println!(&quot;const: {}&quot;, Self::D);
+        return Err(&quot;error bung&quot;.to_string());
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Ketika ingin memanggil, kita tidak bisa memanggil constant langsung dari trait, harus melewati type implementor.</p>
+<p>Ketika memanggil:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>println!(&quot;{}&quot;, MyStruct::C);
+println!(&quot;{}&quot;, MyStruct::D);
+println!(&quot;{}&quot;, &lt;MyStruct as MyTrait&gt;::D);
+<span class="boring">}</span></code></pre></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../basic/11_ownership_and_borrowing.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../basic/13_trait.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../basic/11_ownership_and_borrowing.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../basic/13_trait.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

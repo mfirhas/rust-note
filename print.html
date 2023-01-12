@@ -1,0 +1,2686 @@
+<!DOCTYPE HTML>
+<html lang="id" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Rust Note</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="Rust dalam Bahasa Indonesia">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Rust ID</a></li><li class="chapter-item expanded affix "><a href="0_pengenalan.html">Pengenalan</a></li><li class="chapter-item expanded "><a href="basic/0_basic.html"><strong aria-hidden="true">1.</strong> Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="basic/1_instalasi.html"><strong aria-hidden="true">1.1.</strong> Instalasi</a></li><li class="chapter-item expanded "><a href="basic/2_toolchain.html"><strong aria-hidden="true">1.2.</strong> Toolchain</a></li><li class="chapter-item expanded "><a href="basic/3_hello_world.html"><strong aria-hidden="true">1.3.</strong> Hello World!</a></li><li class="chapter-item expanded "><a href="basic/4_struktur_codebase.html"><strong aria-hidden="true">1.4.</strong> Struktur Codebase</a></li><li class="chapter-item expanded "><a href="basic/5_variables_function_closure.html"><strong aria-hidden="true">1.5.</strong> Variables, Functions, and Closures</a></li><li class="chapter-item expanded "><a href="basic/6_primitive_types.html"><strong aria-hidden="true">1.6.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="basic/7_string_types.html"><strong aria-hidden="true">1.7.</strong> String Types</a></li><li class="chapter-item expanded "><a href="basic/8_compound_types.html"><strong aria-hidden="true">1.8.</strong> Compound Types</a></li><li class="chapter-item expanded "><a href="basic/9_algebraic_types.html"><strong aria-hidden="true">1.9.</strong> Algebraic Types</a></li><li class="chapter-item expanded "><a href="basic/10_collection_types.html"><strong aria-hidden="true">1.10.</strong> Collection Types</a></li><li class="chapter-item expanded "><a href="basic/11_ownership_and_borrowing.html"><strong aria-hidden="true">1.11.</strong> Ownership and Borrowing</a></li><li class="chapter-item expanded "><a href="basic/12_associated_items.html"><strong aria-hidden="true">1.12.</strong> Associated Items</a></li><li class="chapter-item expanded "><a href="basic/13_trait.html"><strong aria-hidden="true">1.13.</strong> Trait</a></li><li class="chapter-item expanded "><a href="basic/14_generic.html"><strong aria-hidden="true">1.14.</strong> Generic</a></li><li class="chapter-item expanded "><a href="basic/15_generic_bound_with_trait.html"><strong aria-hidden="true">1.15.</strong> Generic Bound with Trait</a></li><li class="chapter-item expanded "><a href="basic/16_lifetime.html"><strong aria-hidden="true">1.16.</strong> Lifetime</a></li><li class="chapter-item expanded "><a href="basic/17_error_handling.html"><strong aria-hidden="true">1.17.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="basic/18_unit_test.html"><strong aria-hidden="true">1.18.</strong> Unit Test</a></li><li class="chapter-item expanded "><a href="basic/19_cargo_dan_konfigurasi.html"><strong aria-hidden="true">1.19.</strong> Cargo dan Konfigurasi</a></li></ol></li><li class="chapter-item expanded "><a href="intermediate/0_intermediate.html"><strong aria-hidden="true">2.</strong> Intermediate</a></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> DRAFT</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> ...</div></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Note</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="rust-dalam-bahasa-indonesia"><a class="header" href="#rust-dalam-bahasa-indonesia">Rust dalam Bahasa Indonesia</a></h1>
+<p>Merupakan catatan OP selama mempelajari Bahasa Pemograman Rust yang di tulis dalam Bahasa Indonesia. Sumber pembelajaran diantaranya:</p>
+<ul>
+<li><a href="https://doc.rust-lang.org/stable/book/">Rust Book</a></li>
+<li><a href="https://doc.rust-lang.org/reference/">Rust Reference</a></li>
+<li><a href="https://doc.rust-lang.org/nomicon/">Rust Nomicon</a></li>
+<li><a href="https://cheats.rs/">Rust Cheatsheet</a></li>
+<li><a href="https://doc.rust-lang.org/stable/cargo/reference/">Cargo Reference</a></li>
+<li>dan lainnya yang mungkin akan ditambahkan kedepannya...</li>
+</ul>
+<p>Rust Version: <strong>1.66.0 stable</strong></p>
+<p>Untuk menjalankan:</p>
+<ul>
+<li>Install <a href="https://github.com/rust-lang/mdBook">mdbook</a> <code>cargo install mdbook</code> atau lewat homebrew <code>brew install mdbook</code>.</li>
+<li>Run <code>mdbook build</code> to build</li>
+<li>Run <code>mdbook serve</code> to run</li>
+</ul>
+<p>Silahkan membuka issue dan PR untuk berkontribusi atau ingin mengoreksi kesalahan, atau bisa juga dengan mengirim email ke <a href="mailto:mfathirirhas@gmail.com">mfathirirhas@gmail.com</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="pengenalan"><a class="header" href="#pengenalan">Pengenalan</a></h1>
+<p>Rust adalah bahasa pemograman yang di-<em>release</em> ke publik tahun 2010 berawal dari projek riset Mozilla dan didesain oleh Graydon Hoare. Bahasa ini memiliki <em>static</em> dan <em>strong type</em>. Rust merupakan bahasa yang meng-<em>enforce</em> <em>type safety</em> dan <em>memory safety</em>. Kedua hal ini berhubungan erat satu sama lain yang akan meng-<em>handle</em> hal-hal yang biasa terjadi di bahasa lain, di antaranya:</p>
+<ul>
+<li><em>Dangling pointer</em>, adalah ketika suatu <em>pointer</em> tidak menunjuk ke value yang valid di memory. Biasanya ini terjadi ketika <em>free</em> memory tidak dilakukan di tempat atau waktu yang tepat.</li>
+<li><em>Double-free</em>, melakukan <em>free</em> memory lebih dari 2 kali untuk lokasi memory yang sama. Ini biasa terjadi pada bahasa yang mana manajemen memori nya manual, seperti C/C++.</li>
+<li><em>null pointer</em>, terjadi ketika mengakses pointer yang kosong.</li>
+<li><em>data-race</em>, terjadi ketika data diakses oleh lebih dari satu <em>thread</em> secara konkuren. Hal ini bisa menjadikan data tidak konsisten khususnya ketika ada proses write dan read terhadap data tersebut.</li>
+<li><em>memory-leaks</em>, terjadi ketika banyak resources yang sudah tidak diperlukan akan tetapi masih mendiami memory sehingga memakan resource yang diperlukan oleh proses lain.</li>
+<li>dan lainnya.</li>
+</ul>
+<p>Rust merupakan bahasa <em>compiled</em> ke <em>binary</em> sehingga berjalan secara <em>native</em> di OS target. Compiler Rust bernama <code>rustc</code> yang secara simple terdiri dari <em>frontend</em> yang menghasilkan IR(<em>Intermediate Representation</em>) dan <em>backend</em> menggunakan LLVM yang menghasilkan hasil akhir berupa binary.</p>
+<p>Rust memiliki konsep baru di dunia pemograman yaitu: <em>Ownership</em> dan <em>Borrowing</em>. 
+<em>Ownership</em> adalah dimana setiap value di dalam rust memiliki 1 owner dalam 1 waktu dan tempat. <em>Ownership</em> berpindah ketika value tersebut keluar dari tempatnya/<em>scope</em>-nya. Scope disini bisa berbagai macam bentuk, mulai dari codeblock dengan <code>{}</code>, fungsi, lambda, dan assignments. <em>Borrowing</em> adalah ketika kita ingin meng-<em>passing</em> value tanpa memindahkan <em>ownership</em>, yaitu dengan memberikan <em>reference</em> kepada value yang kita <em>passing</em>. Kedua feature inilah yang banyak meng-<em>handle</em> <em>memory safety</em> yang sering terjadi di atas.</p>
+<p>Hal unik lainnya adalah cara Rust manajemen memori. Rust tidak memiliki manual memori manajemen seperti C dan C++ serta tidak juga memiliki <em>Garbage Collector</em>. Rust mengatasi ini dengan memanfaatkan 2 konsep di atas untuk meng-<em>inject</em> pelepasan <em>resource</em> memori di dalam code pada saat compile time. Ketika resource yang di-<em>owned</em> keluar dari scope terjadi 2 kemungkinan: 1. Berpindah kepemilikan, atau 2. Di-<em>release</em> dari memori ketika tidak ada yang me-<em>reference</em> dirinya. Dengan begini penggunaan <em>resource</em> memori sangat efisien dan ringan tanpa <em>runtime overhead</em> seperti GC.</p>
+<p>Kelebihan Rust:</p>
+<ul>
+<li>Type safety, Memory safety, dan Thread safety</li>
+<li>Performansi menyerupai C dan C++</li>
+<li>Memiliki automatic memory management tanpa GC</li>
+<li>Friendly compiler error message</li>
+<li>Cargo!</li>
+<li>Safe Concurrency</li>
+</ul>
+<p>Kekurangan Rust:</p>
+<ul>
+<li>Learning curve yang tinggi.</li>
+<li>Kompilasi yang cukup lama ketika ukuran projek semakin besar.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="dasar"><a class="header" href="#dasar">Dasar</a></h1>
+<p>Pembahasan dasar meliputi beberapa tipe data, <em>ownership</em>, <em>borrowing</em>, cargo, dan hal-hal dasar lainnya.</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="instalasi"><a class="header" href="#instalasi">Instalasi</a></h2>
+<p>Rust memiliki tools installer untuk menginstal semua <em>toolschain</em> untuk memudahkan development Rust yaitu <a href="https://rustup.rs/">rustup</a> dengan menjalankan perintah </p>
+<pre><code>curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+</code></pre>
+<p>Pilih default installation, dan tunggu sampai installasi selesai. Di unix-based OS biasanya diinstall ke dalam 2 direktori yaitu <code>$HOME/.rustup</code> dan <code>$HOME/.cargo</code>. Direktori pertama tempat menyimpan master data program rustup. Sedangkan direktori ke dua tempat menyimpan toolschain yang dimanage oleh rustup itu sendiri. Biasanya rustup akan secara otomatis meng-ekspor env yang ada di <code>$HOME/.cargo/env</code> ke dalam env variable, misal <code>$HOME/.zshenv</code> atau <code>$HOME/.zshrc</code>. Path env yang dituju adalah <code>$HOME/.cargo/bin</code>, tempat executable dari toolschain rust bersemayam. Kalau path nya belum ada, tinggal diarahkan ke <code>$HOME/.cargo/bin</code>. Tools yang diinstall diantaranya:</p>
+<ul>
+<li>cargo : builder serta package management untuk Rust</li>
+<li>cargo-clippy dan clippy-driver: linting tools</li>
+<li>cargo-fmt dan rustfmt : formatting tools</li>
+<li>cargo-miri : middle level interpreter untuk Rust IR(Intermediate Representation)</li>
+<li>rls : rust language server</li>
+<li>rust-gdb : debugging tools menggunakan gdb</li>
+<li>rust-lldb : debugging tools menggunakan lldb</li>
+<li>rustc : compiler rust</li>
+<li>rustup : rustup itu sendiri</li>
+<li>rustdoc : doc tools</li>
+</ul>
+<p>Ketika semua tools di atas sudah terinstall dan path environment sudah di setup, maka silahkan cek version, misal:</p>
+<ul>
+<li><code>rustc --version</code> untuk versi bahasa rust yang digunakan.</li>
+<li><code>cargo --version</code> untuk versi cargo yang digunakan.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="toolchain"><a class="header" href="#toolchain">Toolchain</a></h1>
+<p>Rust memiliki beberapa toolchain untuk berinteraksi dengan program rust yang digunakan untuk berbagai macam keperluan seperti kompilasi, build, formatting, linting, dan testing. Semua fungsionalitas ini ada di dalam program <code>cargo</code> yang telah kita install sebelumnya.</p>
+<p>Untuk menjalankan program Rust, terdapat dua tool utama yang digunakan yaitu <code>rustc</code> yang merupakan compiler rust itu sendiri, dan <code>cargo</code> package management serta build tool untuk rust. Jika kita ingin mengkompilasi sebuah file saja, atau ingin memiliki opsi build untuk program rust yang ditulis, maka bisa menggunakan <code>rustc</code>. Tool kedua <code>cargo</code> lebih direkomendasikan untuk mem-<em>build</em> program yang sudah lebih dari 1 file serta memiliki depedensi satu sama lain termasuk dari 3rd party library. Cargo juga sudah mengabstraksikan banyak hal yang dibutuhkan untuk membangun artifak program dari banyak file dan depedensi dengan perintah yang lebih sederhana.</p>
+<h2 id="rustc"><a class="header" href="#rustc">rustc</a></h2>
+<p>Contoh penggunaan <code>rustc</code>:
+Tulis contoh <code>Hello, World!</code> sederhana berikut dan compile dengan perintah <code>rustc &lt;nama-file&gt;</code>, maka akan menghasilkan binary output yang langsung dapat dieksekusi dengan menjalankan <code>./&lt;nama-binary&gt;</code>(asumsi menggunakan unix-based OS).</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    println!(&quot;Hello, World!&quot;);
+}</code></pre></pre>
+<h2 id="cargo"><a class="header" href="#cargo">cargo</a></h2>
+<p>Cargo lebih digunakan untuk projek dengan codebase yang multi depedensi satu sama lain serta juga dengan library luar. Cargo juga menyediakan banyak perintah untuk manage codebase dengan lebih mudah termasuk meng-inisialisasi codebase.</p>
+<h3 id="codebase-baru"><a class="header" href="#codebase-baru">Codebase baru</a></h3>
+<p>Ketika ingin memulai projek rust, dimulai dengan perintah <code>cargo init</code> atau <code>cargo new</code>. Kedua perintah ini terlihat mirip, bedanya <code>init</code> akan menciptakan source pada current directory, sedangkan <code>new</code> menciptakan source baru pada path dengan nama yang ditentukan.
+Contoh:
+<code>cargo new $HOME/code/rust/test-cargo --bin --vcs none</code>
+Perintah di atas akan membuat projek rust baru pada path yang ditentukan dengan nama projek. Flag <code>--bin</code> digunakan untuk memberi tau cargo kita akan membuat projek yang akan menghasilkan executable binary. Alternatif lain adalah <code>--lib</code> untuk projek non-executable yang digunakan sebagai library. Kita akan bahas hal-hal ini pada pembahasan selanjutnya tentang struktur projek pada rust. Untuk <code>--vcs none</code> menginisiasi projek tanpa git, karena secara default cargo new akan menginisiasi projek dengan git.</p>
+<h3 id="build"><a class="header" href="#build">Build</a></h3>
+<p>Untuk membangun program serta menghasilkan runnable artifak maka kita bisa menjalankan perintah:
+<code>cargo build</code> pada direktori projek. Default <code>build</code> adalah mode <em>debug</em> atau mode ketika dalam proses development. Ketika kode yang kita buat sudah pantas untuk naik ke production, maka ditambahkan flag release menjadi <code>cargo build --release</code>. Flag tambahan ini melakukan optimisasi program pada compile time sehingga artifak yang dihasilkan berjalan dengan optimal dan maksimal di production.</p>
+<h3 id="run"><a class="header" href="#run">Run</a></h3>
+<p>Ketika development tentunya kita tidak ingin setiap menjalankan program harus build ulang dan menghasilkan artifak lagi untuk sekedar testing. Oleh sebab itu kita bisa melakukan mode run dengan command <code>cargo run</code> pada direktori projek. Perintah ini mem-<em>build</em> serta menjalankan program secara langsung.</p>
+<h3 id="test"><a class="header" href="#test">Test</a></h3>
+<p>Perintah <code>cargo test</code> digunakan untuk menjalankan semua bagian program yang ditandai sebagai <code>test</code>. Kita akan bahas ini pada pembahasan lebih lanjut.</p>
+<h3 id="clippy"><a class="header" href="#clippy">Clippy</a></h3>
+<p>Perintah <code>cargo clippy</code> digunakan untuk menjalankan linter terhadap codebase kita untuk melakukan pengecekkan terhadap hal-hal yang berkaitan dengan style, convention, code organization, dan lainnya. Ada banyak opsi linting pada rust yang bisa digunakan atau kita buat sendiri. Tersedia banyak tools linting pada <a href="https://rust-lang.github.io/rust-clippy/master/">clippy</a> dengan berbagai kategori.</p>
+<h3 id="formatting"><a class="header" href="#formatting">Formatting</a></h3>
+<p>Perintah <code>cargo fmt</code> akan meng-format seluruh code di semua file-file dengan ekstensi <code>.rs</code> menyesuaikan dengan format standar pada rust yang tentunya untuk tampilah kode yang lebih nyaman dibaca.</p>
+<p>Masih banyak hal lain yang tersedia pada <code>cargo</code> beserta flag-flagnya yang harus dieksplorasi sendiri menyesuaikan kebutuhan.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hello-world"><a class="header" href="#hello-world">Hello World</a></h1>
+<p>Kita akan membuat program pertama dengan menggunakan <code>cargo</code> untuk memudahkan me-<em>manage</em> dan scale projek. </p>
+<p>Masukkan perintah berikut:</p>
+<pre><code>cargo new &lt;path-to-your-new-project&gt; --bin --vcs none
+</code></pre>
+<p>Direktori projek akan terbentuk pada path yang ditentukan dengan struktur direktori dan file-file yang konvensional dalam development rust. 
+Karena kita membuat projek baru untuk executable maka kita menggunakan flag <code>--bin</code> dan akan menghasilkan default program baru berupa <code>Hello, world!</code> di dalam file <code>src/main.rs</code>.</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    println!(&quot;Hello, World!&quot;);
+}</code></pre></pre>
+<p>Jalankan perintah:</p>
+<pre><code>cargo run
+</code></pre>
+<p>Maka akan muncul </p>
+<pre><code>Hello, world!
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="struktur-codebase"><a class="header" href="#struktur-codebase">Struktur Codebase</a></h1>
+<p>Kita akan mempelajari bagaimana struktur code, file dan direktori pada projek rust. Disini kita tidak membahas mengenai kaitannya dengan business domain atau business logic apapun, serta juga tidak membahas arsitektur-arsitektur projek tertentu seperti SOLID, Clean Code, Clean Arch, dan lainnya. Kita hanya membahas pada konteks <em>build system</em> di dalam projek rust menggunakan <em>cargo</em>. </p>
+<h2 id="struktur-direktori"><a class="header" href="#struktur-direktori">Struktur Direktori</a></h2>
+<p>Konvensi direktori yang dihasilkan ketika inisiasi dan jalankan projek rust menggunakan cargo pertama kali adalah:</p>
+<pre><code>&lt;project-dir&gt;
+  |--src/
+      |--main.rs/lib.rs # file utama untuk binary(main) atau library(lib)
+  |--target/ # direktori berisi hasil cargo build
+  |--Cargo.lock
+  |--Cargo.toml # konfigurasi package dan depedensi
+</code></pre>
+<h2 id="jenis-program"><a class="header" href="#jenis-program">Jenis Program</a></h2>
+<p>Setiap program di dalam Rust merupakan hasil kompilasi dari crate-crate yang terdapat di dalam direktori <em>src/</em>.
+Terdapat 2 jenis crate di dalam rust yaitu: </p>
+<ul>
+<li><strong>binary</strong> : Crate yang menghasilkan executable program. File utama memiliki deklarasi fungsi <code>fn main()</code> sebagai entry point program di dalam file <code>main.rs</code>.</li>
+<li><strong>library</strong> : Crate yang menghasilkan non-executable program berupa pendukung/pelengkap/plugin untuk codebase lainnya. Tidak memiliki fungsi main hanya deklarasi-deklarasi module-module di dalam file <code>lib.rs</code>.</li>
+</ul>
+<h2 id="komponen-codebase"><a class="header" href="#komponen-codebase">Komponen Codebase</a></h2>
+<p>Di dalam codebase Rust terdapat beberapa jenis komponen-komponen yang keseluruhannya membentuk projek utuh yang ditulis dalam Rust.
+Berikut komponen-komponen tersebut mulai dari yang terkecil:</p>
+<ul>
+<li><strong>Types</strong>: Tipe data yang merupakan komponen terakhir yang bisa diakses dalam struktur codebase. Ada beberapa jenis tipe data di dalam Rust yaitu:
+|Types       | Desc.                                                        | Naming Convention    |
+|------------|--------------------------------------------------------------|----------------------|
+| <strong>const</strong>  | Values embeded at compile time                               | SCREAMING_SNAKE_CASE |
+| <strong>static</strong> | Values allocated once at compile time                        | SCREAMING_SNAKE_CASE |
+| <strong>trait</strong>  | Declaration of shared types, constants, and functions/methods| PascalCase           | 
+| <strong>struct</strong> | Product Type                                                 | PascalCase           | 
+| <strong>enum</strong>   | Sum Type                                                     | PascalCase           | 
+| <strong>fn</strong>     | Functions or Methods                                         | snake_case           | </li>
+<li>Module(<strong>mod</strong>) : Module merupakan segment kode yang memiliki cakupan kecil dan besar hingga satu file. Komponen ini berguna untuk memisahkan segment program dan melakukan enkapsulasi struktur program. Untuk naming conventions menggunakan <em>snake_case</em>. Module memiliki 3 lokasi ketika program dibuild yaitu:
+<ul>
+<li>Inline: deklarasi mod langsung dengan kode menggunakan kurung kurawal.</li>
+<li>Di dalam file dengan nama yang sama dengan mod(jika mod 1 level dengan file utama crate(<code>main.rs</code>/<code>lib.rs</code>)), atau di dalam direktori dengan nama yang sama dengan nama mod(untuk submodule)</li>
+<li>Di dalam direktori dengan nama yang sama dengan mod di dalam file <code>mod.rs</code>.</li>
+</ul>
+</li>
+<li>Crate : Representasi dari keseluruhan komponen-komponen di atas ke dalam <em>binary</em> crate atau <em>library</em> crate yang terletak di dalam direktori <em>src/</em>. Untuk binary ditentukan dengan fungsi <code>main</code> di dalam salah satu file di dalam crate itu yang berfungsi sebagai entry point eksekusi program. Untuk naming convention file menggunakan <em>snake_case</em>.</li>
+<li>Package : Package membungkus semua crate-crate yang telah kita buat di atas. Di level ini juga kita meletakkan file konfigurasi depedensi berupa <code>Cargo.toml</code> untuk mendeklarasikan crate-crate yang akan digunakan di dalam package tersebut. Package juga merupakan cara untuk men-distribusikan code kita untuk di reuse di tempat lain baik sebagai 3rd party atau internal project/service.</li>
+<li>Workspace : Merupakan gabungan dari beberapa package-package dengan <code>Cargo.toml</code> yang berisi deklarasi package-package terkandung. Ketika kita menjalankan perintah cargo di dalam workspace, maka akan ditelusuri melalui package-package yang ada di dalam konfigurasi toml workspace.</li>
+</ul>
+<h2 id="visibiliti-komponen"><a class="header" href="#visibiliti-komponen">Visibiliti Komponen</a></h2>
+<p>Setiap komponen di atas bersifat private dan hanya bisa diakses menggunakan keyword <strong>pub</strong> di depan setiap deklarasi komponen. 
+Contoh:</p>
+<pre><code>pub mod module {
+    pub const CONSTANT: &amp;str = &quot;this is constant&quot;;
+}
+</code></pre>
+<p>Maka <code>CONSTANT</code> dapat diakses lewat <code>...::module::CONSTANT;</code>.</p>
+<h2 id="komposisi-komponen"><a class="header" href="#komposisi-komponen">Komposisi Komponen</a></h2>
+<p>Berikut peraturan-peraturan tentang komposisi komponen-komponen di dalam codebase:</p>
+<ul>
+<li>1 workspace berisi minimal 1 package</li>
+<li>1 package hanya dapat berisi:
+<ul>
+<li>1 binary crate, atau</li>
+<li>1 library crate, atau</li>
+<li>1 binary crate dan 1 library crate, atau</li>
+<li>N binary crates dan 1 library crate</li>
+<li>N sub-packages</li>
+</ul>
+</li>
+<li>1 crate merupakan 1 dari 2 jenis program di dalam Rust yaitu <em>binary</em>(executable) dan <em>library</em>(non-executable)</li>
+<li>1 module bisa berisi module lain atau berbagai macam komponen lebih kecil lainnya.</li>
+</ul>
+<p>Contoh dari komposisi di atas bisa dilihat di <a href="https://github.com/mfathirirhas/rust-namespace">rust-namespace</a></p>
+<h2 id="contoh-struktur-codebase"><a class="header" href="#contoh-struktur-codebase">Contoh Struktur Codebase</a></h2>
+<h3 id="1-binary-crate"><a class="header" href="#1-binary-crate">1 Binary Crate</a></h3>
+<pre><code>sample_1_binary/
+|--src/
+    |--file1/                   # direktori submodule yang diakses dari file1.rs
+        |--sub_file_1/          # direktori submodule yang diakses dari sub_file_1.rs
+            |--sub_sub_file_1/  # nama submodule yang diakses dari sub_file_1.rs
+                |--mod.rs       # kode submodule sub_sub_file_1 yang diakses dari sub_file_1.rs
+        |--sub_file_1_2.rs      # module sub_file_1_2.rs diakses dari file1.rs
+        |--sub_file_1.rs        # module sub_file_1.rs diakses dari file1.rs
+    |--file2/                   # direktori module file2 yang diakses dari main.rs
+        |--mod.rs               # module file2 yang diakses dari main.rs
+        |--sub_mod.rs           # submodule sub_mod yang diakses dari file2/mod.rs
+    |--file1.rs                 # module `file1` diakses di main.rs
+    |--main.rs                  # tempat entrypoint program fn main()
+|--target/
+|--Cargo.lock
+|--Cargo.toml
+</code></pre>
+<h3 id="1-library-crate"><a class="header" href="#1-library-crate">1 Library Crate</a></h3>
+<pre><code>sample_1_binary/
+|--src/
+    |--file1/                   # direktori submodule yang diakses dari file1.rs
+        |--sub_file_1/          # direktori submodule yang diakses dari sub_file_1.rs
+            |--sub_sub_file_1/  # nama submodule yang diakses dari sub_file_1.rs
+                |--mod.rs       # kode submodule sub_sub_file_1 yang diakses dari sub_file_1.rs
+        |--sub_file_1_2.rs      # module sub_file_1_2.rs diakses dari file1.rs
+        |--sub_file_1.rs        # module sub_file_1.rs diakses dari file1.rs
+    |--file2/                   # direktori module file2 yang diakses dari main.rs
+        |--mod.rs               # module file2 yang diakses dari main.rs
+        |--sub_mod.rs           # submodule sub_mod yang diakses dari file2/mod.rs
+    |--file1.rs                 # module `file1` diakses di main.rs
+    |--lib.rs                   # tempat mendeklarasi dan meng-eksport semua module2
+|--target/
+|--Cargo.lock
+|--Cargo.toml
+</code></pre>
+<p>Sama dengan direktori 1 Binary di atas, bedanya file utama <code>lib.rs</code> cuma berisi dekalrasi-deklarasi module dan tanpa fungsi main di dalamnya.</p>
+<h3 id="1-binary--1-library-crate"><a class="header" href="#1-binary--1-library-crate">1 Binary &amp; 1 Library Crate</a></h3>
+<pre><code>sample_1_binary_1_library/
+|--src/
+    |--binary/
+        |--main.rs
+    |--library/
+        |--funcs.rs
+        |--lib.rs
+|--target/
+|--Cargo.lock
+|--Cargo.toml
+</code></pre>
+<p>Pada direktori di atas, terdapat 2 crate dengan file utama masing-masing, binary crate(main.rs) dan library crate(lib.rs). Library crate tidak berisi executable program, hanya sekumpulan kode yang mendukung development yang terjadi di binary dan dipanggil ke dalam binary crate.</p>
+<h3 id="n-binary--1-library-crate"><a class="header" href="#n-binary--1-library-crate">N Binary &amp; 1 Library Crate</a></h3>
+<pre><code>sample_n_binary_1_library/
+|--src/
+    |--bin/
+        |--main_4.rs
+        |--main_5.rs
+    |--lib/
+        |--lib.rs
+    |--main_3/
+        |--main_3.rs
+    |--main_1.rs
+    |--main_2.rs
+|--target/
+|--Cargo.lock
+|--Cargo.toml
+</code></pre>
+<p>Terdapat 5 binary crate dengan nama file utama <em>main_1.rs</em>, <em>main_2.rs</em>, <em>main_3.rs</em>, <em>main_4.rs</em>, <em>main_5.rs</em>, dan 1 library crate dengan nama <em>lib.rs</em> di dalam direktori <em>lib/</em>.</p>
+<h3 id="n-sub-packages"><a class="header" href="#n-sub-packages">N Sub-packages</a></h3>
+<pre><code>sample_n_sub-packages/
+|--src/
+    |--src/
+    |--package-1/
+    |--package-2/
+    |--...
+|--target/
+|--Cargo.lock
+|--Cargo.toml
+</code></pre>
+<p>Package <code>package-1</code> dan <code>package-2</code> merupakan package tersendiri dengan struktur yang sama seperti diluar. <code>package-1</code> dan <code>package-2</code> akan diimport oleh package di luar. Deklarasi import sub-packages ke dalam package luar di toml adalah:</p>
+<pre><code class="language-toml">package-name = {path = &quot;path-to-subpackage&quot;, package = &quot;package-name&quot;}
+</code></pre>
+<ul>
+<li><strong>package-name</strong>: nama yang akan di import menggunakan <code>use package-name::</code></li>
+<li><strong>path-to-subpackage</strong>: path ke subpackage dimulai dari root package. Pada contoh di atas maka bisa digunakan: <code>package-1</code></li>
+<li><strong>package-name</strong>: nama package dari path di atas. Biasanya nama package sama dengan nama directory.</li>
+</ul>
+<p>Secara <em>convetion</em> cargo, cargo akan secara otomatis membaca binary crates yang ada di dalam direktori <em>src/bin/&lt;file_name.rs&gt;</em> tanpa mendeklarasikan crate path di dalam <em>Cargo.toml</em>. Jika kita tidak mengikuti <em>convention</em> tersebut, maka kita harus deklarasikan nama dan path dari crate di dalam <em>Cargo.toml</em> di bawah section <code>[package]</code> di atas section <code>[dependencies]</code> seperti contoh:</p>
+<pre><code class="language-ini">...
+
+[[bin]]
+name = &quot;main_1&quot;
+path = &quot;src/main_1.rs&quot;
+
+[lib]
+name = &quot;lib&quot;
+path = &quot;src/lib/lib.rs&quot;
+
+[[bin]]
+name = &quot;main_2&quot;
+path = &quot;src/main_2.rs&quot;
+
+[[bin]]
+name = &quot;main_3&quot;
+path = &quot;src/main_3/main_3.rs&quot;
+
+...
+</code></pre>
+<h3 id="workspace"><a class="header" href="#workspace">Workspace</a></h3>
+<pre><code>sample_workspace/
+|--package_1_binary/
+    |--src/
+        |--file1/                   # direktori submodule yang diakses dari file1.rs
+            |--sub_file_1/          # direktori submodule yang diakses dari sub_file_1.rs
+                |--sub_sub_file_1/  # nama submodule yang diakses dari sub_file_1.rs
+                    |--mod.rs       # kode submodule sub_sub_file_1 yang diakses dari sub_file_1.rs
+            |--sub_file_1_2.rs      # module sub_file_1_2.rs diakses dari file1.rs
+            |--sub_file_1.rs        # module sub_file_1.rs diakses dari file1.rs
+        |--file2/                   # direktori module file2 yang diakses dari main.rs
+            |--mod.rs               # module file2 yang diakses dari main.rs
+            |--sub_mod.rs           # submodule sub_mod yang diakses dari file2/mod.rs
+        |--file1.rs                 # module `file1` diakses di main.rs
+        |--main.rs                  # tempat entrypoint program fn main()
+    |--Cargo.toml
+|--package_2_binary/
+    |--src/
+        |--file1/                   # direktori submodule yang diakses dari file1.rs
+            |--sub_file_1/          # direktori submodule yang diakses dari sub_file_1.rs
+                |--sub_sub_file_1/  # nama submodule yang diakses dari sub_file_1.rs
+                    |--mod.rs       # kode submodule sub_sub_file_1 yang diakses dari sub_file_1.rs
+            |--sub_file_1_2.rs      # module sub_file_1_2.rs diakses dari file1.rs
+            |--sub_file_1.rs        # module sub_file_1.rs diakses dari file1.rs
+        |--file2/                   # direktori module file2 yang diakses dari main.rs
+            |--mod.rs               # module file2 yang diakses dari main.rs
+            |--sub_mod.rs           # submodule sub_mod yang diakses dari file2/mod.rs
+        |--file1.rs                 # module `file1` diakses di main.rs
+        |--main.rs                  # tempat entrypoint program fn main()
+    |--Cargo.toml
+|--package_3_library/
+    |--src/
+        |--file1/                   # direktori submodule yang diakses dari file1.rs
+            |--sub_file_1/          # direktori submodule yang diakses dari sub_file_1.rs
+                |--sub_sub_file_1/  # nama submodule yang diakses dari sub_file_1.rs
+                    |--mod.rs       # kode submodule sub_sub_file_1 yang diakses dari sub_file_1.rs
+            |--sub_file_1_2.rs      # module sub_file_1_2.rs diakses dari file1.rs
+            |--sub_file_1.rs        # module sub_file_1.rs diakses dari file1.rs
+        |--file2/                   # direktori module file2 yang diakses dari main.rs
+            |--mod.rs               # module file2 yang diakses dari main.rs
+            |--sub_mod.rs           # submodule sub_mod yang diakses dari file2/mod.rs
+        |--file1.rs                 # module `file1` diakses di main.rs
+        |--lib.rs                  # tempat entrypoint program fn main()
+    |--Cargo.toml
+|--target/
+|--Cargo.lock
+|--Cargo.toml
+</code></pre>
+<p>Workspace punya toml sendiri yang berisi deklarasi member2 package di dalamnya:
+contoh:</p>
+<pre><code class="language-ini">[workspace]
+
+members = [
+    &quot;package_1_binary&quot;,
+    &quot;package_2_binary&quot;,
+    &quot;package_3_library&quot;,
+]
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="variables-functions-dan-closures"><a class="header" href="#variables-functions-dan-closures">Variables ,Functions, dan Closures</a></h1>
+<p>Variables di dalam rust secara default bersifat <em>immutable</em> yaitu tidak bisa diubah atau diassign ulang. <em>Immutability</em> merupakan pendekatan fungsional dari rust untuk menghindari <em>side-effects</em> di dalam program atau unexpected behaviour lainnya seperti race condition dan data race. Immutability juga memudahkan melakukan <em>tracing</em> data di dalam code program tanpa khawatir penggunaan selanjutnya di sisi lain code program.
+Variables dideklarasi di-dalam function/method atau disebut juga local variables.</p>
+<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
+<p>Fungsi merupakan unit komputasi paling dasar dengan deklarasi:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn function_name(param1: Type1, param2: Type2, ...) -&gt; ReturnType {
+    ...
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="closures"><a class="header" href="#closures">Closures</a></h2>
+<p>Closure adalah anonymous function yang merupakan deklarasi fungsi tanpa nama yang biasa digunakan sebagai tipe parameter untuk menerima fungsi(pure). Closure di dalam Rust secara default menangkap value-value sekitar secara reference(borrowed).</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s = String::from(&quot;lskdmfsdf&quot;);
+let a = || {
+    println!(&quot;{}&quot;, s); // s is captured by reference(borrowed) implicitly by closure
+    println!(&quot;Im printed from closure!&quot;);
+};
+a();
+<span class="boring">}</span></code></pre></pre>
+<p>Untuk menangkap values sekitar tanpa borrowing, bisa menggunakan keyword <em>move</em> sebelum opening bar.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s = String::from(&quot;lskdmfsdf&quot;);
+let b = move |x: i32| -&gt; i32 {
+    println!(&quot;{}&quot;, s); // because of keyword `move` above, this string is moved here so cannot be mentioned/referenced below anymore.
+    x * x
+};
+b(123);
+println!(&quot;{}&quot;, s); // cannot call `s` here because already moved into b closure scope.
+<span class="boring">}</span></code></pre></pre>
+<p>Untuk tipe-tipe yang bersifat <em>copy-able</em> seperti tipe primitif, ketika melakukan move, value di-copy ke dalam closure sehingga masih tetap bisa di panggil setelah closure. Move semantic benar-benar diterapkan untuk value yang bersifat <em>clone-able</em>.</p>
+<h2 id="local-variable"><a class="header" href="#local-variable">Local Variable</a></h2>
+<p>Variable yang dideklarasi hanya di dalam fungsi atau method, dan akan dihapus ketika stackframe fungsi dihapus.
+Naming convention local variable menggunakan <em>snake_case</em>.
+Berikut contoh deklarasi local variable:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let a = 123;
+let b: i32 = 123;
+let c = &quot;literal string&quot;;
+let d: String = &quot;Object String&quot;.to_string();
+
+// deklarasi mutable
+let mut a = 123;
+a = a + 1; // 124
+
+let mut s = String::from(&quot;test&quot;);
+s.push_str(&quot;anu&quot;);
+println!(&quot;{}&quot;, s); // testanu
+<span class="boring">}</span></code></pre></pre>
+<p>Pada contoh di atas, terdapat 4 jenis deklarasi variable. Variable <code>a</code> tidak memiliki deklarasi tipe karena Rust dapat meng-<em>infer</em> tipe data tersebut saat compile time. Variable <code>b</code> memiliki tipe data setelah colon <code>:</code>. Variable <code>c</code> merupakan jenis string literal atau reference string. Variable <code>d</code> merupakan jenis string <em>owned</em> dimana value string literal harus diubah ke owned menggunakan method <code>to_string()</code>.</p>
+<h2 id="shadowing"><a class="header" href="#shadowing">Shadowing</a></h2>
+<p>Shadowing adalah ketika local variable lama dioverwrite secara tipe dan value. Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let a = 123; // i32
+let a = &quot;from i32 to string&quot;; // &amp;str
+let a = &quot;from string to owned string&quot;.to_string(); // String
+<span class="boring">}</span></code></pre></pre>
+<p>Variable <code>a</code> dapat dideklarasikan kembali berulang-ulang dengan tipe yang berbeda. Value yang digunakan adalah yang terakhir kali dideklarasikan.</p>
+<h2 id="constant"><a class="header" href="#constant">Constant</a></h2>
+<p>Constant juga immutable by default dan tidak bisa dijadikan mutable. Deklarasi constant mengharuskan menggunakan tipe data. Constant harus dideklarasikan menggunakan value yang dapat dikomputasi pada saat kompilasi. Jika value butuh alokasi heap, maka tidak bisa di-<em>assign</em> ke constant . Constant dapat berisi ekspresi non-final dan dikomputasi pada saat kompilasi. Constant dievaluasi pada saat kompilasi dan ditaruh ke dalam binary program, sehingga tidak memiliki address di memory. Constant valid selama program berjalan. Contoh deklarasi constant:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>const a: i32 = 123;
+const b: &amp;str = &quot;anu&quot;;
+<span class="boring">}</span></code></pre></pre>
+<h2 id="static"><a class="header" href="#static">Static</a></h2>
+<p>Memiliki kemiripan dengan <code>const</code>, perbedaan terletak pada static memiliki alamat memory ketika dikompilasi. Ketika variable static dipanggil maka ada proses dereference terhadap value yang ada di alamat memori dari variable static tersebut. Perbedaan lainnya adalah static dapat menjadi mutable pada saat runtime. Mutability static pada saat runtime hanya bisa dilakukan di dalam blok <code>unsafe</code>. Contoh deklarasi static:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>static a: i32 = 123;
+static b: &amp;str = &quot;anu&quot;;
+println!(&quot;{:p}&quot;, a);
+println!(&quot;{:p}&quot;, b);
+<span class="boring">}</span></code></pre></pre>
+<p>Bukti bahwa static memiliki alamat memori adalah kita bisa mendapatkan alamat memori tersebut dengan cara di atas. Sementara kita tidak bisa melakukan hal itu terhadap constant karena constant tidak memiliki alamat memori.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="primitive-types"><a class="header" href="#primitive-types">Primitive Types</a></h1>
+<p>Rust memiliki tipe-tipe paling dasar untuk menghandle beberapa data diantaranya numerik, karakter, kalimat, bytes, dan lainnya.</p>
+<p>Berikut beberapa tipe-tipe dasar dalam Rust:</p>
+<h2 id="unit"><a class="header" href="#unit">Unit</a></h2>
+<p>Tipe data yang tidak berarti apa-apa. Biasanya digunakan ketika ingin meng-<em>ignore</em> deklarasi tipe data. 
+Salah satu kegunaan tipe ini adalah untuk meng-<em>ignore</em> deklarasi tipe data untuk generic type.
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>()
+
+fn return_nothing() -&gt; () {
+    println!(&quot;do nothing&quot;);
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="boolean"><a class="header" href="#boolean">Boolean</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td>true</td><td>true</td></tr>
+<tr><td>false</td><td>false</td></tr>
+</tbody></table>
+</div>
+<p>Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let b: bool = true;
+<span class="boring">}</span></code></pre></pre>
+<h2 id="integer"><a class="header" href="#integer">Integer</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td>i8</td><td>8bit integer</td></tr>
+<tr><td>i16</td><td>16bit integer</td></tr>
+<tr><td>i32</td><td>32bit integer</td></tr>
+<tr><td>i64</td><td>64bit integer</td></tr>
+<tr><td>i128</td><td>128bit integer</td></tr>
+<tr><td>isize</td><td>bit size depends on target arch</td></tr>
+</tbody></table>
+</div>
+<p>Untuk tipe <em>unsigned</em> tinggal mengganti <em>i</em> menjadi <em>u</em> seperti u8, u16, u32, u64, u128, dan usize.
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let n: i64 = 123345;
+<span class="boring">}</span></code></pre></pre>
+<h2 id="floating-point"><a class="header" href="#floating-point">Floating Point</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td>f32</td><td>32bit floating point</td></tr>
+<tr><td>f64</td><td>64bit floating point</td></tr>
+</tbody></table>
+</div>
+<p>Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let f: f64 = 123.5;
+<span class="boring">}</span></code></pre></pre>
+<h2 id="character"><a class="header" href="#character">Character</a></h2>
+<p>Menggunakan <em>single quote</em> seperti <code>'a'</code>.
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let c: char = 'a';
+<span class="boring">}</span></code></pre></pre>
+<p>Semua tipe data di atas harus diketahui ukurannya pada saat compile time dan tetap dalam ukuran.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="string-types"><a class="header" href="#string-types">String Types</a></h1>
+<p>Rust memiliki 2 jenis tipe data dasar untuk berhubungan dengan <em>string</em>. Yaitu:</p>
+<h2 id="reference-string-str"><a class="header" href="#reference-string-str">Reference string (&amp;str)</a></h2>
+<p>Reference string yaitu value string yang tidak memiliki <em>owner</em>, dalam artian hanya bisa di-pass sebagai reference dan <em>immutable</em>. 
+String semacam ini bisa dibentuk dengan berbagai cara, diantaranya secara <em>hardcode</em> di kodingan, di-<em>referenced</em> dari data lainnya atau dibentuk dari array u8(utf8). Ketika string jenis ini didapat dari reference owned value, maka reference nya akan valid selama object owner nya valid(tidak out of scope).</p>
+<p>Berikut penjelasan beberapa cara string jenis ini muncul:</p>
+<ul>
+<li><em>Hardcode</em>: cara ini yaitu dengan menuliskan value string secara literal pada saat menulis kode program. String jenis ini bersifat static, yaitu di-<em>compile</em> bersama program ke dalam binary dan exist selama program berjalan.
+Contoh: </li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s: &amp;str = &quot;this is literal string&quot;;
+println!(&quot;{}&quot;,s);
+<span class="boring">}</span></code></pre></pre>
+<p>String jenis ini diketahui ukuran nya pada saat compile time dan <em>immutable</em>. Ketika ingin memanipulasi string ini harus di-<em>owned</em> terlebih dulu(dijelaskan pada pembahasan selanjutnya).</p>
+<ul>
+<li><em>Referenced</em>: cara ini yaitu dengan mengambil reference dari object(owned) <strong>String</strong> di runtime. 
+Contoh:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s: String = &quot;this is owned string&quot;.to_string();
+let ref_s: &amp;str = s.as_str();
+<span class="boring">}</span></code></pre></pre>
+<p><code>ref_s</code> valid selama <code>s</code> tidak di <code>drop</code> atau keluar scope. Hal ini karena <code>s.as_str()</code> hanya memberika reference kepada value <code>&amp;str</code> yang ada pada object <code>s</code> sehingga pemilik &amp;str nya adalah <code>s</code>. String jenis ini dialokasikan pada <em>heap memory</em> karena <code>String</code> dialokasikan di <em>heap memory</em>.</p>
+<ul>
+<li><em>Array u8(utf8)</em>: cara ini dibentuk ketika string di encode kedalam utf8, sehingga value array u8 bisa digunakan untuk membentuk string tsb.
+Contoh:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let utf8 = [105, 109, 32, 102, 114, 111, 109, 32, 98, 121, 116, 101, 115];
+let s_ref: &amp;str = std::str::from_utf8(&amp;utf8).unwrap();
+println!(&quot;{}&quot;,s_ref); // print &quot;this is owned string&quot;
+<span class="boring">}</span></code></pre></pre>
+<p>String jenis ini dialokasikan di dalam <em>stack memory</em>. 
+String jenis ini lebih dianjurkan digunakan ketika kita memiliki string yang hanya <em>read-only</em>.</p>
+<h2 id="owned-string-string"><a class="header" href="#owned-string-string">Owned String (String)</a></h2>
+<p>String jenis ini merupakan string yang dibentuk pada saat runtime dimana ukurannya tidak diketahui dan bisa berubah-ubah sehingga perlu dialokasikan pada <em>heap memory</em>. String ini sifatnya di-<em>owned</em>, dalam artian memiliki owner yang mana value nya valid selama owner nya tidak out of scope dan tidak di-<em>drop</em>.
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let owned_string: String = String::from(&quot;im owned&quot;);
+println!(&quot;{}&quot;,owned_string);
+<span class="boring">}</span></code></pre></pre>
+<p>String di atas di-<em>owned</em> oleh variable <code>owned_string</code>, selama <code>owned_string</code> masih di dalam scope yang sama, maka string valid digunakan. <code>owned_string</code> menjadi tidak valid ketika berpindah kepemilikan seperti di-<em>pass</em> ke dalam suatu fungsi atau berpindah scope <code>{}</code>.
+String jenis ini digunakan ketika kita ingin lebih leluasa mengoperasikan suatu string.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="compound-types"><a class="header" href="#compound-types">Compound Types</a></h1>
+<p>Compound types merupakan tipe data yang terdiri dari beberapa tipe data yang dimasukkan ke dalam suatu variable. Tipe data ini bisa berisi tipe primitif, string, struct, tuple, enum atau lainnya.</p>
+<h2 id="array-tsize"><a class="header" href="#array-tsize">Array <code>[T;size]</code></a></h2>
+<p>Array merupakan tipe data gabungan dari value-value dengan tipe yang sama. Size array bersifat <em>fixed</em> dengan value-value yang diinisialisasi pada saat compile time. Ownership dari array tergantung dari elemen-elemen yang terkandung. Jika mengandung tipe data yang <em>copyable</em> atau <em>reference</em> maka tidak ada ownership tertentu sehingga array tetap valid jika keluar dari scope. Sebaliknya jika elemen terkandung merupakan <em>heap-allocated</em> data, maka array tidak akan valid jika telah keluar dari scope.
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let array_1 = [1,2,3,4,5];
+println!(&quot;{}&quot;, array_1[0]); // print 1
+println!(&quot;{}&quot;, array_1[1]); // print 2
+println!(&quot;{}&quot;, array_1[2]); // print 3
+
+let array_2: [i32; 5] = [1,2,3,4,5];
+println!(&quot;{}&quot;, array_2[0]); // print 1
+println!(&quot;{}&quot;, array_2[1]); // print 2
+println!(&quot;{}&quot;, array_2[2]); // print 3
+<span class="boring">}</span></code></pre></pre>
+<h2 id="slice-t"><a class="header" href="#slice-t">Slice <code>&amp;[T]</code></a></h2>
+<p>Berbeda dengan array, slice memiliki size yang dinamis dan tidak dideklarasi pada saat <em>compile-time</em>. Slice merupakan tipe data reference yang mereferensikan ke suatu lokasi memori yang mengandung data di dalam slice. Slice bertujuan ketika kita ingin mendefenisikan array dengan jumlah data yang tidak pasti dan bisa berubah ke depannya. Berbeda dengan array yang ownership data tergantung elemen terkandung, Slice merupakan reference type sehingga slice tetap valid di scope manapun.
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let slice_1 = &amp;[1,2,3,4,5];
+println!(&quot;{}&quot;, slice_1[0]); // print 1
+println!(&quot;{}&quot;, slice_1[1]); // print 2
+println!(&quot;{}&quot;, slice_1[2]); // print 3
+
+let slice_2: &amp;[i32] = &amp;[1,2,3,4,5];
+println!(&quot;{}&quot;, slice_2[0]); // print 1
+println!(&quot;{}&quot;, slice_2[1]); // print 2
+println!(&quot;{}&quot;, slice_2[2]); // print 3
+<span class="boring">}</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="algebraic-types"><a class="header" href="#algebraic-types">Algebraic Types</a></h1>
+<p>Algebraic Types merupakan tipe data gabungan(<em>compound</em>) yang dibentuk dari kombinasi notasi matematika berupa: <em>AND</em> dan <em>OR</em>.
+Rust memiliki 2 jenis <em>Algebraic Types</em> yaitu: <em>Product Type</em> dan <em>Sum Type</em>.</p>
+<h2 id="product-type"><a class="header" href="#product-type">Product Type</a></h2>
+<p>Tipe ini merupakan tipe data yang bersifat kombinatorik terhadap semua kemungkinan value-value yang ada di dalamnya. Tipe ini menggunakan logika <em>AND</em> untuk membentuknya. Seperti logika <em>AND</em> pada umumnya, semua harus ada atau tidak sama sekali. Hal ini karena jika ada satu value kosong, maka kombinasi dari semua nya menjadi hilang. Kita bisa manganalogikan <em>Product</em> sebagai hasil dari sebuah perkalian, dimana jika ada 1 value saja yang 0, maka semua jadi kosong. Jadi ini adalah tipe yang mengharuskan kita memberi value kepada semua field yang ada dalam tipe ini.</p>
+<p>Terdapat 2 jenis Product Type di Rust, yaitu: <code>struct</code> dan <code>tuple</code>. Ketika hendak mengdeklarasikan 2 hal tersebut kita diharuskan mengisi semua field yang ada padanya atau kalau tidak mendapat error.</p>
+<h3 id="struct"><a class="header" href="#struct">Struct</a></h3>
+<p>Merupakan tipe bentukan yang terdiri dari beberapa fields dengan values dari berbagai macam tipe data.
+Deklarasi:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Volume {
+    height: u8,
+    width: u8,
+    length: u8,
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Inisialisasi:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let volume = Volume {
+    height: 12,
+    width: 10,
+    length: 15,
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Ketika inisialisasi ketiga field harus diisi atau akan error.
+Manakah sifat kombinatorik yang dimaksud?, bisa kita lihat pada contoh di atas, setiap field punya tipe u8, dengan begitu ketika dikombinasikan dengan logika <em>AND</em> atau dimultiplikasikan memiliki total kombinasi product yaitu: 255 * 255 * 255 = 16581375 kemungkinan representasi dari tipe <code>Volume</code>.</p>
+<h3 id="struct-with-tuple"><a class="header" href="#struct-with-tuple">Struct with Tuple</a></h3>
+<p>Deklarasi struct tanpa fields name. Merupakan gabungan struct dan Tuple.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[derive(Debug)]
+struct Volume(u8,u8,u8);
+
+let volume = Volume(5,10,20);
+println!(&quot;{:?}&quot;,volume);
+println!(&quot;{}&quot;,volume.0);
+println!(&quot;{}&quot;,volume.1);
+println!(&quot;{}&quot;,volume.2);
+<span class="boring">}</span></code></pre></pre>
+<h2 id="tuple"><a class="header" href="#tuple">Tuple</a></h2>
+<p>Merupakan tipe bentukan yang terdiri dari values dari berbagai macam tipe data tanpa deklarasi field.
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let tuple_1 = (1, true, 'a');
+println!(&quot;{}&quot;,tuple_1.0); // print 1
+println!(&quot;{}&quot;,tuple_1.1); // print true
+println!(&quot;{}&quot;,tuple_1.2); // print 'a'
+
+let tuple_2: (i32,bool,char) = (1, true, 'a');
+println!(&quot;{}&quot;,tuple_2.0); // print 1
+println!(&quot;{}&quot;,tuple_2.1); // print true
+println!(&quot;{}&quot;,tuple_2.2); // print 'a'
+
+let (tuple_elem_1, tuple_elem_2, tuple_elem_3) = (1, true, 'a');
+println!(&quot;{}&quot;,tuple_elem_1); // print 1
+println!(&quot;{}&quot;,tuple_elem_2); // print true
+println!(&quot;{}&quot;,tuple_elem_3); // print 'a'
+<span class="boring">}</span></code></pre></pre>
+<h2 id="sum-type"><a class="header" href="#sum-type">Sum Type</a></h2>
+<p>Tipe ini kebalikan dari Product Type. Tipe ini menggunakan logika <em>OR</em> dimana cukup 1 value yang dibutuhkan dari semua kemungkinan value. Seperti namanya <em>Sum</em> yang mirip operasi penjumlahan jika ada 1 saja non-null value maka masih akan mendapatkan hasil non-null, e.g. 1+0+0+0 = 1. </p>
+<p>Rust memiliki Sum Type berupa <code>enum</code>. Berikut contoh penggunaan enum:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum Day {
+    Sun,
+    Mon,
+    Tue,
+    Wed,
+    Thu,
+    Fri,
+    Sat,
+}
+
+let day = Day::Fri;
+<span class="boring">}</span></code></pre></pre>
+<p>Seperti contoh di atas, terdapat 7 hari yang ada, akan tetapi value yang dibutuhkan hanya 1 yaitu salah satu dari value-value yang ada.
+Di Rust terdapat 2 <em>Sum Type</em> yang sering digunakan yaitu: <em>Result</em> dan <em>Option</em>. 
+<em>Result</em> digunakan untuk operasi-operasi yang mempunyai kemungkinan error.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub enum Result&lt;T, E&gt; {
+    Ok(T),
+    Err(E),
+}
+<span class="boring">}</span></code></pre></pre>
+<p><em>Option</em> digunakan untuk operasi-operasi yang mempunyai kemungkanan null.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub enum Option&lt;T&gt; {
+    None,
+    Some(T),
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Contoh penggunaan:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let result: Result&lt;String, String&gt; = Ok(&quot;Success&quot;.to_string());
+println!(&quot;{}&quot;, result.unwrap()); // Print &quot;Success&quot;
+let result: Result&lt;String, String&gt; = Err(&quot;Failed&quot;.to_string());
+println!(&quot;{}&quot;, result.unwrap_err()); // Print &quot;Failed&quot;
+<span class="boring">}</span></code></pre></pre>
+<h2 id="kombinasi-product-type-dan-sum-type"><a class="header" href="#kombinasi-product-type-dan-sum-type">Kombinasi Product Type dan Sum Type</a></h2>
+<p>Kita bisa mengkombinasikan 2 tipe ini untuk menciptakan model data yang lebih kompleks. Bisa dengan memasukkan <em>Product Type</em> ke dalam <em>Sum Type</em>, atau sebaliknya. Salah satu contoh yang sering digunakan adalah ketika kita ingin menerima data json yang memiliki kemungkinan beberapa fields nya kosong/null. </p>
+<p>Berikut contohnya:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct RequestJson {
+    id: i64,
+    name: String,
+    phone: Option&lt;String&gt;,
+}
+
+let request = RequestJson {
+    id: 123,
+    name: &quot;anu&quot;.to_string(),
+    phone: None, // if from json payload this field `null`, then None is given to us.
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Contoh di atas menunjukkan contoh data yang menerima request json dimana field <code>phone</code> bisa <code>null</code> dari json payload.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum Shape {
+    Rectangle2DTuple(i32,i32),
+    Rectangle3DTuple(i32,i32,i32),
+    Rectangle2DStruct{
+        length: i32,
+        width: i32,
+    },
+    Rectangle3DStruct{
+        length: i32,
+        width: i32,
+        height: i32,
+    },
+}
+
+let shape = Shape::Rectangle2DTuple(10,20);
+let shape = Shape::Rectangle3DStruct{
+    length: 12,
+    width:13,
+    height:14,
+};
+<span class="boring">}</span></code></pre></pre>
+<p>Pada contoh di atas kita melihat kombinasi product type dan sum type. Tipe enum <code>Shape</code> memiliki value-value yang dikombinasikan dengan tuple(Rectangle2DTuple &amp; Rectangle3DTuple) dan struct(Rectangle2DStruct &amp; Rectangle3DStruct). Masing-masing varian enum tersebut harus mengisi semua value untuk tuple dan struct masing-masing secara utuh atau deklarasi enum gagal.</p>
+<h2 id="pattern-matching"><a class="header" href="#pattern-matching">Pattern Matching</a></h2>
+<p>Bahasa yang memiliki <em>Algebraic Types</em> selayaknya juga memiliki fitur <em>Pattern Matching</em>. Hal ini digunakan untuk melakukan pengecekkan tipe, struktur, dan value-value yang terkandung di dalam <em>Algebraic Types</em> tersebut. Rust memiliki feature ini menggunakan <code>match</code>. Setiap enumerasi tipe/value dari match disebut <code>arm</code>.
+Pattern matching bersifat <em><strong>exhaustive</strong></em> yaitu semua kemungkinan signature/value harus dienumerasi ke-dalam setiap <em>arms</em> dari value tersebut.
+Jika suatu value dengan tipe tertentu memiliki banyak enumerasi value yang ada padanya, tentunya tidak mungkin ditulis semua, selain itu pula kadang kita hanya butuh mengecek sebagian saja dari kemungkinan value yang ada. Untuk ini kita bisa mengabaikan value/signature lain dengan menggunakan <em>wildcard</em> untuk sisa dari value/signature yang tidak kita deklarasikan.</p>
+<p>Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum Gender {
+    Male
+    Female
+}
+
+let gender = Gender::Female;
+match gender {
+    Gender::Male =&gt; println!(&quot;Gender is male&quot;),
+    Gender::Female =&gt; println!(&quot;Gender is female&quot;),
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Contoh dengan wildcard:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let num: u8 = 12;
+match num {
+    1 =&gt; println!(&quot;one&quot;),
+    _ =&gt; panic!(&quot;gone&quot;)
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Pada contoh di atas ada kemungkinan 255 value dari num(unsigned 8 bit integer), ketika kita cuma butuh mengecek beberapa kemungkinan value saja dari variable dalam pattern matching, kita cukup menambahkan <code>_</code> pada akhir <em>arm</em> dari pattern matching sehingga kita bisa mangabaikan sisa dari semua kemungkinan enumerasi.</p>
+<p><span style="color:red"><em><strong>NOTE Wildcard selalu berada di akhir karena sifat exhaustive pattern matching dari atas ke bawah, sehingga jika kita tidak meletakkan wildcard paling bawah, maka value apapun akan masuk ke dalam <em>arm</em> wildcard sehingga menghasilkan <em>unintended</em> consequence.</strong></em></span></p>
+<p><code>match</code> juga sering digunakan untuk mengecek value dari 2 tipe enum <code>Result</code> dan <code>Option</code>, serta men-destrukturalisasi tipe-tipe tersebut dan mengambil value di dalamnya.
+Ketika suatu operasi memungkinkan mengembalikan value kosong, maka tipe data yang cocok digunakan adalah <code>Option</code> dengan melakukan pengecekkan:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let optional_value = Some(&quot;thing&quot;);
+match optional_value {
+    Some(thing) =&gt; println!(&quot;there is a {}&quot;, thing), // print &quot;there is a thing&quot;
+    None =&gt; println!(&quot;there is nothing&quot;),
+}
+// akan return &quot;there is a thing&quot;
+<span class="boring">}</span></code></pre></pre>
+<p>Ketika suatu operasi memungkinkan mengembalikan error, maka tipe data yang cocok digunakan adalah <code>Option</code> dengan melakukan pengecekkan:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let error_value = Err(&quot;error&quot;);
+match error_value {
+    Ok(result) =&gt; println!(&quot;Success with result {}&quot;, result),
+    Err(error) =&gt; println!(&quot;failed with error {}&quot;,error) // print &quot;failed with error error&quot;
+}
+// akan return &quot;failed with error error&quot;
+<span class="boring">}</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="collection-types"><a class="header" href="#collection-types">Collection Types</a></h1>
+<p>Compound dan Collection types hampir mirip kecuali Collection type lebih dinamis dan disimpan ke dalam heap memory.</p>
+<h2 id="vector-vect"><a class="header" href="#vector-vect">Vector <code>Vec&lt;T&gt;</code></a></h2>
+<p>Vector merupakan tipe data seperti list. Perbedaan vector dengan array dan slice adalah vector memiliki ownership terhadap data yang dikandung baik itu tipe data yang bersifat <em>copyable</em>(stack-allocated) atau <em>clonable</em>(heap-allocated). Hal ini menjadikan vector akan invalid ketika berpindah ownership atau keluar dari scope.
+Vector memiliki tipe berparameter(<em>generic type</em>) <code>&lt;T&gt;</code> yang merupakan tipe data dari elemen-elemen terkandung.
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut vec_string: Vec&lt;String&gt; = Vec::new();
+vec_string.push(&quot;first string&quot;.to_string());
+vec_string.push(&quot;second string&quot;.to_string());
+vec_string.push(&quot;third string&quot;.to_string());
+vec_string.push(&quot;fourth string&quot;.to_string());
+println!(&quot;{}&quot;, vec_string); // prints [&quot;first string&quot;, &quot;second string&quot;, &quot;third string&quot;, &quot;fourth string&quot;]
+
+let mut vec_i32 = vec![1,2,3,4];
+vec_i32.push(5)
+println!(&quot;{:?}&quot;, vec_i32); // [1, 2, 3, 4, 5]
+vec_i32.remove(1); // remove element by index and shift elements after it to the left.
+println!(&quot;{:?}&quot;, vec_i32); // [1, 3, 4, 5]
+<span class="boring">}</span></code></pre></pre>
+<p>Pada contoh di atas dapat dilihat terdapat 2 jenis deklarasi vector, yaitu dengan menggunakan inisialisasi <code>Vec::new()</code> atau dengan menggunakan macro <code>vec!</code>. Ketika menggunakan macro, tipe data di-<em>infer</em> secara otomatis oleh compiler. Terlihat bahwa vector harus bersifat <em>mutable</em> agar bisa di ubah(assign/update).</p>
+<h2 id="hashmap-hashmapk-v-s--randomstate"><a class="header" href="#hashmap-hashmapk-v-s--randomstate">HashMap <code>HashMap&lt;K, V, S = RandomState&gt;</code></a></h2>
+<p>Tipe data map yang memetekan suatu key(K) ke suatu value(V). Berbeda dengan tipe data lainnya yang sudah termasuk ke dalam <em>prelude</em>, hashmap harus diimport terlebih dahulu sebelum digunakan.</p>
+<pre><pre class="playground"><code class="language-rust">use std::collections::HashMap;
+
+fn main() {
+    let mut map: HashMap&lt;i32, &amp;str&gt; = HashMap::new();
+    map.insert(1, &quot;test&quot;);
+    println!(&quot;{map:?}&quot;); // {1: &quot;test&quot;}
+    map.insert(1, &quot;updated_value&quot;); // if key 1 already existed, then the value will be updated, else will be inserted
+    map.insert(2, &quot;test2&quot;);
+    map.insert(3, &quot;test3&quot;);
+    map.insert(4, &quot;test4&quot;);
+    println!(&quot;{map:?}&quot;); // {2: &quot;test2&quot;, 1: &quot;updated_value&quot;, 3: &quot;test3&quot;, 4: &quot;test4&quot;}
+    map.remove(&amp;2); 
+    println!(&quot;{map:?}&quot;); // {1: &quot;updated_value&quot;, 4: &quot;test4&quot;, 3: &quot;test3&quot;}
+    let key_1 = map.get(&amp;1); // `get` will read the value by key's reference returning Option&lt;V&gt;. If not exist will return `None`.
+    println!(&quot;{:?}&quot;, key_1); // Some(&quot;updated_value&quot;)
+
+    let mut new_map: HashMap&lt;&amp;str, &amp;str&gt; = HashMap::from(
+        [
+            (&quot;key_1&quot;,&quot;value_1&quot;),
+            (&quot;key_2&quot;,&quot;value_2&quot;),
+            (&quot;key_3&quot;,&quot;value_3&quot;),
+            (&quot;key_4&quot;,&quot;value_4&quot;),
+        ]
+    ); // initialize map with a known keys and values using array of tuples (K,V)
+    println!(&quot;{new_map:?}&quot;) // {&quot;key_3&quot;: &quot;value_3&quot;, &quot;key_4&quot;: &quot;value_4&quot;, &quot;key_2&quot;: &quot;value_2&quot;, &quot;key_1&quot;: &quot;value_1&quot;}
+}</code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ownership--borrowing"><a class="header" href="#ownership--borrowing">Ownership &amp; Borrowing</a></h1>
+<p>Sebelum kita membahas tentang <em>Ownership</em> dan <em>Borrowing</em>, kita akan membahas terlebih dahulu tentang dua jenis memori yaitu <em>Stack</em> dan <em>Heap</em>:</p>
+<ul>
+<li><em>Stack</em>: adalah memori bersifat LIFO(<em>Last In First Out</em>) merupakan memori yang digunakan tempat menyimpan function frame(function stack frame) yang merupakan semua intruksi-intruksi pada suatu fungsi. Selain itu juga menyimpan tipe data primitif dan pointer address. Data yang dialokasi pada <em>stack</em> dapat diketahui size-nya pada saat compile time dan fixed in size selama program berjalan. Access cepat dan semua memori di-release ketika selesai digunakan(e.g function return/exit).</li>
+<li><em>Heap</em>: adalah memori yang lebih kompleks dari stack. Memori ini digunakan untuk data yang tidak diketahui sizenya secara pasti pada saat compile time, dan bisa berubah-ubah size nya selama program berjalan. Memori ini butuh dynamic allocation pada saat runtime sehingga memiliki <em>overhead</em> dan butuh di-<em>deallocate</em> ketika sudah tidak digunakan. Di dalam Rust, proses de-<em>allocate</em> ini disebut dengan <em>Drop</em>.</li>
+</ul>
+<h2 id="ownership"><a class="header" href="#ownership">Ownership</a></h2>
+<p>Ownership merupakan hal unik pada Rust yang membuat rust mampu manage memory tanpa memiliki <em>Garbage Collector</em> serta tanpa manual memory management seperti <em>alloc/free</em>. Ownership memiliki 3 aturan:</p>
+<ul>
+<li><em>Each value in Rust has an owner.</em></li>
+<li><em>There can only be one owner at a time.</em></li>
+<li><em>When the owner goes out of scope, the value will be dropped.</em></li>
+</ul>
+<p>Owner merupakan suatu variable yang memiliki sebuah value. Owner ini memiliki scope. Jika owner keluar dari scopenya, maka akan di-drop(released from memory).
+Selain <em>drop</em>, ownership bisa berpindah tangan atau disebut dengan <em>move</em>, yaitu ketika owner masuk scope baru, sehingga owner tersebut tidak bisa digunakan di scope yang sama lagi.</p>
+<p>Tipe data yang sering memiliki ownership adalah yang biasanya butuh alokasi <em>heap memory</em>, tidak fixed in size dan tidak diketahu size nya pada saat compile time.</p>
+<p>Tipe data yang memiliki ownership terhadap valuenya adalah tipe data selain primitif.</p>
+<p>Di dalam Rust terdapat 2 jenis trait yang berkaitan dengan <em>scope</em> variable:</p>
+<ul>
+<li><em>Copy</em>: Semua tipe data primitif sudah meng-implementasikan <em>copy</em> secara implisit. Trait ini memungkinkan data di-pass atau keluar scope tanpa khawatir kehilangan ownership, Karena semua data tersebut memiliki struktur memori sederhana sehingga copy data terjadi dengan sangat cepat ketika keluar/berpindah scope.</li>
+<li><em>Clone</em>: Tipe data selain primitif atau yang tidak meng-implementasi <em>copy</em> secara implisit, harus implement <em>clone</em> secara eksplisit. Jika data keluar/pindah scope, maka <em>ownership</em> akan di-drop/pindah. Tipe data yang <em>clonable</em> biasanya dialokasi ke dalam <em>heap memory</em>, sehingga harus melakukan <em>deep copy</em> terhadap struktur datanya.</li>
+</ul>
+<h3 id="scope"><a class="header" href="#scope">Scope</a></h3>
+<p>Scope adalah segment kode yang menandai batas ownership suatu data yang di-<em>owned</em>. Seperti dibahas di atas, terdapat dua mekanisme yang berkaitan dengan variable yang di-<em>owned</em> yaitu <em>drop</em> atau <em>move</em>. Dua jenis scope yang ada pada Rust yaitu <em>curly brackets</em>(drop) dan <em>functions/methods arguments</em>(move).</p>
+<ul>
+<li>Contoh drop:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    {
+        let s = String::from(&quot;string value&quot;);
+        // string s will be dropped here at the end of the scope
+    } // this curly bracket mark the end of s owning the String value so be dropped.
+}</code></pre></pre>
+<p><em>Drop</em> merupakan sebuah trait yang hampir semua tipe <em>owned</em>/<em>heap allocated</em> sudah implement secara implisit. Compiler <em>rustc</em> akan meng-<em>embed</em> drop function untuk data terkait di setiap end of scope.</p>
+<ul>
+<li>Contoh move:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let s = String::from(&quot;hooh&quot;);
+    function(s);
+    println!(&quot;{}&quot;, &amp;s);
+    println!(&quot;{}&quot;, s);
+}
+
+fn function(s: String) {} </code></pre></pre>
+<p>Pada contoh di atas, variable <code>s</code> sudah berpindah scope dari <code>main</code> ke scope fungsi <code>function</code> sehingga <code>s</code> tidak bisa lagi digunakan setelah <code>function(s)</code>.
+<em>Move</em> hanya terjadi pada tipe data yang bersifat <em>clonable</em> atau implement trait <code>Clone</code>. Tipe-tipe data ini biasanya dialokasi pada heap, contoh seperti di atas adalah <code>String</code>. Cara memanfaatkan data <em>clonable</em> setelah move terjadi adalah dengan memanggil method dari trait <em>Clone</em> itu sendiri yaitu <code>clone</code>. Sehingga code di atas menjadi:</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let s = String::from(&quot;hooh&quot;);
+    function(s.clone());
+    println!(&quot;{}&quot;, &amp;s);
+    println!(&quot;{}&quot;, s);
+}
+
+fn function(s: String) {} </code></pre></pre>
+<p>Sehingga <code>s</code> masih bisa digunakan setelah <code>function</code>, karena value dari <code>s</code> di-clone(eksplisit copy) ke dalam parameter <code>function</code>.
+Clone melakukan <em>deep copy</em> untuk menyalin semua data yang ada ke memory baru, sehingga ini memiliki cost yang jauh lebih besar ketimbang <em>copy</em> biasa. Hal ini karena kebanyakan <em>copy</em> terjadi pada stack memory atau data dengan tipe sederhana(primitif) sehingga copy dan alokasi baru dapat dengan sangat cepat dan mudah. Untuk Clone kebanyakan data merupakan <em>heap allocated</em> sehingga butuh clone semua bentuk struktur data yang arbitrary dan mencari segment memory baru untuk alokasi baru. 
+Untuk menghindari <em>overhead</em> ini, ada cara lain untuk mem-passing variable, yaitu dengan cara <em>Borrowing</em>.</p>
+<h2 id="borrowing"><a class="header" href="#borrowing">Borrowing</a></h2>
+<p>Borrow adalah ketika kita me-<em>reference</em> suatu data, disebut juga dengan <em>reference type</em>. Berbeda dengan <em>Owned</em> data, <em>borrowed</em> data tidak memindahkan ownership ketika memasukin scope baru. <em>Borrowed</em> data bisa berpindah2 scope bahkan ke dalam parameter fungsi lain sehingga data masih bisa digunakan di scope yang sama. 
+Reference type berbeda dengan pointer type, dimana:</p>
+<ul>
+<li>Reference type: must not null, always valid state and value, can be operated like normal variable.</li>
+<li>Pointer type: can be null, unsafe, can cause program crash if dereferencing null pointer, butuh dereferencing saat ingin menggunakan valuenya.
+Di dalam rust, kode normal sehari2 kebanyakan menggunakan reference type, jarang kita membutuhkan pointer karena konsep safety pada rust menghindari null pointer exception. Ada pengecualian untuk hal seperti butuh fleksibilitas management memory sehingga butuh pointer dan ini hanya bisa dilakukan dalam context <em>unsafe</em> pada Rust.</li>
+</ul>
+<p>Semua tipe di dalam Rust bisa di-<em>borrowed</em> dengan cara menambah <em>ampersand</em>(&amp;) di awal tipe seperti <code>&amp;i32</code>. Ketika suatu tipe data di-<em>borrowed</em> tidak terjadi copy terhadap memory, akan tetapi <em>borrower</em> mereferensikan memory lokasi si data.</p>
+<p>Borrow memiliki beberapa rules diantaranya:</p>
+<ul>
+<li>There can be <strong>more</strong> than one immutable borrow</li>
+<li>There can be <strong>only</strong> one mutable borrow</li>
+<li>Reference must always be valid</li>
+</ul>
+<p>Contoh immutable borrowing:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn borrow() {
+    let anu = &quot;anu&quot;;
+    {
+        println!(&quot;{}&quot;, anu); // move scope
+    }
+
+    println!(&quot;{}&quot;, anu); // still valid here
+    accept_borrow(anu);
+    println!(&quot;{}&quot;, anu); // still valid here
+}
+
+fn accept_borrow(s: &amp;str) { // this function borrow s as reference of string(&amp;str)
+    println!(&quot;{}&quot;, s);
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Contoh mutable borrowing:
+Failed:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn mutable_borrow() {
+    let mut a = 123;
+
+    let b = &amp;mut a; // first mutable borrow
+    let c = &amp;mut a; // second mutable borrow
+
+    {
+        let d = &amp;mut a; // third mutable borrow
+    }
+
+    println!(&quot;{}&quot;, b);
+    println!(&quot;{}&quot;, c);
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Pencegahan multiple mutable reference ini bertujuan untuk menghindari kemungkinan <em>data race</em>. Data race adalah ketika suatu data di lokasi memori yang sama diakses oleh lebih dari 1 reference/pointer baik dalam 1 thread yang sama atau dalam thread yang berbeda. Dalam thread berbeda sangat jelas kemungkinan data race karena kita masing-masing thread tersebut bisa berjalan secara <em>concurrent</em> yang menyebabkan <em>undefined behaviour</em> pada data yang diaccess dengan minimal salah 1 nya adalah proses <em>write</em>/<em>modify</em> data. Selain itu pengaksessan mutable dalam 1 thread juga bisa bermasalah karena masing2 reference bisa memiliki waktu proses yang berbeda terhadap data yang diakses, sehingga tidak ada sinkronisasi data yang pasti sehingga menyebabkan <em>undefined behaviour</em>.</p>
+<p><em>Immutable borrowing</em> digunakan ketika data yang di-passing tidak membutuhkan ownership dan berpindah ke berbagai thread.
+<em>mutable borrowing</em> harus digunakan dengan mekanisme <em>mutex</em> untuk menjaga konsistensi data agar tidak terjadi <em>undefined behaviour</em>.</p>
+<p>Borrowing dapat dengan mudah dilakukan ketika mem-<em>passing</em> data antar stack-frame fungsi2 yang <em>nested</em> ke dalam. Akan tetapi ketika ingin me-<em>return</em> data reference, hal ini tidak bisa dilakukan, apalagi pemilik asli data yang di-<em>borrowed</em> berada dalam stack-frame tersebut sehingga ketika data reference di-return, akan terjadi <em>use-after-free</em> atau semacam <em>dangling pointer</em> karena stack-frame sumber data reference tersebut sudah di-release dari stack memory. Bahasa-bahasa lain seperti Go menerapkan konsep <em>escape analysis</em> untuk menentukan lokasi data-data reference/pointer ketika keluar dari scope fungsi(stackframe). Dalam Go, ketika keluar dari stack-frame sedangkan data yang di-<em>pointed</em>/di-<em>referenced</em> ada di dalam stack frame tersebut, maka data tersebut dilarikan(<em>escape</em>) ke <em>heap memory</em> dan akan di-release oleh GC. Rust memiliki pendekatan lain untuk hal ini, yaitu dengan menggunakan <em>lifetime</em> yang akan kita bahas pada pembahasan selanjutnya.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="associated-item"><a class="header" href="#associated-item">Associated Item</a></h1>
+<p>Associated Items merupakan tipe data yang memiliki kaitan dengan tipe, constants, fungsi, atau method. Hal ini juga bisa digunakan sebagai salah satu metode untuk <em>&quot;namespacing&quot;</em> di dalam Rust.</p>
+<p>Associated items bisa dilakukan di dalam traits atau type implementations.</p>
+<p>Associated items secara keseluruhan bisa dibagi kedalam 3 jenis:</p>
+<ul>
+<li>Associated functions and methods</li>
+<li>Associated types</li>
+<li>Associated constants</li>
+</ul>
+<h2 id="associated-functions-and-methods"><a class="header" href="#associated-functions-and-methods">Associated functions and methods</a></h2>
+<p>Fungsi dan method yang berhubungan dengan suatu type. Jenis deklarasi seperti ini disebut <em>inherent functions/methods</em>. Type-type yang bisa mendeklarasi <em>inherent functions/methods</em> adalah non-primitive types dan harus dideklarasikan di dalam 1 crate yang sama dengan type bersangkutan. Jika selain dari itu, gunakan trait.</p>
+<h3 id="associated-functions--methods"><a class="header" href="#associated-functions--methods">Associated Functions &amp; Methods</a></h3>
+<p>Di Rust, perbedaan antara <strong>function</strong> dan <strong>method</strong> adalah:</p>
+<ul>
+<li><strong>function</strong>: <em>standalone</em>, <em>pure</em> dan tidak memiliki objek yang berkait, bisa dideklarasikan tanpa <code>impl</code>.</li>
+<li><strong>method</strong>: berkait dengan suatu objek(self) dengan berbagai macam tipe(struct, enum, dll), hanya bisa dideklarasikan dengan <code>impl</code>.</li>
+</ul>
+<p>Contoh function:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// free function
+fn function_name() {
+    // body
+}
+
+struct Type;
+
+// associated function
+impl Type {
+    fn function_name() {
+
+    }
+}
+
+// cara memanggil associated function
+Type::function_name();
+<span class="boring">}</span></code></pre></pre>
+<p>Contoh method:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Type {
+    id: i32;
+}
+
+impl Type {
+    // self merupakan parameter sekaligus argumen yang merepresentasikan tipe terkait dengan method.
+    fn method_name(&amp;self) {
+        println!(&quot;{}&quot;, self.id);
+    }
+}
+
+// cara memanggil method
+let t = Type {
+    id: 123,
+}
+t.method_name()
+<span class="boring">}</span></code></pre></pre>
+<h3 id="self-type-pada-method"><a class="header" href="#self-type-pada-method">Self type pada method</a></h3>
+<p>Setiap method harus diawali oleh parameter sekaligus argumen pertama berupa <code>self</code>. Terdapat beberapa jenis/bentuk tipe <code>self</code> yaitu:
+|   1st form                                  | ref with lifetime     | Short form(with lifetime) |
+|---------------------------------------------|-----------------------|---------------------------|
+| self: Self                                  | self                  |                           |
+| self: &amp;Self                                 | self: &amp;'a Self        | &amp;'a self                  |
+| self: mut Self                              | mut self              |                           |
+| self: &amp;mut Self                             | self: &amp;'a mut Self    | &amp;'a mut self              |
+| self: Box<Self>                             |                       |                           |
+| self: Rc<Self>                              |                       |                           |
+| self: Arc<Self>                             |                       |                           |
+| self: Pin&lt;&amp;Self&gt;                            |                       |                           |
+| self: <code>&lt;MyType as MyTrait&gt;::associated_type</code>|                       |                           | </p>
+<p><em>Note: untuk <code>self: &lt;MyType as MyTrait&gt;::associated_type</code>, <code>associated_type</code> harus refer ke tipe implementor, tidak bisa ke tipe lainnya.</em></p>
+<p>Contoh inherent functions/methods pada struct:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct MyStruct {
+    a: i32,
+    b: String,
+}
+
+impl MyStruct {
+    pub fn function1() -&gt; i32 {
+        123
+    }
+
+    pub fn function2(&amp;self) -&gt; String {
+        String::from(&quot;anu&quot;)
+    }
+
+    fn function3() -&gt; f32 {
+        234_f32
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Contoh memanggil inherent functions/methods pada struct:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let resp = MyStruct::function1();
+println!(&quot;{}&quot;, resp);
+println!(&quot;{}&quot;, MyStruct::function3());
+let s = MyStruct {
+    a: 123,
+    b: String::from(&quot;lskmdf&quot;),
+};
+println!(&quot;{}&quot;, s.function2());
+<span class="boring">}</span></code></pre></pre>
+<p>Contoh inherent functions/methods pada enum:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum MyEnum {
+    A(String),
+    B(i32),
+    C(f32),
+}
+
+impl MyEnum {
+    pub fn function1() -&gt; i32 {
+        123
+    }
+
+    pub fn function2(&amp;self) -&gt; String {
+        match *self {
+            MyEnum::A(ref s) =&gt; s.clone(),
+            _ =&gt; String::from(&quot;null&quot;)
+        }
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Contoh memanggil inherent functions/methods pada enum:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>println!(&quot;{}&quot;,MyEnum::A(&quot;halo&quot;.to_string()).function2());
+println!(&quot;{}&quot;,MyEnum::B(123).function2());
+<span class="boring">}</span></code></pre></pre>
+<h3 id="associated-traits"><a class="header" href="#associated-traits">Associated Traits</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>trait MyTrait {
+    fn method1() -&gt; i32;
+    fn method2(&amp;self) -&gt; String;
+}
+
+struct MyStruct {
+    a: i32,
+    b: String,
+}
+
+impl MyTrait for MyStruct {
+    fn method1() -&gt; i32 {
+        123
+    }
+
+    fn method2(&amp;self) -&gt; String {
+        self.b
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Berikut 4 cara memanggil associated trait:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Karena function method3() mengembalikan tipe `Self`, maka memanggil function tersebut dari `MyTrait` akan secara otomatis memanggil implementasi oleh `MyStruct`
+// karena MyStruct dijadikan tipe data return oleh variable penerima.
+let _: MyStruct = MyTrait::method3();
+
+// Wildcard akan membaca return method3 yang `Self` dan mencocokkan dengan tipe data variable penerima sebelah kiri.
+let _: MyStruct = &lt;_ as MyTrait&gt;::method3();
+
+// Implementor sudah didefine ketika memanggil method3 dengan menggunakan Fully Qualified Syntax
+let _ = &lt;MyStruct as MyTrait&gt;::method3();
+
+// Langsung menggunakan tipe implementor dengan syarat tipe trait sudah dimasukkan ke dalam scope caller berada.
+let _ = MyStruct::method3();
+
+// sebagai contoh, jika dipanggil dari module lain:
+// MyTrait harus dibawa ke dalam scope module untuk dapat memanggil method yang diimplement oleh MyStruct
+mod a {
+    use super::{MyStruct, MyTrait};
+
+    fn sdf() {
+        let d = MyStruct::method3();
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="associated-types"><a class="header" href="#associated-types">Associated Types</a></h2>
+<p>Associated Types hanya dideklarasi di dalam <code>trait</code> dan didefinisikan di dalam implementor. </p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>trait MyTrait {
+    type Error: Display + Debug + Clone;
+
+    fn method1() -&gt; i32;
+    fn method2(&amp;self) -&gt; String;
+    fn method3() -&gt; Self;
+    fn method4() -&gt; Result&lt;(), Self::Error&gt;;
+}
+
+impl MyTrait for MyStruct {
+    type Error = String;
+
+    fn method1() -&gt; i32 {
+        123
+    }
+
+    fn method2(&amp;self) -&gt; String {
+        self.b.clone()
+    }
+
+    fn method3() -&gt; Self {
+        MyStruct { a: 123, b: &quot;sdf&quot;.to_string() }
+    }
+
+    fn method4() -&gt; Result&lt;(), Self::Error&gt; {
+        return Err(&quot;error bung&quot;.to_string());
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Ketika memanggil tipe tersebut:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>println!(&quot;{}&quot;, MyStruct::method4().unwrap_err());
+<span class="boring">}</span></code></pre></pre>
+<h2 id="associated-constant"><a class="header" href="#associated-constant">Associated Constant</a></h2>
+<p>Sama dengan associated type, constants juga bisa di-declare pada trait, dan di-definisikan pada implementor.
+Hal yang beda adalah kita bisa memberi default value pada constant yang di-declare di trait bersangkutan. Jika kita memberi default value pada constant trait,
+dan mendefinisikannya juga pada implementor, maka value pada implementor akan meng-overwrite default value pada trait.
+Associated Constant bisa dideklarasi dan didefinisikan langsung pada <code>impl</code> tanpa trait.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl MyStruct {
+    pub const C: &amp;str = &quot;nganu&quot;;
+}
+
+trait MyTrait {
+    const D: i32;
+    // const D: i32 = 0; // default value, 
+    type Error: Display + Debug + Clone;
+
+    fn method1() -&gt; i32;
+    fn method2(&amp;self) -&gt; String;
+    fn method3() -&gt; Self;
+    fn method4() -&gt; Result&lt;(), Self::Error&gt;;
+}
+
+impl MyTrait for MyStruct {
+    const D: i32 = 123; // -&gt; will overwrite default value in trait if declared
+    type Error = String;
+
+    fn method1() -&gt; i32 {
+        123
+    }
+
+    fn method2(&amp;self) -&gt; String {
+        self.b.clone()
+    }
+
+    fn method3() -&gt; Self {
+        MyStruct { a: 123, b: &quot;sdf&quot;.to_string() }
+    }
+
+    fn method4() -&gt; Result&lt;(), Self::Error&gt; {
+        println!(&quot;const: {}&quot;, Self::D);
+        return Err(&quot;error bung&quot;.to_string());
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Ketika ingin memanggil, kita tidak bisa memanggil constant langsung dari trait, harus melewati type implementor.</p>
+<p>Ketika memanggil:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>println!(&quot;{}&quot;, MyStruct::C);
+println!(&quot;{}&quot;, MyStruct::D);
+println!(&quot;{}&quot;, &lt;MyStruct as MyTrait&gt;::D);
+<span class="boring">}</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="trait"><a class="header" href="#trait">Trait</a></h1>
+<p>Trait merupakan tipe data <em>opaque</em> yang tidak memiliki tipe data konkrit, akan tetapi hanya mengandung behaviour(collection of methods/functions). Tipe ini bisa digunakan untuk mengimplementasikan <em>polymorphism</em> dimana semua tipe bisa diterima selama memiliki behaviour yang sama.</p>
+<p>Trait dapat digunakan untuk beberapa hal di-antaranya:</p>
+<ul>
+<li><em>Shared behaviour</em>: banyak tipe bisa mengimplementasikan behaviour yang sama(<em>polymorphism</em>). Kegunaan lain adalah untuk membuat objek <em>mock</em> yang bisa digunakan untuk unit testing, khususnya IO bound operations.</li>
+<li><em>Generic bound</em>: bisa digunakan untuk memberikan batasan tipe generic, sehingga memperkecil tipe data yang bisa dimasukkan ke dalam generic dan memberikan API yang lebih konkrit dan mudah dipahami dan digunakan.</li>
+</ul>
+<p>Trait dapat digunakan di tempat-tempat berikut(V1.64+):</p>
+<ul>
+<li>Function input and return params</li>
+<li>Type aliasing</li>
+<li>Bound for generic type</li>
+</ul>
+<p>Trait dapat diimplementasikan oleh:</p>
+<ul>
+<li>struct</li>
+<li>enum</li>
+<li>primitive types</li>
+<li>non-primitive types</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait MyTrait {
+    fn method1(&amp;self) -&gt; i32;
+    fn method2(param1: &amp;str) -&gt; Result&lt;(),String&gt;;
+    fn method3(param1: String);
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Implementasi trait harus eksplisit sehingga harus di-define untuk masing-masing type yang ingin mengimplementasikan trait tersebut.
+Berikut contoh implementasi trait dan beberapa cara memanggilnya:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Struct yang akan mengimplementasikan trait `MyTrait`
+pub struct MyStruct {
+    a: i32,
+    b: String,
+}
+
+// Implementasi MyTrait oleh MyStruct
+impl MyTrait for MyStruct {
+    // implementasi trait dengan mutable reference dari struct implementor.
+    // struct harus punya nilai terlebih dahulu sebelum memanggil method ini dan diikuti `.`
+    fn method1(&amp;self) -&gt; i32 {
+        self.a
+    }
+
+    // implementasi trait tanpa menginisialisasi struct implementor.
+    // cukup dengan memanggil type struct diikuti `::`
+    fn method2(param1: &amp;str) -&gt; Result&lt;(),String&gt; {
+        if param1.is_empty() {
+            return Err(&quot;empty string&quot;.to_string());
+        }
+        Ok(())
+    }
+
+    fn method3(param1: String) {
+        println!(&quot;do nothing&quot;);
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Beberapa cara pengaplikasian trait:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Param input fungsi
+let ms = MyStruct {
+    a: 1,
+    b: String::from(&quot;test&quot;),
+};
+
+fn accept_trait(t: &amp;impl MyTrait) {
+    let resp = t.method1();
+    dbg!(&quot;accept_trait: &quot;,resp);
+    let ret = MyStruct::method2(&quot;param1&quot;);
+    dbg!(&quot;accept_trait: &quot;,ret);
+
+    MyStruct::method3(&quot;nothing inside accept_trait: &quot;.to_string());
+}
+
+accept_trait(&amp;ms);
+
+// Param output fungsi
+fn return_trait() -&gt; impl MyTrait {
+    MyStruct {
+        a: 100,
+        b: &quot;test&quot;.to_string(),
+    }
+}
+let t = return_trait();
+
+// Param input dan output fungsi from associated function
+struct F {
+    a: i32,
+}
+impl F {
+    fn accept_trait_from_impl(param: &amp;impl MyTrait) {
+        param.method1();
+    }
+
+    fn return_trait_from_impl() -&gt; impl MyTrait {
+        MyStruct {
+            a: 123,
+            b: String::from(&quot;sdf&quot;),
+        }
+    }
+}
+
+// membatasi method2 yang akan dipanggil dengan menggunakan `as Trait`
+// disebut juga dengan Fully Qualified Syntax
+let ret = &lt;MyStruct as MyTrait&gt;::method2(&quot;param1&quot;);
+<span class="boring">}</span></code></pre></pre>
+<p>Ketika ingin memanggil fungsi/method trait dari module lain yang diimplementasikan oleh suatu implementor, tipe trait tersebut harus dibawa ke dalam scope caller. Contoh:</p>
+<p>file: src/a.rs</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait T {
+    fn t(&amp;self);
+    fn t2();
+}
+
+pub struct S {
+    pub s: String,
+}
+
+impl T for S {
+    fn t(&amp;self) {
+        println!(&quot;{}&quot;, self.s);
+    }
+    fn t2() {}
+}
+<span class="boring">}</span></code></pre></pre>
+<p>file: src/main.rs</p>
+<pre><pre class="playground"><code class="language-rust">mod a;
+use a::{S, T};
+
+fn main() {
+    let sss = S {
+        s: &quot;sdf&quot;.to_string(),
+    };
+    sss.t();
+    S::t2();
+}</code></pre></pre>
+<p>Trait <code>T</code> harus dideklarasikan lewat module <code>a</code> sekalipun trait tersebut tidak pernah digunakan secara langsung, akan tetapi ada tipe lain yang implement trait tersebut, memanggil fungsi/method dari trait tersebut. Jika trait tidak dibawa ke dalam scope, maka akan menyebabkan kompilasi error karena compiler tidak bisa menemukan fungsi/method yang dipanggil oleh struct <code>S</code>, karena fungsi/method tersebut didefinisikan oleh trait bersangkutan.</p>
+<p>Selain <code>struct</code>, trait juga bisa diimplementasikan oleh tipe lain seperti <code>enum</code>, primitive types, dan non-primitive types. Contoh:</p>
+<p>file: src/a.rs</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait Trait {
+    fn t(&amp;self) -&gt; i32;
+    fn t2();
+}
+
+pub enum Enum {
+    F,
+    G,
+    H(String),
+}
+
+impl Trait for Enum {
+    fn t(&amp;self) -&gt; i32 {
+        match &amp;*self {
+            Enum::H(s) =&gt; {
+                println!(&quot;{}&quot;, s);
+            }
+            _ =&gt; {
+                println!(&quot;nothing&quot;);
+            }
+        }
+        123
+    }
+    fn t2() {
+        
+    }
+}
+
+impl Trait for i32 {
+    fn t(&amp;self) -&gt; i32 {
+        *self
+    }
+    fn t2() {
+        println!(&quot;i32::t2&quot;);
+    }
+}
+
+impl Trait for &amp;[i32] {
+    fn t(&amp;self) -&gt; i32 {
+        *self.get(0).unwrap_or(&amp;123)
+    }
+    fn t2() {
+        println!(&quot;&amp;[i32]::t2&quot;);
+    }
+}
+
+impl Trait for [f32;5] {
+    fn t(&amp;self) -&gt; i32 {
+        if !self.is_empty() {
+            return *self.get(0).unwrap() as i32;
+        }
+        123
+    }
+
+    fn t2() {
+        println!(&quot;[f32;5]::t2&quot;);
+    }
+}
+
+impl Trait for Vec&lt;String&gt; {
+    fn t(&amp;self) -&gt; i32 {
+        if !self.is_empty() {
+            let parsed_string = self.get(0).unwrap().parse::&lt;i32&gt;();
+            if parsed_string.is_err() {
+                return 0;
+            }
+            return parsed_string.unwrap();
+        }
+        123
+    }
+
+    fn t2() {
+        println!(&quot;Vec&lt;String&gt;::t2&quot;);
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Ketika ingin memanggil implementasi2 trait tersebut dari <code>src/a.rs</code>:</p>
+<p>file: src/main.rs</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let e = Enum::H(&quot;anu&quot;.to_string());
+e.t();
+Enum::t2();
+
+// -----------
+
+let num = 123;
+println!(&quot;{}&quot;,num.t());
+i32::t2();
+
+// -----------
+let slice: &amp;[i32] = &amp;[1,2,3,4];
+println!(&quot;{}&quot;, slice.t());
+&lt;&amp;[i32]&gt;::t2();
+
+// -----------
+let array = [1.2, 2_f32, 3_f32, 4.2, 5.2];
+println!(&quot;{}&quot;, array.t());
+&lt;[f32;5]&gt;::t2();
+
+// -----------
+let v = vec![String::from(&quot;345&quot;), &quot;that&quot;.to_string(), &quot;asd&quot;.to_owned()];
+println!(&quot;{}&quot;,v.t());
+&lt;Vec&lt;String&gt;&gt;::t2();
+<span class="boring">}</span></code></pre></pre>
+<p>Untuk tipe data non-primitive seperti array, slice, vector dan lainnya, untuk memanggil associated functions dari tipe-tipe tersebut, maka harus menggunakan <code>Fully Qualified Syntax</code> dengan cara:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>&lt;type&gt;::function();
+<span class="boring">}</span></code></pre></pre>
+<h2 id="default-implementation"><a class="header" href="#default-implementation">Default Implementation</a></h2>
+<p>Ketika mendefinisikan suatu trait, dan ingin mengimplementasikan trait tersebut oleh suatu tipe, kadang kita belum tentu ingin mengimplementasikan seluruh fungsi/methods yang ada, untuk hal ini, kita bisa define default implementation untuk sebagian atau keseluruhan fungsi. </p>
+<p>file: src/default.rs</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait D {
+    fn de(&amp;self) -&gt; String {
+        String::from(&quot;default&quot;)
+    }
+    fn not_de() -&gt; String;
+}
+
+pub struct P;
+
+impl D for P {
+    fn not_de() -&gt; String {
+        String::from(&quot;P&quot;)
+    }
+}
+
+pub struct O;
+
+impl D for O {
+    fn de(&amp;self) -&gt; String {
+        String::from(&quot;overwrited&quot;)
+    }
+    fn not_de() -&gt; String {
+        String::from(&quot;O&quot;)
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Ketika ingin memanggil:</p>
+<p>file: src/main.rs</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let p = P;
+println!(&quot;{}&quot;, p.de());
+println!(&quot;{}&quot;, P::not_de());
+let o = O;
+println!(&quot;{}&quot;, o.de());
+println!(&quot;{}&quot;, O::not_de());
+<span class="boring">}</span></code></pre></pre>
+<p>Default implementation tidak mengharuskan tipe implementor mengimplementasikan fungsi/method dengan default behaviour tersebut. Akan tetapi jika kita mengimplementasikan fungsi/method dengan default behaviour, maka akan meng-overwrite default behaviour tersebut.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="generic"><a class="header" href="#generic">Generic</a></h1>
+<p>Generic merupakan polimorfisme dari suatu tipe data. Rust menerapkan <em>Monomorphization</em> untuk generic type, yaitu dengan membuat setiap copy dari tipe data yang dideklarasikan pada saat compile time. Hal ini membuat generic pada Rust <em>fully zero-cost</em>, yang berbeda dengan generic pada Java dan Go dimana Java menerapkan <em>Type-erasure</em> dan golang menerapkan <em>Stenciling</em> yang keduanya masih menyisakan setidaknya sedikit runtime overhead.
+Generic dapat diterapkan pada tempat seperti: <code>functions</code>, <code>type aliases</code>, <code>structs</code>, <code>enumerations</code>, <code>unions</code>, <code>traits</code> and <code>implementations</code>.</p>
+<p>Berikut beberapa penerapan Generic pada Rust:</p>
+<h2 id="function-generic-parameters"><a class="header" href="#function-generic-parameters">Function generic parameters</a></h2>
+<p>Generic parameter pada deklarasi fungsi untuk memberikan parameter bertipe untuk parameter fungsi/method.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn function&lt;T&gt;(param: T) -&gt; T {
+    ...
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Ketika ingin memanggil fungsi generic tersebut:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>function::&lt;i32&gt;(123); // secara eksplisit mendefinisikan tipe data yang diinginkan
+let t = function(123); // secara implicit di-infer dari tipe data param, 123 -&gt; i32(default value of number type)
+<span class="boring">}</span></code></pre></pre>
+<p>Fungsi dengan <em>dedicated</em> type akan di-generate sehingga tidak ada lagi <em>runtime overhead</em> ketika program berjalan.</p>
+<h2 id="struct-generic-fields"><a class="header" href="#struct-generic-fields">Struct generic fields</a></h2>
+<p>Generic untuk tipe data pada field-field di dalam struct.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct A&lt;T&gt; {
+    a: T,
+    b: T,
+} // single generic param
+
+struct A2&lt;T, E&gt; {
+    a: T,
+    b: E.
+} // multiple generic params
+<span class="boring">}</span></code></pre></pre>
+<p>Ketika ingin memanggil struct generic tersebut:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let a = A::&lt;f32&gt; {
+        a: 123.2,
+        b: 23.0,
+    }; // secara eksplicit mendefinisikan tipe data yang diinginkan
+
+let a = A {
+        a: 123,
+        b: 34,
+    }; // secara implicit di-infer dari tipe data yang dimasukkan ke field2 struct -&gt; i32
+
+let a2 = A2::&lt;i32,f32&gt; {
+        a: 123,
+        b: 34.4,
+    }; // secara eksplicit mendefinisikan tipe data yang diinginkan
+
+let a2 = A2 {
+    a: 123,
+    b: 34.5,
+}; // secara implicit di-infer dari tipe data yang dimasukkan ke field2 struct -&gt; i32 dan f32
+<span class="boring">}</span></code></pre></pre>
+<h2 id="enum-generic-associated-data"><a class="header" href="#enum-generic-associated-data">Enum generic associated data</a></h2>
+<p>Generic untuk tipe data yang berkaitan dengan deklarasi enum.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum B&lt;T&gt; {
+    Field1,
+    Field2(T),
+    Field3 {
+        t: T,
+    }
+} // single generic param
+
+enum B2&lt;T, E&gt; {
+    Field1,
+    Field2(T),
+    Field3 {
+        t: E,
+    }
+} // multiple generic params
+<span class="boring">}</span></code></pre></pre>
+<p>Ketika ingin memanggil enum generic tersebut:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let b = B::&lt;i32&gt;::Field2(123); // secara eksplicit mendefinisikan tipe data yang diinginkan
+let b = B::Field2(123); // secara implicit mendefinisikan tipe data yang diinginkan
+
+let b2 = B2::&lt;i32, f32&gt;::Field2(123); // secara eksplicit mendefinisikan tipe data yang diinginkan
+let b2: B2&lt;&amp;str, i32&gt; = B2::Field2(&quot;123&quot;); // deklarasi multiple generic params untuk enum harus eksplicit karena hanya 1 value enum dari multiple enum yang dideklarasikan yang digunakan, sehingga tipe harus eksplicit untuk value lainnya yang tidak/belum dipanggil.
+<span class="boring">}</span></code></pre></pre>
+<h2 id="methods-generic-parameters"><a class="header" href="#methods-generic-parameters">Methods generic parameters</a></h2>
+<p>Generic untuk tipe data pada penerapan <em>associated functions</em> pada suatu tipe.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct A&lt;T&gt; {
+    a: T,
+    b: T,
+}
+
+impl&lt;T&gt; A&lt;T&gt; {
+    fn method1(param: T) -&gt; T {
+        param
+    }
+
+    fn method2(param: T) {
+        ...
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Ketika ingin memanggil generic methods tersebut</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let a = A::&lt;i32&gt; {
+        a: 123,
+        b: 234,
+    };
+a.method2(123);
+let a = A::&lt;i32&gt;::method1(123);
+<span class="boring">}</span></code></pre></pre>
+<h2 id="trait-with-generic-parameter"><a class="header" href="#trait-with-generic-parameter">Trait with generic parameter</a></h2>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait MyTrait&lt;T&gt; {
+    fn method1(param: T) -&gt; T;
+}
+
+pub struct MyStruct&lt;T&gt; {
+    field1: T,
+}
+
+// ketika ingin mengimplementasikan suatu trait dengan generic parameter, tipe konkrit harus di deklarasi.
+impl MyTrait&lt;String&gt; for MyStruct&lt;T&gt; {
+    fn method1(param: String) -&gt; String {
+        String::from(&quot;hello&quot;)
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="type-alias-with-generic"><a class="header" href="#type-alias-with-generic">Type alias with generic</a></h2>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>type MyResult&lt;T&gt; = Result&lt;T, String&gt;
+<span class="boring">}</span></code></pre></pre>
+<p>Sehingga cukup menggunakan <code>MyResult</code> ketika ingin mengembalikan <em>fallible operation</em> dengan error tipe string.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="generic-bound-with-trait"><a class="header" href="#generic-bound-with-trait">Generic Bound with Trait</a></h1>
+<p>Ketika ingin membatasi tipe-tipe yang dibolehkan pada generic, kita bisa menggunakan <code>trait</code> sehingga tipe-tipe yang bisa dimasukkan ke dalam generic type hanya tipe yang sudah mengimplementasikan <code>trait</code> bersangkutan.</p>
+<p>Generic trait bound bisa dideklarasikan pada tempat-tempat dimana generic berada.</p>
+<p>Berikut beberapa tempat mendeklarasi trait bound pada generic type:</p>
+<h2 id="function-params"><a class="header" href="#function-params">Function Params</a></h2>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use core::fmt::Display;
+
+fn my_format&lt;T: Display&gt;(param: T) {
+    println!(&quot;--&gt;: {}&quot;, param);
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Trait <code>Display</code> diimport dari module <code>core::fmt</code>. Trait ini merupakan trait untuk tipe-tipe yang bisa di-print ke stdout atau stderr. Semua tipe-tipe primitive sudah memiliki implementasi ini built-in, beberapa tipe non-primitive lain juga sudah. Untuk tipe yang belum kita bisa implement sendiri trait tersebut.</p>
+<p>Trait <code>Display</code> dibutuhkan karena tipe T akan digunakan di dalam <code>println!()</code> yang membutuhkan data dengan tipe yang implement <code>Display</code> trait.</p>
+<ul>
+<li>Multiple generics:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn function_generic_multiple_bounds&lt;T: Display + Clone&gt;(param: T) {
+    println!(&quot;{}&quot;, param.clone());
+}
+
+fn function_multiple_generic_multiple_bounds&lt;T: Display + Clone, U: Debug&gt;(param1: T, param2: U) {
+    println!(&quot;{} -&gt; {:?}&quot;, param1.clone(), param2)
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>Memanggil multiple generics:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// memanggil dengan definisi tipe
+function_generic_multiple_bounds::&lt;&amp;str&gt;(&quot;this is testing&quot;); 
+function_multiple_generic_multiple_bounds::&lt;&amp;str, i64&gt;(&quot;test&quot;, 123);
+
+// memanggil dengan tipe data infered
+function_generic_multiple_bounds(&quot;this is testing&quot;);
+function_multiple_generic_multiple_bounds(&quot;test&quot;, 123);
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>Multiple generics dengan <code>where</code>:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn function_generic_trait_bounds_where&lt;T, U, V&gt;(param1: T, param2: U, param3: V) -&gt; String
+where
+    T: Clone + Display,
+    U: Debug,
+    V: Display,
+    String: From&lt;V&gt;
+{
+    println!(&quot;{} {:?}&quot;, param1, param2);
+    String::from(param3)
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>Memanggil multiple generics dengan <code>where</code>:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let resp: String = function_generic_trait_bounds_where(&quot;test&quot;, 123, &quot;this&quot;);
+println!(&quot;{}&quot;, resp);
+<span class="boring">}</span></code></pre></pre>
+<h2 id="struct-dan-enum-beserta-associated-functions-dan-methods"><a class="header" href="#struct-dan-enum-beserta-associated-functions-dan-methods">Struct dan Enum beserta associated functions dan methods</a></h2>
+<h3 id="struct-1"><a class="header" href="#struct-1">Struct</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[derive(Debug)]
+struct MyStruct&lt;T, U&gt; {
+    field1: T,
+    field2: U,
+}
+
+impl&lt;T: Display, U: Debug + Display&gt; MyStruct&lt;T, U&gt; {
+    pub fn method1(param1: T, param2: U) {
+        println!(&quot;{}, {}&quot;, param1, param2);
+    }
+
+    pub fn method2(&amp;self) {
+        println!(&quot;{}, {}&quot;, self.field1, self.field2);
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>Implementasi menggunakan <code>where</code> clause:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl&lt;T, U&gt; MyStruct&lt;T, U&gt; where
+    T: Display,
+    U: Debug + Display
+{
+    pub fn method1(param1: T, param2: U) {
+        println!(&quot;{}, {}&quot;, param1, param2);
+    }
+
+    pub fn method2(&amp;self) {
+        println!(&quot;{}, {}&quot;, self.field1, self.field2);
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>Memanggil:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>MyStruct::&lt;i32, &amp;str&gt;::method1(123, &quot;test&quot;);
+MyStruct::method1(123, &quot;test&quot;); // infered
+<span class="boring">}</span></code></pre></pre>
+<h3 id="enum"><a class="header" href="#enum">Enum</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[derive(Debug)]
+pub enum MyEnum&lt;T,U&gt; {
+    Value1(T),
+    Value2(U),
+}
+
+impl&lt;T: Debug + Display, U: Debug + Display&gt; MyEnum&lt;T,U&gt; {
+    pub fn method1(param1: T, param2: U) {
+        println!(&quot;{:?}, {:?}&quot;, param1, param2);
+    }
+
+    pub fn method2(&amp;self) {
+        println!(&quot;{:?}&quot;, self);
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>Implementasi menggunakan <code>where</code> clause:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl&lt;T, U&gt; MyEnum&lt;T,U&gt; where
+    T: Debug + Display,
+    U: Debug + Display
+{
+    pub fn method1(param1: T, param2: U) {
+        println!(&quot;{:?}, {:?}&quot;, param1, param2);
+    }
+
+    pub fn method2(&amp;self) {
+        println!(&quot;{:?}&quot;, self);
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>Memanggil:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>MyEnum::&lt;i32, f32&gt;::Value1(9999).method2();
+<span class="boring">}</span></code></pre></pre>
+<p>Untuk <code>Struct</code> dan <code>Enum</code> trait bounds lebih baik di deklarasikan untuk <code>impl</code> karena filter tipe berlaku ketika ada operasi terhadap data generic tersebut. Jika hanya struct dan enum saja, maka tidak berarti apa-apa bounds yang diberikan karena kita tidak melakukan apa-apa terhadap data tersebut.</p>
+<h2 id="trait-1"><a class="header" href="#trait-1">Trait</a></h2>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>trait MyTrait&lt;T: Display, U: Display + Clone&gt; {
+    fn method1(param: T);
+    fn method2(&amp;self, param: U);
+    fn method3(&amp;self, param: T) -&gt; U;
+}
+
+struct MyStruct4 {
+    field1: String,
+    field2: i32,
+}
+
+impl MyTrait&lt;i32, String&gt; for MyStruct4 {
+    fn method1(param: i32) {
+        println!(&quot;{}&quot;, param);
+    }
+
+    fn method2(&amp;self, param: String) {
+        println!(&quot;{} : {}&quot;, self.field2, param.clone());
+    }
+
+    fn method3(&amp;self, param: i32) -&gt; String {
+        format!(&quot;field1: {}, field2: {}, param: {}&quot;, self.field1, self.field2, param)
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>Pemanggilan kode di atas:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>MyStruct4::method1(123);
+let my_struct4 = MyStruct4 {
+    field1: String::from(&quot;this&quot;),
+    field2: 234,
+};
+my_struct4.method2(String::from(&quot;lskdmf&quot;));
+&lt;MyStruct4 as MyTrait&lt;i32, String&gt;&gt;::method1(4999);
+let resp = my_struct4.method3(7890);
+println!(&quot;{}&quot;, resp);
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>Implementasi trait dengan generic implementor:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>trait MyTrait&lt;T: Display, U: Display + Clone&gt; {
+    fn method1(param: T);
+    fn method2(&amp;self, param: U);
+    fn method3(&amp;self, param: T) -&gt; U;
+}
+
+struct MyStruct4&lt;T, U&gt; {
+    field1: T,
+    field2: U,
+}
+
+impl&lt;T: Display, U: Clone + Display&gt; MyTrait&lt;i32, String&gt; for MyStruct4&lt;T, U&gt; {
+    fn method1(param: i32) {
+        println!(&quot;{}&quot;, param);
+    }
+
+    fn method2(&amp;self, param: String) {
+        println!(&quot;{} : {}&quot;, self.field2, param.clone());
+    }
+
+    fn method3(&amp;self, param: i32) -&gt; String {
+        format!(&quot;field1: {}, field2: {}, param: {}&quot;, self.field1, self.field2, param)
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>Pemanggilan kode di atas:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>MyStruct4::&lt;String, i32&gt;::method1(123);
+let my_struct4 = MyStruct4 {
+    field1: String::from(&quot;this&quot;),
+    field2: 234,
+};
+my_struct4.method2(String::from(&quot;lskdmf&quot;));
+&lt;MyStruct4&lt;String, i32&gt; as MyTrait&lt;i32, String&gt;&gt;::method1(4999);
+let resp = my_struct4.method3(7890);
+println!(&quot;{}&quot;, resp);
+<span class="boring">}</span></code></pre></pre>
+<p>Untuk <code>trait</code> bounds dapat ditaruh pada deklarasi trait, sehingga bound ini akan diterapkan pada setiap tipe yang mengimplementasikan trait tersebut.</p>
+<p>Perbedaan generic bounds pada <code>impl</code> antara trait dengan inherent adalah dengan trait kita bisa deklarasi generic return type, yang akan didefinisikan tipenya saat implementasi oleh suatu tipe. Seperti contoh di atas, fungsi <code>fn method3(&amp;self, param: T) -&gt; U;</code> memiliki generic return dan tipe dari return didefinisikan pada saat implementasi <code>impl MyTrait&lt;i32, String&gt; for MyStruct4</code> sehingga return type menjadi String.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="lifetime"><a class="header" href="#lifetime">Lifetime</a></h1>
+<p>Lifetime adalah scope validnya suatu data ketika di-<em>borrowed</em>. Lifetime umumnya sudah implisit untuk setiap variable yang dideklarasikan. Lifetime memberi penanda pada scope dari <em>borrowed</em> value supaya compiler bisa memastikan bahwa <em>borrowed</em> value tersebut tetap valid digunakan. Lifetime harus selalu merujuk ke suatu atau beberapa <em>borrowed</em> value. Lifetime yang dirujuk harus valid selama data yang mereferensikan lifetime tersebut digunakan/valid.</p>
+<p>Contoh deklarasi anotasi generic lifetime:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>a: &amp;'a str // variable of a with 'a lifetime on immutable data
+a: &amp;'a mut str // variable of a with 'a lifetime on mutable data
+<span class="boring">}</span></code></pre></pre>
+<p>Metode yang digunakan Rust untuk mendeteksi validnya suatu reference disebut juga dengan <em>Borrow Checker</em>.</p>
+<h2 id="function-lifetime-annotation"><a class="header" href="#function-lifetime-annotation">Function Lifetime Annotation</a></h2>
+<p>Lifetime pada fungsi digunakan untuk memberi penanda lifetime pada parameter dan return values. Tidak bisa digunakan untuk memberi lifetime terhadap data yang di-<em>borrowed</em> dari dalam fungsi karena data tersebut akan dihapus setelah fungsi return/exit, kecuali <em>borrowed</em> value bersifat static.
+Contoh deklarasi annotasi lifetime pada fungsi:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str {
+    if x.len() &gt; y.len() {
+        x
+    } else {
+        y
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Pada fungsi di atas deklarasi lifetime setelah nama fungsi. Selanjutnya lifetime digunakan untuk menyambungkan lifetime parameter kepada return value. Dalam hal ini, compiler akan memilih lifetime paling pendek untuk dijadikan acuan return value. Hal itu karena kalau menggunakan lifetime terpanjang, dan ternyata return valuenya berasal dari lifetime terpendek, maka akan terjadi dangling reference. Parameter dengan lifetime terpendek itu akan di remove di scope nya yang lebih pendek sehingga jika masih ada referensi terhadap value tersebut, menjadi invalid. Inilah yang dideteksi oleh compiler rust dengan cara menambahkan lifetime annotasi.</p>
+<p>Contoh lain ketika memberi lifetime kepada value reference di dalam fungsi:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn fff&lt;'a&gt;(x: &amp;str, y: &amp;str) -&gt; &amp;'a str { // worked
+    let ret = &quot;anu&quot;;
+    ret
+}
+fn fff2&lt;'a&gt;(x: &amp;str, y: &amp;str) -&gt; &amp;'a str { // doesn't work
+    let ret = String::from(&quot;anu&quot;);
+    ret.as_str()
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Fungsi pertama berjalan karena default lifetime untuk string yang dideklarasikan secara literal adalah <em>static</em>, yaitu hidup sepanjang program berjalan. Sehingga lifetime <code>'a</code> akan menggunakan lifetime static tersebut.</p>
+<p>Fungsi kedua tidak berjalan karena <code>String::from(&quot;anu&quot;)</code> bersifat <em>owned</em> karena data dialokasi secara dynamic sehingga akan berakhir ketika fungsi return/exit dan menyebabkan reference ke data tersebut menjadi invalid.</p>
+<h2 id="struct-lifetime-annotation"><a class="header" href="#struct-lifetime-annotation">Struct Lifetime Annotation</a></h2>
+<p>Lifetime pada struct berarti field-field dari struct tersebut <em>borrow</em> value dari luar. Sehingga untuk menyambung lifetime <em>borrowed</em> data tersebut ke dalam field-field struct, field tersebut harus menggunakan generic lifetime annotation.
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let string = String::from(&quot;string&quot;);
+    let s = StructWithLifetime{
+        string: string.as_str(),
+    };
+    
+    println!(&quot;{:?}&quot;, s);
+}
+
+#[derive(Debug)]
+struct StructWithLifetime&lt;'a&gt; {
+    string: &amp;'a str,
+}</code></pre></pre>
+<p>Pada contoh di atas, dilihat bahwa field <code>string</code> dari <code>StructWithLifetime</code> menggunakan lifetime dari String dari luar di dalam fungsi <code>main</code>, sehingga field tersebut valid selama <code>string</code> masih di dalam scope.</p>
+<p>Untuk lifetime pada type lainnya seperti enum, akan sama dimana lifetime diberi anotasi setelah nama tipe.</p>
+<h2 id="methodinherent-functions-lifetime-annotation"><a class="header" href="#methodinherent-functions-lifetime-annotation">Method/inherent functions Lifetime Annotation</a></h2>
+<p>Lifetime juga bisa ditaruh untuk inherent functions/methods untuk mendeklarasi lifetime yang akan digunakan oleh implementor type dan fungsi/method di dalamnya.
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// deklarasi lifetime struct yang digunakan oleh field `name`
+struct Service&lt;'a&gt; {
+    name: &amp;'a str,
+}
+
+// deklarasi lifetime inherent items
+impl&lt;'a&gt; Service&lt;'a&gt; {
+    // penggunaan generic lifetime pada parameter fungsi untuk lifetime dari self
+    pub fn method1(&amp;'a self) -&gt; &amp;str {
+        f(self.name);
+        self.name
+    }
+}
+
+// deklarasi lifetime inherent items, dengan lifetime Service bersifat wildcard(ignored)
+impl&lt;'a&gt; Service&lt;'_&gt; {
+    pub fn method2(&amp;self) -&gt; &amp;str {
+        self.name
+    }
+}
+
+// tanpa deklarasi lifetime inherent items, dengan lifetime Service bersifat wildcard(ignored)
+impl Service&lt;'_&gt; {
+    pub fn method3(&amp;self) -&gt; &amp;str {
+        self.name
+    }
+}
+
+// deklarasi lifetime fungsi yang dipanggil di inherent items di atas, chaining lifetime from caller to callee
+fn f&lt;'a&gt;(s: &amp;'a str) -&gt; &amp;'a str {
+    println!(&quot;f() -&gt; {}&quot;, s);
+    s
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="static-lifetimestatic"><a class="header" href="#static-lifetimestatic">Static Lifetime(&amp;'static)</a></h2>
+<p>Adalah lifetime dari suatu <em>borrowed</em> type yang hidup sepanjang program berjalan. Contoh yang sering kita lihat adalah ketika kita mendeklarasi constant <code>&amp;str</code></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let static_str: &amp;'static str = &quot;live forever&quot;;
+println!(&quot;{static_str}&quot;);
+<span class="boring">}</span></code></pre></pre>
+<p>Contoh static lifetime yang di-infer secara otomatis oleh compiler:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>const I_LIVE_LONGEST: &amp;str = &quot;anu&quot;;
+<span class="boring">}</span></code></pre></pre>
+<p>Konstant <code>I_LIVE_LONGEST</code> akan bisa di-<em>pinjam</em> selama program berjalan karena <em>borrowed</em> type <code>str</code> akan di-<em>infered</em> sebagai static oleh compiler menjadi <code>&amp;'static str</code>.
+Tidak semua tipe akan di-infer secara otomatis oleh compiler sehingga butuh deklarasi static lifetime eksplisit.</p>
+<h2 id="lifetime-elision"><a class="header" href="#lifetime-elision">Lifetime Elision</a></h2>
+<p>Adalah set of rules yang digunakan compiler untuk menentukan lifetime suatu/beberapa <em>borrowed</em> type tanpa deklarasi eksplisit. 
+Berikut 3 rules tersebut:</p>
+<ol>
+<li>Compiler will assign unique lifetime to each parameters in function/inherent function/method.</li>
+</ol>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn foo(x: &amp;i32) -&gt; fn foo&lt;'a&gt;(x: &amp;'a i32)
+fn foo(x: &amp;i32, y: &amp;i32) -&gt; fn foo&lt;'a, 'b&gt;(x: &amp;'a i32, y: &amp;'b i32)
+<span class="boring">}</span></code></pre></pre>
+<ol start="2">
+<li>If there's only one parameter, then the parameter lifetime will be applied to all output parameters lifetime.</li>
+</ol>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn foo&lt;'a&gt;(x: &amp;i32) -&gt; (&amp;i32,&amp;i32,&amp;i32) -&gt; fn foo&lt;'a&gt;(x: &amp;'a i32) -&gt; (&amp;'a i32,&amp;'a i32,&amp;'a i32)
+<span class="boring">}</span></code></pre></pre>
+<ol start="3">
+<li>Apply to method with multiple input parameters and one of them is <code>&amp;self</code> or <code>&amp;mut self</code>, the lifetime of <code>self</code> will be applied to all output parameters.</li>
+</ol>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl&lt;'a&gt; Type&lt;'a&gt; {
+    fn method(&amp;self, &amp;str, &amp;str) -&gt; (&amp;str, &amp;str){...}
+} 
+// menjadi
+impl&lt;'a&gt; Type&lt;'a&gt; {
+    fn method&lt;'a, 'b, 'c&gt;(&amp;'a self, &amp;'b str, &amp;'c str) -&gt; (&amp;'a str, &amp;'a str){...}
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Deklarasi lifetime pada method signature tidak diperlukan ketika menulis program, karena sudah di-infer oleh lifetime elision rule yang mana lifetime yang akan digunakan adalah lifetime self dari <code>impl&lt;'a&gt;</code> dan <code>Type&lt;'a&gt;</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="error-handling"><a class="header" href="#error-handling">Error Handling</a></h1>
+<p>Error terjadi di dalam <em>fallible operations</em>, yaitu operasi-operasi yang memungkinkan terjadi efek samping diluar dugaan dan terjadi pada saat runtime. Hal-hal ini biasanya seperti <em>IO operations</em>, index access beyond size, etc. Di dalam Rust terdapat dua jenis eror yaitu: <em>Recoverable Error</em> and <em>Unrecoverable Error</em>.</p>
+<ul>
+<li><em>Recoverable Error</em> merupakan error karena kesalahan logic atau efek samping dari operasi IO. Error jenis ini dihandle menggunakan tipe data <code>Result&lt;T,E&gt;</code> yang merupakan tipe dasar sebuah enum yang menghasilkan salah satu dari dua kemungkinan yaitu <code>T</code> untuk berhasil, dan <code>E</code> untuk error. Setiap fungsi/method yang memiliki return type <code>Result</code> memiliki efek samping/kemungkinan error, sehingga ada penanganan khusus untuk dua kemungkinan return value.</li>
+<li><em>Unrecoverable Error</em> merupakan error karena kesalahan teknis ketika program berjalan, seperti mengakses array diluar size. Error jenis ini akan menghasilkan kondisi disebut panic yang menyebabkan program exit.</li>
+</ul>
+<h2 id="recoverable-error"><a class="header" href="#recoverable-error">Recoverable Error</a></h2>
+<p>Merupakan error yang disebabkan oleh efek samping dari program yang biasanya terjadi karena operasi-operasi yang bersifat <em>fallible</em> seperti IO atau interaksi dengan users. Error ini tentunya tidak mungkin menyebabkan program <em>down</em> karena kita tidak bisa sepenuhnya mengendalikan efek samping itu. Tipe data dasar yang disediakan Rust untuk meng-<em>handle</em> error jenis ini adalah enum <code>Result&lt;T,E&gt;</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum Result {
+    Ok(T),  // T adalah tipe data jika proses berhasil dan mengembalikan nilai dengan tipe T
+    Err(E), // E adalah tipe data jika proses gagal dan mengembalikan error dengan tipe E
+}
+<span class="boring">}</span></code></pre></pre>
+<p><code>Result</code> Merupakan tipe varian yang memiliki dua kemungkinan yaitu berhasil(<code>Ok(T)</code>) atau error(<code>Err(e)</code>). Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn fallible_function() -&gt; Result&lt;i32, String&gt; {
+    // some process
+    // Err(String::from(&quot;got error&quot;)) // jika gagal
+    Ok(1) // jika berhasil
+}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="handling-recoverable-error"><a class="header" href="#handling-recoverable-error">Handling Recoverable Error</a></h3>
+<p>Ketika ingin memanggil fungsi/method yang memiliki kemungkinan error, tentunya kita ingin meng-handle error tersebut. Terdapat beberapa cara menghandle error di dalam Rust diantaranya:</p>
+<h4 id="pattern-matching-menggunakan-match"><a class="header" href="#pattern-matching-menggunakan-match"><strong>Pattern matching Menggunakan <code>match</code></strong></a></h4>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let ret = fallible_function();
+match ret {
+    Ok(t) =&gt; println!(&quot;val: {}&quot;, t),
+    Err(e) =&gt; panic!(&quot;{}&quot;, e),
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Pattern matching melakukan destrukturalisasi terhadap tipe data yang di-<em>match</em> sehingga kita bisa membaca value-value hasil destruktur dengan menulis signature tipe tersebut. Contoh di atas <code>fallible_function()</code> mengembalikan tipe <code>Result&lt;i32, String&gt;</code> sehingga berdasarkan definisi tipe enum Result menjadi:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>Result&lt;i32, String&gt; = Ok(i32) | Err(String)
+<span class="boring">}</span></code></pre></pre>
+<p>Return value merupakan nilai antara i32 jika berhasil, atau String jika gagal/error.
+Ketika ingin membaca value dari pattern matching, terdapat beberapa cara membaca:</p>
+<ul>
+<li><strong>Signature dengan variable</strong>
+Ketika ingin membaca value dari <code>T</code> tanpa meng-enumerasi semua kemungkinan value tersebut, cukup dengan mendeklarasikan suatu variable arbitrary seperti:
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>match ret {
+  // variable `t` bisa diganti menjadi apapun
+  Ok(t) =&gt; println!(&quot;val: {}&quot;, t),
+  // variable `e` bisa diganti menjadi apapun
+  Err(e) =&gt; panic!(&quot;{}&quot;, e),
+}
+<span class="boring">}</span></code></pre></pre>
+Tipe data dari variable tersebut sesuai dengan tipe data dari deklarasi <code>Result&lt;i32, String&gt;</code>.</li>
+<li><strong>Signature dengan value</strong>
+Ketika ingin memeriksa langsung kepada value yang diinginkan, bisa langsung menulis value yang diinginkan seperti:
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>match fallible_function() {
+  // kita ingin memastikan bahwa kriteria berhasil hanya jika value dari T adalah 5
+  Ok(5) =&gt; println!(&quot;berhasil&quot;),
+  // kita menggunakan wildcard jika kita tidak 
+  _ =&gt; panic!(&quot;panic&quot;),
+}
+<span class="boring">}</span></code></pre></pre>
+Seperti yang sudah dibahas pada chapter algebraic types bahwa <code>match</code> bersifat <em>exhaustive</em> sehingga kita bisa menggunakan wildcard <code>_</code> untuk mengabaikan semua enumerasi value selain dari yang kita inginkan.</li>
+</ul>
+<h3 id="pattern-matching-menggunakan-macro-matches"><a class="header" href="#pattern-matching-menggunakan-macro-matches">Pattern Matching menggunakan macro <code>matches!</code></a></h3>
+<p><code>matches!</code> merupakan macro yang melakukan pengecekkan match langsung terhadap ekspresi yang dimasukkan dengan pattern yang dicocokkan. Dengan ini tidak harus meng-enumerasi semua kemungkinan value, kita hanya ingin memeriksa value/pattern suatu variable/ekspresi. Macro ini mengembalikan boolean <code>true</code> jika sesuai.
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let num = 123;
+let ret = matches!(num, 4);
+println!(&quot;{}&quot;, ret);
+
+let option = Some(5);
+let ret = matches!(option, Some(5));
+println!(&quot;{}&quot;, ret);
+<span class="boring">}</span></code></pre></pre>
+<h4 id="associated-methods"><a class="header" href="#associated-methods">Associated Methods</a></h4>
+<p>Tipe Result&lt;T,E&gt; memiliki beberapa methods untuk meng-<em>handle</em> tipe error recoverable diantaranya <code>unwrap</code>.
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn fallible_function&lt;'a&gt;() -&gt; Result&lt;i32, &amp;'a str&gt; {
+    Err(&quot;error ninu ninu&quot;) // jika gagal
+}
+
+let resp = fallible_function();
+
+/// unwrap akan mengembalikan nilai jika `Result` berhasil(Ok(T))
+/// akan panic jika hasil tidak `Ok(T)`
+/// *NOTE: hindari penggunaan `unwrap()` karena kita tidak pernah tau hasil dari fallible operation tersebut. Kecuali jika kita yakin 100% bahwa hasil Ok(T).
+let ret = resp.unwrap();
+
+/// unwrap_err akan mengembalikan error jika `Result` error(Err(E))
+/// akan panic jika hasil tidak `Err(E)`
+/// *NOTE: hindari penggunaan `unwrap_err()` karena kita tidak pernah tau hasil dari fallible operation tersebut. Kecuali jika kita yakin 100% bahwa hasil Err(E).
+let ret = resp.unwrap_err();
+
+/// unwrap_or mengembalikan nilai jika Ok(T), 
+/// jika tidak, maka akan mengembalikan nilai alternatif `123` sesuai dengan tipe data T.
+/// Gunakan jika kita memiliki alternatif value selain dari yang diharapkan.
+let ret = resp.unwrap_or(123);
+
+/// unwrap_or_default mengembalikan nilai jika Ok(T), 
+/// jika tidak, akan mengembalikan default value sesuai dengan tipe data T(e.g. i32 -&gt; 0).
+let ret = resp.unwrap_or_default();
+
+/// unwrap_or_else akan mengembalikan nilai jika `Result` berhasil(Ok(T))
+/// jika tidak, akan menjalankan suatu closure `FnOnce(E) -&gt; T` dimana `E` adalah value dengan tipe yang sama dengan error `E` dari `Result&lt;T,E&gt;` dan `T` adalah value dengan tipe yang sama dengan hasil `T` dari `Result&lt;T,E&gt;` yang merupakan alternatif dari return value ketika yang sebelumnya error.
+/// Gunakan ini ketika kita memiliki alternatif lain dari T dalam Result&lt;T,E&gt; dengan menjalankan suatu fungsi.
+let ret = resp.unwrap_or_else(|x| -&gt; i32 {
+    println!(&quot;--:: {}&quot;, x);
+    123
+});
+<span class="boring">}</span></code></pre></pre>
+<p>Masih banyak associated methods lainnya yang harus dieksplor sendiri yang memiliki tujuan masing-masing.</p>
+<h3 id="propagating-recoverable-error"><a class="header" href="#propagating-recoverable-error">Propagating Recoverable Error</a></h3>
+<p>Ketika kita ingin mengembalikan error ke fungsi <code>caller</code> dan seterusnya atau membuat rantai return error, maka kita bisa menggunakan operator <code>?</code> atau disebut juga operator <code>try</code>. Hal ini dilakukan ketika kita ingin menyerahkan error handling kepada fungsi yang memanggil. Syarat untuk try operator adalah memiliki tipe yang sama antara <em>caller</em> dan <em>callee</em>. 
+<em>Try</em> operator berlaku untuk untuk tipe <code>Result&lt;T,E&gt;</code> dan <code>Option&lt;T&gt;</code>. 
+Pada pembahasan error handling ini, kita menggunakan try operator untuk tipe <code>Result&lt;T,E&gt;</code>. Try operator pada <code>Result&lt;T,E&gt;</code> akan meng-<em>unwrap</em> <code>T</code> jika Ok, atau <em>return</em> fungsi jika error dimana tipe <code>Err(E)</code> antara <em>caller</em> dan <em>callee</em> compatible.
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn function1() -&gt; Result&lt;String, String&gt; {
+    let resp_funciton2 = function2()?; // if function2() return error, then this function will return the error from function2() into function1() error
+    // do something with `resp`
+    Ok(String::from(&quot;yay&quot;))
+}
+
+fn function2&lt;'a&gt;() -&gt; Result&lt;i32, &amp;'a str&gt; {
+    Err(&quot;error in function 2&quot;)
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Pada contoh di atas, tipe data error dari fungsi2/method2 yang mem-propagasi error harus memiliki tipe yang sama. Pada contoh di atas terlihat kalau tipe data tidak sama, akan tetapi contoh di atas berjalan dengan benar. Hal ini karena selain tipe yang sama, tipe berbeda bisa dengan syarat masing-masing tipe meng-implementasi trait conversion pada Rust yaitu <code>From&lt;T&gt;</code>. Dengan implementasi trait konversi ini, tipe error tetap bisa di propagasi tanpa error. Hal ini karena tipe <code>String</code> implement method <code>from</code> dari trait <code>From&lt;T&gt;</code> sehingga bisa membaca error dari function2() berupa <code>&amp;str</code>.</p>
+<h2 id="unrecoverable-error"><a class="header" href="#unrecoverable-error">Unrecoverable Error</a></h2>
+<p>Merupakan error yang tidak dapat ditolerir lagi karena bisa menyebabkan <em>undefined behaviour</em> pada program yang mana sebagian besar disebabkan oleh <em>logic error</em> dan juga beberapa side-effects. 
+Pada saat panic terjadi, rust akan menghapus stack program atau yang disebut dengan <code>unwinding</code>.
+Contoh dari error ini diantaranya: </p>
+<h3 id="index-out-of-bound-access"><a class="header" href="#index-out-of-bound-access">index out of bound access</a></h3>
+<p>Di antara hal yang lumrah pada bahasa pemograman manapun. Yang membedakan adalah bahasa dengan <em>safety measure</em> akan langsung memberikan error ketika ada access diluar bound array. Bahasa lain seperti C mungkin akan memberikan <em>undefined behaviour</em> dengan memberikan nilai tidak valid bagi program. Rust memiliki bound checking pada saat pengaksesan array sehingga mengembalikan error ketika akses melebihi ukuran array.
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let v = vec![1, 2, 3];
+
+v[99];
+<span class="boring">}</span></code></pre></pre>
+<h3 id="memanggil-macro-panic"><a class="header" href="#memanggil-macro-panic">memanggil macro <code>panic!()</code></a></h3>
+<p>Macro <code>panic!()</code> adalah macro untuk menyebabkan panic secara intentional ketika situasi tidak memungkinkan untuk meng-<em>recover</em> error yang terjadi.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn this_fail() {
+  panic!(&quot;im done&quot;);
+}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="memanggil-associated-methods-yang-tidak-sesuai-dengan-value-yang-diharapkaneg-expect-atau-unwrap"><a class="header" href="#memanggil-associated-methods-yang-tidak-sesuai-dengan-value-yang-diharapkaneg-expect-atau-unwrap">memanggil associated methods yang tidak sesuai dengan value yang diharapkan(e.g. <code>expect</code> atau <code>unwrap</code>)</a></h3>
+<p>Kali ini kita akan membahas <code>expect</code> dimana kita ingin menambahkan pesan tambahan pada panic ketika terjadi error dari hasil <code>Result&lt;T,E&gt;</code> dan kita ingin panic. Method <code>expect</code> ini biasa digunakan untuk inisiasi program dengan berbagai pra-kondisi yang harus dipenuhi sebelum program berjalan seperti dependensi dan lainnya. Jika hal-hal itu tidak terpenuhi maka tentunya program tidak bisa berjalan dan harus exit dengan panic. <code>expect</code> digunakan ketika kita ingin menambahkan informasi tambahan terkait operasi yang kita lakukan yang tidak diketahui oleh compiler.
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+  let db_conn = init_db().expect(&quot;FAILED CONNECTING TO DB&quot;); // will return value of `DB` from function, or panic error with additional information
+}
+
+fn init_db() -&gt; Result&lt;DB, String&gt; {
+  // logic for initiating DB connection
+}</code></pre></pre>
+<h3 id="testing-assertions"><a class="header" href="#testing-assertions">testing assertions</a></h3>
+<p>Default behaviour dari fungsi-fungsi macro untuk test assertions ketika tidak sesuai ekspektasi adalah panic.
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[test]
+fn test_addition() {
+    let result = 2 + 2;
+    assert_eq!(result, 5); // will cause fail tests and panic
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Ketika kita ingin melakukan recovery terhadap situasi panic, maka kita dapat menggunakan fungsi <code>std::panic::catch_unwind</code> yang menerima closure yang mungkin terjadi panic.
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let result = std::panic::catch_unwind(|| {
+    panic!(&quot;im panic&quot;);
+});
+assert!(result.is_err()); // result akan mengembalikan error karena kondisi unwind terjadi di dalam closure karena fungsi `panic!()` dipanggil.
+<span class="boring">}</span></code></pre></pre>
+<p>Pada development Rust, fungsi <code>catch_unwind</code> ini sangat jarang digunakan karena error yang disebabkan oleh panic memang error yang tidak bisa ditolerir yang bisa menyebabkan <em>undefined behaviour</em> pada program, ada side effects lainnya. Hal lain juga penyebab error panic ini jauh lebih kecil dibandingkan error yang disebabkan oleh IO atau side-effects lainnya, sehingga programmer sebaiknya mengantisipasi error ini pada saat development ditambah dengan testing.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="unit-test"><a class="header" href="#unit-test">Unit Test</a></h1>
+<p>Unit Test adalah untuk mengvalidasi/mengverifikasi suatu fungsi/method terhadap semua kemungkinan input dan output. Unit test harus mengcover banyak edge cases dari suatu program agar mengurangi bugs. Unit Test juga digunakan dalam <em>code coverage</em> agar semua logic terkover dari semua path yang mungkin ada pada program. Ada berbagai macam cara Unit Test tergantung bahasa pemograman yang digunakan. Sebagian besar Unit Test bersifat idempotent sehingga ketika dijalankan berulang-ulang tidak ada yang berubah dan akan selalu menghasilkan output yang sama, dalam bahasa lain bisa juga disebut <em>stateless</em>. Hal ini bagian dari otomatisasi testing yang juga akan dilakukan dalam pipeline CI/CD. Kali ini kita akan bahas mekanisme testing dalam Rust.</p>
+<p>Rust menggunakan 2 macro untuk menandai segment code untuk testing, yaitu <code>#[cfg(test)]</code> dan <code>#[test]</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// #[cfg(test)] menandakan module sebagai testing sehingga tidak dimasukkan pada saat kompilasi/build(cargo build) program, hanya dieksekusi dengan perintah `cargo test`
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    // #[test] menandakan fungsi testing yang akan dieksekusi oleh `cargo test`.
+    #[test]
+    fn test_add() {
+        assert!(5 == add(3, 2));  // memvalidasi suatu ekspresi bernilai true
+        assert_eq!(5, add(3, 2)); // memvalidasi 2 values/ekspresi memiliki nilai yang sama
+        assert_ne!(2, add(3, 2)); // memvalidasi 2 values/ekspresi tidak memiliki nilai yang sama
+
+        // secara manual panic untuk menandakan failed test
+        if add(3, 2) != 5 {
+            panic!(&quot;unexpected&quot;);
+        }
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p><code>#[cfg(test)]</code> membuat semua code yang berada dibawah macro ini tidak dimasukkan pada saat kompilasi ke dalam binary dan hanya berjalan pada perintah <code>cargo test</code>.
+Semua fungsi test harus memiliki macro <code>#[test]</code> untuk menandakan fungsi yang akan dijalankan. Semua fungsi-fungsi ini berjalan secara parallel secara default.
+Jika ingin berjalan tidak paralel, kita cukup membatasi thread eksekusi testing menjadi 1</p>
+<pre><code>$ cargo test -- --test-threads=1
+</code></pre>
+<p><code>#[test]</code> hanya berlaku untuk fungsi/method yang <em>synchronous</em>, untuk fungsi/method yang bersifat <em>asynchronous</em> bisa menggunakan library async seperti tokio menggunakan macro <code>#[tokio::test]</code>.</p>
+<h2 id="organisasi-unit-testing"><a class="header" href="#organisasi-unit-testing">Organisasi Unit Testing</a></h2>
+<p>Kode unit test sebaiknya dikelompokkan ke dalam module terpisah sehingga lebih mudah menandakan segment code yang digunakan untuk testing. Ketika unit testing code semakin bertambah maka akan memudahkan memberikan configurasi <code>#[cfg(...)]</code> pada segment code di bawah <code>mod</code> tersebut.</p>
+<p>Tidak ada konvensi khusus mengenai dimana letak kode unit tests ini. Code unit testing sama layaknya code lainnya di dalam rust yaitu berlaku enkapsulasi public dan private dari suatu kode. Sehingga ada pros and cons terhadap beberapa implementasi unit testing.</p>
+<ul>
+<li>Jika unit tests di taruh di file terpisah seperti pada konvensi Golang, seperti <em>file_name_test.rs</em>, maka code yang bisa diimport ke dalam unit tests hanyalah kode public. Hal ini karena sebuah file di dalam rust juga secara tidak langsung merupakan module <code>mod</code> tersendiri, dan antar sesama file merupakan sibling yang tidak bisa mengakses private functions mod/file lain dalam level yang sama(sibling). Sisi positif nya adalah separasi kode production dan kode testing per file.
+Contoh:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// a.rs
+pub fn add(a: i32, b: i32) -&gt; i32 {
+    a + b
+}
+
+fn priv_add(a: i32, b: i32) -&gt; i32 {
+    a + b
+}
+
+// ------------------------------------
+
+/// a_test.rs
+/// 
+/// import module dari dari file lain lewat namespace crate karena bukan di dalam file main.rs/lib.rs, dan merupakan module/file yang berada pada level yang sama. 
+use crate::a;
+
+#[test]
+fn test_add_file() {
+    // akses a::add berhasil karena fungsi add() public
+    assert!(5 == a::add(3, 2));
+    assert_eq!(5, a::add(3, 2));
+    assert_ne!(2, a::add(3, 2));
+
+    if a::add(3, 2) != 5 {
+        panic!(&quot;unexpected&quot;);
+    }
+
+    // akses a::priv_add tidak bisa karena fungsi priv_add private
+    if a::priv_add(3, 2) != 5 {
+        panic!(&quot;unexpected&quot;);
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>Jika unit tests di taruh di dalam module di dalam suatu file/module, maka relasi kedua module ini menjadi parent-child, dimana kode child bisa mengakses semua code yang ada di parent level. Cara ini digunakan ketika ada banyak private code di dalam suatu module sehingga butuh deklarasi unit tests di dalam submodule tersebut. Sisi buruk nya tentu kode production bercampur dengan kode testing, dalam sudut pandang user tentunya, bukan compiler.</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn add(a: i32, b: i32) -&gt; i32 {
+    a + b
+}
+
+fn priv_add(a: i32, b: i32) -&gt; i32 {
+    a + b
+}
+
+#[cfg(test)]
+mod tests {
+    use super::{add, priv_add};
+
+    // kedua fungsi add dan priv_add dapat diakses dari dalam submodule karena relasi module ini(tests) dan parent nya lewat `use super::*`.
+
+    #[test]
+    fn test_add() {
+        assert_eq!(5, add(3, 2));
+    }
+
+    #[test]
+    fn test_priv_add() {
+        assert_eq!(5, priv_add(2, 3));
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="testing-kode-yang-mungkin-panic"><a class="header" href="#testing-kode-yang-mungkin-panic">Testing Kode yang mungkin Panic</a></h2>
+<p>Ada kalanya kita akan menemukan suatu operasi yang memiliki kemungkinan panic. Secara default panic adalah pertanda failed tests di dalam rust, sehingga untuk meng-<em>assert</em> panic ini dibutuhkan macro <code>#[should_panic]</code> setelah macro <code>#[test]</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn im_panic() {
+    panic!(&quot;OH NO!!!&quot;);
+}
+
+mod tests {
+    use super::*;
+
+    #[test]
+    #[should_panic]
+    fn test_im_panic() {
+        im_panic();
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Sekalipun ketika test dijalankan menghasilkan stack trace panic, kode test ini dianggap berhasil oleh <code>cargo test</code>.
+Jika kode berhasil justru dianggap test gagal karena macro <code>#[should_panic]</code>.</p>
+<h2 id="menggunakan-enum-resulte"><a class="header" href="#menggunakan-enum-resulte">Menggunakan Enum Result&lt;(),E&gt;</a></h2>
+<p>Selain panic, kita bisa menggunakan return value <code>Result&lt;(),E&gt;</code> pada saat unit testing.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[test]
+fn test_add_result() -&gt; Result&lt;(),String&gt; {
+    let expected = 5;
+    let result = add(3,2);
+    if result != expected {
+        return Err(&quot;ERROR!!!&quot;.to_owned());
+    }
+    Ok(())
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Tipe <code>T</code> haruslah <code>()</code> karena merupakan konvensi dari cargo. Untuk tipe <code>E</code> kita bisa menggunakan tipe apapun.</p>
+<h2 id="menampilkan-output"><a class="header" href="#menampilkan-output">Menampilkan output</a></h2>
+<p>Secara default jika kita mem-print sesuatu menggunakan <code>println!</code> atau <code>dbg!</code> ketika test berhasil menggunakan <code>cargo test</code> maka tidak memprint apa-apa karena ketika test berhasil semua output ke stdout di-<em>capture</em> oleh rust lebih duluan. Jika kita ingin tetap menampilkan output tersebut bisa menggunakan flag <code>cargo test -- --show-output</code>.</p>
+<h2 id="menfilter-unit-tests"><a class="header" href="#menfilter-unit-tests">Menfilter Unit Tests</a></h2>
+<p>Ketika kita hanya ingin menjalankan unit test tertentu saja kita bisa menulis <code>cargo test &lt;pathname/filename/part_of_path_or_file&gt;</code>, dimana argumen tambahan ke dalam command tersebut merupakan pattern yang menyerupai fullpath(mod), filename, atau nama fungsi test.
+Contoh:</p>
+<pre><code class="language-bash">$ cargo test test_add # menjalankan fungsi test test_add atau pathname/filename yang menyerupai
+# contoh file-file yang mungkin dijalankan oleh command di atas adalah:
+# test_add
+# test_add_success
+# test_add_failed
+# test_a
+
+$ cargo test test_ # menjalankan fungsi a::b::c::test_
+# file-file atau kode test yang akan di jalankan dengan perintah di atas adalah semua kode tests dengan path `a::b::c::test_*`
+</code></pre>
+<h2 id="mengabaikan-unit-tests"><a class="header" href="#mengabaikan-unit-tests">Mengabaikan Unit Tests</a></h2>
+<p>Mengabaikan fungsi test bisa menggunakan macro <code>#[ignore]</code> setelah deklarasi <code>#[test]</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn add(a: i32, b: i32) -&gt; i32 {
+    a + b
+}
+
+fn priv_add(a: i32, b: i32) -&gt; i32 {
+    a + b
+}
+
+#[cfg(test)]
+mod tests {
+    use super::{add, priv_add};
+
+    // kedua fungsi add dan priv_add dapat diakses dari dalam submodule karena relasi module ini(tests) dan parent nya lewat `use super::*`.
+
+    #[test]
+    fn test_add() {
+        assert_eq!(5, add(3, 2));
+    }
+
+    #[test]
+    #[ignore]
+    fn test_priv_add() { // unit test will be ignored when we run cargo test
+        assert_eq!(5, priv_add(2, 3));
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="cargo-dan-konfigurasi"><a class="header" href="#cargo-dan-konfigurasi">Cargo dan Konfigurasi</a></h1>
+<p>Kita akan membahas mengenai build system dan package manager Rust yaitu <strong>Cargo</strong>, beserta konfigurasi projek Rust menggunakan standard konfig file Cargo yaitu .toml.
+Kita sudah membahas mengenai installasi Rust yang sudah include Cargo menggunakan rustup. Pada chapter <strong>toolchain</strong> kita sudah membahas beberapa commands yang ada di Cargo untuk daily usages di dalam Rust. Kali ini kita akan membahas lebih lanjut dan juga konfigurasi projek Rust.</p>
+<h2 id="build-profile"><a class="header" href="#build-profile">Build Profile</a></h2>
+<p>Terdapat 2 jenis build profile di dalam Rust: <strong>dev</strong> dan <strong>release</strong> profile. </p>
+<ul>
+<li><strong>dev</strong> profile: merupakan profile build untuk level development dimana beberapa config di-setup default untuk development mode. Berikut konfigurasi beserta default values dari dev mode:</li>
+</ul>
+<pre><code class="language-ini">[profile.dev]
+# optimization level.
+# 0 = no optimization, used for development/debugging, faster compilation, slower binary
+# 1 = basic optimizations, perform little bit optimization, but not as much as producing production binary.
+# 2 = some optimizations, more than basics optimization, might be used in production if faster compilation needed than faster binary.
+# 3 = full optimizations, apply all possible optimizations to the code resulting in slowest compilation, but fastest binary.
+# &quot;s&quot; = optimization for binary size
+# &quot;z&quot; = no loop vectorization
+opt-level = 0
+
+# untuk mengaktifkan debuginfo pada binary hasil build, bekerja sama dengan llvm untuk generate debuginfo-nya
+debug = true
+
+# debug info dipisah dari file hasil compiled. Platform specific.
+split-debuginfo = '...'  # Platform-specific.
+
+# runtime validation checking for dev mode, like `debug_assert!()` macro.
+debug-assertions = true
+
+# Memeriksa overflow pada operasi terhadap integer.
+# true: panic jika overflow.
+# false: circular effect jika overflow, misal 255_u8 + 1_u8 = 3.
+overflow-checks = true
+
+# link-time optimization merupakan fitur llvm dimana melakukan optimisasi cross module/code unit/crates.
+# thin/false: melakukan sedikit optimisasi pada saat linking stage dalam proses kompilasi. Lebih cepat dalam proses kompilasi, tetapi tidak menghasilkan binary yang optimal.
+# fat/true: melakukan optimisasi keseluruhan pada saat compile time menyebabkan kompilasi lebih lama, tetapi menghasilkan binary yang lebih optimal.
+# off: tidak melakukan lto sama sekali
+lto = false
+
+# Apa yang akan dilakukan ketika panic terjadi:
+# unwind: hapus stackframe(reset) lalu stop program
+# abort: langsung stop program
+panic = 'unwind'
+
+# incremental build, menyimpan state2 untuk kompilasi berikutnya sehingga tidak harus build dari scratch(faster compilation)
+# true: incremental
+# false: clean build, used for production release
+incremental = true
+
+# codegen-units adalah serpihan hasil build suatu crate. Semakin banyak maka proses kompilasi semakin cepat karena compiler akan melakukan kompilasi parallel sebanyak mungkin, akan tetapi ini menghasilkan binary kurang optimal sehingga hanya cocok untuk dev mode. Untuk production release menggunakan angka yang lebih sedikit dari dev mode.
+codegen-units = 256
+
+# https://en.wikipedia.org/wiki/Rpath
+rpath = false
+</code></pre>
+<ul>
+<li><strong>release</strong> profile: merupakan profile build untuk level production dimana beberapa config di-setup se-<em>optimized</em> mungkin untuk production release. Berikut konfigurasi beserta default values dari release mode:</li>
+</ul>
+<pre><code class="language-ini">[profile.release]
+opt-level = 3
+debug = false
+split-debuginfo = '...'  # Platform-specific.
+debug-assertions = false
+overflow-checks = false
+lto = false
+panic = 'unwind'
+incremental = false
+codegen-units = 16
+rpath = false
+</code></pre>
+<h2 id="struktur-projek-cargo"><a class="header" href="#struktur-projek-cargo">Struktur Projek Cargo</a></h2>
+<p>Pada module 4 Struktur kita telah membahas struktur code base secara sederhana yaitu terdiri dari directory <code>src</code>, <code>target</code> dan file <code>Cargo.toml</code> dan <code>Cargo.lock</code>. 
+Kali ini kita akan membahas kaitannya dengan Cargo dan konfigurasi nya. Berikut struktur codebase cargo secara keseluruhan:</p>
+<pre><code>.
+├── Cargo.lock                          # hasil compiled Cargo.toml
+├── Cargo.toml                          # konfigurasi projek cargo
+├── src/                                # directory berisi codebase utama
+│   ├── lib.rs                          # crate non-executable, to be imported
+│   ├── main.rs                         # main crate for executable
+│   └── bin/                            # folder konvensi cargo dimana cargo akan menganggap file2 .rs di dalam ini sebagai entry point executable
+│       ├── named-executable.rs         # executable ketika di run/build `cargo run/build --bin named-executable
+│       ├── another-executable.rs       # executable ketika di run/build `cargo run/build --bin another-executable
+│       └── multi-file-executable/      # executable ketika di run/build `cargo run/build --bin multi-file-executable
+│           ├── main.rs                 # ^command di atas akan meng-execute file main.rs ini
+│           └── some_module.rs          # module yang akan dipanggil oleh main.rs di dalam directory ini.
+├── benches/
+│   ├── large-input.rs
+│   └── multi-file-bench/
+│       ├── main.rs
+│       └── bench_module.rs
+├── examples/
+│   ├── simple.rs
+│   └── multi-file-example/
+│       ├── main.rs
+│       └── ex_module.rs
+└── tests/
+    ├── some-integration-tests.rs
+    └── multi-file-test/
+        ├── main.rs
+        └── test_module.rs
+
+</code></pre>
+<p>// berlanjut...</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="intermediate"><a class="header" href="#intermediate">Intermediate</a></h1>
+<p>Pada bagian ini akan membahas mengenai hal lebih lanjut mengenai IO, Smart Pointers, ...</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </body>
+</html>

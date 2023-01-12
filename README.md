@@ -5,7 +5,10 @@ Merupakan catatan OP selama mempelajari Bahasa Pemograman Rust yang di tulis dal
 - [Rust Reference](https://doc.rust-lang.org/reference/)
 - [Rust Nomicon](https://doc.rust-lang.org/nomicon/)
 - [Rust Cheatsheet](https://cheats.rs/)
+- [Cargo Reference](https://doc.rust-lang.org/stable/cargo/reference/)
 - dan lainnya yang mungkin akan ditambahkan kedepannya...
+
+Rust Version: **1.66.0 stable**
 
 Untuk menjalankan:
 - Install [mdbook](https://github.com/rust-lang/mdBook) `cargo install mdbook` atau lewat homebrew `brew install mdbook`.

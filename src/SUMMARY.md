@@ -22,7 +22,7 @@
   - [Lifetime](basic/16_lifetime.md)
   - [Error Handling](basic/17_error_handling.md)
   - [Unit Test](basic/18_unit_test.md)
-  - [Cargo dan Konfigurasi(Draft)]()
+  - [Cargo dan Konfigurasi](basic/19_cargo_dan_konfigurasi.md)
 
 - [Intermediate](intermediate/0_intermediate.md)
   - [DRAFT]()

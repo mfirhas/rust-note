@@ -153,8 +153,11 @@ sample_n_sub-packages/
 ```
 Package `package-1` dan `package-2` merupakan package tersendiri dengan struktur yang sama seperti diluar. `package-1` dan `package-2` akan diimport oleh package di luar. Deklarasi import sub-packages ke dalam package luar di toml adalah:
 ```toml
-gatekeeper = {path = "gatekeeper-lib", package = "gatekeeper-lib"}
+package-name = {path = "path-to-subpackage", package = "package-name"}
 ```
+- **package-name**: nama yang akan di import menggunakan `use package-name::`
+- **path-to-subpackage**: path ke subpackage dimulai dari root package. Pada contoh di atas maka bisa digunakan: `package-1`
+- **package-name**: nama package dari path di atas. Biasanya nama package sama dengan nama directory.
 
 Secara *convetion* cargo, cargo akan secara otomatis membaca binary crates yang ada di dalam direktori *src/bin/<file_name.rs>* tanpa mendeklarasikan crate path di dalam *Cargo.toml*. Jika kita tidak mengikuti *convention* tersebut, maka kita harus deklarasikan nama dan path dari crate di dalam *Cargo.toml* di bawah section `[package]` di atas section `[dependencies]` seperti contoh:
 ```ini

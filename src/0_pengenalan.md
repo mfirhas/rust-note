@@ -6,6 +6,8 @@ Rust adalah bahasa pemograman yang di-*release* ke publik tahun 2010 berawal dar
 - *null pointer*, terjadi ketika mengakses pointer yang kosong.
 - *data-race*, terjadi ketika data diakses oleh lebih dari satu *thread* secara konkuren. Hal ini bisa menjadikan data tidak konsisten khususnya ketika ada proses write dan read terhadap data tersebut.
 - *memory-leaks*, terjadi ketika banyak resources yang sudah tidak diperlukan akan tetapi masih mendiami memory sehingga memakan resource yang diperlukan oleh proses lain.
+
+(*NOTE: dangling pointer masih mungkin terjadi untuk beberapa skenario seperti cyclic reference menggunakan smart pointer seperti Rc atau Arc, hal ini bisa diatasi dengan menggunakan weak reference*)
 - dan lainnya.
 
 Rust merupakan bahasa *compiled* ke *binary* sehingga berjalan secara *native* di OS target. Compiler Rust bernama `rustc` yang secara simple terdiri dari *frontend* yang menghasilkan IR(*Intermediate Representation*) dan *backend* menggunakan LLVM yang menghasilkan hasil akhir berupa binary.

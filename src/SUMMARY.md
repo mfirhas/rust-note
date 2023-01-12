@@ -1,6 +1,6 @@
 # Summary
 
-[Rust ID](../README.md)
+[Rust ID](./rust_id.md)
 [Pengenalan](./0_pengenalan.md)
 
 - [Basics](basic/0_basic.md)

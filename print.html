@@ -185,6 +185,10 @@
 <li>Learning curve yang tinggi.</li>
 <li>Kompilasi yang cukup lama ketika ukuran projek semakin besar.</li>
 </ul>
+<hr />
+<p><em>So, Why use Rust?</em></p>
+<p><em>Rust leaves many technical things to its compiler to handle with its static analysis and error friendly messages.</em>
+<em>Issues related to type, memory, and thread safety can be caught statically upfront, leaving us to only care about business logic at PR Review.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="dasar"><a class="header" href="#dasar">Dasar</a></h1>
 <p>Pembahasan dasar meliputi beberapa tipe data, <em>ownership</em>, <em>borrowing</em>, cargo, dan hal-hal dasar lainnya.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="instalasi"><a class="header" href="#instalasi">Instalasi</a></h2>
@@ -1378,7 +1382,7 @@ pub struct MyStruct {
 
 // Implementasi MyTrait oleh MyStruct
 impl MyTrait for MyStruct {
-    // implementasi trait dengan mutable reference dari struct implementor.
+    // implementasi trait dengan immutable reference dari struct implementor.
     // struct harus punya nilai terlebih dahulu sebelum memanggil method ini dan diikuti `.`
     fn method1(&amp;self) -&gt; i32 {
         self.a

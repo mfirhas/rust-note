@@ -28,3 +28,9 @@ Kelebihan Rust:
 Kekurangan Rust:
 - Learning curve yang tinggi.
 - Kompilasi yang cukup lama ketika ukuran projek semakin besar.
+
+---
+*So, Why use Rust?*
+
+*Rust leaves many technical things to its compiler to handle with its static analysis and error friendly messages.*
+*Issues related to type, memory, and thread safety can be caught statically upfront, leaving us to only care about business logic at PR Review.*

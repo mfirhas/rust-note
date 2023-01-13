@@ -36,7 +36,7 @@ pub struct MyStruct {
 
 // Implementasi MyTrait oleh MyStruct
 impl MyTrait for MyStruct {
-    // implementasi trait dengan mutable reference dari struct implementor.
+    // implementasi trait dengan immutable reference dari struct implementor.
     // struct harus punya nilai terlebih dahulu sebelum memanggil method ini dan diikuti `.`
     fn method1(&self) -> i32 {
         self.a

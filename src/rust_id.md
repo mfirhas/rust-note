@@ -10,4 +10,6 @@ Merupakan catatan OP selama mempelajari Bahasa Pemograman Rust yang di tulis dal
 
 Rust Version: **1.66.0 stable**++
 
+Repo: [rust-note](https://github.com/mfathirirhas/rust-note)
+
 *Silahkan membuka issue dan PR untuk berkontribusi atau ingin mengoreksi kesalahan, atau bisa juga dengan mengirim email ke [mfathirirhas@gmail.com](mailto:mfathirirhas@gmail.com). Thanks!*

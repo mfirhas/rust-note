@@ -144,15 +144,13 @@
                         <h1 id="primitive-types"><a class="header" href="#primitive-types">Primitive Types</a></h1>
 <p>Rust memiliki tipe-tipe paling dasar untuk menghandle beberapa data diantaranya numerik, karakter, kalimat, bytes, dan lainnya.</p>
 <p>Berikut beberapa tipe-tipe dasar dalam Rust:</p>
-<h2 id="unit"><a class="header" href="#unit">Unit</a></h2>
+<h2 id="unit-"><a class="header" href="#unit-">Unit <code>()</code></a></h2>
 <p>Tipe data yang tidak berarti apa-apa. Biasanya digunakan ketika ingin meng-<em>ignore</em> deklarasi tipe data. 
 Salah satu kegunaan tipe ini adalah untuk meng-<em>ignore</em> deklarasi tipe data untuk generic type.
 Contoh:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>()
-
-fn return_nothing() -&gt; () {
+</span>fn return_nothing() -&gt; () {
     println!(&quot;do nothing&quot;);
 }
 <span class="boring">}</span></code></pre></pre>

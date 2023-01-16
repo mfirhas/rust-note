@@ -194,7 +194,7 @@ match optional_value {
 // akan return "there is a thing"
 ```
 
-Ketika suatu operasi memungkinkan mengembalikan error, maka tipe data yang cocok digunakan adalah `Option` dengan melakukan pengecekkan:
+Ketika suatu operasi memungkinkan mengembalikan error, maka tipe data yang cocok digunakan adalah `Result` dengan melakukan pengecekkan:
 ```rust
 let error_value = Err("error");
 match error_value {

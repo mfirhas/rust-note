@@ -2539,7 +2539,61 @@ mod tests {
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cargo-dan-konfigurasi"><a class="header" href="#cargo-dan-konfigurasi">Cargo dan Konfigurasi</a></h1>
 <p>Kita akan membahas mengenai build system dan package manager Rust yaitu <strong>Cargo</strong>, beserta konfigurasi projek Rust menggunakan standard konfig file Cargo yaitu .toml.
 Kita sudah membahas mengenai installasi Rust yang sudah include Cargo menggunakan rustup. Pada chapter <strong>toolchain</strong> kita sudah membahas beberapa commands yang ada di Cargo untuk daily usages di dalam Rust. Kali ini kita akan membahas lebih lanjut dan juga konfigurasi projek Rust.</p>
-<h2 id="build-profile"><a class="header" href="#build-profile">Build Profile</a></h2>
+<h2 id="struktur-projek-cargo"><a class="header" href="#struktur-projek-cargo">Struktur Projek Cargo</a></h2>
+<p>Pada module 4 Struktur kita telah membahas struktur code base secara sederhana yaitu terdiri dari directory <code>src</code>, <code>target</code> dan file <code>Cargo.toml</code> dan <code>Cargo.lock</code>. 
+Kali ini kita akan membahas kaitannya dengan Cargo dan konfigurasi nya. Berikut struktur codebase cargo secara keseluruhan:</p>
+<pre><code>.
+├── Cargo.lock                          # hasil compiled Cargo.toml
+├── Cargo.toml                          # konfigurasi projek cargo
+├── src/                                # directory berisi codebase utama
+│   ├── lib.rs                          # crate non-executable, to be imported
+│   ├── main.rs                         # main crate for executable
+│   └── bin/                            # folder konvensi cargo dimana cargo akan menganggap file2 .rs di dalam ini sebagai entry point executable
+│       ├── named-executable.rs         # executable ketika di run/build `cargo run/build --bin named-executable
+│       ├── another-executable.rs       # executable ketika di run/build `cargo run/build --bin another-executable
+│       └── multi-file-executable/      # executable ketika di run/build `cargo run/build --bin multi-file-executable
+│           ├── main.rs                 # ^command di atas akan meng-execute file main.rs ini
+│           └── some_module.rs          # module yang akan dipanggil oleh main.rs di dalam directory ini.
+├── benches/
+│   ├── large-input.rs
+│   └── multi-file-bench/
+│       ├── main.rs
+│       └── bench_module.rs
+├── examples/
+│   ├── simple.rs
+│   └── multi-file-example/
+│       ├── main.rs
+│       └── ex_module.rs
+└── tests/                              # contain integration tests
+    ├── some-integration-tests.rs
+    └── multi-file-test/
+        ├── main.rs
+        └── test_module.rs
+</code></pre>
+<h2 id="konfigurasi-cargotoml"><a class="header" href="#konfigurasi-cargotoml">Konfigurasi Cargo.toml</a></h2>
+<p>Projek Rust menggunakan Cargo sebagai build system menggunakan Cargo.toml sebagai file konfigurasi projek. Komponen lengkap dari Cargo.toml bisa dilihat di <a href="https://doc.rust-lang.org/cargo/reference/manifest.html">sini</a>, akan tetapi pada kali ini kita cuma akan membahas yang umum pada projek yaitu:</p>
+<ul>
+<li>[package] : Setiap distributable rust program disebut package. Setiap package memiliki konfigurasi cargo di dalam Cargo.toml. Memiliki beberapa sub-konfigurasi diantaranya: <em>name</em>, <em>version</em>, <em>edition</em>, dan lainnya.</li>
+<li>[profile] : build profile sebagai konfigurasi kompilasi program. Terdiri dari <em>dev</em> dan <em>release</em>.</li>
+<li>Target tables: Mendeklarasi target kompilasi/build cargo. Memiliki jenis di antaranya: [lib], [[bin]], [[example]], [[test]], [[bench]].</li>
+<li>Dependency tables: Mendeklarasi dependencies dari package tersebut.</li>
+<li>[workspace] : konfigurasi Cargo.toml untuk level workspace.</li>
+<li>[features] : kondisional kompilasi</li>
+</ul>
+<h3 id="package"><a class="header" href="#package">[package]</a></h3>
+<p>Secara default ketika menginisiasi program, Cargo menginisiasi 3 fields name, version, dan edition. 2 field pertama minimal wajib untuk cargo dapat membaca sebuah package. <em>name</em> mengindikasikan nama package ketika akan di-distribusikan baik internal maupun eksternal. Versi menandakan versi dari package. Berikut beberapa fields lainnya:</p>
+<ul>
+<li><strong>name</strong>: nama package yang digunakan sebagai identifier ketika mengekspor internal(memanggil sesama crates) atau eksternal(crates.io).</li>
+<li><strong>version</strong>: versi dari package</li>
+<li><strong>authors</strong>: daftar owners, maintainers, apapun yang pernah ngurus projek tersebut.</li>
+<li><strong>edition</strong>: Rust edition. Cargo secara otomatis menggenerate sesuai dengan versi cargo yang digunakan untuk menggenerate.</li>
+<li><strong>rust-version</strong>: Minimal rust version supported.</li>
+<li><strong>description</strong>: deskripsi package</li>
+<li><strong>documentation</strong>: link ke dokumentasi package.</li>
+<li><strong>repository</strong>: link ke repo</li>
+<li>...dan masih banyak lainnya silahkan di cek di sini <a href="https://doc.rust-lang.org/cargo/reference/manifest.html#the-package-section">package</a></li>
+</ul>
+<h3 id="build-profile"><a class="header" href="#build-profile">Build Profile</a></h3>
 <p>Terdapat 2 jenis build profile di dalam Rust: <strong>dev</strong> dan <strong>release</strong> profile. </p>
 <ul>
 <li><strong>dev</strong> profile: merupakan profile build untuk level development dimana beberapa config di-setup default untuk development mode. Berikut konfigurasi beserta default values dari dev mode:</li>
@@ -2605,39 +2659,15 @@ incremental = false
 codegen-units = 16
 rpath = false
 </code></pre>
-<h2 id="struktur-projek-cargo"><a class="header" href="#struktur-projek-cargo">Struktur Projek Cargo</a></h2>
-<p>Pada module 4 Struktur kita telah membahas struktur code base secara sederhana yaitu terdiri dari directory <code>src</code>, <code>target</code> dan file <code>Cargo.toml</code> dan <code>Cargo.lock</code>. 
-Kali ini kita akan membahas kaitannya dengan Cargo dan konfigurasi nya. Berikut struktur codebase cargo secara keseluruhan:</p>
-<pre><code>.
-├── Cargo.lock                          # hasil compiled Cargo.toml
-├── Cargo.toml                          # konfigurasi projek cargo
-├── src/                                # directory berisi codebase utama
-│   ├── lib.rs                          # crate non-executable, to be imported
-│   ├── main.rs                         # main crate for executable
-│   └── bin/                            # folder konvensi cargo dimana cargo akan menganggap file2 .rs di dalam ini sebagai entry point executable
-│       ├── named-executable.rs         # executable ketika di run/build `cargo run/build --bin named-executable
-│       ├── another-executable.rs       # executable ketika di run/build `cargo run/build --bin another-executable
-│       └── multi-file-executable/      # executable ketika di run/build `cargo run/build --bin multi-file-executable
-│           ├── main.rs                 # ^command di atas akan meng-execute file main.rs ini
-│           └── some_module.rs          # module yang akan dipanggil oleh main.rs di dalam directory ini.
-├── benches/
-│   ├── large-input.rs
-│   └── multi-file-bench/
-│       ├── main.rs
-│       └── bench_module.rs
-├── examples/
-│   ├── simple.rs
-│   └── multi-file-example/
-│       ├── main.rs
-│       └── ex_module.rs
-└── tests/                              # contain integration tests
-    ├── some-integration-tests.rs
-    └── multi-file-test/
-        ├── main.rs
-        └── test_module.rs
-
-</code></pre>
-<p>// berlanjut...</p>
+<h3 id="target"><a class="header" href="#target">Target</a></h3>
+<p>Merupakan hasil kompilasi kedalam binary/object file ketika projek di-build. Setiap target direpresentasikan oleh crate. Terdapat 5 jenis target di-antaranya:</p>
+<ul>
+<li><strong>Library(<code>[lib]</code>)</strong>: hasil kompilasi dari crate library di dalam direktori src. 1 package hanya bisa memiliki 1 library target/crate.</li>
+<li><strong>Binaries(<code>[[bin]]</code>)</strong>: hasil kompilasi dari crate binary di dalam direktori src. 1 package dapat memiliki beberapa target/crate.</li>
+<li><strong>Examples(<code>[[example]]</code>)</strong>: hasil kompilasi dari crate example di dalam direktori sendiri dari root level.</li>
+<li><strong>Tests(<code>[[test]]</code>)</strong>: hasil kompilasi dari crate test di dalam direktori sendiri dari root level.</li>
+<li><strong>Benchmarks(<code>[[bench]]</code>)</strong>: hasil kompilasi dari crate benchmark di dalam direktori sendiri dari root level.</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="intermediate"><a class="header" href="#intermediate">Intermediate</a></h1>
 <p>Pada bagian ini akan membahas mengenai hal lebih lanjut mengenai IO, Smart Pointers, ...</p>
 

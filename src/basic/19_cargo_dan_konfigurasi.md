@@ -3,7 +3,62 @@
 Kita akan membahas mengenai build system dan package manager Rust yaitu **Cargo**, beserta konfigurasi projek Rust menggunakan standard konfig file Cargo yaitu .toml.
 Kita sudah membahas mengenai installasi Rust yang sudah include Cargo menggunakan rustup. Pada chapter **toolchain** kita sudah membahas beberapa commands yang ada di Cargo untuk daily usages di dalam Rust. Kali ini kita akan membahas lebih lanjut dan juga konfigurasi projek Rust.
 
-## Build Profile ##
+## Struktur Projek Cargo ##
+Pada module 4 Struktur kita telah membahas struktur code base secara sederhana yaitu terdiri dari directory `src`, `target` dan file `Cargo.toml` dan `Cargo.lock`. 
+Kali ini kita akan membahas kaitannya dengan Cargo dan konfigurasi nya. Berikut struktur codebase cargo secara keseluruhan:
+```
+.
+├── Cargo.lock                          # hasil compiled Cargo.toml
+├── Cargo.toml                          # konfigurasi projek cargo
+├── src/                                # directory berisi codebase utama
+│   ├── lib.rs                          # crate non-executable, to be imported
+│   ├── main.rs                         # main crate for executable
+│   └── bin/                            # folder konvensi cargo dimana cargo akan menganggap file2 .rs di dalam ini sebagai entry point executable
+│       ├── named-executable.rs         # executable ketika di run/build `cargo run/build --bin named-executable
+│       ├── another-executable.rs       # executable ketika di run/build `cargo run/build --bin another-executable
+│       └── multi-file-executable/      # executable ketika di run/build `cargo run/build --bin multi-file-executable
+│           ├── main.rs                 # ^command di atas akan meng-execute file main.rs ini
+│           └── some_module.rs          # module yang akan dipanggil oleh main.rs di dalam directory ini.
+├── benches/
+│   ├── large-input.rs
+│   └── multi-file-bench/
+│       ├── main.rs
+│       └── bench_module.rs
+├── examples/
+│   ├── simple.rs
+│   └── multi-file-example/
+│       ├── main.rs
+│       └── ex_module.rs
+└── tests/                              # contain integration tests
+    ├── some-integration-tests.rs
+    └── multi-file-test/
+        ├── main.rs
+        └── test_module.rs
+```
+
+## Konfigurasi Cargo.toml ##
+Projek Rust menggunakan Cargo sebagai build system menggunakan Cargo.toml sebagai file konfigurasi projek. Komponen lengkap dari Cargo.toml bisa dilihat di [sini](https://doc.rust-lang.org/cargo/reference/manifest.html), akan tetapi pada kali ini kita cuma akan membahas yang umum pada projek yaitu:
+- [package] : Setiap distributable rust program disebut package. Setiap package memiliki konfigurasi cargo di dalam Cargo.toml. Memiliki beberapa sub-konfigurasi diantaranya: *name*, *version*, *edition*, dan lainnya.
+- [profile] : build profile sebagai konfigurasi kompilasi program. Terdiri dari *dev* dan *release*.
+- Target tables: Mendeklarasi target kompilasi/build cargo. Memiliki jenis di antaranya: [lib], [[bin]], [[example]], [[test]], [[bench]].
+- Dependency tables: Mendeklarasi dependencies dari package tersebut.
+- [workspace] : konfigurasi Cargo.toml untuk level workspace.
+- [features] : kondisional kompilasi
+
+### [package] ###
+Secara default ketika menginisiasi program, Cargo menginisiasi 3 fields name, version, dan edition. 2 field pertama minimal wajib untuk cargo dapat membaca sebuah package. *name* mengindikasikan nama package ketika akan di-distribusikan baik internal maupun eksternal. Versi menandakan versi dari package. Berikut beberapa fields lainnya:
+- **name**: nama package yang digunakan sebagai identifier ketika mengekspor internal(memanggil sesama crates) atau eksternal(crates.io).
+- **version**: versi dari package
+- **authors**: daftar owners, maintainers, apapun yang pernah ngurus projek tersebut.
+- **edition**: Rust edition. Cargo secara otomatis menggenerate sesuai dengan versi cargo yang digunakan untuk menggenerate.
+- **rust-version**: Minimal rust version supported.
+- **description**: deskripsi package
+- **documentation**: link ke dokumentasi package.
+- **repository**: link ke repo
+- ...dan masih banyak lainnya silahkan di cek di sini [package](https://doc.rust-lang.org/cargo/reference/manifest.html#the-package-section)
+
+
+### Build Profile ###
 Terdapat 2 jenis build profile di dalam Rust: **dev** dan **release** profile. 
 - **dev** profile: merupakan profile build untuk level development dimana beberapa config di-setup default untuk development mode. Berikut konfigurasi beserta default values dari dev mode:
 ```ini
@@ -68,38 +123,10 @@ codegen-units = 16
 rpath = false
 ```
 
-## Struktur Projek Cargo ##
-Pada module 4 Struktur kita telah membahas struktur code base secara sederhana yaitu terdiri dari directory `src`, `target` dan file `Cargo.toml` dan `Cargo.lock`. 
-Kali ini kita akan membahas kaitannya dengan Cargo dan konfigurasi nya. Berikut struktur codebase cargo secara keseluruhan:
-```
-.
-├── Cargo.lock                          # hasil compiled Cargo.toml
-├── Cargo.toml                          # konfigurasi projek cargo
-├── src/                                # directory berisi codebase utama
-│   ├── lib.rs                          # crate non-executable, to be imported
-│   ├── main.rs                         # main crate for executable
-│   └── bin/                            # folder konvensi cargo dimana cargo akan menganggap file2 .rs di dalam ini sebagai entry point executable
-│       ├── named-executable.rs         # executable ketika di run/build `cargo run/build --bin named-executable
-│       ├── another-executable.rs       # executable ketika di run/build `cargo run/build --bin another-executable
-│       └── multi-file-executable/      # executable ketika di run/build `cargo run/build --bin multi-file-executable
-│           ├── main.rs                 # ^command di atas akan meng-execute file main.rs ini
-│           └── some_module.rs          # module yang akan dipanggil oleh main.rs di dalam directory ini.
-├── benches/
-│   ├── large-input.rs
-│   └── multi-file-bench/
-│       ├── main.rs
-│       └── bench_module.rs
-├── examples/
-│   ├── simple.rs
-│   └── multi-file-example/
-│       ├── main.rs
-│       └── ex_module.rs
-└── tests/                              # contain integration tests
-    ├── some-integration-tests.rs
-    └── multi-file-test/
-        ├── main.rs
-        └── test_module.rs
-
-```
-
-// berlanjut...
+### Target ###
+Merupakan hasil kompilasi kedalam binary/object file ketika projek di-build. Setiap target direpresentasikan oleh crate. Terdapat 5 jenis target di-antaranya:
+- **Library(`[lib]`)**: hasil kompilasi dari crate library di dalam direktori src. 1 package hanya bisa memiliki 1 library target/crate.
+- **Binaries(`[[bin]]`)**: hasil kompilasi dari crate binary di dalam direktori src. 1 package dapat memiliki beberapa target/crate.
+- **Examples(`[[example]]`)**: hasil kompilasi dari crate example di dalam direktori sendiri dari root level.
+- **Tests(`[[test]]`)**: hasil kompilasi dari crate test di dalam direktori sendiri dari root level.
+- **Benchmarks(`[[bench]]`)**: hasil kompilasi dari crate benchmark di dalam direktori sendiri dari root level.

@@ -4,13 +4,11 @@ Rust memiliki tipe-tipe paling dasar untuk menghandle beberapa data diantaranya 
 
 Berikut beberapa tipe-tipe dasar dalam Rust:
 
-## Unit ##
+## Unit `()` ##
 Tipe data yang tidak berarti apa-apa. Biasanya digunakan ketika ingin meng-*ignore* deklarasi tipe data. 
 Salah satu kegunaan tipe ini adalah untuk meng-*ignore* deklarasi tipe data untuk generic type.
 Contoh:
 ```rust
-()
-
 fn return_nothing() -> () {
     println!("do nothing");
 }

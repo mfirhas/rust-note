@@ -2593,6 +2593,13 @@ Kali ini kita akan membahas kaitannya dengan Cargo dan konfigurasi nya. Berikut 
 <li><strong>repository</strong>: link ke repo</li>
 <li>...dan masih banyak lainnya silahkan di cek di sini <a href="https://doc.rust-lang.org/cargo/reference/manifest.html#the-package-section">package</a></li>
 </ul>
+<p>Contoh:</p>
+<pre><code class="language-ini">[package]
+name = &quot;basics_cargo&quot;
+version = &quot;0.1.0&quot;
+edition = &quot;2021&quot;
+...
+</code></pre>
 <h3 id="build-profile"><a class="header" href="#build-profile">Build Profile</a></h3>
 <p>Terdapat 2 jenis build profile di dalam Rust: <strong>dev</strong> dan <strong>release</strong> profile. </p>
 <ul>
@@ -2664,10 +2671,115 @@ rpath = false
 <ul>
 <li><strong>Library(<code>[lib]</code>)</strong>: hasil kompilasi dari crate library di dalam direktori src. 1 package hanya bisa memiliki 1 library target/crate.</li>
 <li><strong>Binaries(<code>[[bin]]</code>)</strong>: hasil kompilasi dari crate binary di dalam direktori src. 1 package dapat memiliki beberapa target/crate.</li>
-<li><strong>Examples(<code>[[example]]</code>)</strong>: hasil kompilasi dari crate example di dalam direktori sendiri dari root level.</li>
-<li><strong>Tests(<code>[[test]]</code>)</strong>: hasil kompilasi dari crate test di dalam direktori sendiri dari root level.</li>
-<li><strong>Benchmarks(<code>[[bench]]</code>)</strong>: hasil kompilasi dari crate benchmark di dalam direktori sendiri dari root level.</li>
+<li><strong>Examples(<code>[[example]]</code>)</strong>: hasil kompilasi dari crate example di dalam direktori sendiri dari root level. 1 examples bisa memiliki beberapa executable example.</li>
+<li><strong>Tests(<code>[[test]]</code>)</strong>: hasil kompilasi dari crate test di dalam direktori sendiri dari root level. 1 tests bisa memiliki beberapa executable test.</li>
+<li><strong>Benchmarks(<code>[[bench]]</code>)</strong>: hasil kompilasi dari crate benchmark di dalam direktori sendiri dari root level. 1 benchmarks bisa memiliki beberapa executable benchmark.</li>
 </ul>
+<p><strong>Konfigurasi target</strong></p>
+<pre><code class="language-ini">[lib]/[[bin]]/[[example]]/[[test]]/[[bench]]
+name = &quot;foo&quot;           # Nama target yang akan digunakan sebagai identifier pada saat memanggil/mengimport target.
+path = &quot;src/lib.rs&quot;    # source file relative terhadap Cargo.toml
+test = true            # Is tested by default.
+doctest = true         # Documentation for lib
+bench = true           # Is benchmarked by default.
+doc = true             # Is documented by default.
+plugin = false         # Used as a compiler plugin (deprecated).
+proc-macro = false     # Set to `true` for a proc-macro library.
+harness = true         # Use libtest harness.
+edition = &quot;2015&quot;       # The edition of the target.
+crate-type = [&quot;lib&quot;]   # Binaries, Tests, dan Benchmarks set to &quot;bin&quot;, others can be &quot;lib&quot; and/or &quot;proc-macro&quot; for Libraries and Examples
+required-features = [] # Features required to build this target (N/A for lib).
+</code></pre>
+<h3 id="dependencies"><a class="header" href="#dependencies">Dependencies</a></h3>
+<p>Merupakan list dari semua dependencies yang digunakan oleh program/projek cargo tersebut. Terdapat 4 jenis dependencies:</p>
+<ul>
+<li>[dependencies] : dependencies yang akan dikompilasi bersama binaries hasil akhir executable dengan perintah &quot;cargo build...&quot;</li>
+<li>[dev-dependencies] : dependencies yang hanya di kompilasi pada saat melakukan testing dengan perintah &quot;cargo test...&quot;, juga untuk examples and benchmarks.</li>
+<li>[build-dependencies] : dependencies untuk build script yang berjalan ketika menginisiasi program.</li>
+<li>[target] : dependencies specific untuk platform tertentu(e.g. OS tertentu)</li>
+</ul>
+<p><strong>Spesifikasi dependencies</strong>
+TODO</p>
+<h3 id="workspace-1"><a class="header" href="#workspace-1">[workspace]</a></h3>
+<p>Deklarasi konfigurasi workspace yang memiliki beberapa packages di dalamnya. Terdapat dua jenis penulisan workspace:</p>
+<ul>
+<li>Workspace dengan root package: 
+<ul>
+<li>Terdapat satu package di level root workspace sebagai root package</li>
+<li>Contoh deklarasi:</li>
+</ul>
+<pre><code class="language-ini">[workspace]
+members = [&quot;subpackage1&quot;,&quot;subpackage2&quot;]
+
+# root package
+[package] 
+name = &quot;hello_world&quot; # the name of the package
+version = &quot;0.1.0&quot;    # the current version, obeying semver
+authors = [&quot;Alice &lt;a@example.com&gt;&quot;, &quot;Bob &lt;b@example.com&gt;&quot;]
+</code></pre>
+</li>
+<li>Workspace tanpa root package
+<ul>
+<li>Semua packages berada pada level yang sama</li>
+<li>Contoh deklarasi:</li>
+</ul>
+<pre><code class="language-ini">[workspace]
+members = [
+  &quot;package1&quot;,
+  &quot;package2&quot;,
+  ...]
+</code></pre>
+</li>
+</ul>
+<h4 id="workspacepackage"><a class="header" href="#workspacepackage">[workspace.package]</a></h4>
+<p>Ketika ingin mendeklarasi package yang bisa di-inherited oleh members workspace.
+Contoh:</p>
+<pre><code class="language-ini"># [PROJECT_DIR]/Cargo.toml
+[workspace]
+members = [&quot;bar&quot;]
+
+[workspace.package]
+version = &quot;1.2.3&quot;
+authors = [&quot;Nice Folks&quot;]
+description = &quot;A short description of my package&quot;
+documentation = &quot;https://example.com/bar&quot;
+</code></pre>
+<p>Ketika ingin inherit beberapa keys, bisa menggunakan <code>{key}.workspace = true</code></p>
+<pre><code class="language-ini"># [PROJECT_DIR]/bar/Cargo.toml
+[package]
+name = &quot;bar&quot;
+version.workspace = true
+authors.workspace = true
+description.workspace = true
+documentation.workspace = true
+</code></pre>
+<h4 id="workspacedependencies"><a class="header" href="#workspacedependencies">[workspace.dependencies]</a></h4>
+<p>Ketika ingin mendeklarasi dependencies yang bisa di-inherited oleh members workspace.
+Contoh:</p>
+<pre><code class="language-ini"># [PROJECT_DIR]/Cargo.toml
+[workspace]
+members = [&quot;bar&quot;]
+
+[workspace.dependencies]
+cc = &quot;1.0.73&quot;
+rand = &quot;0.8.5&quot;
+regex = { version = &quot;1.6.0&quot;, default-features = false, features = [&quot;std&quot;] }
+</code></pre>
+<p>Ketika ingin inherit beberapa keys, bisa menggunakan <code>{key}.workspace = true</code></p>
+<pre><code class="language-ini"># [PROJECT_DIR]/bar/Cargo.toml
+[package]
+name = &quot;bar&quot;
+version = &quot;0.2.0&quot;
+
+[dependencies]
+regex = { workspace = true, features = [&quot;unicode&quot;] }
+
+[build-dependencies]
+cc.workspace = true
+
+[dev-dependencies]
+rand.workspace = true
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="intermediate"><a class="header" href="#intermediate">Intermediate</a></h1>
 <p>Pada bagian ini akan membahas mengenai hal lebih lanjut mengenai IO, Smart Pointers, ...</p>
 

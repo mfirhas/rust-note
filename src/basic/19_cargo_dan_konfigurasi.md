@@ -57,6 +57,15 @@ Secara default ketika menginisiasi program, Cargo menginisiasi 3 fields name, ve
 - **repository**: link ke repo
 - ...dan masih banyak lainnya silahkan di cek di sini [package](https://doc.rust-lang.org/cargo/reference/manifest.html#the-package-section)
 
+Contoh:
+```ini
+[package]
+name = "basics_cargo"
+version = "0.1.0"
+edition = "2021"
+...
+```
+
 
 ### Build Profile ###
 Terdapat 2 jenis build profile di dalam Rust: **dev** dan **release** profile. 
@@ -127,6 +136,114 @@ rpath = false
 Merupakan hasil kompilasi kedalam binary/object file ketika projek di-build. Setiap target direpresentasikan oleh crate. Terdapat 5 jenis target di-antaranya:
 - **Library(`[lib]`)**: hasil kompilasi dari crate library di dalam direktori src. 1 package hanya bisa memiliki 1 library target/crate.
 - **Binaries(`[[bin]]`)**: hasil kompilasi dari crate binary di dalam direktori src. 1 package dapat memiliki beberapa target/crate.
-- **Examples(`[[example]]`)**: hasil kompilasi dari crate example di dalam direktori sendiri dari root level.
-- **Tests(`[[test]]`)**: hasil kompilasi dari crate test di dalam direktori sendiri dari root level.
-- **Benchmarks(`[[bench]]`)**: hasil kompilasi dari crate benchmark di dalam direktori sendiri dari root level.
+- **Examples(`[[example]]`)**: hasil kompilasi dari crate example di dalam direktori sendiri dari root level. 1 examples bisa memiliki beberapa executable example.
+- **Tests(`[[test]]`)**: hasil kompilasi dari crate test di dalam direktori sendiri dari root level. 1 tests bisa memiliki beberapa executable test.
+- **Benchmarks(`[[bench]]`)**: hasil kompilasi dari crate benchmark di dalam direktori sendiri dari root level. 1 benchmarks bisa memiliki beberapa executable benchmark.
+
+**Konfigurasi target**
+```ini
+[lib]/[[bin]]/[[example]]/[[test]]/[[bench]]
+name = "foo"           # Nama target yang akan digunakan sebagai identifier pada saat memanggil/mengimport target.
+path = "src/lib.rs"    # source file relative terhadap Cargo.toml
+test = true            # Is tested by default.
+doctest = true         # Documentation for lib
+bench = true           # Is benchmarked by default.
+doc = true             # Is documented by default.
+plugin = false         # Used as a compiler plugin (deprecated).
+proc-macro = false     # Set to `true` for a proc-macro library.
+harness = true         # Use libtest harness.
+edition = "2015"       # The edition of the target.
+crate-type = ["lib"]   # Binaries, Tests, dan Benchmarks set to "bin", others can be "lib" and/or "proc-macro" for Libraries and Examples
+required-features = [] # Features required to build this target (N/A for lib).
+```
+
+### Dependencies ###
+Merupakan list dari semua dependencies yang digunakan oleh program/projek cargo tersebut. Terdapat 4 jenis dependencies:
+- [dependencies] : dependencies yang akan dikompilasi bersama binaries hasil akhir executable dengan perintah "cargo build..."
+- [dev-dependencies] : dependencies yang hanya di kompilasi pada saat melakukan testing dengan perintah "cargo test...", juga untuk examples and benchmarks.
+- [build-dependencies] : dependencies untuk build script yang berjalan ketika menginisiasi program.
+- [target] : dependencies specific untuk platform tertentu(e.g. OS tertentu)
+
+**Spesifikasi dependencies**
+TODO
+
+### [workspace] ###
+Deklarasi konfigurasi workspace yang memiliki beberapa packages di dalamnya. Terdapat dua jenis penulisan workspace:
+- Workspace dengan root package: 
+  - Terdapat satu package di level root workspace sebagai root package
+  - Contoh deklarasi:
+  ```ini
+  [workspace]
+  members = ["subpackage1","subpackage2"]
+
+  # root package
+  [package] 
+  name = "hello_world" # the name of the package
+  version = "0.1.0"    # the current version, obeying semver
+  authors = ["Alice <a@example.com>", "Bob <b@example.com>"]
+  ```
+- Workspace tanpa root package
+  - Semua packages berada pada level yang sama
+  - Contoh deklarasi:
+  ```ini
+  [workspace]
+  members = [
+    "package1",
+    "package2",
+    ...]
+  ```
+
+#### [workspace.package] ####
+Ketika ingin mendeklarasi package yang bisa di-inherited oleh members workspace.
+Contoh:
+```ini
+# [PROJECT_DIR]/Cargo.toml
+[workspace]
+members = ["bar"]
+
+[workspace.package]
+version = "1.2.3"
+authors = ["Nice Folks"]
+description = "A short description of my package"
+documentation = "https://example.com/bar"
+```
+Ketika ingin inherit beberapa keys, bisa menggunakan `{key}.workspace = true`
+```ini
+# [PROJECT_DIR]/bar/Cargo.toml
+[package]
+name = "bar"
+version.workspace = true
+authors.workspace = true
+description.workspace = true
+documentation.workspace = true
+```
+
+#### [workspace.dependencies] ####
+Ketika ingin mendeklarasi dependencies yang bisa di-inherited oleh members workspace.
+Contoh:
+```ini
+# [PROJECT_DIR]/Cargo.toml
+[workspace]
+members = ["bar"]
+
+[workspace.dependencies]
+cc = "1.0.73"
+rand = "0.8.5"
+regex = { version = "1.6.0", default-features = false, features = ["std"] }
+```
+Ketika ingin inherit beberapa keys, bisa menggunakan `{key}.workspace = true`
+```ini
+# [PROJECT_DIR]/bar/Cargo.toml
+[package]
+name = "bar"
+version = "0.2.0"
+
+[dependencies]
+regex = { workspace = true, features = ["unicode"] }
+
+[build-dependencies]
+cc.workspace = true
+
+[dev-dependencies]
+rand.workspace = true
+```

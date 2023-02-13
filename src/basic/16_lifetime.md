@@ -121,12 +121,12 @@ Adalah set of rules yang digunakan compiler untuk menentukan lifetime suatu/bebe
 Berikut 3 rules tersebut:
 1. Compiler will assign unique lifetime to each parameters in function/inherent function/method.
 ```rust
-fn foo(x: &i32) -> fn foo<'a>(x: &'a i32)
-fn foo(x: &i32, y: &i32) -> fn foo<'a, 'b>(x: &'a i32, y: &'b i32)
+fn foo(x: &i32) --> fn foo<'a>(x: &'a i32)
+fn foo(x: &i32, y: &i32) --> fn foo<'a, 'b>(x: &'a i32, y: &'b i32)
 ```
 2. If there's only one parameter, then the parameter lifetime will be applied to all output parameters lifetime.
 ```rust
-fn foo<'a>(x: &i32) -> (&i32,&i32,&i32) -> fn foo<'a>(x: &'a i32) -> (&'a i32,&'a i32,&'a i32)
+fn foo<'a>(x: &i32) -> (&i32,&i32,&i32) --> fn foo<'a>(x: &'a i32) -> (&'a i32,&'a i32,&'a i32)
 ```
 3. Apply to method with multiple input parameters and one of them is `&self` or `&mut self`, the lifetime of `self` will be applied to all output parameters.
 ```rust

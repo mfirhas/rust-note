@@ -113,7 +113,7 @@ Contoh static lifetime yang di-infer secara otomatis oleh compiler:
 ```rust
 const I_LIVE_LONGEST: &str = "anu";
 ```
-Konstant `I_LIVE_LONGEST` akan bisa di-*pinjam* selama program berjalan karena *borrowed* type `str` akan di-*infered* sebagai static oleh compiler menjadi `&'static str`.
+Konstant `I_LIVE_LONGEST` akan bisa di-*pinjam* selama program berjalan karena *borrowed* type `str` akan di-*infered* sebagai static oleh compiler menjadi `&'static str`. Hal ini karena deklarasi string literal pada program yang akan dipersisted kedalam binary program.
 Tidak semua tipe akan di-infer secara otomatis oleh compiler sehingga butuh deklarasi static lifetime eksplisit.
 
 ## Lifetime Elision ##

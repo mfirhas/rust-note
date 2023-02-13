@@ -248,7 +248,7 @@ println!(&quot;{static_str}&quot;);
 </span><span class="boring">fn main() {
 </span>const I_LIVE_LONGEST: &amp;str = &quot;anu&quot;;
 <span class="boring">}</span></code></pre></pre>
-<p>Konstant <code>I_LIVE_LONGEST</code> akan bisa di-<em>pinjam</em> selama program berjalan karena <em>borrowed</em> type <code>str</code> akan di-<em>infered</em> sebagai static oleh compiler menjadi <code>&amp;'static str</code>.
+<p>Konstant <code>I_LIVE_LONGEST</code> akan bisa di-<em>pinjam</em> selama program berjalan karena <em>borrowed</em> type <code>str</code> akan di-<em>infered</em> sebagai static oleh compiler menjadi <code>&amp;'static str</code>. Hal ini karena deklarasi string literal pada program yang akan dipersisted kedalam binary program.
 Tidak semua tipe akan di-infer secara otomatis oleh compiler sehingga butuh deklarasi static lifetime eksplisit.</p>
 <h2 id="lifetime-elision"><a class="header" href="#lifetime-elision">Lifetime Elision</a></h2>
 <p>Adalah set of rules yang digunakan compiler untuk menentukan lifetime suatu/beberapa <em>borrowed</em> type tanpa deklarasi eksplisit. 

@@ -2141,15 +2141,15 @@ Berikut 3 rules tersebut:</p>
 </ol>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>fn foo(x: &amp;i32) -&gt; fn foo&lt;'a&gt;(x: &amp;'a i32)
-fn foo(x: &amp;i32, y: &amp;i32) -&gt; fn foo&lt;'a, 'b&gt;(x: &amp;'a i32, y: &amp;'b i32)
+</span>fn foo(x: &amp;i32) --&gt; fn foo&lt;'a&gt;(x: &amp;'a i32)
+fn foo(x: &amp;i32, y: &amp;i32) --&gt; fn foo&lt;'a, 'b&gt;(x: &amp;'a i32, y: &amp;'b i32)
 <span class="boring">}</span></code></pre></pre>
 <ol start="2">
 <li>If there's only one parameter, then the parameter lifetime will be applied to all output parameters lifetime.</li>
 </ol>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>fn foo&lt;'a&gt;(x: &amp;i32) -&gt; (&amp;i32,&amp;i32,&amp;i32) -&gt; fn foo&lt;'a&gt;(x: &amp;'a i32) -&gt; (&amp;'a i32,&amp;'a i32,&amp;'a i32)
+</span>fn foo&lt;'a&gt;(x: &amp;i32) -&gt; (&amp;i32,&amp;i32,&amp;i32) --&gt; fn foo&lt;'a&gt;(x: &amp;'a i32) -&gt; (&amp;'a i32,&amp;'a i32,&amp;'a i32)
 <span class="boring">}</span></code></pre></pre>
 <ol start="3">
 <li>Apply to method with multiple input parameters and one of them is <code>&amp;self</code> or <code>&amp;mut self</code>, the lifetime of <code>self</code> will be applied to all output parameters.</li>

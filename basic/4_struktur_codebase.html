@@ -164,25 +164,34 @@ Terdapat 2 jenis crate di dalam rust yaitu: </p>
 <p>Di dalam codebase Rust terdapat beberapa jenis komponen-komponen yang keseluruhannya membentuk projek utuh yang ditulis dalam Rust.
 Berikut komponen-komponen tersebut mulai dari yang terkecil:</p>
 <ul>
-<li><strong>Types</strong>: Tipe data yang merupakan komponen terakhir yang bisa diakses dalam struktur codebase. Ada beberapa jenis tipe data di dalam Rust yaitu:
-|Types       | Desc.                                                        | Naming Convention    |
-|------------|--------------------------------------------------------------|----------------------|
-| <strong>const</strong>  | Values embeded at compile time                               | SCREAMING_SNAKE_CASE |
-| <strong>static</strong> | Values allocated once at compile time                        | SCREAMING_SNAKE_CASE |
-| <strong>trait</strong>  | Declaration of shared types, constants, and functions/methods| PascalCase           | 
-| <strong>struct</strong> | Product Type                                                 | PascalCase           | 
-| <strong>enum</strong>   | Sum Type                                                     | PascalCase           | 
-| <strong>fn</strong>     | Functions or Methods                                         | snake_case           | </li>
-<li>Module(<strong>mod</strong>) : Module merupakan segment kode yang memiliki cakupan kecil dan besar hingga satu file. Komponen ini berguna untuk memisahkan segment program dan melakukan enkapsulasi struktur program. Untuk naming conventions menggunakan <em>snake_case</em>. Module memiliki 3 lokasi ketika program dibuild yaitu:
+<li>
+<p><strong>Types</strong>: Tipe data yang merupakan komponen terakhir yang bisa diakses dalam struktur codebase. Ada beberapa jenis tipe data di dalam Rust yaitu:</p>
+<div class="table-wrapper"><table><thead><tr><th>Types</th><th>Desc.</th><th>Naming Convention</th></tr></thead><tbody>
+<tr><td><strong>const</strong></td><td>Values embeded at compile time</td><td>SCREAMING_SNAKE_CASE</td></tr>
+<tr><td><strong>static</strong></td><td>Values allocated once at compile time</td><td>SCREAMING_SNAKE_CASE</td></tr>
+<tr><td><strong>trait</strong></td><td>Declaration of shared types, constants, and functions/methods</td><td>PascalCase</td></tr>
+<tr><td><strong>struct</strong></td><td>Product Type</td><td>PascalCase</td></tr>
+<tr><td><strong>enum</strong></td><td>Sum Type</td><td>PascalCase</td></tr>
+<tr><td><strong>fn</strong></td><td>Functions or Methods</td><td>snake_case</td></tr>
+</tbody></table>
+</div></li>
+<li>
+<p>Module(<strong>mod</strong>) : Module merupakan segment kode yang memiliki cakupan kecil dan besar hingga satu file. Komponen ini berguna untuk memisahkan segment program dan melakukan enkapsulasi struktur program. Untuk naming conventions menggunakan <em>snake_case</em>. Module memiliki 3 lokasi ketika program dibuild yaitu:</p>
 <ul>
 <li>Inline: deklarasi mod langsung dengan kode menggunakan kurung kurawal.</li>
 <li>Di dalam file dengan nama yang sama dengan mod(jika mod 1 level dengan file utama crate(<code>main.rs</code>/<code>lib.rs</code>)), atau di dalam direktori dengan nama yang sama dengan nama mod(untuk submodule)</li>
 <li>Di dalam direktori dengan nama yang sama dengan mod di dalam file <code>mod.rs</code>.</li>
 </ul>
 </li>
-<li>Crate : Representasi dari keseluruhan komponen-komponen di atas ke dalam <em>binary</em> crate atau <em>library</em> crate yang terletak di dalam direktori <em>src/</em>. Untuk binary ditentukan dengan fungsi <code>main</code> di dalam salah satu file di dalam crate itu yang berfungsi sebagai entry point eksekusi program. Untuk naming convention file menggunakan <em>snake_case</em>.</li>
-<li>Package : Package membungkus semua crate-crate yang telah kita buat di atas. Di level ini juga kita meletakkan file konfigurasi depedensi berupa <code>Cargo.toml</code> untuk mendeklarasikan crate-crate yang akan digunakan di dalam package tersebut. Package juga merupakan cara untuk men-distribusikan code kita untuk di reuse di tempat lain baik sebagai 3rd party atau internal project/service.</li>
-<li>Workspace : Merupakan gabungan dari beberapa package-package dengan <code>Cargo.toml</code> yang berisi deklarasi package-package terkandung. Ketika kita menjalankan perintah cargo di dalam workspace, maka akan ditelusuri melalui package-package yang ada di dalam konfigurasi toml workspace.</li>
+<li>
+<p>Crate : Representasi dari keseluruhan komponen-komponen di atas ke dalam <em>binary</em> crate atau <em>library</em> crate yang terletak di dalam direktori <em>src/</em>. Untuk binary ditentukan dengan fungsi <code>main</code> di dalam salah satu file di dalam crate itu yang berfungsi sebagai entry point eksekusi program. Untuk naming convention file menggunakan <em>snake_case</em>.</p>
+</li>
+<li>
+<p>Package : Package membungkus semua crate-crate yang telah kita buat di atas. Di level ini juga kita meletakkan file konfigurasi depedensi berupa <code>Cargo.toml</code> untuk mendeklarasikan crate-crate yang akan digunakan di dalam package tersebut. Package juga merupakan cara untuk men-distribusikan code kita untuk di reuse di tempat lain baik sebagai 3rd party atau internal project/service.</p>
+</li>
+<li>
+<p>Workspace : Merupakan gabungan dari beberapa package-package dengan <code>Cargo.toml</code> yang berisi deklarasi package-package terkandung. Ketika kita menjalankan perintah cargo di dalam workspace, maka akan ditelusuri melalui package-package yang ada di dalam konfigurasi toml workspace.</p>
+</li>
 </ul>
 <h2 id="visibiliti-komponen"><a class="header" href="#visibiliti-komponen">Visibiliti Komponen</a></h2>
 <p>Setiap komponen di atas bersifat private dan hanya bisa diakses menggunakan keyword <strong>pub</strong> di depan setiap deklarasi komponen. 

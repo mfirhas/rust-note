@@ -145,37 +145,6 @@
                         <h1 id="variables-functions-dan-closures"><a class="header" href="#variables-functions-dan-closures">Variables ,Functions, dan Closures</a></h1>
 <p>Variables di dalam rust secara default bersifat <em>immutable</em> yaitu tidak bisa diubah atau diassign ulang. <em>Immutability</em> merupakan pendekatan fungsional dari rust untuk menghindari <em>side-effects</em> di dalam program atau unexpected behaviour lainnya seperti race condition dan data race. Immutability juga memudahkan melakukan <em>tracing</em> data di dalam code program tanpa khawatir penggunaan selanjutnya di sisi lain code program.
 Variables dideklarasi di-dalam function/method atau disebut juga local variables.</p>
-<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
-<p>Fungsi merupakan unit komputasi paling dasar dengan deklarasi:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>fn function_name(param1: Type1, param2: Type2, ...) -&gt; ReturnType {
-    ...
-}
-<span class="boring">}</span></code></pre></pre>
-<h2 id="closures"><a class="header" href="#closures">Closures</a></h2>
-<p>Closure adalah anonymous function yang merupakan deklarasi fungsi tanpa nama yang biasa digunakan sebagai tipe parameter untuk menerima fungsi(pure). Closure di dalam Rust secara default menangkap value-value sekitar secara reference(borrowed).</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let s = String::from(&quot;lskdmfsdf&quot;);
-let a = || {
-    println!(&quot;{}&quot;, s); // s is captured by reference(borrowed) implicitly by closure
-    println!(&quot;Im printed from closure!&quot;);
-};
-a();
-<span class="boring">}</span></code></pre></pre>
-<p>Untuk menangkap values sekitar tanpa borrowing, bisa menggunakan keyword <em>move</em> sebelum opening bar.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let s = String::from(&quot;lskdmfsdf&quot;);
-let b = move |x: i32| -&gt; i32 {
-    println!(&quot;{}&quot;, s); // because of keyword `move` above, this string is moved here so cannot be mentioned/referenced below anymore.
-    x * x
-};
-b(123);
-println!(&quot;{}&quot;, s); // cannot call `s` here because already moved into b closure scope.
-<span class="boring">}</span></code></pre></pre>
-<p>Untuk tipe-tipe yang bersifat <em>copy-able</em> seperti tipe primitif, ketika melakukan move, value di-copy ke dalam closure sehingga masih tetap bisa di panggil setelah closure. Move semantic benar-benar diterapkan untuk value yang bersifat <em>clone-able</em>.</p>
 <h2 id="local-variable"><a class="header" href="#local-variable">Local Variable</a></h2>
 <p>Variable yang dideklarasi hanya di dalam fungsi atau method, dan akan dihapus ketika stackframe fungsi dihapus.
 Naming convention local variable menggunakan <em>snake_case</em>.
@@ -222,6 +191,37 @@ println!(&quot;{:p}&quot;, a);
 println!(&quot;{:p}&quot;, b);
 <span class="boring">}</span></code></pre></pre>
 <p>Bukti bahwa static memiliki alamat memori adalah kita bisa mendapatkan alamat memori tersebut dengan cara di atas. Sementara kita tidak bisa melakukan hal itu terhadap constant karena constant tidak memiliki alamat memori.</p>
+<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
+<p>Fungsi merupakan unit komputasi paling dasar dengan deklarasi:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn function_name(param1: Type1, param2: Type2, ...) -&gt; ReturnType {
+    ...
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="closures"><a class="header" href="#closures">Closures</a></h2>
+<p>Closure adalah anonymous function yang merupakan deklarasi fungsi tanpa nama yang biasa digunakan sebagai tipe parameter untuk menerima fungsi(pure). Closure di dalam Rust secara default menangkap value-value sekitar secara reference(borrowed).</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s = String::from(&quot;lskdmfsdf&quot;);
+let a = || {
+    println!(&quot;{}&quot;, s); // s is captured by reference(borrowed) implicitly by closure
+    println!(&quot;Im printed from closure!&quot;);
+};
+a();
+<span class="boring">}</span></code></pre></pre>
+<p>Untuk menangkap values sekitar tanpa borrowing, bisa menggunakan keyword <em>move</em> sebelum opening bar.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s = String::from(&quot;lskdmfsdf&quot;);
+let b = move |x: i32| -&gt; i32 {
+    println!(&quot;{}&quot;, s); // because of keyword `move` above, this string is moved here so cannot be mentioned/referenced below anymore.
+    x * x
+};
+b(123);
+println!(&quot;{}&quot;, s); // cannot call `s` here because already moved into b closure scope.
+<span class="boring">}</span></code></pre></pre>
+<p>Untuk tipe-tipe yang bersifat <em>copy-able</em> seperti tipe primitif, ketika melakukan move, value di-copy ke dalam closure sehingga masih tetap bisa di panggil setelah closure. Move semantic benar-benar diterapkan untuk value yang bersifat <em>clone-able</em>.</p>
 
                     </main>
 

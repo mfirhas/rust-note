@@ -505,37 +505,6 @@ members = [
 <div style="break-before: page; page-break-before: always;"></div><h1 id="variables-functions-dan-closures"><a class="header" href="#variables-functions-dan-closures">Variables ,Functions, dan Closures</a></h1>
 <p>Variables di dalam rust secara default bersifat <em>immutable</em> yaitu tidak bisa diubah atau diassign ulang. <em>Immutability</em> merupakan pendekatan fungsional dari rust untuk menghindari <em>side-effects</em> di dalam program atau unexpected behaviour lainnya seperti race condition dan data race. Immutability juga memudahkan melakukan <em>tracing</em> data di dalam code program tanpa khawatir penggunaan selanjutnya di sisi lain code program.
 Variables dideklarasi di-dalam function/method atau disebut juga local variables.</p>
-<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
-<p>Fungsi merupakan unit komputasi paling dasar dengan deklarasi:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>fn function_name(param1: Type1, param2: Type2, ...) -&gt; ReturnType {
-    ...
-}
-<span class="boring">}</span></code></pre></pre>
-<h2 id="closures"><a class="header" href="#closures">Closures</a></h2>
-<p>Closure adalah anonymous function yang merupakan deklarasi fungsi tanpa nama yang biasa digunakan sebagai tipe parameter untuk menerima fungsi(pure). Closure di dalam Rust secara default menangkap value-value sekitar secara reference(borrowed).</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let s = String::from(&quot;lskdmfsdf&quot;);
-let a = || {
-    println!(&quot;{}&quot;, s); // s is captured by reference(borrowed) implicitly by closure
-    println!(&quot;Im printed from closure!&quot;);
-};
-a();
-<span class="boring">}</span></code></pre></pre>
-<p>Untuk menangkap values sekitar tanpa borrowing, bisa menggunakan keyword <em>move</em> sebelum opening bar.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let s = String::from(&quot;lskdmfsdf&quot;);
-let b = move |x: i32| -&gt; i32 {
-    println!(&quot;{}&quot;, s); // because of keyword `move` above, this string is moved here so cannot be mentioned/referenced below anymore.
-    x * x
-};
-b(123);
-println!(&quot;{}&quot;, s); // cannot call `s` here because already moved into b closure scope.
-<span class="boring">}</span></code></pre></pre>
-<p>Untuk tipe-tipe yang bersifat <em>copy-able</em> seperti tipe primitif, ketika melakukan move, value di-copy ke dalam closure sehingga masih tetap bisa di panggil setelah closure. Move semantic benar-benar diterapkan untuk value yang bersifat <em>clone-able</em>.</p>
 <h2 id="local-variable"><a class="header" href="#local-variable">Local Variable</a></h2>
 <p>Variable yang dideklarasi hanya di dalam fungsi atau method, dan akan dihapus ketika stackframe fungsi dihapus.
 Naming convention local variable menggunakan <em>snake_case</em>.
@@ -582,6 +551,37 @@ println!(&quot;{:p}&quot;, a);
 println!(&quot;{:p}&quot;, b);
 <span class="boring">}</span></code></pre></pre>
 <p>Bukti bahwa static memiliki alamat memori adalah kita bisa mendapatkan alamat memori tersebut dengan cara di atas. Sementara kita tidak bisa melakukan hal itu terhadap constant karena constant tidak memiliki alamat memori.</p>
+<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
+<p>Fungsi merupakan unit komputasi paling dasar dengan deklarasi:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn function_name(param1: Type1, param2: Type2, ...) -&gt; ReturnType {
+    ...
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="closures"><a class="header" href="#closures">Closures</a></h2>
+<p>Closure adalah anonymous function yang merupakan deklarasi fungsi tanpa nama yang biasa digunakan sebagai tipe parameter untuk menerima fungsi(pure). Closure di dalam Rust secara default menangkap value-value sekitar secara reference(borrowed).</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s = String::from(&quot;lskdmfsdf&quot;);
+let a = || {
+    println!(&quot;{}&quot;, s); // s is captured by reference(borrowed) implicitly by closure
+    println!(&quot;Im printed from closure!&quot;);
+};
+a();
+<span class="boring">}</span></code></pre></pre>
+<p>Untuk menangkap values sekitar tanpa borrowing, bisa menggunakan keyword <em>move</em> sebelum opening bar.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s = String::from(&quot;lskdmfsdf&quot;);
+let b = move |x: i32| -&gt; i32 {
+    println!(&quot;{}&quot;, s); // because of keyword `move` above, this string is moved here so cannot be mentioned/referenced below anymore.
+    x * x
+};
+b(123);
+println!(&quot;{}&quot;, s); // cannot call `s` here because already moved into b closure scope.
+<span class="boring">}</span></code></pre></pre>
+<p>Untuk tipe-tipe yang bersifat <em>copy-able</em> seperti tipe primitif, ketika melakukan move, value di-copy ke dalam closure sehingga masih tetap bisa di panggil setelah closure. Move semantic benar-benar diterapkan untuk value yang bersifat <em>clone-able</em>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="primitive-types"><a class="header" href="#primitive-types">Primitive Types</a></h1>
 <p>Rust memiliki tipe-tipe paling dasar untuk menghandle beberapa data diantaranya numerik, karakter, kalimat, bytes, dan lainnya.</p>
 <p>Berikut beberapa tipe-tipe dasar dalam Rust:</p>
@@ -644,7 +644,7 @@ Contoh:</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="string-types"><a class="header" href="#string-types">String Types</a></h1>
 <p>Rust memiliki 2 jenis tipe data dasar untuk berhubungan dengan <em>string</em>. Yaitu:</p>
 <h2 id="reference-string-str"><a class="header" href="#reference-string-str">Reference string (&amp;str)</a></h2>
-<p>Reference string yaitu value string yang tidak memiliki <em>owner</em>, dalam artian hanya bisa di-pass sebagai reference dan <em>immutable</em>. 
+<p>Reference string yaitu value string yang tidak memiliki <em>owner</em>, dalam artian hanya bisa di-pass sebagai reference. 
 String semacam ini bisa dibentuk dengan berbagai cara, diantaranya secara <em>hardcode</em> di kodingan, di-<em>referenced</em> dari data lainnya atau dibentuk dari array u8(utf8). Ketika string jenis ini didapat dari reference owned value, maka reference nya akan valid selama object owner nya valid(tidak out of scope).</p>
 <p>Berikut penjelasan beberapa cara string jenis ini muncul:</p>
 <ul>
@@ -655,8 +655,15 @@ Contoh: </li>
 </span><span class="boring">fn main() {
 </span>let s: &amp;str = &quot;this is literal string&quot;;
 println!(&quot;{}&quot;,s);
+
+let mut s: &amp;str = &quot;lskdmfsdf&quot;;
+s = &quot;asdasd&quot;;
+println!(&quot;{s}&quot;);
+let mut ss: String = s.into();
+ss.push('p');
+println!(&quot;{ss}&quot;);
 <span class="boring">}</span></code></pre></pre>
-<p>String jenis ini diketahui ukuran nya pada saat compile time dan <em>immutable</em>. Ketika ingin memanipulasi string ini harus di-<em>owned</em> terlebih dulu(dijelaskan pada pembahasan selanjutnya).</p>
+<p>String jenis ini diketahui ukuran nya pada saat compile time dan hanya bisa di-<em>borrow</em> dalam bentuk reference(&amp;).</p>
 <ul>
 <li><em>Referenced</em>: cara ini yaitu dengan mengambil reference dari object(owned) <strong>String</strong> di runtime. 
 Contoh:</li>

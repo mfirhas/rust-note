@@ -145,7 +145,7 @@
                         <h1 id="string-types"><a class="header" href="#string-types">String Types</a></h1>
 <p>Rust memiliki 2 jenis tipe data dasar untuk berhubungan dengan <em>string</em>. Yaitu:</p>
 <h2 id="reference-string-str"><a class="header" href="#reference-string-str">Reference string (&amp;str)</a></h2>
-<p>Reference string yaitu value string yang tidak memiliki <em>owner</em>, dalam artian hanya bisa di-pass sebagai reference dan <em>immutable</em>. 
+<p>Reference string yaitu value string yang tidak memiliki <em>owner</em>, dalam artian hanya bisa di-pass sebagai reference. 
 String semacam ini bisa dibentuk dengan berbagai cara, diantaranya secara <em>hardcode</em> di kodingan, di-<em>referenced</em> dari data lainnya atau dibentuk dari array u8(utf8). Ketika string jenis ini didapat dari reference owned value, maka reference nya akan valid selama object owner nya valid(tidak out of scope).</p>
 <p>Berikut penjelasan beberapa cara string jenis ini muncul:</p>
 <ul>
@@ -156,8 +156,15 @@ Contoh: </li>
 </span><span class="boring">fn main() {
 </span>let s: &amp;str = &quot;this is literal string&quot;;
 println!(&quot;{}&quot;,s);
+
+let mut s: &amp;str = &quot;lskdmfsdf&quot;;
+s = &quot;asdasd&quot;;
+println!(&quot;{s}&quot;);
+let mut ss: String = s.into();
+ss.push('p');
+println!(&quot;{ss}&quot;);
 <span class="boring">}</span></code></pre></pre>
-<p>String jenis ini diketahui ukuran nya pada saat compile time dan <em>immutable</em>. Ketika ingin memanipulasi string ini harus di-<em>owned</em> terlebih dulu(dijelaskan pada pembahasan selanjutnya).</p>
+<p>String jenis ini diketahui ukuran nya pada saat compile time dan hanya bisa di-<em>borrow</em> dalam bentuk reference(&amp;).</p>
 <ul>
 <li><em>Referenced</em>: cara ini yaitu dengan mengambil reference dari object(owned) <strong>String</strong> di runtime. 
 Contoh:</li>

@@ -3,36 +3,6 @@
 Variables di dalam rust secara default bersifat *immutable* yaitu tidak bisa diubah atau diassign ulang. *Immutability* merupakan pendekatan fungsional dari rust untuk menghindari *side-effects* di dalam program atau unexpected behaviour lainnya seperti race condition dan data race. Immutability juga memudahkan melakukan *tracing* data di dalam code program tanpa khawatir penggunaan selanjutnya di sisi lain code program.
 Variables dideklarasi di-dalam function/method atau disebut juga local variables.
 
-## Functions ##
-Fungsi merupakan unit komputasi paling dasar dengan deklarasi:
-```rust
-fn function_name(param1: Type1, param2: Type2, ...) -> ReturnType {
-    ...
-}
-```
-
-## Closures ##
-Closure adalah anonymous function yang merupakan deklarasi fungsi tanpa nama yang biasa digunakan sebagai tipe parameter untuk menerima fungsi(pure). Closure di dalam Rust secara default menangkap value-value sekitar secara reference(borrowed).
-```rust
-let s = String::from("lskdmfsdf");
-let a = || {
-    println!("{}", s); // s is captured by reference(borrowed) implicitly by closure
-    println!("Im printed from closure!");
-};
-a();
-```
-Untuk menangkap values sekitar tanpa borrowing, bisa menggunakan keyword *move* sebelum opening bar.
-```rust
-let s = String::from("lskdmfsdf");
-let b = move |x: i32| -> i32 {
-    println!("{}", s); // because of keyword `move` above, this string is moved here so cannot be mentioned/referenced below anymore.
-    x * x
-};
-b(123);
-println!("{}", s); // cannot call `s` here because already moved into b closure scope.
-```
-Untuk tipe-tipe yang bersifat *copy-able* seperti tipe primitif, ketika melakukan move, value di-copy ke dalam closure sehingga masih tetap bisa di panggil setelah closure. Move semantic benar-benar diterapkan untuk value yang bersifat *clone-able*.
-
 ## Local Variable ##
 Variable yang dideklarasi hanya di dalam fungsi atau method, dan akan dihapus ketika stackframe fungsi dihapus.
 Naming convention local variable menggunakan *snake_case*.
@@ -78,3 +48,33 @@ println!("{:p}", a);
 println!("{:p}", b);
 ```
 Bukti bahwa static memiliki alamat memori adalah kita bisa mendapatkan alamat memori tersebut dengan cara di atas. Sementara kita tidak bisa melakukan hal itu terhadap constant karena constant tidak memiliki alamat memori.
+
+## Functions ##
+Fungsi merupakan unit komputasi paling dasar dengan deklarasi:
+```rust
+fn function_name(param1: Type1, param2: Type2, ...) -> ReturnType {
+    ...
+}
+```
+
+## Closures ##
+Closure adalah anonymous function yang merupakan deklarasi fungsi tanpa nama yang biasa digunakan sebagai tipe parameter untuk menerima fungsi(pure). Closure di dalam Rust secara default menangkap value-value sekitar secara reference(borrowed).
+```rust
+let s = String::from("lskdmfsdf");
+let a = || {
+    println!("{}", s); // s is captured by reference(borrowed) implicitly by closure
+    println!("Im printed from closure!");
+};
+a();
+```
+Untuk menangkap values sekitar tanpa borrowing, bisa menggunakan keyword *move* sebelum opening bar.
+```rust
+let s = String::from("lskdmfsdf");
+let b = move |x: i32| -> i32 {
+    println!("{}", s); // because of keyword `move` above, this string is moved here so cannot be mentioned/referenced below anymore.
+    x * x
+};
+b(123);
+println!("{}", s); // cannot call `s` here because already moved into b closure scope.
+```
+Untuk tipe-tipe yang bersifat *copy-able* seperti tipe primitif, ketika melakukan move, value di-copy ke dalam closure sehingga masih tetap bisa di panggil setelah closure. Move semantic benar-benar diterapkan untuk value yang bersifat *clone-able*.

@@ -3,7 +3,7 @@
 Rust memiliki 2 jenis tipe data dasar untuk berhubungan dengan *string*. Yaitu:
 
 ## Reference string (&str) ##
-Reference string yaitu value string yang tidak memiliki *owner*, dalam artian hanya bisa di-pass sebagai reference dan *immutable*. 
+Reference string yaitu value string yang tidak memiliki *owner*, dalam artian hanya bisa di-pass sebagai reference. 
 String semacam ini bisa dibentuk dengan berbagai cara, diantaranya secara *hardcode* di kodingan, di-*referenced* dari data lainnya atau dibentuk dari array u8(utf8). Ketika string jenis ini didapat dari reference owned value, maka reference nya akan valid selama object owner nya valid(tidak out of scope).
 
 Berikut penjelasan beberapa cara string jenis ini muncul:
@@ -12,8 +12,15 @@ Contoh:
 ```rust
 let s: &str = "this is literal string";
 println!("{}",s);
+
+let mut s: &str = "lskdmfsdf";
+s = "asdasd";
+println!("{s}");
+let mut ss: String = s.into();
+ss.push('p');
+println!("{ss}");
 ```
-String jenis ini diketahui ukuran nya pada saat compile time dan *immutable*. Ketika ingin memanipulasi string ini harus di-*owned* terlebih dulu(dijelaskan pada pembahasan selanjutnya).
+String jenis ini diketahui ukuran nya pada saat compile time dan hanya bisa di-*borrow* dalam bentuk reference(&).
 
 - *Referenced*: cara ini yaitu dengan mengambil reference dari object(owned) **String** di runtime. 
 Contoh:

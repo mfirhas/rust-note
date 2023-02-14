@@ -494,6 +494,13 @@ fn main() {
         std::thread::sleep(std::time::Duration::from_millis(loop_duration));
     }
     println!("DONE while let");
+
+    let mut s: &str = "lskdmfsdf";
+    s = "asdasd";
+    println!("{s}");
+    let mut ss: String = s.into();
+    ss.push('p');
+    println!("{ss}");
 }
 
 struct A {

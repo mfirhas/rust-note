@@ -23,6 +23,7 @@ Terdapat 2 jenis crate di dalam rust yaitu:
 Di dalam codebase Rust terdapat beberapa jenis komponen-komponen yang keseluruhannya membentuk projek utuh yang ditulis dalam Rust.
 Berikut komponen-komponen tersebut mulai dari yang terkecil:
 - **Types**: Tipe data yang merupakan komponen terakhir yang bisa diakses dalam struktur codebase. Ada beberapa jenis tipe data di dalam Rust yaitu:
+  
   |Types       | Desc.                                                        | Naming Convention    |
   |------------|--------------------------------------------------------------|----------------------|
   | **const**  | Values embeded at compile time                               | SCREAMING_SNAKE_CASE |
@@ -31,6 +32,7 @@ Berikut komponen-komponen tersebut mulai dari yang terkecil:
   | **struct** | Product Type                                                 | PascalCase           | 
   | **enum**   | Sum Type                                                     | PascalCase           | 
   | **fn**     | Functions or Methods                                         | snake_case           | 
+  
 - Module(**mod**) : Module merupakan segment kode yang memiliki cakupan kecil dan besar hingga satu file. Komponen ini berguna untuk memisahkan segment program dan melakukan enkapsulasi struktur program. Untuk naming conventions menggunakan *snake_case*. Module memiliki 3 lokasi ketika program dibuild yaitu:
   - Inline: deklarasi mod langsung dengan kode menggunakan kurung kurawal.
   - Di dalam file dengan nama yang sama dengan mod(jika mod 1 level dengan file utama crate(`main.rs`/`lib.rs`)), atau di dalam direktori dengan nama yang sama dengan nama mod(untuk submodule)

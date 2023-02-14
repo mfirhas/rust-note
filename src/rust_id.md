@@ -6,6 +6,7 @@ Merupakan catatan OP selama mempelajari Bahasa Pemograman Rust yang di tulis dal
 - [Rust Nomicon](https://doc.rust-lang.org/nomicon/)
 - [Rust Cheatsheet](https://cheats.rs/)
 - [Cargo Reference](https://doc.rust-lang.org/stable/cargo/reference/)
+- [Cargo Examples](https://doc.rust-lang.org/rust-by-example)
 - dan lainnya yang mungkin akan ditambahkan kedepannya...
 
 Rust Version: **1.66.0 stable**++

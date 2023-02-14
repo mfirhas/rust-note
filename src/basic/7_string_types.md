@@ -1,6 +1,6 @@
 # String Types #
 
-Rust memiliki 2 jenis tipe data dasar untuk berhubungan dengan *string*. Yaitu:
+Rust memiliki 2 jenis tipe data dasar yang umum digunakan untuk berhubungan dengan *string*. Yaitu:
 
 ## Reference string (&str) ##
 Reference string yaitu value string yang tidak memiliki *owner*, dalam artian hanya bisa di-pass sebagai reference. 

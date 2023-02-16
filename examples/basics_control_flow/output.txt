@@ -1,0 +1,168 @@
+True
+False
+True again
+--> "a: {a} is odd"
+c: 0 even number
+c: 1 odd number
+c: 2 even number
+c: 3 odd number
+c: 4 even number
+c: 5 odd number
+c: 6 even number
+c: 7 odd number
+c: 8 even number
+c: 9 odd number
+Done
+---> ret: 500
+-----------------
+d: 1 odd number
+d: 2 even number
+d: 3 odd number
+d: 4 even number
+d: 5 odd number
+d: 6 even number
+d: 7 odd number
+d: 8 even number
+d: 9 odd number
+while loop: 0
+while loop: 1
+while loop: 2
+while loop: 3
+while loop: 4
+while loop: 5
+while loop: 6
+while loop: 7
+while loop: 8
+while loop: 9
+i: 0
+i: 1
+i: 2
+i: 3
+i: 4
+i: 5
+i: 6
+i: 7
+i: 8
+i: 9
+---
+i: 0
+i: 1
+i: 2
+i: 3
+i: 4
+i: 5
+i: 6
+i: 7
+i: 8
+i: 9
+i: 10
+1..=10
+into_iter():
+1
+2
+3
+4
+5
+1
+2
+3
+4
+5
+0:1
+1:2
+2:3
+3:4
+4:5
+data: [1, 2, 3, 4, 5]
+1
+2
+3
+4
+5
+[1, 2, 3, 4, 5]
+1
+2
+3
+4
+5
+[1, 2, 3, 4, 5]
+1
+2
+3
+4
+5
+0 1
+1 2
+2 3
+3 4
+4 5
+iter():
+1
+2
+3
+4
+5
+data: [1, 2, 3, 4, 5]
+0 1
+1 2
+2 3
+3 4
+4 5
+1
+2
+3
+4
+5
+data: [1, 2, 3, 4, 5]
+data: [2, 4, 6, 8, 10]
+0 5
+1 10
+2 15
+3 20
+4 25
+data: [
+    5,
+    10,
+    15,
+    20,
+    25,
+]
+Tell me about 19
+A teen
+3rd arm
+array[0] = 1, array[2] = 6 and array[1] was ignored
+What color is it?
+Red: 122, green: 17, and blue: 40!
+value: 4
+reference of four
+value of four
+Got a value via destructuring: 4
+Got a value via dereferencing: 4
+Got a reference to a value: 5
+We added 10. `mut_value`: 16
+First of x is 1, b = 2,  y = 3 
+35C is above 30 Celsius
+35C is above 30 Celsius
+Greater than zero
+Greater than zero
+Tell me what type of person you are
+I'm a teen of age 15
+The Answer: 42!
+5
+not matched!
+Some(
+    5,
+)
+matched$$
+$
+$
+$
+$
+$
+$
+$
+DONE while let
+asdasd
+asdasdp
++++++++++++++++
++++++++++++++++

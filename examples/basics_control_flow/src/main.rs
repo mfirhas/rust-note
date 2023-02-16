@@ -501,6 +501,10 @@ fn main() {
     let mut ss: String = s.into();
     ss.push('p');
     println!("{ss}");
+
+    println!("+++++++++++++++");
+    eprintln!("this is error {}", String::from("error value"));
+    println!("+++++++++++++++");
 }
 
 struct A {

@@ -66,6 +66,7 @@ let a = || {
     println!("Im printed from closure!");
 };
 a();
+println!("{}", s); // still valid because s is only borrowed
 ```
 Untuk menangkap values sekitar tanpa borrowing, bisa menggunakan keyword *move* sebelum opening bar.
 ```rust

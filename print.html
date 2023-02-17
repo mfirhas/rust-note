@@ -569,6 +569,7 @@ let a = || {
     println!(&quot;Im printed from closure!&quot;);
 };
 a();
+println!(&quot;{}&quot;, s); // still valid because s is only borrowed
 <span class="boring">}</span></code></pre></pre>
 <p>Untuk menangkap values sekitar tanpa borrowing, bisa menggunakan keyword <em>move</em> sebelum opening bar.</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]

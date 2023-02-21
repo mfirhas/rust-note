@@ -110,7 +110,7 @@ while a < 10 {
 ```
 
 ## for loop ##
-Melakukan iterasi terhadap tipe data yang mengimplementasi trait `Iterator`. Biasanya data tersebut berupa data compunds atau collections seperti array, slices, vector, map dan lainnya. Semua tipe-tipe data tersebut sudah implement trait `Iterator` di dalam Rust secara default.
+Melakukan iterasi terhadap tipe data yang mengimplementasi trait `Iterator`. Biasanya data tersebut berupa data compunds atau collections seperti array, slices, vector, map dan lainnya. Semua tipe-tipe data tersebut sudah implement trait `Iterator` di dalam Rust secara built-in.
 Rust memiliki [range expression](https://doc.rust-lang.org/reference/expressions/range-expr.html) sebagai ekspresi ketika melakukan looping data. 
 Berikut 2 contoh:
 - Loop excluding last index:

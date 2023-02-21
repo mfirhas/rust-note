@@ -200,18 +200,19 @@ let t = Type {
 t.method_name()
 <span class="boring">}</span></code></pre></pre>
 <h3 id="self-type-pada-method"><a class="header" href="#self-type-pada-method">Self type pada method</a></h3>
-<p>Setiap method harus diawali oleh parameter sekaligus argumen pertama berupa <code>self</code>. Terdapat beberapa jenis/bentuk tipe <code>self</code> yaitu:
-|   1st form                                  | ref with lifetime     | Short form(with lifetime) |
-|---------------------------------------------|-----------------------|---------------------------|
-| self: Self                                  | self                  |                           |
-| self: &amp;Self                                 | self: &amp;'a Self        | &amp;'a self                  |
-| self: mut Self                              | mut self              |                           |
-| self: &amp;mut Self                             | self: &amp;'a mut Self    | &amp;'a mut self              |
-| self: Box<Self>                             |                       |                           |
-| self: Rc<Self>                              |                       |                           |
-| self: Arc<Self>                             |                       |                           |
-| self: Pin&lt;&amp;Self&gt;                            |                       |                           |
-| self: <code>&lt;MyType as MyTrait&gt;::associated_type</code>|                       |                           | </p>
+<p>Setiap method harus diawali oleh parameter sekaligus argumen pertama berupa <code>self</code>. Terdapat beberapa jenis/bentuk tipe <code>self</code> yaitu:</p>
+<div class="table-wrapper"><table><thead><tr><th>1st form</th><th>ref with lifetime</th><th>Short form(with lifetime)</th></tr></thead><tbody>
+<tr><td>self: Self</td><td>self</td><td></td></tr>
+<tr><td>self: &amp;Self</td><td>self: &amp;'a Self</td><td>&amp;'a self</td></tr>
+<tr><td>self: mut Self</td><td>mut self</td><td></td></tr>
+<tr><td>self: &amp;mut Self</td><td>self: &amp;'a mut Self</td><td>&amp;'a mut self</td></tr>
+<tr><td>self: Box<Self></td><td></td><td></td></tr>
+<tr><td>self: Rc<Self></td><td></td><td></td></tr>
+<tr><td>self: Arc<Self></td><td></td><td></td></tr>
+<tr><td>self: Pin&lt;&amp;Self&gt;</td><td></td><td></td></tr>
+<tr><td>self: <code>&lt;MyType as MyTrait&gt;::associated_type</code></td><td></td><td></td></tr>
+</tbody></table>
+</div>
 <p><em>Note: untuk <code>self: &lt;MyType as MyTrait&gt;::associated_type</code>, <code>associated_type</code> harus refer ke tipe implementor, tidak bisa ke tipe lainnya.</em></p>
 <p>Contoh inherent functions/methods pada struct:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]

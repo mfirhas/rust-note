@@ -58,6 +58,7 @@ t.method_name()
 ```
 ### Self type pada method ###
 Setiap method harus diawali oleh parameter sekaligus argumen pertama berupa `self`. Terdapat beberapa jenis/bentuk tipe `self` yaitu:
+
 |   1st form                                  | ref with lifetime     | Short form(with lifetime) |
 |---------------------------------------------|-----------------------|---------------------------|
 | self: Self                                  | self                  |                           |

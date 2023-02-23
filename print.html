@@ -3488,7 +3488,7 @@ println!(&quot;{}&quot;, int);
 <span class="boring">}</span></code></pre></pre>
 <h2 id="jenis-jenis-closure"><a class="header" href="#jenis-jenis-closure">Jenis-jenis Closure</a></h2>
 <p>Semua closures pada Rust akan memiliki 1,2 atau 3 dari jenis di bawah ini tergantung bagaimana body closure meng-handle environment sekitar.</p>
-<h3 id="fnonce"><a class="header" href="#fnonce">FnOnce</a></h3>
+<h3 id="fnonce"><a class="header" href="#fnonce"><a href="https://doc.rust-lang.org/std/ops/trait.FnOnce.html">FnOnce</a></a></h3>
 <p>Closure trait paling dasar dimana semua jenis closure akan compatible.
 Beberapa sifat <code>FnOnce</code>:</p>
 <ul>
@@ -3510,7 +3510,7 @@ fn do_fn_once&lt;F: FnOnce()&gt;(f: F) {
     f();
     // f(); /// if this is invoked, will failed because FnOnce will moved the `string` into the closure without requiring `move` declaration before closure bar.
 }</code></pre></pre>
-<h3 id="fnmut"><a class="header" href="#fnmut">FnMut</a></h3>
+<h3 id="fnmut"><a class="header" href="#fnmut"><a href="https://doc.rust-lang.org/std/ops/trait.FnMut.html">FnMut</a></a></h3>
 <p>Subtype dari <code>FnOnce</code>, dengan kriteria:</p>
 <ul>
 <li>Bisa dipanggil lebih dari 1 kali</li>
@@ -3531,7 +3531,7 @@ fn do_fn_mut&lt;F: FnMut()&gt;(mut f: F) {
     f();
     f();
 }</code></pre></pre>
-<h3 id="fn"><a class="header" href="#fn">Fn</a></h3>
+<h3 id="fn"><a class="header" href="#fn"><a href="https://doc.rust-lang.org/std/ops/trait.Fn.html">Fn</a></a></h3>
 <p>Subtype dari <code>FnMut</code>, dengan kriteria:</p>
 <ul>
 <li>Bisa dipanggil lebih dari 1 kali</li>

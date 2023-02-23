@@ -143,7 +143,8 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="trait"><a class="header" href="#trait">Trait</a></h1>
-<p>Trait merupakan tipe data <em>opaque</em> yang tidak memiliki tipe data konkrit, akan tetapi hanya mengandung behaviour(collection of methods/functions). Tipe ini bisa digunakan untuk mengimplementasikan <em>polymorphism</em> dimana semua tipe bisa diterima selama memiliki behaviour yang sama.</p>
+<p>Trait merupakan tipe data <em>opaque</em> yang tidak memiliki tipe data konkrit, akan tetapi hanya mengandung behaviour(collection of methods/functions). Tipe ini bisa digunakan untuk mengimplementasikan <em>polymorphism</em> dimana semua tipe bisa diterima selama memiliki behaviour yang sama.
+Semua method-method yang ada pada trait adalah public, sehingga ketika meng-implementasikan trait tidak perlu mendeklarasikan method sebagai public.</p>
 <p>Trait dapat digunakan untuk beberapa hal di-antaranya:</p>
 <ul>
 <li><em>Shared behaviour</em>: banyak tipe bisa mengimplementasikan behaviour yang sama(<em>polymorphism</em>). Kegunaan lain adalah untuk membuat objek <em>mock</em> yang bisa digunakan untuk unit testing, khususnya IO bound operations.</li>

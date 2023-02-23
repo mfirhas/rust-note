@@ -46,7 +46,7 @@ println!("{}", int);
 ## Jenis-jenis Closure ##
 Semua closures pada Rust akan memiliki 1,2 atau 3 dari jenis di bawah ini tergantung bagaimana body closure meng-handle environment sekitar.
 
-### FnOnce ###
+### [FnOnce](https://doc.rust-lang.org/std/ops/trait.FnOnce.html) ###
 Closure trait paling dasar dimana semua jenis closure akan compatible.
 Beberapa sifat `FnOnce`:
 - Dipanggil cuma 1 kali.
@@ -69,7 +69,7 @@ fn do_fn_once<F: FnOnce()>(f: F) {
 }
 ```
 
-### FnMut ###
+### [FnMut](https://doc.rust-lang.org/std/ops/trait.FnMut.html) ###
 Subtype dari `FnOnce`, dengan kriteria:
 - Bisa dipanggil lebih dari 1 kali
 - Call-by-mutable-reference
@@ -91,7 +91,7 @@ fn do_fn_mut<F: FnMut()>(mut f: F) {
 }
 ```
 
-### Fn ###
+### [Fn](https://doc.rust-lang.org/std/ops/trait.Fn.html) ###
 Subtype dari `FnMut`, dengan kriteria:
 - Bisa dipanggil lebih dari 1 kali
 - Call-by-immutable-reference

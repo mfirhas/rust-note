@@ -1,6 +1,7 @@
 # Trait #
 
 Trait merupakan tipe data *opaque* yang tidak memiliki tipe data konkrit, akan tetapi hanya mengandung behaviour(collection of methods/functions). Tipe ini bisa digunakan untuk mengimplementasikan *polymorphism* dimana semua tipe bisa diterima selama memiliki behaviour yang sama.
+Semua method-method yang ada pada trait adalah public, sehingga ketika meng-implementasikan trait tidak perlu mendeklarasikan method sebagai public.
 
 Trait dapat digunakan untuk beberapa hal di-antaranya:
 - *Shared behaviour*: banyak tipe bisa mengimplementasikan behaviour yang sama(*polymorphism*). Kegunaan lain adalah untuk membuat objek *mock* yang bisa digunakan untuk unit testing, khususnya IO bound operations.

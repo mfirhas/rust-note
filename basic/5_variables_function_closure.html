@@ -200,29 +200,117 @@ println!(&quot;{:p}&quot;, b);
 }
 <span class="boring">}</span></code></pre></pre>
 <h2 id="closures"><a class="header" href="#closures">Closures</a></h2>
-<p>Closure adalah anonymous function yang merupakan deklarasi fungsi tanpa nama yang biasa digunakan sebagai tipe parameter untuk menerima fungsi(pure). Closure di dalam Rust secara default menangkap value-value sekitar secara reference(borrowed).</p>
+<p>Closures merupakan anonymous function atau lambda pada Rust yang digunakan ketika kita ingin menjadikan function sebagai argument pada parameter fungsi lainnya.
+Berbeda dengan fungsi biasa di Rust yang tidak bisa meng-<em>capture</em> data pada environment bersangkutan, Closures secara default akan menangkap environment sekitar dengan cara borrow/reference.
+Berikut contoh deklarasi closures yang valid di dalam Rust:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>let s = String::from(&quot;lskdmfsdf&quot;);
-let a = || {
-    println!(&quot;{}&quot;, s); // s is captured by reference(borrowed) implicitly by closure
-    println!(&quot;Im printed from closure!&quot;);
+</span>// deklarasi closure dengan tipe data.
+let add_one_v2 = |x: u32| -&gt; u32 { 
+    x + 1
+    //...
+    //... 
 };
-a();
-println!(&quot;{}&quot;, s); // still valid because s is only borrowed
+
+// deklarasi tanpa tipe data, dengan curly brackets.
+let add_one_v3 = |x| { 
+    x + 1;
+    //...
+    //...
+};
+
+// deklarasi tanpa tipe data, tanpa curly brackets.
+let add_one_v4 = |x| x + 1  ;
+add_one_v4(5); // return 6
 <span class="boring">}</span></code></pre></pre>
-<p>Untuk menangkap values sekitar tanpa borrowing, bisa menggunakan keyword <em>move</em> sebelum opening bar.</p>
+<p>Compiler akan secara otomatis meng-infer tipe data dari parameter yang tidak diberi tipe data. Jika body hanya 1 baris, maka block curly brackets bisa dihilangkan.</p>
+<p>Closure menangkap data sekitar secara borrow/reference secara default, jika ingin memindahkan ownership(move) dari data tersebut, kita bisa menggunakan move semantics dengan keyword <code>move</code> sebelum bar pertama.</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>let s = String::from(&quot;lskdmfsdf&quot;);
-let b = move |x: i32| -&gt; i32 {
-    println!(&quot;{}&quot;, s); // because of keyword `move` above, this string is moved here so cannot be mentioned/referenced below anymore.
-    x * x
-};
-b(123);
-println!(&quot;{}&quot;, s); // cannot call `s` here because already moved into b closure scope.
+</span>let owned_data = String::from(&quot;im owned&quot;);
+let catch_by_move = move || {
+    println!(&quot;catched data: {:?}&quot;, owned_data);
+}
+println!(&quot;{:?}&quot;, owned_data); // will failed because moved into closure
 <span class="boring">}</span></code></pre></pre>
-<p>Untuk tipe-tipe yang bersifat <em>copy-able</em> seperti tipe primitif, ketika melakukan move, value di-copy ke dalam closure sehingga masih tetap bisa di panggil setelah closure. Move semantic benar-benar diterapkan untuk value yang bersifat <em>clone-able</em>.</p>
+<p>Move semantics hanya berlaku untuk tipe data yang bersifat <em>clone-able</em>. Untuk data-data yang bersifat static seperti primitive types, move semantics akan meng-<em>copy</em> data tersebut kedalam closure sehingga masih valid jika dipanggil lagi.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let int = 123;
+let closure = || {
+    let x = 123;
+    println!(&quot;{}&quot;, x);
+};
+closure();
+println!(&quot;{}&quot;, int);
+<span class="boring">}</span></code></pre></pre>
+<h2 id="jenis-jenis-closure"><a class="header" href="#jenis-jenis-closure">Jenis-jenis Closure</a></h2>
+<p>Semua closures pada Rust akan memiliki 1,2 atau 3 dari jenis di bawah ini tergantung bagaimana body closure meng-handle environment sekitar.</p>
+<h3 id="fnonce"><a class="header" href="#fnonce"><a href="https://doc.rust-lang.org/std/ops/trait.FnOnce.html">FnOnce</a></a></h3>
+<p>Closure trait paling dasar dimana semua jenis closure akan compatible.
+Beberapa sifat <code>FnOnce</code>:</p>
+<ul>
+<li>Dipanggil cuma 1 kali.</li>
+<li>Call-by-value, karena value yang dimasukkan ke dalam body closure di-consumed sehingga hanya bisa di-call sekali.</li>
+<li>menerima semua jenis closures(FnMut &amp; Fn) jika ditaruh sebagai parameter input.
+Karena FnOnce merupakan supertype dari semua jenis functional trait yang ada di dalam Rust, sehingga bisa menerima semua child-nya.
+Contoh:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let string = String::from(&quot;string_value&quot;);
+    do_fn_once(|| {
+        println!(&quot;do_fn_once {:?}&quot;, string);
+    });
+    println!(&quot;{:?}&quot;,string);
+}
+
+fn do_fn_once&lt;F: FnOnce()&gt;(f: F) {
+    f();
+    // f(); /// if this is invoked, will failed because FnOnce will moved the `string` into the closure without requiring `move` declaration before closure bar.
+}</code></pre></pre>
+<h3 id="fnmut"><a class="header" href="#fnmut"><a href="https://doc.rust-lang.org/std/ops/trait.FnMut.html">FnMut</a></a></h3>
+<p>Subtype dari <code>FnOnce</code>, dengan kriteria:</p>
+<ul>
+<li>Bisa dipanggil lebih dari 1 kali</li>
+<li>Call-by-mutable-reference</li>
+<li>Digunakan ketika ingin meng-capture mutable value by reference.
+Contoh:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let mut string = String::from(&quot;mutate me&quot;);
+    do_fn_mut(|| {
+        string.push_str(&quot;|changed|&quot;);
+    });
+    println!(&quot;{}&quot;, string); // print &quot;mutate me|changed||changed||changed|&quot;, because closure invoked 3 times inside `do_fn_mut()`
+}
+
+fn do_fn_mut&lt;F: FnMut()&gt;(mut f: F) {
+    f();
+    f();
+    f();
+}</code></pre></pre>
+<h3 id="fn"><a class="header" href="#fn"><a href="https://doc.rust-lang.org/std/ops/trait.Fn.html">Fn</a></a></h3>
+<p>Subtype dari <code>FnMut</code>, dengan kriteria:</p>
+<ul>
+<li>Bisa dipanggil lebih dari 1 kali</li>
+<li>Call-by-immutable-reference</li>
+<li>Digunakan ketika ingin meng-capture value sekitar by reference berkali2.
+Contoh:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let string = String::from(&quot;borrow me&quot;);
+    do_fn(|| {
+        println!(&quot;called from closure: {:?}&quot;, string);
+    });
+    println!(&quot;{}&quot;, string);
+}
+
+fn do_fn&lt;F: Fn()&gt;(f: F) {
+    // can be called multiple times since values trapped inside only borrowed(referenced).
+    f();
+    f();
+    f();
+}</code></pre></pre>
 
                     </main>
 

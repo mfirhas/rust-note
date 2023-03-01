@@ -50,6 +50,7 @@ Di dalam dunia pemograman, **set** bisa disamakan dengan tipe data, e.g integer,
 Category merupakan abstraksi lebih besar dari set, dimana merupakan sekumpulan dari objek di dalam suatu set. Bisa juga disebut sebagai abstraksi suatu data di dalam suatu set di dalam suatu category. Selain itu objek yang telah menjadi category ini memiliki 2 karakteristik:
 - Memiliki arrows function ter-*associate* dengannya. Arrows function merupakan semacam anonymous function yang dapat di-embed menjadi argument untuk melakukan transformasi category.
 - Memiliki identity arrows, merupakan identity function yang menerima data dan mengembalikan data yang sama, `f(x) -> x, x ∈ A`
+
 Di dalam dunia pemograman, **category** bisa disamakan dengan *container*/*type constructor*, yaitu tipe data yang memiliki data lain di dalamnya, contoh: Vec<T>, HashMap<K,V>, LinkedList<T>, etc. Setiap container tersebut memiliki associative functions yang memproses arrows yang diterima.
 Category bisa juga disebut sebagai *shape*, dimana, sekalipun memiliki tipe data yang berbeda programmatically, jika memiliki shape yang sama, maka masih bisa dimasukkan ke kategori yang sama. Contoh: array dari 2-tuple([(k1,v1), (k2,v2), ...]) dan HashMap<K,V> memiliki tipe data yang berbeda, akan tetapi memiliki kategori yang sama, karena sejatinya map itu memang sekumpulan/array dari key dan value.
 

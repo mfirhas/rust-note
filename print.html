@@ -3578,8 +3578,9 @@ Di dalam dunia pemograman, <strong>set</strong> bisa disamakan dengan tipe data,
 <li>Memiliki arrows function ter-<em>associate</em> dengannya. Arrows function merupakan semacam anonymous function yang dapat di-embed menjadi argument untuk melakukan transformasi category.</li>
 <li>Memiliki identity arrows, merupakan identity function yang menerima data dan mengembalikan data yang sama, <code>f(x) -&gt; x, x ∈ A</code></li>
 </ul>
-<p>Di dalam dunia pemograman, <strong>category</strong> bisa disamakan dengan <em>container</em>/<em>type constructor</em>, yaitu tipe data yang memiliki data lain di dalamnya, contoh: Vec<T>, HashMap&lt;K,V&gt;, LinkedList<T>, etc. Setiap container tersebut memiliki associative functions yang memproses arrows yang diterima.
-Category bisa juga disebut sebagai <em>shape</em>, dimana, sekalipun memiliki tipe data yang berbeda programmatically, jika memiliki shape yang sama, maka masih bisa dimasukkan ke kategori yang sama. Contoh: array dari 2-tuple([(k1,v1), (k2,v2), ...]) dan HashMap&lt;K,V&gt; memiliki tipe data yang berbeda, akan tetapi memiliki kategori yang sama, karena sejatinya map itu memang sekumpulan/array dari key dan value.</p>
+<p>Di dalam dunia pemograman, <strong>category</strong> bisa disamakan dengan <em>container</em>/<em>type constructor</em>, yaitu tipe data yang memiliki data lain di dalamnya, contoh: Vec&lt;T&gt;, HashMap&lt;K,V&gt;, LinkedList&lt;T&gt;, etc. Setiap container tersebut memiliki associative functions yang memproses arrows yang diterima.</p>
+<p>Category bisa juga disebut sebagai <em>shape</em>, dimana, sekalipun memiliki tipe data yang berbeda programmatically, jika memiliki shape yang sama, maka masih bisa dimasukkan ke kategori yang sama. </p>
+<p>Contoh: array dari 2-tuple([(k1,v1), (k2,v2), ...]) dan HashMap&lt;K,V&gt; memiliki tipe data yang berbeda, akan tetapi memiliki kategori yang sama, karena sejatinya map itu memang sekumpulan/array dari key dan value.</p>
 <h2 id="magma"><a class="header" href="#magma">Magma</a></h2>
 <p>Magma adalah suatu <em>set</em> yang berisi data dengan elemen yang sama, ketika operasi binary diaplikasikan ke dua buah data di dalam set tersebut, menghasilkan data yang juga berada di dalam set tersebut. </p>
 <blockquote>

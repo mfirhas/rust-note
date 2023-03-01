@@ -1,3 +1,3 @@
 # Intermediate #
 
-Pada bagian ini akan membahas mengenai hal lebih lanjut mengenai IO, Smart Pointers, dan feature Rust lainnya.
+Pada bagian ini akan membahas mengenai hal lebih lanjut mengenai Functional Programming, khususnya pada Rust, smart pointers, IO, dan asynchronous.

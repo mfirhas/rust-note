@@ -26,5 +26,5 @@
   - [Cargo dan Konfigurasi](basic/20_cargo_dan_konfigurasi.md)
 
 - [Intermediate](intermediate/0_intermediate.md)
-  - [Closures](intermediate/1_closures.md)
-  - [...]()
+  - [Functional Programming](intermediate/1_functional_programming.md)
+  - [Functional Programming pada Rust(soon)]()

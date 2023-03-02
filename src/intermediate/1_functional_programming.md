@@ -30,7 +30,7 @@ Berikut beberapa perbedaan Procedural Programming dan Functional Programming:
 
 Melihat beberapa perbedaan di atas, kita bisa lebih lanjut menjabarkan beberapa karakteristik dari Functional Programming, di antaranya:
 - *Immutability*: sifat immutability merupakan requirement dasar dan wajib dalam functional programming, karena di dalam FP, side effects dan segala macam variants dari suatu data sangat dihindari, karena bisa merusak abstraksi dan komposisi data dan fungsi. Ketika ingin melakukan transformasi/perubahan data, yang biasa dilakukan adalah menerapkan fungsi transformasi pada data original tanpa mengubah data original tersebut.
-- *First-order function*: merupakan pure function yang mana function diterapkan sebagai unit dasar dalam komputasi yang bisa dilempar kemana-mana sebagai parameter pada fungsi lainnya atau sebagai value/argument.
+- *First-order function*: merupakan function yang mana function diterapkan sebagai unit dasar dalam komputasi yang bisa dilempar kemana-mana sebagai parameter pada fungsi lainnya atau sebagai value/argument.
 - *Higher-order function*: merupakan function yang meng-komposisi beberapa fungsi untuk melakukan komputasi dan menghasilkan suatu value atau function. Kadang disebut juga sebagai kombinator, karena fungsinya yang mengkombinasikan beberapa *first-order functions*.
 - *Algebraic types*: merupakan tipe data yang bisa merepresentasikan konsep set dan kategori yang ada pada aljabar kedalam kode pemograman dan menerapakan beberapa fungsi padanya.
 - *Monadic*: merupakan tipe data yang memiliki sifat monadic, yaitu monoid yang di-wrap ke dalam type constructor dengan beberapa fungsi yang bisa meng-*flatten* data di dalamnya dan me-*mapping* data tersebut dengan suatu/beberapa proses(arrows).
@@ -97,13 +97,12 @@ Setiap set memiliki identity element(jika value) atau identity function(jika fun
 Kita sudah menemui beberapa contoh monoid di dalam sehari-hari ngoding seperti array, slices, etc. Bahkan saya berani mengatakan bahwa hampir semua tipe data yang kita temui(khususnya di Rust), adalah monoid, karena semuanya memiliki default values/empty values yang valid jika dioperasikan setidaknya operasi addition/concat.
 
 ## Arrow ##
-Merupakan pure function yang akan di-inject ke dalam functor dan terkomposisi melakukan pemosresan data dari sebuah category.
+Merupakan function yang akan di-inject ke dalam functor dan terkomposisi melakukan pemosresan data dari sebuah category.
 
 ```
 (A) -> B
 ```
 Merupakan arrow yang memetakan category A menjadi B.
-Arrow itu bisa juga disebut pure function atau lambda yang berlaku layaknya value.
 
 ## Functor ##
 Functor adalah proses mapping antara suatu category ke dalam category lainnya.

@@ -3560,7 +3560,7 @@ rand.workspace = true
 <p>Melihat beberapa perbedaan di atas, kita bisa lebih lanjut menjabarkan beberapa karakteristik dari Functional Programming, di antaranya:</p>
 <ul>
 <li><em>Immutability</em>: sifat immutability merupakan requirement dasar dan wajib dalam functional programming, karena di dalam FP, side effects dan segala macam variants dari suatu data sangat dihindari, karena bisa merusak abstraksi dan komposisi data dan fungsi. Ketika ingin melakukan transformasi/perubahan data, yang biasa dilakukan adalah menerapkan fungsi transformasi pada data original tanpa mengubah data original tersebut.</li>
-<li><em>First-order function</em>: merupakan pure function yang mana function diterapkan sebagai unit dasar dalam komputasi yang bisa dilempar kemana-mana sebagai parameter pada fungsi lainnya atau sebagai value/argument.</li>
+<li><em>First-order function</em>: merupakan function yang mana function diterapkan sebagai unit dasar dalam komputasi yang bisa dilempar kemana-mana sebagai parameter pada fungsi lainnya atau sebagai value/argument.</li>
 <li><em>Higher-order function</em>: merupakan function yang meng-komposisi beberapa fungsi untuk melakukan komputasi dan menghasilkan suatu value atau function. Kadang disebut juga sebagai kombinator, karena fungsinya yang mengkombinasikan beberapa <em>first-order functions</em>.</li>
 <li><em>Algebraic types</em>: merupakan tipe data yang bisa merepresentasikan konsep set dan kategori yang ada pada aljabar kedalam kode pemograman dan menerapakan beberapa fungsi padanya.</li>
 <li><em>Monadic</em>: merupakan tipe data yang memiliki sifat monadic, yaitu monoid yang di-wrap ke dalam type constructor dengan beberapa fungsi yang bisa meng-<em>flatten</em> data di dalamnya dan me-<em>mapping</em> data tersebut dengan suatu/beberapa proses(arrows).</li>
@@ -3617,11 +3617,10 @@ Identity element bisa juga disebut debagai default values/empty values dari suat
 <p>Setiap set memiliki identity element(jika value) atau identity function(jika function) yang mana apabila diapply dengan suatu operasi binary, akan menghasilkan value yang sama. Hampir di semua bahasa pemograman dengan tipe data tertentu memiliki identity element atau identity function yang bisa diterapkan padanya. 
 Kita sudah menemui beberapa contoh monoid di dalam sehari-hari ngoding seperti array, slices, etc. Bahkan saya berani mengatakan bahwa hampir semua tipe data yang kita temui(khususnya di Rust), adalah monoid, karena semuanya memiliki default values/empty values yang valid jika dioperasikan setidaknya operasi addition/concat.</p>
 <h2 id="arrow"><a class="header" href="#arrow">Arrow</a></h2>
-<p>Merupakan pure function yang akan di-inject ke dalam functor dan terkomposisi melakukan pemosresan data dari sebuah category.</p>
+<p>Merupakan function yang akan di-inject ke dalam functor dan terkomposisi melakukan pemosresan data dari sebuah category.</p>
 <pre><code>(A) -&gt; B
 </code></pre>
-<p>Merupakan arrow yang memetakan category A menjadi B.
-Arrow itu bisa juga disebut pure function atau lambda yang berlaku layaknya value.</p>
+<p>Merupakan arrow yang memetakan category A menjadi B.</p>
 <h2 id="functor"><a class="header" href="#functor">Functor</a></h2>
 <p>Functor adalah proses mapping antara suatu category ke dalam category lainnya.
 Functor memiliki beberapa karakteristik:</p>
@@ -3639,9 +3638,28 @@ F(X) -&gt; F(Y)
 <p><em>Akhirnya kita sampai juga pada apa itu monad</em>.</p>
 <h2 id="monad"><a class="header" href="#monad">Monad</a></h2>
 <p>Jika kita kembali pada quote di atas, <em>&quot;Monad is just a monoid in the category of endofunctors&quot;</em>, </p>
-<p>maka kita dapat menyimpulkan monad sebagai <em>category dari sebuah monoid yang memiliki beberapa endofunctors yang mengkomposisi arrows</em>.</p>
-<p>Atau jika ditulis dalam bentuk lain: <em>Monad = Category&lt;Monoid&gt;.Endofunctors(arrows)</em></p>
-<p>Baiklah, jika sampai sini masih bingung, kita akan membahas dalam bentuk lebih konkrit di pembahasan berikutnya yang berfokus pada functional programming di dalam Rust.</p>
+<p>maka kita dapat menyimpulkan monad sebagai <em><strong>category dari sebuah monoid yang memiliki beberapa endofunctors yang mengkomposisi arrows</strong></em>.</p>
+<p>Atau jika ditulis dalam bentuk lain: </p>
+<blockquote>
+<p><em>Monad = Category&lt;Monoid&gt;.Endofunctors(arrows)</em></p>
+</blockquote>
+<h1 id="konsep-lanjutan"><a class="header" href="#konsep-lanjutan">Konsep Lanjutan</a></h1>
+<p>Berikut kita akan membahas sesuatu yang lebih konkrit dari teori di atas yang mana dapat diterapkan dibanyak bahasa pemograman yang memiliki fitur functional.</p>
+<h2 id="immutability"><a class="header" href="#immutability">Immutability</a></h2>
+<p>Immutability merupakan konsep dari dunia matematika dimana objek di dalam matematika bersifat immutable. Tidak ada state di dalam matematika, perubahan data, dari suatu variable, atau yang biasa disebut dengan stateful.</p>
+<p>Konsep dari immutability itu sederhana, suatu data yang telah dibentuk tidak dapat diubah selama pemosresan, jikapun diubah, biasanya secara monadic, dimana original data di-preserved, dan menghasilkan data baru yang berasal dari data original.</p>
+<h2 id="pure-function"><a class="header" href="#pure-function">Pure Function</a></h2>
+<p>Pure Function merupakan fungsi yang tidak merubah data apapun yang di-capture dari luar. Pure function ini dalam bahasa pemograman merupakan closure yang tidak meng-capture mutable data sekitar. Yang diharapkan dari pure function ini adalah tidak ada side-effect yang dihasilkan oleh fungsi tersebut. Side effect ini bisa berupa data yang diubah2 dan stateful sepanjang program berjalan.</p>
+<h2 id="first-order-function"><a class="header" href="#first-order-function">First-order Function</a></h2>
+<p>Merupakan fungsi yang bisa dijadikan sebagai value/argument.
+First-order function belum tentu pure function, dan sebaliknya. Sedangkan di dalam functional programming, dibutuhkan dua hal ini.</p>
+<h2 id="higher-order-function"><a class="header" href="#higher-order-function">Higher-order Function</a></h2>
+<p>Merupakan fungsi yang meng-kombinasikan satu atau beberapa first-order function dan menghasilkan value atau fungsi lainnya.
+Bisa juga disebut sebagai kombinator. </p>
+<h2 id="referential-transparency"><a class="header" href="#referential-transparency">Referential Transparency</a></h2>
+<p>Merupakan konsep dimana setiap value di dalam kode pemograman bisa di-replace dengan expression yang menghasilkan value yang sama, tanpa mengubah behaviour program. 
+Hal ini berguna untuk maintainability sebuah program, dan juga sebagai cara untuk mengembangkan program lebih lanjut dengan mudah tanpa refactor terlalu besar.
+Salah satu requirement dalam referential transparency ini adalah immutability, dimana value dan expression yang digunakan harus bebas dari side-effects, karena jika ada side-effects, maka akan mengganggu maintainability.</p>
 
                     </main>
 

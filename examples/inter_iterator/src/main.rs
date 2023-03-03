@@ -75,6 +75,33 @@ fn main() {
     let vec_tuples = vec![(1, 1), (2, 2), (3, 3)];
     let m: HashMap<_, _> = vec_tuples.into_iter().collect();
     println!("{:?}", m);
+
+    let mut mut_me = String::from("from_this");
+    let fnmut = || {
+        let mut string = mut_me.clone();
+        // mut_me.push_str("add this");
+        string.push_str("add this");
+        println!("{:?}", string);
+    };
+    func(fnmut);
+    println!("{:?}", mut_me);
+
+    println!("***************");
+    let mut i = 0;
+    loop {
+        match i {
+            2 => break println!("Yes") ,
+            _ => println!("No"),
+        };
+        i += 1;
+    }
+}
+
+fn func<F>(f: F)
+where
+    F: Fn(),
+{
+    f();
 }
 
 trait A {

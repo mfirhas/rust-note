@@ -126,8 +126,33 @@ Sama dengan functor, hanya saja endofunctor memetakan ke category yang sama, sek
 ## Monad ##
 Jika kita kembali pada quote di atas, *"Monad is just a monoid in the category of endofunctors"*, 
 
-maka kita dapat menyimpulkan monad sebagai *category dari sebuah monoid yang memiliki beberapa endofunctors yang mengkomposisi arrows*.
+maka kita dapat menyimpulkan monad sebagai ***category dari sebuah monoid yang memiliki beberapa endofunctors yang mengkomposisi arrows***.
 
-Atau jika ditulis dalam bentuk lain: *Monad = Category\<Monoid>.Endofunctors(arrows)*
+Atau jika ditulis dalam bentuk lain: 
 
-Baiklah, jika sampai sini masih bingung, kita akan membahas dalam bentuk lebih konkrit di pembahasan berikutnya yang berfokus pada functional programming di dalam Rust.
+> *Monad = Category\<Monoid>.Endofunctors(arrows)*
+
+
+# Konsep Lanjutan #
+Berikut kita akan membahas sesuatu yang lebih konkrit dari teori di atas yang mana dapat diterapkan dibanyak bahasa pemograman yang memiliki fitur functional.
+
+## Immutability ##
+Immutability merupakan konsep dari dunia matematika dimana objek di dalam matematika bersifat immutable. Tidak ada state di dalam matematika, perubahan data, dari suatu variable, atau yang biasa disebut dengan stateful.
+
+Konsep dari immutability itu sederhana, suatu data yang telah dibentuk tidak dapat diubah selama pemosresan, jikapun diubah, biasanya secara monadic, dimana original data di-preserved, dan menghasilkan data baru yang berasal dari data original.
+
+## Pure Function ##
+Pure Function merupakan fungsi yang tidak merubah data apapun yang di-capture dari luar. Pure function ini dalam bahasa pemograman merupakan closure yang tidak meng-capture mutable data sekitar. Yang diharapkan dari pure function ini adalah tidak ada side-effect yang dihasilkan oleh fungsi tersebut. Side effect ini bisa berupa data yang diubah2 dan stateful sepanjang program berjalan.
+
+## First-order Function ##
+Merupakan fungsi yang bisa dijadikan sebagai value/argument.
+First-order function belum tentu pure function, dan sebaliknya. Sedangkan di dalam functional programming, dibutuhkan dua hal ini.
+
+## Higher-order Function ##
+Merupakan fungsi yang meng-kombinasikan satu atau beberapa first-order function dan menghasilkan value atau fungsi lainnya.
+Bisa juga disebut sebagai kombinator. 
+
+## Referential Transparency ##
+Merupakan konsep dimana setiap value di dalam kode pemograman bisa di-replace dengan expression yang menghasilkan value yang sama, tanpa mengubah behaviour program. 
+Hal ini berguna untuk maintainability sebuah program, dan juga sebagai cara untuk mengembangkan program lebih lanjut dengan mudah tanpa refactor terlalu besar.
+Salah satu requirement dalam referential transparency ini adalah immutability, dimana value dan expression yang digunakan harus bebas dari side-effects, karena jika ada side-effects, maka akan mengganggu maintainability.

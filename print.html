@@ -144,6 +144,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="rust-id"><a class="header" href="#rust-id">Rust ID</a></h1>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
 <p>Merupakan catatan OP selama mempelajari Bahasa Pemograman Rust yang di tulis dalam Bahasa Indonesia. Sumber pembelajaran diantaranya:</p>
 <ul>
 <li><a href="https://doc.rust-lang.org/stable/book/">Rust Book</a></li>
@@ -3615,7 +3616,7 @@ Operasi binary yang bisa di-aplikasikan terhadap bilangan bulat positif adalah +
 Identity element bisa juga disebut debagai default values/empty values dari suatu set jika diterapkan suatu operasi binary tidak mengubah value dari data di dalam set tersebut, contoh operasi pertambahan, maka default values dari integer adalah <code>0</code>.</li>
 </ul>
 <p>Setiap set memiliki identity element(jika value) atau identity function(jika function) yang mana apabila diapply dengan suatu operasi binary, akan menghasilkan value yang sama. Hampir di semua bahasa pemograman dengan tipe data tertentu memiliki identity element atau identity function yang bisa diterapkan padanya. 
-Kita sudah menemui beberapa contoh monoid di dalam sehari-hari ngoding seperti array, slices, etc. Bahkan saya berani mengatakan bahwa hampir semua tipe data yang kita temui(khususnya di Rust), adalah monoid, karena semuanya memiliki default values/empty values yang valid jika dioperasikan setidaknya operasi addition/concat.</p>
+Kita sudah menemui beberapa contoh monoid di dalam sehari-hari ngoding seperti array, slices, etc. Jadi Monoid adalah semacam tipe compound/collection yang memiliki tipe data yang sama.</p>
 <h2 id="arrow"><a class="header" href="#arrow">Arrow</a></h2>
 <p>Merupakan function yang akan di-inject ke dalam functor dan terkomposisi melakukan pemosresan data dari sebuah category.</p>
 <pre><code>(A) -&gt; B
@@ -3652,10 +3653,11 @@ F(X) -&gt; F(Y)
 <p>Pure Function merupakan fungsi yang tidak merubah data apapun yang di-capture dari luar. Pure function ini dalam bahasa pemograman merupakan closure yang tidak meng-capture mutable data sekitar. Yang diharapkan dari pure function ini adalah tidak ada side-effect yang dihasilkan oleh fungsi tersebut. Side effect ini bisa berupa data yang diubah2 dan stateful sepanjang program berjalan.</p>
 <h2 id="first-order-function"><a class="header" href="#first-order-function">First-order Function</a></h2>
 <p>Merupakan fungsi yang bisa dijadikan sebagai value/argument.
-First-order function belum tentu pure function, dan sebaliknya. Sedangkan di dalam functional programming, dibutuhkan dua hal ini.</p>
+First-order function belum tentu pure function, dan sebaliknya. Sedangkan di dalam functional programming, dibutuhkan dua hal ini.
+First-order function merupakan arrows pada konsep di atas, yang bisa menjadi fungsi yang melakukan <code>morphism</code> pada functors.</p>
 <h2 id="higher-order-function"><a class="header" href="#higher-order-function">Higher-order Function</a></h2>
 <p>Merupakan fungsi yang meng-kombinasikan satu atau beberapa first-order function dan menghasilkan value atau fungsi lainnya.
-Bisa juga disebut sebagai kombinator. </p>
+Bisa juga disebut sebagai kombinator. Higher-order function bisa dikategorikan ke dalam functor karena memiliki kombinasi fungsi di dalamnya.</p>
 <h2 id="referential-transparency"><a class="header" href="#referential-transparency">Referential Transparency</a></h2>
 <p>Merupakan konsep dimana setiap value di dalam kode pemograman bisa di-replace dengan expression yang menghasilkan value yang sama, tanpa mengubah behaviour program. 
 Hal ini berguna untuk maintainability sebuah program, dan juga sebagai cara untuk mengembangkan program lebih lanjut dengan mudah tanpa refactor terlalu besar.

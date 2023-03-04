@@ -147,6 +147,7 @@ Pure Function merupakan fungsi yang tidak merubah data apapun yang di-capture da
 ## First-order Function ##
 Merupakan fungsi yang bisa dijadikan sebagai value/argument.
 First-order function belum tentu pure function, dan sebaliknya. Sedangkan di dalam functional programming, dibutuhkan dua hal ini.
+First-order function merupakan arrows pada konsep di atas, yang bisa menjadi fungsi yang melakukan `morphism` pada functors.
 
 ## Higher-order Function ##
 Merupakan fungsi yang meng-kombinasikan satu atau beberapa first-order function dan menghasilkan value atau fungsi lainnya.

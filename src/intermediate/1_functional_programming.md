@@ -150,7 +150,7 @@ First-order function belum tentu pure function, dan sebaliknya. Sedangkan di dal
 
 ## Higher-order Function ##
 Merupakan fungsi yang meng-kombinasikan satu atau beberapa first-order function dan menghasilkan value atau fungsi lainnya.
-Bisa juga disebut sebagai kombinator. 
+Bisa juga disebut sebagai kombinator. Higher-order function bisa dikategorikan ke dalam functor karena memiliki kombinasi fungsi di dalamnya.
 
 ## Referential Transparency ##
 Merupakan konsep dimana setiap value di dalam kode pemograman bisa di-replace dengan expression yang menghasilkan value yang sama, tanpa mengubah behaviour program. 

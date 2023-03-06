@@ -3684,10 +3684,19 @@ Berbeda dengan beberapa bahasa lain yang beberapa variable memiliki default valu
 <p>Karena semua immutable by default, maka variable yang di-pass ke dalam juga immutable by default. Kondisi variable yang di-pass ke dalam fungsi mengikuti deklarasi variable di parameternya.</p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     let mut a = 20;
-    accept_mut(&amp;mut a);
+    accept_pure(&amp;a); 
+    accept_not_pure(&amp;mut a);
 }
-fn accept_mut(a: &amp;i32) {
-    println!(&quot;-+-+&gt; {}&quot;, a);
+
+// pure function
+fn accept_pure(a: &amp;i32) {
+    println!(&quot;pure function: {a}&quot;);
+}
+
+// non-pure function
+fn accept_not_pure(a: &amp;mut i32) {
+    *a += 1;
+    println!(&quot;non-pure function: {a}&quot;);
 }</code></pre></pre>
 <p>Pada contoh di atas, sekalipun kita passing mutable reference, ketika parameter fungsi adalah immutable, maka data tetap tidak akan berubah di dalam fungsi. 
 Jadi API caller bisa tau apakah suatu API/fungsi bersifat pure atau tidak, dengan melihat kondisi parameters dari fungsi tersebut. 

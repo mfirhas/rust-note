@@ -27,4 +27,4 @@
 
 - [Intermediate](intermediate/0_intermediate.md)
   - [Functional Programming](intermediate/1_functional_programming.md)
-  - [Functional Programming pada Rust(soon)]()
+  - [Functional Programming pada Rust(soon)](intermediate/2_fp_rust.md)

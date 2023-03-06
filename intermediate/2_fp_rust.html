@@ -1,0 +1,441 @@
+<!DOCTYPE HTML>
+<html lang="id" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Functional Programming pada Rust(soon) - Rust Note</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="Rust dalam Bahasa Indonesia">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../rust_id.html">Rust ID</a></li><li class="chapter-item expanded affix "><a href="../0_pengenalan.html">Pengenalan</a></li><li class="chapter-item expanded "><a href="../basic/0_basic.html"><strong aria-hidden="true">1.</strong> Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic/1_instalasi.html"><strong aria-hidden="true">1.1.</strong> Instalasi</a></li><li class="chapter-item expanded "><a href="../basic/2_toolchain.html"><strong aria-hidden="true">1.2.</strong> Toolchain</a></li><li class="chapter-item expanded "><a href="../basic/3_hello_world.html"><strong aria-hidden="true">1.3.</strong> Hello World!</a></li><li class="chapter-item expanded "><a href="../basic/4_struktur_codebase.html"><strong aria-hidden="true">1.4.</strong> Struktur Codebase</a></li><li class="chapter-item expanded "><a href="../basic/5_variables_function_closure.html"><strong aria-hidden="true">1.5.</strong> Variables, Functions, and Closures</a></li><li class="chapter-item expanded "><a href="../basic/6_primitive_types.html"><strong aria-hidden="true">1.6.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../basic/7_string_types.html"><strong aria-hidden="true">1.7.</strong> String Types</a></li><li class="chapter-item expanded "><a href="../basic/8_compound_types.html"><strong aria-hidden="true">1.8.</strong> Compound Types</a></li><li class="chapter-item expanded "><a href="../basic/9_algebraic_types.html"><strong aria-hidden="true">1.9.</strong> Algebraic Types</a></li><li class="chapter-item expanded "><a href="../basic/10_collection_types.html"><strong aria-hidden="true">1.10.</strong> Collection Types</a></li><li class="chapter-item expanded "><a href="../basic/11_control_flow.html"><strong aria-hidden="true">1.11.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../basic/12_ownership_and_borrowing.html"><strong aria-hidden="true">1.12.</strong> Ownership and Borrowing</a></li><li class="chapter-item expanded "><a href="../basic/13_associated_items.html"><strong aria-hidden="true">1.13.</strong> Associated Items</a></li><li class="chapter-item expanded "><a href="../basic/14_trait.html"><strong aria-hidden="true">1.14.</strong> Trait</a></li><li class="chapter-item expanded "><a href="../basic/15_generic.html"><strong aria-hidden="true">1.15.</strong> Generic</a></li><li class="chapter-item expanded "><a href="../basic/16_generic_bound_with_trait.html"><strong aria-hidden="true">1.16.</strong> Generic Bound with Trait</a></li><li class="chapter-item expanded "><a href="../basic/17_lifetime.html"><strong aria-hidden="true">1.17.</strong> Lifetime</a></li><li class="chapter-item expanded "><a href="../basic/18_error_handling.html"><strong aria-hidden="true">1.18.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="../basic/19_unit_test.html"><strong aria-hidden="true">1.19.</strong> Unit Test</a></li><li class="chapter-item expanded "><a href="../basic/20_cargo_dan_konfigurasi.html"><strong aria-hidden="true">1.20.</strong> Cargo dan Konfigurasi</a></li></ol></li><li class="chapter-item expanded "><a href="../intermediate/0_intermediate.html"><strong aria-hidden="true">2.</strong> Intermediate</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../intermediate/1_functional_programming.html"><strong aria-hidden="true">2.1.</strong> Functional Programming</a></li><li class="chapter-item expanded "><a href="../intermediate/2_fp_rust.html" class="active"><strong aria-hidden="true">2.2.</strong> Functional Programming pada Rust(soon)</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Note</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="functional-programming-pada-rust"><a class="header" href="#functional-programming-pada-rust">Functional Programming pada Rust</a></h1>
+<p>Rust memiliki berbagai macam paradigma pemograman yang dapat dicampurkan ke dalam kode, yaitu: Procedural/Imperative dan Functional/Declarative. Procedural merupakan pendekatan bahasa pemograman yang paling awal muncul memiliki pengaruh langsung dari konsep Turing machine itu sendiri. Selain itu juga bahasa assembly juga secara keseluruhan bersifat imperative dan procedural. Pendekatan ini menekankan penulisan kode program secara berurutan step-by-step dari atas ke bawah dengan perubahan state di antaranya.</p>
+<p>Pendekatan kedua yang muncul yaitu Functional yang memiliki pengaruh dari Lambda Calculus oleh Alonzo Church. Pendekatan kedua ini menggunakan fungsi sebagai dasar komputasi yang bisa dikombinasikan dan digabungkan menghasilkan abstraksi yang lebih tinggi untuk melakukan komputasi dengan menekankan <em>immutability</em> dari data.</p>
+<p>Rust dengan type system nya bisa mengaplikasikan pendekatan functional dengan memanfaatkan 3 komponen utama:</p>
+<ul>
+<li><a href="../basic/15_generic.html">Generic types</a></li>
+<li><a href="../basic/14_trait.html">Traits</a></li>
+<li><a href="../basic/5_variables_function_closure.html#closures">Closures</a></li>
+</ul>
+<p>Rust mendapatkan polymorphic type parameters secara static dan strong oleh generics dan traits, serta dapat mengembangkan komputasi menggunakan closures.
+Kita telah membahas ketiga di atas pada pembahasan sebelumnya. </p>
+<p>Kita akan membahas kaitan konsep-konsep pada functional programming di dalam Rust.</p>
+<h2 id="types--immutability"><a class="header" href="#types--immutability">Types &amp; Immutability</a></h2>
+<p>Rust memiliki semua data yang bersifat immutable by default. Ini mencegah <em>side-effects</em> yang mungkin terjadi terhadap data yang di-<em>pass</em> ke berbagai fungsi, atau bahkan thread lainnya. Hampir semua tipe data di dalam Rust bersifat monoid dan bisa membentuk tipe baru(category). 
+Berbeda dengan beberapa bahasa lain yang beberapa variable memiliki default values, dan beberapa memiliki undefined value, atau bahkan null. Di dalam Rust hampir semua merupakan object matematika berupa set atau kategori. </p>
+<p>Semua tipe data merupakan set itu sendiri, karena tidak ada empty values padanya, dan default values yang harus ditentukan manual yang mana value nya juga bagian dari set itu. Dengan memanfaatkan generics dan trait, kita bisa membentuk type constructor/container untuk membuat tipe baru, atau disebut juga sebagai category. Semua ini bersifat immutable by default.</p>
+<h2 id="pure-function"><a class="header" href="#pure-function">Pure Function</a></h2>
+<p>Karena semua immutable by default, maka variable yang di-pass ke dalam juga immutable by default. Kondisi variable yang di-pass ke dalam fungsi mengikuti deklarasi variable di parameternya.</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let mut a = 20;
+    accept_mut(&amp;mut a);
+}
+fn accept_mut(a: &amp;i32) {
+    println!(&quot;-+-+&gt; {}&quot;, a);
+}</code></pre></pre>
+<p>Pada contoh di atas, sekalipun kita passing mutable reference, ketika parameter fungsi adalah immutable, maka data tetap tidak akan berubah di dalam fungsi. 
+Jadi API caller bisa tau apakah suatu API/fungsi bersifat pure atau tidak, dengan melihat kondisi parameters dari fungsi tersebut. 
+Hal ini juga berlaku terhadap associated functions yaitu self, dimana methods akan bersifat pure selama tidak ada <code>mut</code> didepan self tersebut, seperti <code>mut self</code> dan <code>&amp;mut self</code>. Keyword <code>mut</code> adalah penanda impurity dari function atau method.</p>
+<h2 id="first-order-function"><a class="header" href="#first-order-function">First-order function</a></h2>
+<p>Rust menerapkan first-order function melalui closure, yang mana seperti yang telah dibahas sebelumnya, closure-closure pada rust menerapkan salah satu dari 3 trait closures yang telah dibahsa di <a href="basic/../../basic/5_variables_function_closure.html#closures">sini</a>, yaitu <code>FnOnce</code>, <code>FnMut</code>, dan <code>Fn</code>.
+First-order function yang bersifat pure adalah <code>FnOnce</code> dan <code>Fn</code> karena tidak memiliki side-effects terhadap data dari luar.
+First-order functions di dalam rust sering digunakan sebagai fungsi transformasi yang di-inject ke dalam fungsi kombinator(higher-order function).</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let double = |x| x * x;
+    do_double(double);
+}
+
+fn do_double&lt;F: FnOnce(i32) -&gt; i32&gt;(f: F) {
+    println!(&quot;{}&quot;, f(5)); // 25 
+}</code></pre></pre>
+<h2 id="higher-order-function"><a class="header" href="#higher-order-function">Higher-order function</a></h2>
+<p>Merupakan fungsi kombinator yang mengkombinasikan satu atau beberapa first-order functions menjadi value atau fungsi lainnya. Bisa juga disebut sebagai kombinator.
+Di dalam Rust, kombinator banyak digunakan untuk proses komputasi terhadap data yang ada di dalam container/type constructor, seperti Vec&lt;T&gt;, Option&lt;T&gt;, Result&lt;T,E&gt;, dan lainnya. Semua tipe container itu memiliki method-method yang merupakan functors, yang mana functor-functor ini bisa menerima fungsi lainnya, yang akan diproses secara <em>lazy</em>, dan akan menghasilkan category lainnya yang juga memiliki functor-functor. Contoh Higher-order function yang sering kita jumpai adalah iterator.
+Iterator merupakan trait yang berisi method-method untuk melakukan operasi terhadap data berbentuk collection.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let v = vec![1, 2, 3, 4];
+let v_doubles = v.iter().map(|x| x * x).collect::&lt;Vec&lt;_&gt;&gt;();
+println!(&quot;{:?}&quot;, v_doubles);
+<span class="boring">}</span></code></pre></pre>
+<p>Pada contoh di atas, variable <code>v</code> merupakan collection berbentuk Vector, yang berisi integer 32. Method <code>iter()</code> menghasilkan category <code>Map</code> yang memiliki functor <code>map</code> yang mengkombinasikan closure/arrow <code>|x| x * x</code>. Selain itu juga memiliki method <code>collect()</code> yang mengembalikan data ke category yang diinginkan yaitu <code>Vec&lt;_&gt;</code>.</p>
+<p>Contoh lain adalah:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let opt: Option&lt;T&gt; = Some(5);
+let ret = opt.map(|x| x*x).unwrap_or(Default::default());
+println!(&quot;{}&quot;, ret);
+<span class="boring">}</span></code></pre></pre>
+<p>Option merupakan category yang memiliki value <code>None</code> atau <code>Some(T)</code>. Option memiliki functor map yang menerima fungsi untuk data yang ada di dalam <code>Some(T)</code>, jika tidak ada maka akan mengembalikan <code>None</code>.</p>
+<h2 id="referential-transparency"><a class="header" href="#referential-transparency">Referential Transparency</a></h2>
+<p>Immutability by default membuat penerapan referential transparency menjadi lebih mudah. Selain immutability, sistem ownership pada Rust juga membuat referential transparency menjadi trivial. Functional traits seperti <code>FnOnce</code> dan <code>Fn</code> yang bersifat immutable, tidak memberikan side-effects keluar dari program di luar dari ekspresi yang kita gunakan. Ekspresi akan menghasilkan output yang selalu sama karena tidak adanya side-effects yang menyebabkan perubahan hasil evaluasi ekspresi.</p>
+<h2 id="currying"><a class="header" href="#currying">Currying</a></h2>
+<p><em><strong>Currying</strong></em> merupakan salah satu fitur yang digunakan dalam functional programming. Fitur ini adalah bagaimana membangun chain of functions dengan cara menyediakan fungsi yang mengembalikan fungsi lainnya, dan seterusnya. </p>
+<p>Di dalam Rust, currying dapat di-achieve dengan menggunakan functional traits dan <em>boxing</em>(kita bahas di pembahasan selanjutnya tentang smart pointers).
+Secara technical, currying mengkomposisi beberapa fungsi yang digunakan sebagai arguments dan returns. Fungsi ini merupakan pointer ketika tidak bisa di-<em>inline</em> oleh compiler. Inline merupakan proses menanamkan semua intruksi fungsi ke dalam fungsi yang memanggil fungsi tersebut. Pada saat currying tentunya inline cukup sulit dilakukan karena pada saat kompilasi, hanya fungsi terluar yang mungkin bisa di-<em>inline</em>, akan tetapi fungsi berikutnya tidak bisa di-<em>inline</em>. Untuk mengatasi ini, kebanyakan bahasa pemograman menerapkan fungsi tersebut sebagai pointer.</p>
+<p>Jika kita ingin menerapkan inlined currying, menggunakan notasi closures langsung di assign ke sebuah variable, maka semua bisa di-<em>inlined</em> oleh compiler pada saat compile time.
+Cotnoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let func = |x| {
+    move |y| {
+        move |z| {
+            move |a| {
+                println!(&quot;{a}&quot;);
+                (x * y * z) + a
+            }
+        }
+    }
+};
+println!(&quot;{:?}&quot;, func(3)(9)(2)(2));
+
+let fullname = |firstname| {
+    move |middlename| move |lastname| format!(&quot;{} {} {}&quot;, firstname, middlename, lastname)
+};
+
+println!(&quot;{}&quot;, fullname(&quot;Muhammad&quot;)(&quot;Fathir&quot;)(&quot;Irhas&quot;));
+<span class="boring">}</span></code></pre></pre>
+<p>Notasi closures di atas menggunakan <code>move</code> semantics, hal ini untuk memindahkan ownership value dari fungsi sebelumnya ke fungsi berikutnya, hal ini karena closures by default meng-<em>capture</em> values sekitar by borrow/reference, sehingga akan ada mismatch antara lifetime closures yang disusun. Oleh sebab itu, kita butuh memindahkan ownership tersebut supaya closure berikutnya bisa menggunakan values dari closures sebelumnya sekalipun closure tersebut nge-<em>outlive</em> lifetime closures sebelumnya.</p>
+<p>Jika kita ingin menggunakan currying pada named function, jika hanya memiliki 1 return fungsi, maka tidak ada masalah. Akan tetapi masalah muncul ketika kita ingin me-<em>nested</em> kan lebih dari 1 return fungsi, dalam artian 1 return fungsi tersebut juga akan mengembalikan fungsi lainnya, dan seterusnya. Masalah ini terjadi ketika kita menggunakan notasi <code>impl Trait</code> terhadap argument dan/atau return values. </p>
+<p>Rust memiliki sebuah rule untuk <code>impl Trait</code> ini yaitu <strong><em>impl Trait</em> hanya bisa digunakan sebagai argument dan return langsung dari fungsi bersangkutan.</strong>
+Dalam artian, jika kita juga menggunakan <code>impl Trait</code> untuk input dan output dari <code>impl Trait</code> lainnya, maka ini melanggar aturan dan failed to compile.
+Karena closures di dalam rust itu adalah jelmaan dari traits <code>FnOnce</code>, <code>FnMut</code>, dan <code>Fn</code>, maka aturan <code>impl Trait</code> juga berlaku untuk closures menggunakan notasi <code>impl Trait</code>. </p>
+<p>Kembali ke permasalahan di atas, yaitu ketika kita ingin mengembalikan nested currying lebih dari 1, jika menggunakan <code>impl Trait</code> saja tidak bisa, sehingga kita harus mem-<em>boxing</em> functional traits lainnya ke dalam smart pointer box dan menggunakan keyword <code>dyn</code>(kita bahas di pembahasan selanjutnya).
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    println!(&quot;{}&quot;, currying1(1)(2));
+    println!(&quot;{}&quot;, currying3(1)(2)(3));
+}
+
+fn currying1(first: i32) -&gt; impl Fn(i32) -&gt; i32 {
+    move |second| first * second
+}
+
+// failed because it against the rule of `impl Trait` placement.
+// fn currying2(first: i32) -&gt; impl Fn(i32) -&gt; impl Fn(i32) -&gt; i32 {
+//     move |second| move |third| first * second * third
+// }
+
+fn currying3(first: i32) -&gt; impl Fn(i32) -&gt; Box&lt;dyn Fn(i32) -&gt; i32&gt; {
+    move |second| Box::new(move |third| first * second * third)
+}</code></pre></pre>
+<p>Kenapa kita tidak bisa menggunakan notasi <code>impl</code> pada return fungsi ke tiga?, ini ada hubungannya dengan <code>static dispatch</code> pada Rust dimana <code>impl Trait</code> merupakan tipe untuk melakukan static dispatch(kita bahas pada pembahasan selanjutnya). Karena fungsi ke tiga tidak bisa di-<em>infer</em> secara static, maka butuh di-dispatch secara dynamic menggunakan kombinasi Box dan dyn(kita bahas selanjutnya).</p>
+<h2 id="functional-constructs-pada-rust"><a class="header" href="#functional-constructs-pada-rust">Functional Constructs pada Rust</a></h2>
+<p>Kita akan menerapkan beberapa konsep functional di atas ke dalam Rust menggunakan 3 komponen utama: Generics, Traits, dan Closures.</p>
+<ul>
+<li>Generics: Merupakan fitur umum yang ada pada functional programming. Fitur ini diperkenalkan oleh bahasa ML. 
+Jika kita memperhatikan notasi matematika, khususnya dalam bidang set dan kategori, kita melihat bahsa set(types) selalu dinotasikan menggunakan 1 huruf kapital,
+seperti A, B, C, T, U, X dan lainnya<a href="https://en.wikipedia.org/wiki/Set_(mathematics)#How_sets_are_defined_and_set_notation">[1]</a>. 
+Generics merupakan representasi dari notasei sets di dalam matematika untuk merepresentasikan berbagai sets(types) yang bisa digunakan.</li>
+<li>Traits: Digunakan untuk memberikan common things shared between sets, atau dalam hal ini type data yang telah di-generic-kan di atas.
+Ketika kita menggunakan generic tanpa trait, maka literally semua sets bisa saja dimasukkan ke dalam generic tersebut, untuk membatasi ini, maka bisa digunakan traits.</li>
+<li>Closures: Digunakan untuk merepresentasikan arrows pada matematika, yaitu memberikan kemampuan untuk meng-<em>inline</em> deklarasi fungsi pada kode. 
+Ini nantinya berguna untuk membangun first-order function, dan dikombinasikan ke dalam higher-order functions.</li>
+</ul>
+<p>Contoh:</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let ret = functor(123, |x| x * x);
+    println!(&quot;{ret}&quot;);
+}
+
+fn functor&lt;T, F&gt;(t: T, f: F) -&gt; T
+where
+    T: Sized + Debug,
+    F: Fn(T) -&gt; T,
+{
+    println!(&quot;{t:?}&quot;);
+    f(t)
+}</code></pre></pre>
+<p>Pada contoh Di atas, kita secara sederhana menerapkan 3 komponen di atas ke dalam functional approach.
+Kita menggunakan generic sebagai type placeholder untuk fungsi <code>functor</code>, yang mana fungsi ini akan menerima 2 parameter <code>t: T</code> dan <code>f: F</code> yang mana masing-masing harus memenuhi trait <code>Sized dan Debug</code> dan functional trait <code>Fn(T) -&gt; T</code>. Kita menggunakan functional trait Fn untuk menerima pure function sebagai first-order function(arrows) yang akan diproses lazily oleh <code>functor</code>.</p>
+<h2 id="monad"><a class="header" href="#monad">Monad</a></h2>
+<p>Kita akan menelusuri kembali semua konsep berkaitan dengan monad yaitu:</p>
+<ul>
+<li>Set: Semua tipe data pada Rust merupakan <em>set</em> di dalam abstract algebra. Contoh: primitive types: <code>i32</code>, <code>f32</code>, <code>bool</code>, <code>char</code>, etc</li>
+<li>Monoid: Semua tipe data di Rust merupakan Monoid, karena semua bisa bersifat <em>associative</em> terhadap suatu binary operation, dan memiliki identity element.
+Contoh: (i32, +, 0), i32 adalah monoid untuk operasi penjumlahan dengan identity element 0.</li>
+<li>Category: Merupakan tipe container atau <em>type constructor</em> yang terdiri dari Set/Monoid itu sendiri. Contoh: <code>Vec&lt;T&gt;</code>, <code>HashMap&lt;K,V&gt;</code>, etc.</li>
+<li>Arrows: Merupakan first-order functions jelmaan dari functional traits: <code>FnOnce</code>, <code>FnMut</code>, dan <code>Fn</code>.</li>
+<li>Functor: Merupakan mapping dari suatu category ke dalam bentuk lain, khususnya ke dalam category yang sama jika endofunctor. 
+Functor sendiri bisa associated functions dari suatu category, bisa juga Category tersendiri dengan beberapa methods yang bertugas melakukan <em>mapping</em>/transformasi category.</li>
+</ul>
+<blockquote>
+<p>Monad di dalam Rust merupakan tipe data berbentuk <strong>Category</strong> yang berisi <strong>Monoid</strong>, yang memiliki <strong>endofunctor</strong> yang melakukan mapping terhadap monoid tersebut menggunakan <strong>arrows</strong> yang dikombinasikan ke dalam endofunctor.</p>
+</blockquote>
+<p>Beberapa contoh monad di dalam Rust yang sering kita gunakan:</p>
+<ul>
+<li><code>Option&lt;T&gt;</code>: Option, berisi 1 monoid T, memiliki beberapa endofunctor di antaranya <code>.and_then(F)</code> dan <code>map(F)</code>. Masing-masing bisa memetakan <code>Option&lt;T&gt;</code> ke category yang sama dengan tipe yang sama yaitu <code>Option&lt;U&gt;</code>. Bisa juga memetakan ke tipe yang berbeda tetapi masih di dalam category yang sama, misal <code>Vec&lt;T&gt;</code>.
+Contoh:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let opsi: Option&lt;&amp;str&gt; = Some(&quot;test&quot;);
+
+// map the monoid inside option if it's exist, by injecting it into arrows F: |x| -&gt; x
+let ret = opsi.map(|x| x); //.or(None);
+println!(&quot;{:?}&quot;, ret); // prints &quot;Some(&quot;test&quot;)&quot;
+
+// do something with Option if it's exist, and return Option&lt;U&gt;
+let ret = opsi.and_then(|x| Some(x)); //.or(None);
+println!(&quot;{:?}&quot;, ret); // prints &quot;Some(&quot;test&quot;)&quot;
+
+// Option&lt;T&gt; dan Vec&lt;T&gt; bisa dikategorikan ke dalam Category yang sama, karena Option adalah vector dengan 1 elemen, atau empty vector.
+let ret = opsi.into_iter().map(|x| x).collect::&lt;Vec&lt;_&gt;&gt;();
+println!(&quot;{:?}&quot;, ret); // prints [&quot;test&quot;], will print [] if opsi is None
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li><code>Vec&lt;T&gt;</code>: Vec, berisi 1 monoid T, memiliki beberapa endofunctor di antaranya <code>iter()</code>/<code>into_iter()</code> untuk menghasilkan functor mapping object dari vector.
+Contoh:</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let vec = vec![1, 2, 3];
+// iter() get functor `Map` that containes the endofunctors for mapping the items inside vector, with `map` along with arrows, and collect it back into same category.
+let ret = vec.iter().map(|x| x * x).collect::&lt;Vec&lt;_&gt;&gt;();
+println!(&quot;{:?}&quot;, ret);
+
+// Collect into `LinkedList&lt;_&gt;` because Vec and LinkedList have same category(shape: list of things)
+let ret = vec.iter().map(|x| x * x).collect::&lt;LinkedList&lt;_&gt;&gt;();
+println!(&quot;{:?}&quot;, ret);
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li><code>HashMap&lt;K,V&gt;</code>: Berisi monoid berupa compound data of K and V, memiliki endofunctors di antaranya <code>iter()</code> and <code>into_iter()</code>.</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let vec = [(1, &quot;1&quot;), (2, &quot;2&quot;), (3, &quot;3&quot;)];
+// vector of array of tuple-2 have same shape(category) with HashMap itself.
+// need to use `into_iter()` to get functor owning the data from vector, since vector contain reference data(&amp;str), and HashMap is owned type and need ownership of the data it collect from.
+let ret = vec.into_iter().map(|x| x).collect::&lt;HashMap&lt;i32, &amp;str&gt;&gt;();
+println!(&quot;{:#?}&quot;, ret);
+
+// failed because HashMap need to take ownership of iterator elements.
+// hence HashMap cannot be built from &amp;(K,V) because it's not implemented for FromIterator(&amp;(K,V))
+// let ret = vec.iter().map(|x| x).collect::&lt;HashMap&lt;i32, &amp;str&gt;&gt;();
+// println!(&quot;{:#?}&quot;, ret);
+
+let tuple = [(1, 1), (2, 2), (3, 3)];
+// we can use `iter()` insetead of `into_iter` because tupe values are all copyable, so no reference borrowed and move semantic occurs since i32 is copyable.
+let ret = tuple.iter().map(|x| *x).collect::&lt;HashMap&lt;i32, i32&gt;&gt;();
+println!(&quot;{:#?}&quot;, ret);
+
+
+let tuple = [
+    (&quot;1&quot;.to_string(), &quot;1&quot;.to_string()),
+    (&quot;2&quot;.to_string(), &quot;2&quot;.to_string()),
+    (&quot;3&quot;.to_string(), &quot;3&quot;.to_string()),
+];
+// since we used `iter()`, and data are not copyable(String), hence move semantic occurs, and we need to take the data by cloning(copy for mov data)
+let ret = tuple
+    .iter()
+    .map(|x| x.clone())
+    .collect::&lt;HashMap&lt;String, String&gt;&gt;();
+println!(&quot;tupe string: {:#?}&quot;, ret);
+
+// unlike above, since we already use `into_iter` which take ownership items we passed, to need to clone the data since ownership already passed by `into_iter`
+let tuple = [
+    (&quot;1&quot;.to_string(), &quot;1&quot;.to_string()),
+    (&quot;2&quot;.to_string(), &quot;2&quot;.to_string()),
+    (&quot;3&quot;.to_string(), &quot;3&quot;.to_string()),
+];
+let ret = tuple
+    .into_iter()
+    .map(|x| x)
+    .collect::&lt;HashMap&lt;String, String&gt;&gt;();
+println!(&quot;tupe string: {:#?}&quot;, ret);
+
+// we can decode the tuple inside and return same structure
+let tuple = [(1, 1), (2, 2), (3, 3)];
+let ret = tuple
+    .iter()
+    .map(|x| (x.0, x.1))
+    .collect::&lt;HashMap&lt;i32, i32&gt;&gt;();
+println!(&quot;{:#?}&quot;, ret);
+
+// we can also collect HashMap as Vector since it's just array of tuple-2 of keys and values
+let map = HashMap::from([(1, 1), (2, 2), (3, 3)]);
+let ret = map.into_iter().map(|x| x).collect::&lt;Vec&lt;_&gt;&gt;();
+println!(&quot;{:#?}&quot;, ret);
+<span class="boring">}</span></code></pre></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../intermediate/1_functional_programming.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../intermediate/1_functional_programming.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

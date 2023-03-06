@@ -3681,15 +3681,18 @@ Kita telah membahas ketiga di atas pada pembahasan sebelumnya. </p>
 Berbeda dengan beberapa bahasa lain yang beberapa variable memiliki default values, dan beberapa memiliki undefined value, atau bahkan null. Di dalam Rust hampir semua merupakan object matematika berupa set atau kategori. </p>
 <p>Semua tipe data merupakan set itu sendiri, karena tidak ada empty values padanya, dan default values yang harus ditentukan manual yang mana value nya juga bagian dari set itu. Dengan memanfaatkan generics dan trait, kita bisa membentuk type constructor/container untuk membuat tipe baru, atau disebut juga sebagai category. Semua ini bersifat immutable by default.</p>
 <h2 id="pure-function-1"><a class="header" href="#pure-function-1">Pure Function</a></h2>
-<p>Karena semua immutable by default, maka variable yang di-pass ke dalam juga immutable by default. Kondisi variable yang di-pass ke dalam fungsi mengikuti deklarasi variable di parameternya.</p>
+<p>Pure Function tidak memiliki side-effects yang reflected ke luar fungsi. Jikalau Pure Function melakukan perubahan, perubahan itu hanya local state dari fungsi tersebut tanpa reflected ke luar. Hal ini berbeda dengan beberapa idiom yang biasa terjadi di C dan Go dimana kita mem-<em>passing</em> pointer ke dalam fungsi yang akan merubah state dari pointer tersebut.
+Karena semua immutable by default, maka variable yang di-pass ke dalam juga immutable by default. Kondisi variable yang di-pass ke dalam fungsi mengikuti deklarasi variable di parameternya.</p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     let mut a = 20;
-    accept_pure(&amp;a); 
-    accept_not_pure(&amp;mut a);
+    accept_pure(&amp;a); // pass immutable reference
+    accept_pure(&amp;mut a); // pass mutable reference
+    accept_not_pure(&amp;mut a); // pass mutable reference
+    // accept_not_pure(&amp;a); // can't pass immutable arguments into mutable parameter
 }
 
 // pure function
-fn accept_pure(a: &amp;i32) {
+fn accept_pure(a: &amp;i32) { // whatever the condition of arguments passed, those will follow function's parameters declaration.
     println!(&quot;pure function: {a}&quot;);
 }
 
@@ -3698,9 +3701,12 @@ fn accept_not_pure(a: &amp;mut i32) {
     *a += 1;
     println!(&quot;non-pure function: {a}&quot;);
 }</code></pre></pre>
-<p>Pada contoh di atas, sekalipun kita passing mutable reference, ketika parameter fungsi adalah immutable, maka data tetap tidak akan berubah di dalam fungsi. 
-Jadi API caller bisa tau apakah suatu API/fungsi bersifat pure atau tidak, dengan melihat kondisi parameters dari fungsi tersebut. 
-Hal ini juga berlaku terhadap associated functions yaitu self, dimana methods akan bersifat pure selama tidak ada <code>mut</code> didepan self tersebut, seperti <code>mut self</code> dan <code>&amp;mut self</code>. Keyword <code>mut</code> adalah penanda impurity dari function atau method.</p>
+<p>Pada contoh di atas, terdapat rules yang bisa ditulis:</p>
+<ul>
+<li>Immutable parameter bisa menerima immutable dan mutable arguments, karena fungsi tidak memiliki side-effects karena immutability dari parameternya.</li>
+<li>Mutable parameter hanya bisa menerima mutable argument, karena fungsi ini pasti memiliki side-effects karena mutability dari parameternya.
+Dua rule di atas digunakan untuk memberikan abstraksi yang jelas dari API-API yang kita buat.</li>
+</ul>
 <h2 id="first-order-function-1"><a class="header" href="#first-order-function-1">First-order function</a></h2>
 <p>Rust menerapkan first-order function melalui closure, yang mana seperti yang telah dibahas sebelumnya, closure-closure pada rust menerapkan salah satu dari 3 trait closures yang telah dibahsa di <a href="intermediate/basic/../../basic/5_variables_function_closure.html#closures">sini</a>, yaitu <code>FnOnce</code>, <code>FnMut</code>, dan <code>Fn</code>.
 First-order function yang bersifat pure adalah <code>FnOnce</code> dan <code>Fn</code> karena tidak memiliki side-effects terhadap data dari luar.

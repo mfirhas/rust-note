@@ -188,7 +188,7 @@ fn accept_not_pure(a: &amp;mut i32) {
 </ul>
 <p>Dua rule di atas digunakan untuk memberikan abstraksi yang jelas dari API-API yang kita buat.</p>
 <h2 id="first-order-function"><a class="header" href="#first-order-function">First-order function</a></h2>
-<p>Rust menerapkan first-order function melalui closure, yang mana seperti yang telah dibahas sebelumnya, closure-closure pada rust menerapkan salah satu dari 3 trait closures yang telah dibahsa di <a href="basic/../../basic/5_variables_function_closure.html#closures">sini</a>, yaitu <code>FnOnce</code>, <code>FnMut</code>, dan <code>Fn</code>.
+<p>Rust menerapkan first-order function melalui closure, yang mana seperti yang telah dibahas sebelumnya, closure-closure pada rust menerapkan salah satu dari 3 trait closures yang telah dibahas di <a href="basic/../../basic/5_variables_function_closure.html#closures">sini</a>, yaitu <code>FnOnce</code>, <code>FnMut</code>, dan <code>Fn</code>.
 First-order function yang bersifat pure adalah <code>FnOnce</code> dan <code>Fn</code> karena tidak memiliki side-effects terhadap data dari luar.
 First-order functions di dalam rust sering digunakan sebagai fungsi transformasi yang di-inject ke dalam fungsi kombinator(higher-order function).</p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
@@ -275,9 +275,9 @@ fn currying3(first: i32) -&gt; impl Fn(i32) -&gt; Box&lt;dyn Fn(i32) -&gt; i32&g
 <p>Kita akan menerapkan beberapa konsep functional di atas ke dalam Rust menggunakan 3 komponen utama: Generics, Traits, dan Closures.</p>
 <ul>
 <li>Generics: Merupakan fitur umum yang ada pada functional programming. Fitur ini diperkenalkan oleh bahasa ML. 
-Jika kita memperhatikan notasi matematika, khususnya dalam bidang set dan kategori, kita melihat bahsa set(types) selalu dinotasikan menggunakan 1 huruf kapital,
+Jika kita memperhatikan notasi matematika, khususnya dalam bidang set dan kategori, kita melihat bahwa set(types) selalu dinotasikan menggunakan 1 huruf kapital,
 seperti A, B, C, T, U, X dan lainnya<a href="https://en.wikipedia.org/wiki/Set_(mathematics)#How_sets_are_defined_and_set_notation">[1]</a>. 
-Generics merupakan representasi dari notasei sets di dalam matematika untuk merepresentasikan berbagai sets(types) yang bisa digunakan.</li>
+Generics merupakan representasi dari notasi <em>set</em> di dalam matematika untuk merepresentasikan berbagai set(type) yang bisa digunakan.</li>
 <li>Traits: Digunakan untuk memberikan common things shared between sets, atau dalam hal ini type data yang telah di-generic-kan di atas.
 Ketika kita menggunakan generic tanpa trait, maka literally semua sets bisa saja dimasukkan ke dalam generic tersebut, untuk membatasi ini, maka bisa digunakan traits.</li>
 <li>Closures: Digunakan untuk merepresentasikan arrows pada matematika, yaitu memberikan kemampuan untuk meng-<em>inline</em> deklarasi fungsi pada kode. 

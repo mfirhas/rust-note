@@ -46,6 +46,7 @@ fn accept_not_pure(a: &mut i32) {
 Pada contoh di atas, terdapat rules yang bisa ditulis:
 - Immutable parameter bisa menerima immutable dan mutable arguments, karena fungsi tidak memiliki side-effects karena immutability dari parameternya.
 - Mutable parameter hanya bisa menerima mutable argument, karena fungsi ini pasti memiliki side-effects karena mutability dari parameternya.
+
 Dua rule di atas digunakan untuk memberikan abstraksi yang jelas dari API-API yang kita buat.
 
 ## First-order function ##

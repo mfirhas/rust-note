@@ -25,10 +25,19 @@ Karena semua immutable by default, maka variable yang di-pass ke dalam juga immu
 ```rust
 fn main() {
     let mut a = 20;
-    accept_mut(&mut a);
+    accept_pure(&a); 
+    accept_not_pure(&mut a);
 }
-fn accept_mut(a: &i32) {
-    println!("-+-+> {}", a);
+
+// pure function
+fn accept_pure(a: &i32) {
+    println!("pure function: {a}");
+}
+
+// non-pure function
+fn accept_not_pure(a: &mut i32) {
+    *a += 1;
+    println!("non-pure function: {a}");
 }
 ```
 Pada contoh di atas, sekalipun kita passing mutable reference, ketika parameter fungsi adalah immutable, maka data tetap tidak akan berubah di dalam fungsi. 

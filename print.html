@@ -71,10 +71,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -3616,7 +3618,7 @@ Operasi binary yang bisa di-aplikasikan terhadap bilangan bulat positif adalah +
 Identity element bisa juga disebut debagai default values/empty values dari suatu set jika diterapkan suatu operasi binary tidak mengubah value dari data di dalam set tersebut, contoh operasi pertambahan, maka default values dari integer adalah <code>0</code>.</li>
 </ul>
 <p>Setiap set memiliki identity element(jika value) atau identity function(jika function) yang mana apabila diapply dengan suatu operasi binary, akan menghasilkan value yang sama. Hampir di semua bahasa pemograman dengan tipe data tertentu memiliki identity element atau identity function yang bisa diterapkan padanya. 
-Kita sudah menemui beberapa contoh monoid di dalam sehari-hari ngoding seperti array, slices, etc. Jadi Monoid adalah semacam tipe compound/collection yang memiliki tipe data yang sama.</p>
+Hampir semua tipe data di Rust bisa disebut monoid.</p>
 <h2 id="arrow"><a class="header" href="#arrow">Arrow</a></h2>
 <p>Merupakan function yang akan di-inject ke dalam functor dan terkomposisi melakukan pemosresan data dari sebuah category.</p>
 <pre><code>(A) -&gt; B

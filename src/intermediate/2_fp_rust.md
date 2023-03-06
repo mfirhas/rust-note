@@ -21,16 +21,19 @@ Berbeda dengan beberapa bahasa lain yang beberapa variable memiliki default valu
 Semua tipe data merupakan set itu sendiri, karena tidak ada empty values padanya, dan default values yang harus ditentukan manual yang mana value nya juga bagian dari set itu. Dengan memanfaatkan generics dan trait, kita bisa membentuk type constructor/container untuk membuat tipe baru, atau disebut juga sebagai category. Semua ini bersifat immutable by default.
 
 ## Pure Function ##
+Pure Function tidak memiliki side-effects yang reflected ke luar fungsi. Jikalau Pure Function melakukan perubahan, perubahan itu hanya local state dari fungsi tersebut tanpa reflected ke luar. Hal ini berbeda dengan beberapa idiom yang biasa terjadi di C dan Go dimana kita mem-*passing* pointer ke dalam fungsi yang akan merubah state dari pointer tersebut.
 Karena semua immutable by default, maka variable yang di-pass ke dalam juga immutable by default. Kondisi variable yang di-pass ke dalam fungsi mengikuti deklarasi variable di parameternya.
 ```rust
 fn main() {
     let mut a = 20;
-    accept_pure(&a); 
-    accept_not_pure(&mut a);
+    accept_pure(&a); // pass immutable reference
+    accept_pure(&mut a); // pass mutable reference
+    accept_not_pure(&mut a); // pass mutable reference
+    // accept_not_pure(&a); // can't pass immutable arguments into mutable parameter
 }
 
 // pure function
-fn accept_pure(a: &i32) {
+fn accept_pure(a: &i32) { // whatever the condition of arguments passed, those will follow function's parameters declaration.
     println!("pure function: {a}");
 }
 
@@ -40,9 +43,10 @@ fn accept_not_pure(a: &mut i32) {
     println!("non-pure function: {a}");
 }
 ```
-Pada contoh di atas, sekalipun kita passing mutable reference, ketika parameter fungsi adalah immutable, maka data tetap tidak akan berubah di dalam fungsi. 
-Jadi API caller bisa tau apakah suatu API/fungsi bersifat pure atau tidak, dengan melihat kondisi parameters dari fungsi tersebut. 
-Hal ini juga berlaku terhadap associated functions yaitu self, dimana methods akan bersifat pure selama tidak ada `mut` didepan self tersebut, seperti `mut self` dan `&mut self`. Keyword `mut` adalah penanda impurity dari function atau method.
+Pada contoh di atas, terdapat rules yang bisa ditulis:
+- Immutable parameter bisa menerima immutable dan mutable arguments, karena fungsi tidak memiliki side-effects karena immutability dari parameternya.
+- Mutable parameter hanya bisa menerima mutable argument, karena fungsi ini pasti memiliki side-effects karena mutability dari parameternya.
+Dua rule di atas digunakan untuk memberikan abstraksi yang jelas dari API-API yang kita buat.
 
 ## First-order function ##
 Rust menerapkan first-order function melalui closure, yang mana seperti yang telah dibahas sebelumnya, closure-closure pada rust menerapkan salah satu dari 3 trait closures yang telah dibahsa di [sini](basic/../../basic/5_variables_function_closure.md#closures), yaitu `FnOnce`, `FnMut`, dan `Fn`.

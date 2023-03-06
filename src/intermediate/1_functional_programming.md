@@ -94,7 +94,7 @@ Monoid adalah suatu set yang memenuhi kriteria:
   Identity element bisa juga disebut debagai default values/empty values dari suatu set jika diterapkan suatu operasi binary tidak mengubah value dari data di dalam set tersebut, contoh operasi pertambahan, maka default values dari integer adalah `0`.
 
 Setiap set memiliki identity element(jika value) atau identity function(jika function) yang mana apabila diapply dengan suatu operasi binary, akan menghasilkan value yang sama. Hampir di semua bahasa pemograman dengan tipe data tertentu memiliki identity element atau identity function yang bisa diterapkan padanya. 
-Kita sudah menemui beberapa contoh monoid di dalam sehari-hari ngoding seperti array, slices, etc. Jadi Monoid adalah semacam tipe compound/collection yang memiliki tipe data yang sama.
+Hampir semua tipe data di Rust bisa disebut monoid.
 
 ## Arrow ##
 Merupakan function yang akan di-inject ke dalam functor dan terkomposisi melakukan pemosresan data dari sebuah category.

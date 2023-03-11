@@ -12,6 +12,8 @@ Rust dengan type system nya bisa mengaplikasikan pendekatan functional dengan me
 Rust mendapatkan polymorphic type parameters secara static dan strong oleh generics dan traits, serta dapat mengembangkan komputasi menggunakan closures.
 Kita telah membahas ketiga di atas pada pembahasan sebelumnya. 
 
+Rust tidak murni functional, akan tetapi banyak dari praktiknya menggunakan paradigma functional.
+
 Kita akan membahas kaitan konsep-konsep pada functional programming di dalam Rust.
 
 ## Types & Immutability ##

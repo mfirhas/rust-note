@@ -21,9 +21,9 @@ s serve:
 	mdbook serve
 
 cp_google_verif:
-	cp ./google571d168c4df584a0.html ./book/
+	cp -a ./.site/. ./book/
 
 build:
 	mdbook build
 
-build_with_google_verif: build cp_google_verif
+build_all: build cp_google_verif

@@ -23,7 +23,7 @@ jobs:
         run: make install
 
       - name: Build 🏗️
-        run: make build_with_google_verif
+        run: make build_all
 
       - name: Deploy to GitHub Pages 🚀
         if: ${{ github.event_name != 'pull_request' }}

@@ -1,4 +1,6 @@
+SITE := mfathirirhas.github.io/rust-note
 BUILD_DIR := ./book
+SITEMAP_DIR := $(BUILD_DIR)/sitemap.xml
 
 default: install
 
@@ -20,10 +22,13 @@ install:
 s serve:
 	mdbook serve
 
-cp_google_verif:
-	cp -a ./.site/. ./book/
-
 build:
 	mdbook build
 
-build_all: build cp_google_verif
+cp_google_verif:
+	cp -a ./.site/. $(BUILD_DIR)
+
+sitemap:
+	mdbook-sitemap-generator -d $(SITE) -o $(SITEMAP_DIR)
+
+build_all: build sitemap cp_google_verif

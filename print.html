@@ -4339,26 +4339,26 @@ async fn nothing() {}</code></pre></pre>
 Tanpa generics:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>fn DoInt32() {
+</span>fn do_i32() {
     ...
 }
 
-fn DoI64() {
+fn do_i64() {
     ...
 }
 
-fn DoF32() {
+fn do_f32() {
     ...
 }
 
-fn DoF64() {
+fn do_f64() {
     ...
 }
 <span class="boring">}</span></code></pre></pre>
 <p>Dengan generics:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>fn Do&lt;T: Sized + Copy&gt;(param: T) {
+</span>fn do&lt;T: Sized + Copy&gt;(param: T) {
     ...
 }
 <span class="boring">}</span></code></pre></pre>

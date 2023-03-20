@@ -102,26 +102,26 @@ Generic pada Rust bersifat monomorphism, dimana terjadi monomorphization terhada
 Monomorphization ini sebenarnya hal yang cukup *straightforward*, contoh:
 Tanpa generics:
 ```rust
-fn DoInt32() {
+fn do_i32() {
     ...
 }
 
-fn DoI64() {
+fn do_i64() {
     ...
 }
 
-fn DoF32() {
+fn do_f32() {
     ...
 }
 
-fn DoF64() {
+fn do_f64() {
     ...
 }
 ```
 
 Dengan generics:
 ```rust
-fn Do<T: Sized + Copy>(param: T) {
+fn do<T: Sized + Copy>(param: T) {
     ...
 }
 ```

@@ -1,0 +1,368 @@
+<!DOCTYPE HTML>
+<html lang="id" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Zero-cost Abstraction(WIP) - Rust Note</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="Rust dalam Bahasa Indonesia">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../rust_id.html">Rust ID</a></li><li class="chapter-item expanded affix "><a href="../0_pengenalan.html">Pengenalan</a></li><li class="chapter-item expanded "><a href="../basic/0_basic.html"><strong aria-hidden="true">1.</strong> Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic/1_instalasi.html"><strong aria-hidden="true">1.1.</strong> Instalasi</a></li><li class="chapter-item expanded "><a href="../basic/2_toolchain.html"><strong aria-hidden="true">1.2.</strong> Toolchain</a></li><li class="chapter-item expanded "><a href="../basic/3_hello_world.html"><strong aria-hidden="true">1.3.</strong> Hello World!</a></li><li class="chapter-item expanded "><a href="../basic/4_struktur_codebase.html"><strong aria-hidden="true">1.4.</strong> Struktur Codebase</a></li><li class="chapter-item expanded "><a href="../basic/5_variables_function_closure.html"><strong aria-hidden="true">1.5.</strong> Variables, Functions, and Closures</a></li><li class="chapter-item expanded "><a href="../basic/6_primitive_types.html"><strong aria-hidden="true">1.6.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../basic/7_string_types.html"><strong aria-hidden="true">1.7.</strong> String Types</a></li><li class="chapter-item expanded "><a href="../basic/8_compound_types.html"><strong aria-hidden="true">1.8.</strong> Compound Types</a></li><li class="chapter-item expanded "><a href="../basic/9_algebraic_types.html"><strong aria-hidden="true">1.9.</strong> Algebraic Types</a></li><li class="chapter-item expanded "><a href="../basic/10_collection_types.html"><strong aria-hidden="true">1.10.</strong> Collection Types</a></li><li class="chapter-item expanded "><a href="../basic/11_control_flow.html"><strong aria-hidden="true">1.11.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../basic/12_ownership_and_borrowing.html"><strong aria-hidden="true">1.12.</strong> Ownership and Borrowing</a></li><li class="chapter-item expanded "><a href="../basic/13_associated_items.html"><strong aria-hidden="true">1.13.</strong> Associated Items</a></li><li class="chapter-item expanded "><a href="../basic/14_trait.html"><strong aria-hidden="true">1.14.</strong> Trait</a></li><li class="chapter-item expanded "><a href="../basic/15_generic.html"><strong aria-hidden="true">1.15.</strong> Generic</a></li><li class="chapter-item expanded "><a href="../basic/16_generic_bound_with_trait.html"><strong aria-hidden="true">1.16.</strong> Generic Bound with Trait</a></li><li class="chapter-item expanded "><a href="../basic/17_lifetime.html"><strong aria-hidden="true">1.17.</strong> Lifetime</a></li><li class="chapter-item expanded "><a href="../basic/18_error_handling.html"><strong aria-hidden="true">1.18.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="../basic/19_unit_test.html"><strong aria-hidden="true">1.19.</strong> Unit Test</a></li><li class="chapter-item expanded "><a href="../basic/20_cargo_dan_konfigurasi.html"><strong aria-hidden="true">1.20.</strong> Cargo dan Konfigurasi</a></li></ol></li><li class="chapter-item expanded "><a href="../intermediate/0_intermediate.html"><strong aria-hidden="true">2.</strong> Intermediate</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../intermediate/1_functional_programming.html"><strong aria-hidden="true">2.1.</strong> Functional Programming</a></li><li class="chapter-item expanded "><a href="../intermediate/2_fp_rust.html"><strong aria-hidden="true">2.2.</strong> Functional Programming pada Rust</a></li><li class="chapter-item expanded "><a href="../intermediate/3_iterator.html"><strong aria-hidden="true">2.3.</strong> Iterator</a></li><li class="chapter-item expanded "><a href="../intermediate/4_zero-cost_abstraction.html" class="active"><strong aria-hidden="true">2.4.</strong> Zero-cost Abstraction(WIP)</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Note</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="zero-cost-abstraction"><a class="header" href="#zero-cost-abstraction">Zero-cost Abstraction</a></h1>
+<blockquote>
+<p><em>&quot;What you don’t use, you don’t pay for. And further: What you do use, you couldn’t hand code any better.&quot;</em></p>
+<p>~ Bjarne Stroustrup, <a href="https://www.stroustrup.com/ETAPS-corrected-draft.pdf">Foundations of C++</a></p>
+</blockquote>
+<p>Zero-cost merupakan salah satu prinsip utama dalam Rust yang memiliki pengaruh dari C++. Definisi dari ZCA adalah meminimalisir <em>runtime overhead</em> sebanyak mungkin dengan melakukan banyak komputasi pada saat <em>compile-time</em>. ZCA menekankan pada abstraksi kode program yang memiliki performansi yang sama dengan kode program yang ditulis manual secara prosedural(<em>imperatively</em>). </p>
+<p>Ketika kita menulis program manually by hands, <em>step-by-step</em>, setiap iterasi, state, dan <em>wrapper</em> yang kita taruh akan kita pertimbangkan dengan sematang-matangnya tanpa mengenai performansi pada saat runtime. Hal ini tentunya sangat melelahkan karena terlalu manual, terlalu <em>menial</em> dan <em>repetitive</em>. Abstraksi dikenalkan pada pemograman supaya lebih memudahkan kita dalam merepresentasikan beberapa details mejadi satu konsep supaya lebih mudah diingat dan ditulis. Dengan abstraksi akan memudahkan dan mempercepat kita dalam menulis kode program karena semua hal-hal detail dan <em>irrelevant</em> sudah kita abstraksikan ke dalam abstraksi yang kita buat, sehingga tidak perlu dirisaukan lagi. Akan tetapi hal ini memiliki <em>trade-off</em> yaitu kita harus membayar kemudahan ini dengan <em>performance penaly</em>, sehingga kode program yang diabstraksi akan memiliki performansi lebih lambat ketimbang ditulis manual.</p>
+<p>Berangkat dari sinilah muncul konsep ZCA ini, yaitu untuk mengoptimisasi dan mengefisiensi kode program tanpa mengeluarkan ekstra effort menulis dengan manual, dan tetap mendapat performansi yang sama dengan menulis manual <em>by hands</em>.</p>
+<p>Rust memiliki prinsip ini dengan compiler-nya yang banyak memproses dan mengoptimisasi hal pada saat compile-time, sebisa mungkin banyak hal bisa ditangkap pada saat compile-time, sehingga semua kemungkinan bugs bisa ditangkap pada saat compile-time, dan menyisakan sangat sedikit bahkan <em>free</em> untuk runtime. <code>rustc</code> dengan <code>llvm</code> bekerja sama dalam meng-<em>deconstruct</em> dan mengoptimisasi semua abstraksi kode sehingga hasil build akhir sama dengan kode yang ditulis manual <em>by hands</em> dan memiliki performansi yang mirip.</p>
+<p>Berdasarkan <a href="https://www.stroustrup.com/ETAPS-corrected-draft.pdf">paper ini</a> ada beberapa hal yang berkaitan dengan ZCA diantaranya resource management, compile-time computation, error handling, concurrency dan performance. Selain itu juga berkaitan dengan bagaimana kaitannya dengan type system dari suatu bahasa. Kita akan membahas ini kaitannya dengan Rust.</p>
+<p>Berikut hal-hal yang berkaitan dengan ZCA di Rust:</p>
+<h2 id="static-type-analysis"><a class="header" href="#static-type-analysis">Static Type Analysis</a></h2>
+<p>Rust merupakan bahasa yang memiliki static dan strongly typed type system. Static Type pada Rust menerapkan <em>affine</em> dan <em>linear</em> types dibarengi dengan RAII serta <a href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system">Hindley–Milner type system</a> untuk full type inference. Hal ini mengurangi kewajiban untuk mendeklarasikan tipe di beberapa tempat karena akan langsung di-<em>inferred</em> oleh compiler.</p>
+<p>Strong type menghasilkan type safety dengan berbagai cara, di antaranya: no null pointer, always valid reference, immutable by default, no RTTI, no reflection, bound checks, no type casting, no type assertion, dan lainnya. Setiap type memiliki state yang jelas serta memiliki scope/lifetime yang jelas juga. Dibarengi dengan RAII Rust memiliki jaminan terhadap invariants pada program dengan memanfaatkan type systemnya untuk menjaga dari setiap invariant violations.</p>
+<p>Hal-hal di atas memungkinkan compiler mengetahui dan mengantisipasi beberapa <em>pitfalls</em> yang mungkin terjadi pada saat runtime.</p>
+<h2 id="no-garbage-collector"><a class="header" href="#no-garbage-collector">No Garbage Collector</a></h2>
+<p>Memiliki manajemen memori tanpa Garbage Collector. Garbage collector merupakan salah satu runtime-cost yang memiliki cost berupa memory management dan segala overheadnya, seperti CPU usage untuk GC bekerja, memory management dan safety memory measures, <em>compacting</em>, <em>stop-the-world</em>, dan lainnya yang berkaitan dengan memory management. Bahasa-bahasa yang memiliki GC tentunya memiliki alasan agar memory management tidak manual seperti C dan C++. Hal ini tentunya membawa cost berupa runtime overhead. </p>
+<p>Rust menerapkan prinsip ZCA dengan cara menghilangkan GC, dan tanpa harus mengatur memory secara manual seperti di C/C++, yaitu dengan menerapkan konsep <strong>Ownership dan Borrow</strong>, dimana Rust men-<em>tracking</em> setiap object yang di-<em>create</em> beserta lifetime-nya. Hal ini menghasilkan dua jenis data yang ada, yaitu: 1. <em>Exclusive data</em>, dan 2. <em>Shared data</em>. </p>
+<p><em>Exclusive</em> data merupakan data yang di-<em>owned</em>, biasanya data yang tidak diketahui <em>size</em> nya pada saat compile time(heap allocated), sistem ownership diterapkan pada exclusive data dengan cara melakukan binding hanya pada 1 owner untuk setiap data di satu lifetime/scope. Ketika lifetime habis atau scope berpindah, terjadi dua kemungkinan: data berpindah ownership(<em>move</em>), atau data di-<em>drop</em>. Eksklusivitas dari data ini memberikan handle yang aman terhadap data dari segala memory issue dan juga terhadap concurrency issue. Selain itu juga memberikan kemampuan GC tanpa GC.</p>
+<p><em>Shared</em> data merupakan data yang di-<em>borrowed</em>, biasanya data yang berupa reference type(&amp;). <em>Borrow</em> bisa bersifat <em>immutable</em> dan <em>mutable</em>. <em>Immutable borrow</em> dilakukan untuk memberikan data yang bersifat read-only, tanpa melakukan <em>copy</em> terhadap original data. <em>Mutable borrow</em> dilakukan ketika ingin memberi <em>side-effects</em> terhadap suatu data, tentunya juga tanpa <em>copy</em> terhadap original data. <em>Borrow</em> sangat penting ketika data yang diolah cukup besar dalam size, dan tidak efisien ketika di-<em>copy</em>, sehingga cukup dengan mengirim <em>reference</em> terhadap data tersebut. Rust menerapkan <em>borrow checker</em> untuk memastikan semua lifetime reference type valid dan data yang direferensikan valid, pada saat compile-time tentunya.</p>
+<h2 id="data-race-check"><a class="header" href="#data-race-check">Data Race Check</a></h2>
+<p>Thread safety merupakan fitur yang didapatkan setelah menerapkan type dan memory safety. </p>
+<p>Bahasa lain seperti Golang, memiliki feature race detector untuk mendeteksi data race. Akan tetapi feature ini tidak ZCA karena kita harus membayar cost yang sangat besar jika ingin menggunakannya(build dengan flag <code>-race</code>). Menurut situs official <a href="https://go.dev/doc/articles/race_detector#Runtime_Overheads">ini</a>, data race detector pada Golang bisa memberikan runtime overhead sebesar 5-10x memory usage dan 2-20x execution time. </p>
+<p>Rust dengan konsep memory safety dan ZCA dapat mendeteksi data race saat compile-time tanpa overhead saat runtime. <em>Check</em> ini dilakukan pada saat compile time dengan memeriksa <em>ownership</em> suatu data, dengan memanfaatkan <em>borrow checking</em> setiap references/pointers yang di-share secara mutable antar threads akan gagal di-compile.</p>
+<h2 id="zero-cost-async-with-future"><a class="header" href="#zero-cost-async-with-future">Zero-cost Async with Future</a></h2>
+<p>Rust pada awalnya menerapkan <a href="https://cfsamson.github.io/books-futures-explained/0_background_information.html#green-threadsstackful-coroutines">greenthread</a> untuk runtime asynchronousnya, tetapi di-remove sebelum versi 1.0. Beberapa alasan di-remove di antaranya greenthread memiliki cost runtime, stackful, stateful, need to store CPU state inside memory in each context switch, kalau ingin FFI maka butuh switch context dan thread lebih besar lagi, karena beda call semantics antar bahasa. </p>
+<p>Akhirnya metode asynchronous yang diterapkan adalah Future-based, yaitu pendekatan functional terhadap asynchronous code. Future bekerja layaknya state machine yang di execute oleh semacam <em>executor</em>(provided by async library e.g. Tokio). Future sebenarnya adalah monad yang mengkombinasikan closure2 yang di-execute lazily. Dari sudut pandang user kode terlihat asynchronous dengan syntax sugar async/await, akan tetapi ketika di-compile, future akan dikonversikan ke semacam state-machine yang saling sinkron dengan state-state yang ada(pakai enum, dengan state2 seperti wake, pending, finished, etc), jadi tidak ada cost context switch pada level runtime, akan tetapi pada level code oleh type system.</p>
+<p>Berikut contoh sederhana perbandingan async pada go dan rust:
+Program berikut melakukan looping terhadap fungsi yang dijalankan secara asynchronous.</p>
+<p>Golang:</p>
+<pre><code class="language-go">package main
+
+import (
+	&quot;fmt&quot;
+	&quot;time&quot;
+)
+
+func main() {
+	start := time.Now()
+	for i := 0; i &lt; 100000; i++ {
+		go nothing()
+	}
+	end := time.Since(start)
+	fmt.Printf(&quot;elapsed: %v&quot;, end)
+}
+
+func nothing() {}
+</code></pre>
+<p><strong>Go Result:</strong>: <code>elapsed: 29.846477ms</code></p>
+<br/>
+<p>Rust:</p>
+<pre><pre class="playground"><code class="language-rust">use tokio::time::Instant;
+
+#[tokio::main]
+async fn main() {
+    let start = Instant::now();
+    for i in (0..100000) {
+        nothing().await;
+    }
+    let end = start.elapsed();
+    println!(&quot;elapsed: {:#?}&quot;, end);
+}
+
+async fn nothing() {}</code></pre></pre>
+<p><strong>Rust Result</strong>: <code>elapsed: 56.724µs</code></p>
+<p>Pada benchmark sederhana di atas Rust lebih cepat sekitar 500x lebih cepat. </p>
+<p>Microbenchmark ini mungkin tidak berarti apa-apa untuk real life application. Tapi disini bisa dilihat gimana cost untuk spawn <em>goroutine</em>(greenthread), dibanding pendekatan <em>future</em> yang dilakukan Rust secara zero-cost, tanpa melakukan apapun pada fungsi yang dipanggil.</p>
+<p>Go memiliki cost <em>spawning</em> pada saat runtime dengan ukuran stack awal 2KB, yang bisa grow sesuai kebutuhan. Bayangin setiap iterasi melakukan ada stack switching ke stackframe nya goroutine. Pada rust semua futures chain di jadikan fungsi-fungsi yang sinkron layaknya state machine tanpa switch stack karena stackless coroutine.</p>
+<h2 id="generics--traits"><a class="header" href="#generics--traits">Generics &amp; Traits</a></h2>
+<p>Generic pada Rust bersifat monomorphism, dimana terjadi monomorphization terhadap fungsi yang generic menjadi fungsi-fungsi yang lebih spesific sesuai dengan boundary type parameters. Semua ini merupakan fungsi stand-alone dan bisa dioptimisasi oleh compiler pada saat compile-time. Bahasa lain seperti Java menerapkan <em>type-erasure</em> dimana type dihapus dan diganti dengan object class yang mana semua class inherit dan generics pada java sebenarnya meng-automatisasi casting ke object class ini.</p>
+<p>Monomorphization ini sebenarnya hal yang cukup <em>straightforward</em>, contoh:
+Tanpa generics:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn DoInt32() {
+    ...
+}
+
+fn DoI64() {
+    ...
+}
+
+fn DoF32() {
+    ...
+}
+
+fn DoF64() {
+    ...
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Dengan generics:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn Do&lt;T: Sized + Copy&gt;(param: T) {
+    ...
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Generics dibarengi dengan traits, dapat memberikan polimorfisme pada fungsi/method tanpa runtime cost seperti pada interface di bahasa lain(Go, Java, etc).
+Sized dan Copy merupakan marker traits untuk sifat-sifat suatu tipe data, Sized merupakan traits untuk tipe yang diketahui sized nya pada saat compile time dan fixed, serta Copy merupakan traits untuk tipe data yang dapat dicopy bit-by-bit dengan sangat murah, misal primitive types. Semua primitive types sudah implements Copy secara default. Fungsi di atas akan di-konversi ke beberapa bentuk di atas dan di optimisasi oleh compiler(e.g inlining).</p>
+<h2 id="static-dispatch"><a class="header" href="#static-dispatch">Static Dispatch</a></h2>
+<p>Rust memiliki handle untuk polymorphism yang bisa melakukan method dispatches statically. Dispatch jenis ini memproses tipe data dengan trait bersangkutan pada saat compile-time dan memastikan semua matched dan tanpa menyimpan states pada saat runtime(e.g. pointers and vtables).</p>
+<p>Interface pada Golang merupakan semacam <em>fat pointer</em> dimana menyimpan reference untuk DST(Dynamically Sized Type) seperti concrete data dan methods. Ketika kita melakukan passing data ke dalam atau ke luar interface, data tersebut akan escape ke heap karena interface yang digunakan akan melakukan lookup ke vtable pada saat runtime ketika interface dipanggil/assert. Proses lookup ini membutuhkan runtime overhead dan tidak cacheable oleh CPU karena butuh call ke ranah memori untuk data dan function signatures.</p>
+<p>Rust melakukan static dispatch dengan memanfaatkan trait. Kita bisa menggunakan syntax <code>impl Trait</code> atau dengan notasi generic.
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust">pub trait Animal {
+    fn walk(&amp;self);
+    fn sleep(&amp;self);
+    fn eat(&amp;self);
+}
+
+fn static_dispatch&lt;A: Animal&gt;(a: A) {
+    a.walk();
+    a.sleep();
+    a.eat();
+}
+
+fn static_dispatch_impl(a: impl Animal) {
+    a.walk();
+    a.sleep();
+    a.eat();
+}
+
+struct Cat;
+
+impl Animal for Cat {
+    fn walk(&amp;self) {
+        println!(&quot;cat is walking...!&quot;)
+    }
+    fn sleep(&amp;self) {
+        println!(&quot;cat is sleeping...!&quot;)
+    }
+    fn eat(&amp;self) {
+        println!(&quot;cat is eating...!&quot;)
+    }
+}
+
+fn main() {
+    let c = Cat;
+    static_dispatch(c);
+    static_dispatch_impl(c);
+}</code></pre></pre>
+<p>Ketika <code>c</code> di-pass ke dalam <code>static_dispatch</code> atau <code>static_dispatch_impl</code>, akan terjadi monomorphization terhadap <code>c</code> sesuai dengan Trait yang diimplementasikan.</p>
+<h2 id="iterator"><a class="header" href="#iterator">Iterator</a></h2>
+<p>Pattern iterator bisa diterapkan dengan sedemikian abstraksi dan ketika di-compile stripped-down layaknya <em>optimized hand-written</em> code dengan manual looping, seperti di C. 
+Contoh:</p>
+<pre><pre class="playground"><code class="language-rust">pub fn main() -&gt; i32 {
+    sum() + sum() + sum() + sum() + sum() + sum() + sum() + sum()+ sum() + sum()+ sum() + sum()
+}
+
+pub fn sum() -&gt; i32 {
+    vec![1, 2, 3].into_iter().reduce(|x, y| x + y).unwrap()
+}</code></pre></pre>
+<p>Kode di atas jika dilihat di x86-64 menjadi:</p>
+<pre><code class="language-asm">example::main:
+        mov     eax, 72
+        ret
+
+example::sum:
+        mov     eax, 6
+        ret
+</code></pre>
+<p>Kita bisa lihat bahwa pada asm di atas hasil dari komputasi fungsi <code>sum()</code> sudah diketahui hasil nya dan penjumlahan dari beberapa fungsinya juga telah diketahui hasil nya. Jika kita bandingkan dengan bahasa lain terdapat proses komputasi pada saat looping, dan juga setiap ekspresi pemanggilan fungsi juga terjadi komputasi satu-per-satu. Abstraksi iterator yang kita buat di atas di-kompilasi sedemikian rupa sehingga memiliki performa yang sama dengan <em>highly optimized hand-written code</em>.
+Ini cuma salah satu dari banyak contoh dalam iterator pattern yang bisa dieksplor.</p>
+<h2 id="zero-sized-types"><a class="header" href="#zero-sized-types">Zero-sized Types</a></h2>
+<p>Kita bisa mendeklarasi tipe data cuma sebagai marker dan tidak memakan resource pada saat compile-time. Ini digunakan sebagai bagian dari analysis program secara statis.
+Konsep <em>ownership</em> dan <em>borrowing</em> masih berlaku pada saat program di-kompilasi sehingga secara semantic masih berlaku sama dan semua <em>markers</em> tersebut di-<em>stripped</em> pada saat compile-time.</p>
+<h2 id="macros"><a class="header" href="#macros">Macros</a></h2>
+<p>Macro adalah salah satu feature Rust untuk meng-ekstensi syntax bahasa. Macro juga digunakan untuk mengurangi beberapa hal yang bersifat <em>repetitive</em> ketika koding, dengan meng-automatisasi syntax generations dan juga melakukan type checks, <em>at compile-time</em>.</p>
+<p>Macro juga feature yang sangat significant untuk menulis DSL.</p>
+<h2 id="auto-vectorization"><a class="header" href="#auto-vectorization">Auto-Vectorization</a></h2>
+<p>Rust memiliki optimisasi kompilasi dimana compiler menerapkan SIMD(<em>Single Instruction, Multiple Data</em>). Diantara optimisasi yang diterapkan secara default adalah SIMD SSE dan SSE2 pada CPU Intel x86. Masih banyak optimisasi lain yang terjadi, tapi SIMD lah salah satu optimisasi yang cukup significant yang dapat meningkatkan performa program tanpa effort dari programmer, tanpa harus optimisasi manual <em>hand-coded</em>, tanpa harus menghilangkan abstraksi pada code. </p>
+<p>Salah satu contoh SIMD adalah contoh pada iterator di atas, dimana di dalam looping dan iterator tidak terjadi <em>actual looping</em> jika dilihat pada baris kode, akan tetapi semua dijadikan 1 vektor data yang dieksekusi oleh 1 instruksi CPU. Kita bisa bandingkan ini dengan hasil asm dari bahasa lain.</p>
+<br/>
+<p>Mungkin masih banyak jenis ZCA yang ada di Rust yang belum di-cover di sini. 
+Tanpa ZCA, developers biasanya berdebat antara membuat code yang <em>maintainable</em> atau membuat code yang <em>performant</em>. Dua hal ini sering bertentangan satu sama lain karena <em>maintainability</em> menerapkan banyak abstraksi pada kodenya demi readibility, clarity, dan kemudahan untuk developer dalam implementasi fungsionalitas program tanpa <em>hand-coding</em>. Sedangkan sebagian developers juga memiliki <em>concern</em> terhadap <em>performance</em> dari code mereka, sehingga tidak jarang abstraksi dihilangkan dan menghasilkan kode yang kurang maintainable dengan readibility yang hanya bisa dipahami oleh penulis awal program tersebut.</p>
+<p>Dengan ZCA, hal ini dapat teratasi karena developer masih bisa menerapkan abstraksi pada kode mereka untuk menjaga maintainability dengan sedemikian abstraksi, ketika program di-kompilasi, compiler akan mengoptimisasi kode dengan salah satunya menerapkan ZCA untuk menghilangkan abstraksi yang tidak relevan pada saat runtime sehingga performansi program tetap terjaga.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../intermediate/3_iterator.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../intermediate/3_iterator.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

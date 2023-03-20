@@ -354,6 +354,6 @@ Contoh-contoh di atas hanya contoh sederhana, untuk penggunaan yang lebih komple
 ## Why iterator? ###
 Kenapa gak pake `for` loop biasa aja kaya di Golang?, Hal ini ada kaitannya dengan kecenderungan Rust untuk lebih Functional ketimbang Procedural. `for` loop merupakan construct procedural, yang bersifat imperative, dilihat dari cara penggunaannya, yang memproses instruksi 1 per 1, dan melakukan increment terhadap index seperti yang umum di bahasa lain seperti `for (int i=0; i<10; i++)`. Rust secara idiom lebih cenderung ke FP yaitu menerapkan pattern iterator dengan dibarengi konsep monad yang mana fungsi-fungsi dikomposisi sedemikian rupa untuk memproses semua isi data collection. Cara iterator lebih declarative dilihat dari cara ngodingnya, deklarasi behaviournya, dan bagaimana objek dan fungsi-fungsi dikomposisi, selain itu juga terdapat sifat lazy dari setiap fungsi yang dikomposisi.
 
-Iterator juga cara untuk mengurangi basis path dari program kita, sehingga bisa mengurangi liabilitas ketika menulis program.
+Iterator juga cara untuk mengurangi [basis path](https://en.wikipedia.org/wiki/Basis_path_testing) dari program kita, sehingga bisa mengurangi liabilitas ketika menulis program.
 
 Melihat dari [benchmark](https://doc.rust-lang.org/stable/book/ch13-04-performance.html#comparing-performance-loops-vs-iterators), terlihat bagaimana **Zero-cost Abstraction** pada Rust membuat semua abstraksi iterator memiliki performa yang sama dengan `for` loop biasa, *bahkan lebih cepat!*

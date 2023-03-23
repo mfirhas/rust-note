@@ -1,10 +1,57 @@
-# Variables ,Functions, dan Closures #
+# Komponen Codebase #
 
-Variables di dalam rust secara default bersifat *immutable* yaitu tidak bisa diubah atau diassign ulang. *Immutability* merupakan pendekatan fungsional dari rust untuk menghindari *side-effects* di dalam program atau unexpected behaviour lainnya seperti race condition dan data race. Immutability juga memudahkan melakukan *tracing* data di dalam code program tanpa khawatir penggunaan selanjutnya di sisi lain code program.
-Variables dideklarasi di-dalam function/method atau disebut juga local variables.
+Sebelum kita membahas beberapa komponen pada Rust program, kita akan membahas beberapa konsep yang berkaitan dengan komponen tersebut.
 
-## Local Variable ##
-Variable yang dideklarasi hanya di dalam fungsi atau method, dan akan dihapus ketika stackframe fungsi dihapus.
+## Immutability vs Mutability ##
+Setiap variables dan statics pada Rust bersifat *immutable* secara default. Ini merupakan salah satu pendekatan functional programming dimana untuk menghindari side-effects pada data. Immutability menyebabkan data tidak bisa di-*assign* dengan value lain dan tidak bisa diubah. 
+Jika ingin memberikan mutability pada variable, bisa menggunakan keyword `mut` atau `&mut` untuk mutable borrow.
+Mutability hanya berlaku untuk variables dan statics. Untuk statics jika ingin melakukan mutasi, harus di dalam `unsafe` block.
+
+## `let` binding ##
+Merupakan keyword untuk mendeklarasi variable dan memberikan lifetime pada variable tersebut sampai berpindah/akhir scope. Karena semua variable pada rust bisa di-referensikan/borrowed, maka semua variable memiliki lifetime. Ketika kita mendeklarasi `let` untuk menciptakan variable dengan nama, maka kita sudah mendeklarasikan lifetime dari reference dari variable tersebut, sepanjang lifetime dari deklarasi `let`. 
+
+Kita bisa mendeklarasi reference pada data literal langsung tanpa `let` binding, akan tetapi ini menyebabkan reference tersebut hanya memiliki lifetime sepanjang statement assignment tempat literal reference tersebut dibuat. [Ref](https://users.rust-lang.org/t/temporary-value-is-freed-at-the-end-of-this-statement/84667/4?u=mfathirirhas) , hal ini hanya berlaku untuk *mutable reference*.
+
+Contoh:
+```rust
+{
+    let mut orphan_reference = &123;
+    orphan_reference = &900;
+    println!("{:?}", orphan_reference);
+    dbg!(orphan_reference);
+
+    // failed karena mutable orphan reference without let binding live only as long as its statement.
+    // let mut orphan_reference = &mut 123;
+    // orphan_reference = &mut 900;
+    // println!("{:?}", orphan_reference);
+    // dbg!(orphan_reference);
+
+    let binding: i32 = 123;
+    let borrow = &binding;
+    dbg!(binding);
+    dbg!(borrow);
+
+    let binding: String = "123".to_owned();
+    let borrow = &binding;
+    println!("{:?}", binding);
+    println!("{:?}", borrow);
+    dbg!(&binding);
+    dbg!(borrow);
+}
+```
+
+Kita akan membahas lebih detail tentang komponen-komponen yang ada di dalam codebase Rust. Secara umum dapat terbagi di antaranya:
+- Variables (local variables)
+- Statics (global variables)
+- Constants
+- Functions
+- Closures
+- Types (User Defined Types)
+
+Semua komponen di atas berada di dalam module(`mod`).
+
+## Variable ##
+Variable di dalam Rust hanya bisa dideklarasi di dalam scope function. Variable ini bersifat local dan akan dihapus setelah function return/exit.
 Naming convention local variable menggunakan *snake_case*.
 Berikut contoh deklarasi local variable:
 ```rust
@@ -12,6 +59,7 @@ let a = 123;
 let b: i32 = 123;
 let c = "literal string";
 let d: String = "Object String".to_string();
+let e: = &123;
 
 // deklarasi mutable
 let mut a = 123;
@@ -23,8 +71,15 @@ println!("{}", s); // testanu
 ```
 Pada contoh di atas, terdapat 4 jenis deklarasi variable. Variable `a` tidak memiliki deklarasi tipe karena Rust dapat meng-*infer* tipe data tersebut saat compile time. Variable `b` memiliki tipe data setelah colon `:`. Variable `c` merupakan jenis string literal atau reference string. Variable `d` merupakan jenis string *owned* dimana value string literal harus diubah ke owned menggunakan method `to_string()`.
 
+## Reference Variable (`&`) ##
+Merupakan variable yang berisi address dari variable yang direferensikan.
+Beberapa kegunaan reference variable:
+- Menyediakan data secara *read-only* menggunakan *immutable* reference tanpa memindahkan *ownership* data jika *clonable*
+- Memberikan *side-effect* kepada fungsi menggunakan *mutable* reference tanpa memindahkan *ownership* data jika *clonable*
+- Mem-*passing* data antar fungsi/method tanpa melakukan *copy*/*clone* terhadap value, sehingga yang di-*copy*/*clone* hanyalah address dari data(lebih murah).
+
 ## Shadowing ##
-Shadowing adalah ketika local variable lama dioverwrite secara tipe dan value. Contoh:
+Shadowing adalah ketika local variable lama dioverwrite dengan tipe dan value baru. Contoh:
 ```rust
 let a = 123; // i32
 let a = "from i32 to string"; // &str
@@ -48,6 +103,37 @@ println!("{:p}", a);
 println!("{:p}", b);
 ```
 Bukti bahwa static memiliki alamat memori adalah kita bisa mendapatkan alamat memori tersebut dengan cara di atas. Sementara kita tidak bisa melakukan hal itu terhadap constant karena constant tidak memiliki alamat memori.
+
+## Types (User Defined Types) ##
+Berikut beberapa tipe data yang bisa di-deklarasi oleh user dan bisa masuk ke dalam bagian namespace:
+- `struct`
+```rust
+struct MyStruct {
+    f1: i32,
+    f2: String,
+}
+```
+- `enum`
+```rust
+enum MyEnum {
+    F1(i32),
+    F2(String),
+}
+```
+- `union`
+```rust
+#[repr(C)]
+union MyUnion {
+    f1: u32,
+    f2: f32,
+}
+```
+- Types aliases
+```rust
+type Integer32 = i32;
+type Float64 = f64;
+```
+Type alias bisa menerima value dengan tipe yang sama dengan alias-nya.
 
 ## Functions ##
 Fungsi merupakan unit komputasi paling dasar dengan deklarasi:
@@ -77,7 +163,7 @@ let add_one_v3 = |x| {
 };
 
 // deklarasi tanpa tipe data, tanpa curly brackets.
-let add_one_v4 = |x| x + 1  ;
+let add_one_v4 = |x| x + 1;
 add_one_v4(5); // return 6
 ```
 Compiler akan secara otomatis meng-infer tipe data dari parameter yang tidak diberi tipe data. Jika body hanya 1 baris, maka block curly brackets bisa dihilangkan.

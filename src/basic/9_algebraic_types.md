@@ -28,7 +28,7 @@ let volume = Volume {
 }
 ```
 Ketika inisialisasi ketiga field harus diisi atau akan error.
-Manakah sifat kombinatorik yang dimaksud?, bisa kita lihat pada contoh di atas, setiap field punya tipe u8, dengan begitu ketika dikombinasikan dengan logika *AND* atau dimultiplikasikan memiliki total kombinasi product yaitu: 255 * 255 * 255 = 16581375 kemungkinan representasi dari tipe `Volume`.
+Manakah sifat kombinatorik yang dimaksud?, bisa kita lihat pada contoh di atas, setiap field punya tipe u8, dengan begitu ketika dikombinasikan dengan logika *AND* atau dimultiplikasikan memiliki total kombinasi product yaitu: 256 * 256 * 256 = 16777216 kemungkinan representasi dari tipe `Volume`.
 
 ### Struct with Tuple ###
 Deklarasi struct tanpa fields name. Merupakan gabungan struct dan Tuple.

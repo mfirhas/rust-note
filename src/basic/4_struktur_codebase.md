@@ -26,7 +26,7 @@ Berikut komponen-komponen tersebut mulai dari yang terkecil:
   
   |Types       | Desc.                                                        | Naming Convention    |
   |------------|--------------------------------------------------------------|----------------------|
-  | **const**  | Values embeded at compile time                               | SCREAMING_SNAKE_CASE |
+  | **const**  | Values embedded at compile time                              | SCREAMING_SNAKE_CASE |
   | **static** | Values allocated once at compile time                        | SCREAMING_SNAKE_CASE |
   | **trait**  | Declaration of shared types, constants, and functions/methods| PascalCase           | 
   | **struct** | Product Type                                                 | PascalCase           | 

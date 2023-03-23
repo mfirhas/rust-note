@@ -8,7 +8,7 @@
   - [Toolchain](basic/2_toolchain.md)
   - [Hello World!](basic/3_hello_world.md)
   - [Struktur Codebase](basic/4_struktur_codebase.md)
-  - [Variables, Functions, and Closures](basic/5_variables_function_closure.md)
+  - [Komponen Codebase](basic/5_komponen_codebase.md)
   - [Primitive Types](basic/6_primitive_types.md)
   - [String Types](basic/7_string_types.md)
   - [Compound Types](basic/8_compound_types.md)
@@ -30,3 +30,4 @@
   - [Functional Programming pada Rust](intermediate/2_fp_rust.md)
   - [Iterator](intermediate/3_iterator.md)
   - [Zero-cost Abstraction](intermediate/4_zero-cost_abstraction.md)
+  - [Smart Pointers(WIP)](intermediate/5_smart_pointers.md)

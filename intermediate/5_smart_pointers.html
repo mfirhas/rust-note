@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Smart Pointers(WIP) - Rust Note</title>
+        <title>Smart Pointers - Rust Note</title>
 
 
         <!-- Custom HTML head -->
@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../rust_id.html">Rust ID</a></li><li class="chapter-item expanded affix "><a href="../0_pengenalan.html">Pengenalan</a></li><li class="chapter-item expanded "><a href="../basic/0_basic.html"><strong aria-hidden="true">1.</strong> Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic/1_instalasi.html"><strong aria-hidden="true">1.1.</strong> Instalasi</a></li><li class="chapter-item expanded "><a href="../basic/2_toolchain.html"><strong aria-hidden="true">1.2.</strong> Toolchain</a></li><li class="chapter-item expanded "><a href="../basic/3_hello_world.html"><strong aria-hidden="true">1.3.</strong> Hello World!</a></li><li class="chapter-item expanded "><a href="../basic/4_struktur_codebase.html"><strong aria-hidden="true">1.4.</strong> Struktur Codebase</a></li><li class="chapter-item expanded "><a href="../basic/5_komponen_codebase.html"><strong aria-hidden="true">1.5.</strong> Komponen Codebase</a></li><li class="chapter-item expanded "><a href="../basic/6_primitive_types.html"><strong aria-hidden="true">1.6.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../basic/7_string_types.html"><strong aria-hidden="true">1.7.</strong> String Types</a></li><li class="chapter-item expanded "><a href="../basic/8_compound_types.html"><strong aria-hidden="true">1.8.</strong> Compound Types</a></li><li class="chapter-item expanded "><a href="../basic/9_algebraic_types.html"><strong aria-hidden="true">1.9.</strong> Algebraic Types</a></li><li class="chapter-item expanded "><a href="../basic/10_collection_types.html"><strong aria-hidden="true">1.10.</strong> Collection Types</a></li><li class="chapter-item expanded "><a href="../basic/11_control_flow.html"><strong aria-hidden="true">1.11.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../basic/12_ownership_and_borrowing.html"><strong aria-hidden="true">1.12.</strong> Ownership and Borrowing</a></li><li class="chapter-item expanded "><a href="../basic/13_associated_items.html"><strong aria-hidden="true">1.13.</strong> Associated Items</a></li><li class="chapter-item expanded "><a href="../basic/14_trait.html"><strong aria-hidden="true">1.14.</strong> Trait</a></li><li class="chapter-item expanded "><a href="../basic/15_generic.html"><strong aria-hidden="true">1.15.</strong> Generic</a></li><li class="chapter-item expanded "><a href="../basic/16_generic_bound_with_trait.html"><strong aria-hidden="true">1.16.</strong> Generic Bound with Trait</a></li><li class="chapter-item expanded "><a href="../basic/17_lifetime.html"><strong aria-hidden="true">1.17.</strong> Lifetime</a></li><li class="chapter-item expanded "><a href="../basic/18_error_handling.html"><strong aria-hidden="true">1.18.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="../basic/19_unit_test.html"><strong aria-hidden="true">1.19.</strong> Unit Test</a></li><li class="chapter-item expanded "><a href="../basic/20_cargo_dan_konfigurasi.html"><strong aria-hidden="true">1.20.</strong> Cargo dan Konfigurasi</a></li></ol></li><li class="chapter-item expanded "><a href="../intermediate/0_intermediate.html"><strong aria-hidden="true">2.</strong> Intermediate</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../intermediate/1_functional_programming.html"><strong aria-hidden="true">2.1.</strong> Functional Programming</a></li><li class="chapter-item expanded "><a href="../intermediate/2_fp_rust.html"><strong aria-hidden="true">2.2.</strong> Functional Programming pada Rust</a></li><li class="chapter-item expanded "><a href="../intermediate/3_iterator.html"><strong aria-hidden="true">2.3.</strong> Iterator</a></li><li class="chapter-item expanded "><a href="../intermediate/4_zero-cost_abstraction.html"><strong aria-hidden="true">2.4.</strong> Zero-cost Abstraction</a></li><li class="chapter-item expanded "><a href="../intermediate/5_smart_pointers.html" class="active"><strong aria-hidden="true">2.5.</strong> Smart Pointers(WIP)</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../rust_id.html">Rust ID</a></li><li class="chapter-item expanded affix "><a href="../0_pengenalan.html">Pengenalan</a></li><li class="chapter-item expanded "><a href="../basic/0_basic.html"><strong aria-hidden="true">1.</strong> Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic/1_instalasi.html"><strong aria-hidden="true">1.1.</strong> Instalasi</a></li><li class="chapter-item expanded "><a href="../basic/2_toolchain.html"><strong aria-hidden="true">1.2.</strong> Toolchain</a></li><li class="chapter-item expanded "><a href="../basic/3_hello_world.html"><strong aria-hidden="true">1.3.</strong> Hello World!</a></li><li class="chapter-item expanded "><a href="../basic/4_struktur_codebase.html"><strong aria-hidden="true">1.4.</strong> Struktur Codebase</a></li><li class="chapter-item expanded "><a href="../basic/5_komponen_codebase.html"><strong aria-hidden="true">1.5.</strong> Komponen Codebase</a></li><li class="chapter-item expanded "><a href="../basic/6_primitive_types.html"><strong aria-hidden="true">1.6.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../basic/7_string_types.html"><strong aria-hidden="true">1.7.</strong> String Types</a></li><li class="chapter-item expanded "><a href="../basic/8_compound_types.html"><strong aria-hidden="true">1.8.</strong> Compound Types</a></li><li class="chapter-item expanded "><a href="../basic/9_algebraic_types.html"><strong aria-hidden="true">1.9.</strong> Algebraic Types</a></li><li class="chapter-item expanded "><a href="../basic/10_collection_types.html"><strong aria-hidden="true">1.10.</strong> Collection Types</a></li><li class="chapter-item expanded "><a href="../basic/11_control_flow.html"><strong aria-hidden="true">1.11.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../basic/12_ownership_and_borrowing.html"><strong aria-hidden="true">1.12.</strong> Ownership and Borrowing</a></li><li class="chapter-item expanded "><a href="../basic/13_associated_items.html"><strong aria-hidden="true">1.13.</strong> Associated Items</a></li><li class="chapter-item expanded "><a href="../basic/14_trait.html"><strong aria-hidden="true">1.14.</strong> Trait</a></li><li class="chapter-item expanded "><a href="../basic/15_generic.html"><strong aria-hidden="true">1.15.</strong> Generic</a></li><li class="chapter-item expanded "><a href="../basic/16_generic_bound_with_trait.html"><strong aria-hidden="true">1.16.</strong> Generic Bound with Trait</a></li><li class="chapter-item expanded "><a href="../basic/17_lifetime.html"><strong aria-hidden="true">1.17.</strong> Lifetime</a></li><li class="chapter-item expanded "><a href="../basic/18_error_handling.html"><strong aria-hidden="true">1.18.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="../basic/19_unit_test.html"><strong aria-hidden="true">1.19.</strong> Unit Test</a></li><li class="chapter-item expanded "><a href="../basic/20_cargo_dan_konfigurasi.html"><strong aria-hidden="true">1.20.</strong> Cargo dan Konfigurasi</a></li></ol></li><li class="chapter-item expanded "><a href="../intermediate/0_intermediate.html"><strong aria-hidden="true">2.</strong> Intermediate</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../intermediate/1_functional_programming.html"><strong aria-hidden="true">2.1.</strong> Functional Programming</a></li><li class="chapter-item expanded "><a href="../intermediate/2_fp_rust.html"><strong aria-hidden="true">2.2.</strong> Functional Programming pada Rust</a></li><li class="chapter-item expanded "><a href="../intermediate/3_iterator.html"><strong aria-hidden="true">2.3.</strong> Iterator</a></li><li class="chapter-item expanded "><a href="../intermediate/4_zero-cost_abstraction.html"><strong aria-hidden="true">2.4.</strong> Zero-cost Abstraction</a></li><li class="chapter-item expanded "><a href="../intermediate/5_smart_pointers.html" class="active"><strong aria-hidden="true">2.5.</strong> Smart Pointers</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -145,6 +145,584 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="smart-pointers"><a class="header" href="#smart-pointers">Smart Pointers</a></h1>
+<p>Smart Pointer merupakan Abstract Data Type untuk memudahkan manajemen memori tanpa reference/borrowing karena smart pointer memiliki ownership terhadap data yang di-<em>point</em>. Hampir semua smart pointer digunakan untuk manajemen data di heap dan memudahkan passing antar data tanpa harus berurusan dengan reference dan lifetime.</p>
+<p>Kita telah menemui beberapa smart pointer sebelumnya seperti <code>String</code>, <code>Vec&lt;T&gt;</code>, <code>HashMap&lt;K,V&gt;</code>, dll. Dari contoh yang pernah kita gunakan, bisa ditarik garis besar bahwa smart pointer adalah salah satu jenis memory management high-level untuk data-data yang di store di heap karena data tersebut dynamically sized dan tidak diketahui pasti size nya saat compile time, dan berubah2. Data-data pada heap tersebut direpresentasikan oleh <em>handle</em> yang stack-allocated dan memiliki move semantics berlaku padanya, sehingga akan move atau drop jika berpindah scope. </p>
+<p>Smart pointer mengimplementasikan 2 trait utama di dalam rust yaitu: <code>Deref</code> dan <code>Drop</code>. <code>Deref</code> digunakan untuk me-<em>dereference</em> data yang ada di heap dan <code>Drop</code> untuk menghapus data pada heap jika sudah keluar scope. Move semantics sudah otomatis di-implement karena kebanyakan smart pointers ini dibuat menggunakan custom types seperti <code>struct</code> yang tidak meng-implement <code>Copy</code> trait sehingga move semantics berlaku padanya.</p>
+<p>Beberapa contoh penggunaan smart pointer untuk data yang dynamic dan tidak diketahui size nya pada saat compile-time:</p>
+<ul>
+<li>User inputs.</li>
+<li>Recursive data.</li>
+<li>OOP style polymorphism (bukan ADT style polymorphism).</li>
+<li>Pointer pengganti reference type dan tidak ingin berurusan dengan lifetime annotations.</li>
+</ul>
+<p>Kali ini kita akan membahas beberapa contoh smart pointer pada Rust:</p>
+<h2 id="boxt"><a class="header" href="#boxt"><code>Box&lt;T&gt;</code></a></h2>
+<p>Smart pointer paling sederhana untuk mengalokasi data ke heap. Digunakan ketika kita ingin menggunakan data yang tidak diketahui size nya saat compile time(e.g. user input), dan bersifat dynamic in size.</p>
+<p>Diantara sifat-sifat Box:</p>
+<ul>
+<li>Single ownership</li>
+<li>Move or drop apply if out of scope</li>
+<li>Immutable and mutable borrows checked at compile time</li>
+</ul>
+<p>Deref Coercions:</p>
+<ul>
+<li>Dereference: <code>T = Box&lt;U&gt; -&gt; *T = U</code></li>
+<li>Reference:   <code>T = Box&lt;U&gt; -&gt; &amp;T = &amp;U</code></li>
+</ul>
+<p>Contoh:</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    do_box();
+}
+
+pub fn do_box() {
+    // 123 akan di-alokasikan ke heap memory.
+    // ownership rule berlaku untuk 123 di heap dan akan di-release jika keluar dari scope.
+    let boxed_i32 = Box::new(123);
+
+    // T = Box&lt;U&gt; -&gt; *T = U
+    // *T dimana T adalah smart pointer, akan meng-dereferensikan isi dari smart pointer
+    dereference(*boxed_i32);
+
+    // T = Box&lt;U&gt; -&gt; &amp;T = &amp;U
+    // &amp;T dimana T adalah smart pointer, akan meng-referensikan isi dari smart pointer
+    reference(&amp;boxed_i32);
+
+    // calling method on box depends on `self` type, since it's call-by-value(`self`) then will automatically got deferred by compiler.
+    println!(&quot;{}&quot;, boxed_i32.pow(2));
+
+    let mut boxed_i32 = Box::new(123);
+    println!(&quot;before dereference_mut: {boxed_i32}&quot;);
+    // Karena value dari explicit dereference akan di copy ke dalam parameter, mutability hanya berlaku pada scope fungsi.
+    dereference_mut(*boxed_i32);
+    println!(&quot;after dereference_mut: {boxed_i32}&quot;);
+
+    println!(&quot;---&quot;);
+
+    println!(&quot;before reference_mut: {boxed_i32}&quot;);
+    // T = Box&lt;U&gt; -&gt; &amp;mut T = &amp;U
+    // &amp;mut T dimana T adalah smart pointer, akan meng-dereferensikan isi dari smart pointer
+    reference_mut(&amp;mut boxed_i32);
+    println!(&quot;after reference_mut: {boxed_i32}&quot;);
+}
+
+fn dereference(n: i32) {
+    println!(&quot;from inside dereference: {n}&quot;);
+}
+
+fn reference(n: &amp;i32) {
+    println!(&quot;from inside reference: {n}&quot;);
+}
+
+fn dereference_mut(mut n: i32) {
+    n += 1;
+}
+
+fn reference_mut(n: &amp;mut i32) {
+    *n = *n + 1;
+}</code></pre></pre>
+<h2 id="rct"><a class="header" href="#rct"><code>Rc&lt;T&gt;</code></a></h2>
+<p>Merupakan smart poninter untuk membagikan ownership terhadap suatu data(<em>shared ownership</em>) atau meminjamkan suatu data ke-berbagai borrower(<em>multiple borrower</em>) secara <em>immutable</em>. Digunakan ketika kita ingin membagian reference tanpa harus berurusan dengan lifetime dan data dapat dengan mudah di-bagikan.</p>
+<p>Diantara sifat-sifat dari Rc:</p>
+<ul>
+<li>Multiple ownership.</li>
+<li>Immutable shared references(read only).</li>
+<li>If out of scope, heap data will be deallocated iff all references already out of scope.</li>
+<li>Immutable borrows checked at compile time.</li>
+<li>Unsafe for multithreading.</li>
+</ul>
+<p>Deref Coercions:</p>
+<ul>
+<li>Reference: <code>T = Rc&lt;U&gt; -&gt; &amp;T = &amp;U</code></li>
+<li>Dereference: <code>T = Rc&lt;U&gt; -&gt; *T = U</code> --&gt; When dereferencing value inside Rc, if the type of value doesn't implement Copy trait, then ownership move happen, this will fail because Rc is shared among multiple owner, hence 1 cannot take sole ownership of it. Beside, Rc is immutable reference smart pointer, no reason to take ownership of value out of it. </li>
+</ul>
+<p>Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::rc::Rc;
+
+#[derive(Debug)]
+pub struct Data;
+
+pub fn do_rc() {
+    let data = Data;
+    dbg!(data); // dbg! macro move ownership of non copyable value
+                // dbg!(data); // can't call debug data here since already moved into dbg!(data)
+
+    let shared_data = Rc::new(Data);
+    let borrow_shared_data = Rc::clone(&amp;shared_data);
+    let c = &amp;borrow_shared_data;
+    let d: &amp;Rc&lt;_&gt; = &amp;borrow_shared_data;
+    let e: &amp;Rc&lt;Data&gt; = &amp;borrow_shared_data;
+    let f: &amp;Data = d; // &amp;Rc&lt;T&gt; get coerced into &amp;T
+    println!(&quot;c - d - e - f -&gt; {:?} - {:?} - {:?} - {:?}&quot;, c, d, e, f);
+
+    let count = Rc::strong_count(&amp;shared_data);
+    println!(&quot;strong count: {count}&quot;);
+    // reference counts: 1. shared_data, and 2. borrow_shared_data
+    assert_eq!(2, count);
+    {
+        let inner_scope_borrow = Rc::clone(&amp;borrow_shared_data);
+        let inner_count = Rc::strong_count(&amp;shared_data);
+        // reference counts: 1. shared_data, 2. borrow_shared_data, and 3. inner_scope_borrow
+        assert_eq!(3, inner_count);
+        println!(&quot;inner strong count: {inner_count}&quot;);
+        println!(&quot;inner_scope_borrow drop here&quot;);
+    }
+
+    // T = Rc&lt;U&gt; -&gt; &amp;T = &amp;U
+    // &amp;T dimana T adalah Rc&lt;U&gt;
+    reference(&amp;borrow_shared_data);
+    dbg!(&amp;shared_data);
+    dbg!(&amp;borrow_shared_data);
+
+    // cannot move value out of Rc, because Rc is shared reference and might already shared among others, so anyone cannot take sole ownership of it.
+    // T = Rc&lt;U&gt; -&gt; *T = U --&gt; FAILED, won't work for Rc smart pointer because it's shared reference sp. Make sure only 1 reference left, and use `try_unwrap()`.
+    // &amp;T dimana T adalah Rc&lt;U&gt;
+    // dereference(*borrow_shared_data);
+
+    println!(
+        &quot;before delete: shared_data --&gt; strong count: {:?}&quot;,
+        Rc::strong_count(&amp;shared_data)
+    );
+    drop(borrow_shared_data);
+    println!(
+        &quot;after delete: borrow_shared_data --&gt; strong count: {:?}&quot;,
+        Rc::strong_count(&amp;shared_data)
+    );
+
+    // Rc::try_unwrap(T) only success if there's only 1 reference left in the counting.
+    // there were 2 reference before: 1. `shared_data` and 2. `borrow_shared_data`,
+    // we delete reference borrow_shared_data leaving only one reference and can be unwrap without runtime panic.
+    dbg!(Rc::try_unwrap(shared_data));
+    // dereference(Rc::try_unwrap(borrow_shared_data).unwrap());
+
+    let s = String::from(&quot;anu&quot;);
+    let borrow_string = Rc::from(&amp;s);
+    let borrow_borrow_string = Rc::clone(&amp;borrow_string);
+    println!(&quot;borrow_string count: {}&quot;, Rc::strong_count(&amp;borrow_string));
+    println!(
+        &quot;borrow_borrow_string count: {}&quot;,
+        Rc::strong_count(&amp;borrow_borrow_string)
+    );
+}
+
+fn dereference(data: Data) {
+    println!(&quot;inside dereference: {:?}&quot;, data)
+}
+
+fn reference(data: &amp;Data) {
+    println!(&quot;inside reference: {:?}&quot;, data)
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="refcellt"><a class="header" href="#refcellt"><code>RefCell&lt;T&gt;</code></a></h2>
+<p>Jika <code>Rc&lt;T&gt;</code> bersifat immutable reference, maka kita bisa menggunakan <code>RefCell&lt;T&gt;</code> untuk interior mutability. Interior mutability memberikan mutability pada inner data di dalam smart pointer. Smart pointer ini memberikan fleksibilitas untuk data yang immutable, tetapi memiliki kemungkinan untuk menjadi mutable. 
+Method <code>borrow()</code> return <code>Ref&lt;T&gt;</code> for many immutable references.
+Method <code>borrow_mut()</code> return <code>RefMut&lt;T&gt;</code> for 1 mutable reference.</p>
+<p>Sifat-sifat <code>RefCell&lt;T&gt;</code>:</p>
+<ul>
+<li>Single ownership.</li>
+<li>interior mutability, you can mutate value inside RefCell even if RefCell declared as immutable.</li>
+<li>Immutable or mutable borrows checked at runtime.</li>
+<li>Can panic at runtime because borrow checking happen both at runtime.</li>
+<li>Unsafe for multithreading.</li>
+<li>Doesn't implement Deref trait.</li>
+</ul>
+<p>Panic cases:</p>
+<ul>
+<li>More than 1 mutable borrow.</li>
+<li>immutable and mutable borrow in the same scope.</li>
+<li>Use <code>try_borrow()</code> or <code>try_borrow_mut()</code> for non-panics way of handling borrows for immutable and mutable reference(respectively).</li>
+</ul>
+<p>No Deref coercions since it's not implementing Deref trait. 
+Instead, use methods <code>borrow()</code>/<code>try_borrow()</code> and <code>borrow_mut()</code>/<code>try_borrow_mut()</code> to borrow value inside immutably or mutably.</p>
+<p>Contoh:</p>
+<pre><pre class="playground"><code class="language-rust">use std::cell::RefCell;
+
+pub fn do_refcell() {
+    let refcell_data = RefCell::new(123);
+
+    // ! Doing immutable and mutable reference in one scope will panic as value already borrow while mutating in the same scope.
+    // let borrow = refcell_data.borrow();
+    // let borrow_mut = *refcell_data.borrow_mut() + 123;
+
+    *refcell_data.borrow_mut() = 456;
+    dbg!(refcell_data.borrow());
+    *refcell_data.borrow_mut() += 123;
+    dbg!(refcell_data.borrow());
+
+    let mut borrow_mut = refcell_data.borrow_mut();
+    dbg!(&amp;borrow_mut);
+    *borrow_mut = 900;
+    dbg!(&amp;borrow_mut);
+    *borrow_mut += 4;
+    dbg!(&amp;borrow_mut);
+}
+
+fn main() {
+    do_refcell();
+}
+</code></pre></pre>
+<h2 id="memory-leak-of-cyclic-references"><a class="header" href="#memory-leak-of-cyclic-references">Memory Leak of Cyclic References</a></h2>
+<p>Ada satu case memory yang tidak bisa dijamin oleh Rust yaitu reference cycle leaks. Ini merupakan suatu kondisi dimana suatu data <em>pointing</em> ke diri sendiri, atau nested data structure <em>pointing</em> ke satu sama lain. </p>
+<p>Contoh:</p>
+<pre><pre class="playground"><code class="language-rust">use std::cell::RefCell;
+use std::rc::Rc;
+
+#[derive(Debug)]
+enum List {
+    Cons(i32, RefCell&lt;Rc&lt;List&gt;&gt;),
+    Nil,
+}
+
+impl List {
+    fn tail(&amp;self) -&gt; Option&lt;&amp;RefCell&lt;Rc&lt;List&gt;&gt;&gt; {
+        match self {
+            List::Cons(_, item) =&gt; Some(item),
+            List::Nil =&gt; None,
+        }
+    }
+}
+
+fn main() {
+    // a = 5 - Nil
+    let a = Rc::new(List::Cons(5, RefCell::new(Rc::new(List::Nil))));
+
+    println!(&quot;a initial rc count = {}&quot;, Rc::strong_count(&amp;a));
+    println!(&quot;a next item = {:?}&quot;, a.tail());
+
+    // b = 10 - a(5 - Nil)
+    let b = Rc::new(List::Cons(10, RefCell::new(Rc::clone(&amp;a))));
+
+    println!(&quot;a rc count after b creation = {}&quot;, Rc::strong_count(&amp;a));
+    println!(&quot;b initial rc count = {}&quot;, Rc::strong_count(&amp;b));
+    println!(&quot;b next item = {:?}&quot;, b.tail());
+
+    // a = 5 - b
+    // b = 10 - a
+    // a = 5 - b(10 - a(5 - b(10 - a(5 - b(10 - a(5 - b(10 - a(5 - b(10 - a(5 - ...))))))))))  --&gt; keep referencing each others, causing leaks, stackoverflow!
+    if let Some(link) = a.tail() {
+        *link.borrow_mut() = Rc::clone(&amp;b);
+    }
+
+    println!(&quot;b rc count after changing a = {}&quot;, Rc::strong_count(&amp;b));
+    println!(&quot;a rc count after changing a = {}&quot;, Rc::strong_count(&amp;a));
+
+    // Uncomment the next line to see that we have a cycle;
+    // it will overflow the stack
+    // a.tail() causes leak because above reason.
+    // println!(&quot;a next item = {:?}&quot;, a.tail()); 
+}</code></pre></pre>
+<h2 id="weakt-for-preventing-reference-cycle"><a class="header" href="#weakt-for-preventing-reference-cycle"><code>Weak&lt;T&gt;</code> for Preventing Reference Cycle</a></h2>
+<p>Setiap references menggunakan Rc menambahkan count yang bersifat strong, dalam artian selama masih ada Rc maka tidak akan direlease semua dari memory karena cycle reference menyebabkan strong count tidak sampai 0. Untuk mengatasi ini, cycle reference bisa diganti dengan <code>Weak&lt;T&gt;</code> yang menyebabkan semua references menggunakan <code>Weak&lt;T&gt;</code> akan di-release setelah semua strong count mencapai 0.</p>
+<p>Perbedaan antara Rc strong dan weak adalah:</p>
+<ul>
+<li>strong Rc butuh count 0 untuk di-clean.</li>
+<li>weak Rc tidak butuh count 0 untuk di-clean, ketika <strong>semua</strong> strong count sudah 0, maka semua weaks akan di-clean juga.</li>
+<li>Rc memiliki ownership terhadap data.</li>
+<li>Weak tidak memiliki ownership terhadap data.</li>
+</ul>
+<p>Contoh leaks scenario:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// ! THIS CAUSE MEMORY LEAKS AS THERE'S CYCLIC REFERENCE IN THE CODE.
+/// 
+/// 
+use std::{
+    borrow::{Borrow, BorrowMut},
+    cell::RefCell,
+    rc::{Rc, Weak},
+};
+
+#[derive(Debug)]
+pub struct Person {
+    name: String,
+    // cyclic reference happen between parent and childs because parent's child's parent's child's parent's ...
+    parent: Option&lt;RefCell&lt;Rc&lt;Person&gt;&gt;&gt;,
+    childs: Option&lt;RefCell&lt;Vec&lt;Rc&lt;Person&gt;&gt;&gt;&gt;,
+}
+
+pub fn do_rc_leak() {
+    let arif = Rc::new(Person {
+        name: &quot;arif&quot;.to_string(),
+        parent: None,
+        childs: Some(RefCell::new(vec![])),
+    });
+
+    let anak_arif = Rc::new(Person {
+        name: &quot;ahmad&quot;.to_string(),
+        parent: Some(RefCell::new(Rc::clone(&amp;arif))),
+        childs: Some(RefCell::new(vec![])),
+    });
+
+    arif.childs.as_ref().unwrap().borrow_mut().push(anak_arif);
+
+    dbg!(&amp;arif); // read arif
+    dbg!(&amp;arif.childs.as_ref().unwrap().borrow()); // read arif's child
+    dbg!(&amp;arif
+        .childs
+        .as_ref()
+        .unwrap()
+        .borrow()
+        .get(0)
+        .unwrap()
+        .parent
+        .borrow()); // read arif's child's parent, which is arif himself
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Contoh non leak:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::{
+    borrow::{Borrow, BorrowMut},
+    cell::RefCell,
+    rc::{Rc, Weak},
+};
+
+#[derive(Debug)]
+pub struct Person {
+    name: String,
+    // no cyclic reference happen here because bind to parent is weak so child doesn't own its parent, otherwise parent own its child.
+    parent: RefCell&lt;Weak&lt;Person&gt;&gt;,
+    childs: Option&lt;RefCell&lt;Vec&lt;Rc&lt;Person&gt;&gt;&gt;&gt;,
+}
+
+pub fn do_weak() {
+    let arif = Rc::new(Person {
+        name: &quot;arif&quot;.to_string(),
+        parent: RefCell::new(Weak::new()),
+        childs: Some(RefCell::new(vec![])),
+    });
+
+    let anak_arif = Rc::new(Person {
+        name: &quot;ahmad&quot;.to_string(),
+        parent: RefCell::new(Rc::downgrade(&amp;arif)),
+        childs: Some(RefCell::new(vec![])),
+    });
+
+    arif.childs.as_ref().unwrap().borrow_mut().push(anak_arif);
+
+    dbg!(&amp;arif); // read arif
+    dbg!(&amp;arif.childs.as_ref().unwrap().borrow()); // read arif's child
+    dbg!(&amp;arif
+        .childs
+        .as_ref()
+        .unwrap()
+        .borrow()
+        .get(0)
+        .unwrap()
+        .parent
+        .borrow()
+        .upgrade()); // read arif's child's parent, which is arif himself
+    dbg!(&amp;arif.parent.borrow().upgrade()); // read arif's parent
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Method <code>downgrade(&amp;T)</code> digunakan untuk membuat weak Rc.
+Method <code>upgrade()</code> digunakan untuk mendapat strong Rc, untuk men-dereferensikan weak reference, harus di-upgrade dulu.</p>
+<h2 id="cowa-b"><a class="header" href="#cowa-b"><code>Cow&lt;'a, B&gt;</code></a></h2>
+<p>Smart pointer ketika kita memiliki dua kemungkinan antara <em>borrow</em> atau <em>own</em> suatu data(<em>optional ownership</em>). Kita biasa nya melakukan immutable reference terhadap data yang bersifat readonly, akan tetapi sepanjang jalan program, ada kemungkinan kita butuh mengubah data tersebut, sehingga butuh ownership untuk melakukan perubahan, bisa saja menggunakan mutable reference, tapi akan dilimit oleh beberapa limitasi mutable reference.</p>
+<p>Cow akan memeriksa apakah <code>T</code> yang dimasukkan implement <code>ToOwned</code>.
+Jika <code>T</code> merupakan owned type, maka versi reference nya akan dicek apakah implement <code>ToOwned</code> ke bentuk <code>T</code>,
+Jika <code>T</code> merupakan borrowed type, maka dicek apakah implements <code>ToOwned</code>.</p>
+<p>Cow implements <code>Deref</code> trait.</p>
+<p>Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::borrow::Cow;
+
+pub fn do_cow() {
+    let literal = &quot;anu&quot;;
+    let mut new_cow = Cow::from(literal);
+    let reference_new_cow = &amp;new_cow;
+    println!(&quot;{:?}&quot;, reference_new_cow);
+    let dereference_new_cow = &amp;*new_cow;
+    println!(&quot;{:?}&quot;, dereference_new_cow);
+
+    // if values already in owned form, no cloning happen. Otherwise convert it to owned form by cloning the data into heap.
+    // cloning happen because slice_cow is in borrowed form &amp;str.
+    let mut_string = new_cow.to_mut();
+    let owned = new_cow.into_owned();
+
+    let slice: &amp;[i32] = &amp;[1, 2, 3, 4, 5];
+    let mut slice_cow = Cow::from(slice);
+
+    println!(&quot;{:?}&quot;, slice_cow);
+    let reference_slice_cow: &amp;[i32] = &amp;slice_cow;
+    println!(&quot;{:?}&quot;, reference_slice_cow);
+    let dereference_slice_cow = &amp;*slice_cow;
+    println!(&quot;{:?}&quot;, dereference_slice_cow);
+
+    // if values already in owned form, no cloning happen. Otherwise convert it to owned form by cloning the data into heap.
+    // cloning happen because slice_cow is in borrowed form &amp;[i32].
+    let mut_string = slice_cow.to_mut();
+    let owned = slice_cow.into_owned();
+
+    let v = vec![1, 2, 3, 4, 5];
+    let mut cow_v = Cow::from(v);
+
+    match cow_v {
+        Cow::Borrowed(x) =&gt; println!(&quot;{:?} is borrowed&quot;, x),
+        Cow::Owned(ref x) =&gt; println!(&quot;{:?} is owned&quot;, x),
+    }
+
+    // no clone happen because v already in owned form.
+    let mut_vec = cow_v.to_mut();
+    let owned_vec = cow_v.into_owned();
+
+    let command = &quot;this should be all upperCase&quot;;
+    println!(&quot;{:?}&quot;, check_uppercase(command));
+
+    let v = vec![1, -2, 3, -4, -5];
+    let input = Cow::from(v);
+    // no cloning happen, because v already in owned form.
+    println!(&quot;{:?}&quot;, check_vector(input));
+
+    let v = &amp;[1, -2, 3, -4, -5] as &amp;[i32];
+    let input = Cow::from(v);
+    // cloning happen because v is in borrowed form &amp;[i32].
+    println!(&quot;{:?}&quot;, check_vector(input));
+}
+
+// this function return either borrowed &amp;str or owned String
+fn check_uppercase(s: &amp;str) -&gt; Cow&lt;str&gt; {
+    if s.chars().all(|x| x.is_uppercase()) {
+        return s.into();
+    }
+
+    s.to_uppercase().into()
+}
+
+fn check_vector(v: Cow&lt;[i32]&gt;) -&gt; Vec&lt;i32&gt; {
+    // if v already in owned form, no cloning happen, otherwise clone it and take ownership
+    let it = v.into_owned().into_iter(); // if v is owned form, this line is zero cost, otherwise costing it cloning into heap.
+    let ret = it.filter(|x| x.is_positive()).collect::&lt;Vec&lt;i32&gt;&gt;();
+    ret
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="arct"><a class="header" href="#arct"><code>Arc&lt;T&gt;</code></a></h2>
+<p>Sama seperti <code>Rc&lt;T&gt;</code>, bedanya kalau <code>Arc&lt;T&gt;</code> bersifat thread-safe dalam artian bisa digunakan antar threads.
+Rc merupakan shared ownership, dalam artian setiap owner bisa melakukan perubahan terhadap data yang ada di dalamnya, hal ini tidak masalah jika komputasi berada dalam ranah sinkronus, akan tetapi menjadi masalah jika dalam ranah asinkronus karena akan menyebabkan data race dan UB.
+Untuk memberikan sifat atomic pada data yang di-share antar threads, maka dibutuhkan <code>Arc</code>(Atomic Reference Counting).</p>
+<p>Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::cell::RefCell;
+use std::rc::Rc;
+use std::sync::Arc;
+use std::thread::spawn;
+
+pub fn do_arc() {
+    let arc_data = Arc::new(123);
+
+    // deref coercions:
+    let ref_arc_data: &amp;i32 = &amp;arc_data;
+    let deref_arc_data = *arc_data;
+
+    // cannot send Rc between threads, because Rc doesn't implement Send trait
+    // let data = Rc::new(RefCell::new(123));
+    // let thread_1 = spawn(move || {
+    //     *data.borrow_mut() += 1;
+    // });
+    // thread_1.join().unwrap();
+    // println!(&quot;{:?}&quot;, data);
+
+    // cannot send Rc between threads, because Rc doesn't implement Send trait
+    // let data = Rc::new(123);
+    // let thread_1 = spawn(move || {
+    //     println!(&quot;{:?}&quot;, data);
+    // });
+    // thread_1.join().unwrap();
+    // println!(&quot;{:?}&quot;, data);
+
+    let data = Arc::new(123);
+    let thread_1 = spawn(move || {
+        println!(&quot;{:?}&quot;, data);
+    });
+    thread_1.join().unwrap();
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="mutext"><a class="header" href="#mutext"><code>Mutex&lt;T&gt;</code></a></h2>
+<p>Sama seperti kombinasi <code>Rc&lt;T&gt;</code> dan <code>RefCell&lt;T&gt;</code> untuk shared multiple ownership with interior mutability, maka untuk <code>Arc&lt;T&gt;</code> ada <code>Mutex&lt;T&gt;</code> untuk interior mutability yang thread-safe antar threads. Mutex merupakan smart pointer untuk melindungi shared mutable data antar threads dari data race dan UB.</p>
+<p>Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::borrow::{Borrow, BorrowMut};
+use std::ops::Add;
+use std::sync::Arc;
+use std::sync::Mutex;
+use std::sync::Weak;
+use std::thread;
+
+#[derive(Debug)]
+pub struct Person {
+    name: String,
+    shared_wealth: Arc&lt;Mutex&lt;i32&gt;&gt;,
+    // no cyclic reference happen here because bind to parent is weak so child doesn't own its parent, otherwise parent own its child.
+    parent: Mutex&lt;Weak&lt;Person&gt;&gt;,
+    childs: Option&lt;Mutex&lt;Vec&lt;Arc&lt;Person&gt;&gt;&gt;&gt;,
+}
+
+pub fn do_mutex() {
+    let shared_wealth = Arc::new(Mutex::new(0));
+
+    let arif = Arc::new(Person {
+        name: &quot;arif&quot;.to_string(),
+        shared_wealth: Arc::clone(&amp;shared_wealth),
+        parent: Mutex::new(Weak::new()),
+        childs: Some(Mutex::new(vec![])),
+    });
+
+    let anak_arif = Arc::new(Person {
+        name: &quot;ahmad&quot;.to_string(),
+        shared_wealth: Arc::clone(&amp;shared_wealth),
+        parent: Mutex::new(Arc::downgrade(&amp;arif)),
+        childs: Some(Mutex::new(vec![])),
+    });
+
+    arif.childs
+        .as_ref()
+        .unwrap()
+        .lock()
+        .unwrap()
+        .push(Arc::clone(&amp;anak_arif));
+
+    dbg!(&amp;arif); // read arif
+    dbg!(&amp;arif.childs.as_ref().unwrap().borrow()); // read arif's child
+    dbg!(&amp;arif
+        .childs
+        .as_ref()
+        .unwrap()
+        .lock()
+        .unwrap()
+        .get(0)
+        .unwrap()
+        .parent
+        .lock()
+        .unwrap()
+        .upgrade()); // read arif's child's parent, which is arif himself
+    dbg!(&amp;arif.parent); // read arif's parent
+
+    let parent_working = Arc::clone(&amp;arif);
+    let parent_work = thread::spawn(move || {
+        for _ in (0..10) {
+            *parent_working.shared_wealth.lock().unwrap() += 1;
+        }
+    });
+
+    let child_working = Arc::clone(&amp;anak_arif);
+    let child_work = thread::spawn(move || {
+        for _ in (0..10) {
+            *child_working.shared_wealth.lock().unwrap() += 1;
+        }
+    });
+
+    parent_work.join().unwrap();
+    child_work.join().unwrap();
+    dbg!(&amp;arif);
+    let total_wealth = *arif.shared_wealth.lock().unwrap();
+    assert_eq!(20, total_wealth);
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Kita menggunakan contoh pada kasus Rc dan RefCell di atas, akan tetapi kali ini untuk thread-safety karena kita akan mem-passing data antar threads. <em>Data race free</em> dan <em>no leaking</em>.</p>
 
                     </main>
 

@@ -30,4 +30,4 @@
   - [Functional Programming pada Rust](intermediate/2_fp_rust.md)
   - [Iterator](intermediate/3_iterator.md)
   - [Zero-cost Abstraction](intermediate/4_zero-cost_abstraction.md)
-  - [Smart Pointers(WIP)](intermediate/5_smart_pointers.md)
+  - [Smart Pointers](intermediate/5_smart_pointers.md)

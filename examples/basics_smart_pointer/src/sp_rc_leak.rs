@@ -28,7 +28,11 @@ pub fn do_rc_leak() {
         childs: Some(RefCell::new(vec![])),
     });
 
-    arif.childs.as_ref().unwrap().borrow_mut().push(anak_arif);
+    arif.childs
+        .as_ref()
+        .unwrap()
+        .borrow_mut()
+        .push(Rc::clone(&anak_arif));
 
     dbg!(&arif); // read arif
     dbg!(&arif.childs.as_ref().unwrap().borrow()); // read arif's child

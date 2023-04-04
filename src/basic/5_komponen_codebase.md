@@ -1,5 +1,8 @@
 # Komponen Codebase #
 
+Kita akan membahas komponen codebase yang merupakan segmentasi dari program Rust:
+`Workspace -> Packages -> Modules -> Constants/Statics/Types/Associated Items`
+
 Sebelum kita membahas beberapa komponen pada Rust program, kita akan membahas beberapa konsep yang berkaitan dengan komponen tersebut.
 
 ## Immutability vs Mutability ##

@@ -189,6 +189,7 @@ Mutability hanya berlaku untuk variables dan statics. Untuk statics jika ingin m
 <li>Functions</li>
 <li>Closures</li>
 <li>Types (User Defined Types)</li>
+<li>Associated Types/Items</li>
 </ul>
 <p>Semua komponen di atas berada di dalam module(<code>mod</code>).</p>
 <h2 id="variable"><a class="header" href="#variable">Variable</a></h2>
@@ -236,6 +237,7 @@ let a = &quot;from string to owned string&quot;.to_string(); // String
 </span>const a: i32 = 123;
 const b: &amp;str = &quot;anu&quot;;
 <span class="boring">}</span></code></pre></pre>
+<p>Masih banyak jenis constant evaluated values/expressions lainnya yang akan dibahas berikutnya.</p>
 <h2 id="static"><a class="header" href="#static">Static</a></h2>
 <p>Memiliki kemiripan dengan <code>const</code>, perbedaan terletak pada static memiliki alamat memory ketika dikompilasi. Ketika variable static dipanggil maka ada proses dereference terhadap value yang ada di alamat memori dari variable static tersebut. Perbedaan lainnya adalah static dapat menjadi mutable pada saat runtime. Mutability static pada saat runtime hanya bisa dilakukan di dalam blok <code>unsafe</code>. Contoh deklarasi static:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
@@ -288,6 +290,66 @@ union MyUnion {
 type Float64 = f64;
 <span class="boring">}</span></code></pre></pre>
 <p>Type alias bisa menerima value dengan tipe yang sama dengan alias-nya.</p>
+<h2 id="types"><a class="header" href="#types">Types</a></h2>
+<p>Types disini merupakan user defined types, yang biasanya berupa struct, tuple, enum, dan alias. 
+Contoh alias:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>type CustomResult&lt;T&gt; = Result&lt;T, String&gt;
+
+fn get() -&gt; CustomResult&lt;T&gt; {
+    Ok(1)
+}
+fn get_2() -&gt; CustomResult&lt;T&gt; {
+    Err(&quot;error_message&quot;.to_string())
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Type aliases berguna untuk mempersingkat tipe yang panjang.</p>
+<h2 id="associated-typesitems"><a class="header" href="#associated-typesitems">Associated types/items</a></h2>
+<p>Merupakan type custom atau items yang ada di dalam deklarasi inherent implementations seperti <code>impl X</code> atau di dalam trait.</p>
+<p>Contoh Associated types/items:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Struct;
+
+impl Struct {
+    // pub type Item = i32; // as of now it's unstable
+    pub const CONSTANT_STR: &amp;str = &quot;test&quot;; // associated constant
+
+    pub fn function() {} // associated function
+
+    // ...
+}
+
+trait Trait {
+    const C: i32; // associated constant without default value.
+    const D: &amp;'static str = &quot;defined&quot;; // associated constant with default value, can be replaced with implementor.
+    type CustomResult&lt;'a, T&gt;; // associated type without default value.
+    // type CustomResult&lt;'a, T&gt; = Result&lt;T,&amp;'a str&gt;; // associated type with default value, as of now it's unstable.
+
+    fn function();
+    fn default_function() {
+
+    }
+
+    fn method(&amp;self);
+    fn default_method(&amp;self) {
+
+    }
+}
+
+impl Trait for Struct {
+    const C: i32 = 123;
+    const D: &amp;'static str = &quot;replaced&quot;; // overwrite Trait default value of D
+    type CustomResult&lt;'a, T&gt; = Result&lt;T, &amp;'a str&gt;;
+
+    fn function() {
+        
+    }
+    
+    // ...
+}
+<span class="boring">}</span></code></pre></pre>
 <h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
 <p>Fungsi merupakan unit komputasi paling dasar dengan deklarasi:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]

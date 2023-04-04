@@ -47,6 +47,7 @@ Kita akan membahas lebih detail tentang komponen-komponen yang ada di dalam code
 - Functions
 - Closures
 - Types (User Defined Types)
+- Associated Types/Items
 
 Semua komponen di atas berada di dalam module(`mod`).
 
@@ -94,6 +95,8 @@ const a: i32 = 123;
 const b: &str = "anu";
 ```
 
+Masih banyak jenis constant evaluated values/expressions lainnya yang akan dibahas berikutnya.
+
 ## Static ## 
 Memiliki kemiripan dengan `const`, perbedaan terletak pada static memiliki alamat memory ketika dikompilasi. Ketika variable static dipanggil maka ada proses dereference terhadap value yang ada di alamat memori dari variable static tersebut. Perbedaan lainnya adalah static dapat menjadi mutable pada saat runtime. Mutability static pada saat runtime hanya bisa dilakukan di dalam blok `unsafe`. Contoh deklarasi static:
 ```rust
@@ -134,6 +137,67 @@ type Integer32 = i32;
 type Float64 = f64;
 ```
 Type alias bisa menerima value dengan tipe yang sama dengan alias-nya.
+
+## Types ##
+Types disini merupakan user defined types, yang biasanya berupa struct, tuple, enum, dan alias. 
+Contoh alias:
+```rust
+type CustomResult<T> = Result<T, String>
+
+fn get() -> CustomResult<T> {
+    Ok(1)
+}
+fn get_2() -> CustomResult<T> {
+    Err("error_message".to_string())
+}
+```
+Type aliases berguna untuk mempersingkat tipe yang panjang.
+
+## Associated types/items ##
+Merupakan type custom atau items yang ada di dalam deklarasi inherent implementations seperti `impl X` atau di dalam trait.
+
+Contoh Associated types/items:
+```rust
+struct Struct;
+
+impl Struct {
+    // pub type Item = i32; // as of now it's unstable
+    pub const CONSTANT_STR: &str = "test"; // associated constant
+
+    pub fn function() {} // associated function
+
+    // ...
+}
+
+trait Trait {
+    const C: i32; // associated constant without default value.
+    const D: &'static str = "defined"; // associated constant with default value, can be replaced with implementor.
+    type CustomResult<'a, T>; // associated type without default value.
+    // type CustomResult<'a, T> = Result<T,&'a str>; // associated type with default value, as of now it's unstable.
+
+    fn function();
+    fn default_function() {
+
+    }
+
+    fn method(&self);
+    fn default_method(&self) {
+
+    }
+}
+
+impl Trait for Struct {
+    const C: i32 = 123;
+    const D: &'static str = "replaced"; // overwrite Trait default value of D
+    type CustomResult<'a, T> = Result<T, &'a str>;
+
+    fn function() {
+        
+    }
+    
+    // ...
+}
+```
 
 ## Functions ##
 Fungsi merupakan unit komputasi paling dasar dengan deklarasi:

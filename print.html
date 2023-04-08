@@ -5188,8 +5188,10 @@ pub fn do_mutex() {
 </ul>
 <h2 id="encapsulation"><a class="header" href="#encapsulation">Encapsulation</a></h2>
 <p>Secara gamblang, encapsulation merupakan cara meng-abstraksi API sehingga user tidak perlu melihat daleman API dan hanya berinteraksi melalui exposed interface. Di sebagian bahasa OOP hal ini dilakukan menggunakan access modifier seperti <em>public</em> dan <em>private</em>. Hal ini untuk mencapai <em>loosely coupling</em> pada design API sehingga implementor bisa fokus terhadap implementasi, dan client/user dari API bisa tetap menggunakan API yang sama tanpa peduli detail implementasi.</p>
+<p>Definisi lain dari encapsulation adalah komposisi antara data dan behaviours(methods) ke dalam 1 entitas. Hal ini biasanya dideklarasi dalam bentuk <code>class</code> di kebanyakan bahasa OOP, dan di-instansiasi menjadi objek, semua akses API hanya lewat objek ini.</p>
 <p>Pada Rust, ada beberapa cara untuk mencapai ini, diantaranya:</p>
 <ul>
+<li>Menggunakan associated items and methods, dan juga bisa di-ekstensi menggunakan trait.</li>
 <li>Access modifier <code>pub</code>, semua komponen bersifat private, dengan <code>pub</code> membuatnya bisa di-akses oleh caller.</li>
 <li>Menggunakan crate library <code>lib.rs</code> untuk mengekpose api-api yang bisa digunakan oleh client.</li>
 <li>Menggunakan module untuk meng-segmentasi kode sedemikian rupa sehingga pengelompokkan API lebih terorganisir dan koheren.</li>

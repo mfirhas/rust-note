@@ -8,6 +8,8 @@ OOP memiliki banyak definisi seiring waktu. Bermula dari Simula yang mengenalkan
 ## Encapsulation ##
 Secara gamblang, encapsulation merupakan cara meng-abstraksi API sehingga user tidak perlu melihat daleman API dan hanya berinteraksi melalui exposed interface. Di sebagian bahasa OOP hal ini dilakukan menggunakan access modifier seperti *public* dan *private*. Hal ini untuk mencapai *loosely coupling* pada design API sehingga implementor bisa fokus terhadap implementasi, dan client/user dari API bisa tetap menggunakan API yang sama tanpa peduli detail implementasi.
 
+Definisi lain dari encapsulation adalah komposisi antara data dan behaviours(methods) ke dalam 1 entitas. Hal ini biasanya dideklarasi dalam bentuk `class` di kebanyakan bahasa OOP, dan di-instansiasi menjadi objek, semua akses API hanya lewat objek ini.
+
 Pada Rust, ada beberapa cara untuk mencapai ini, diantaranya:
 - Access modifier `pub`, semua komponen bersifat private, dengan `pub` membuatnya bisa di-akses oleh caller.
 - Menggunakan crate library `lib.rs` untuk mengekpose api-api yang bisa digunakan oleh client.

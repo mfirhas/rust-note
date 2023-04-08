@@ -14,6 +14,7 @@ Pada Rust, ada beberapa cara untuk mencapai ini, diantaranya:
 - Menggunakan module untuk meng-segmentasi kode sedemikian rupa sehingga pengelompokkan API lebih terorganisir dan koheren.
 - Menggunakan inherent methods dengan beberapa public methods, dan private methods.
 - Menggunakan traits dengan shared custom types, methods, dan default types. Traits juga digunakan sebagai bound untuk type parameter API.
+- Menggunakan procedure macro untuk meng-abstraksi berbagai komputasi. Contoh yang sering kita lihat: `print!()`, `println!()`, `dbg!()`, `assert!()`, etc.
 
 ## Inheritance ##
 Rust tidak memiliki inherintance layaknya kebanyakan bahasa OOP lainnya. Akan tetapi Rust menerapkan komposisi yaitu dengan meng-*embed* tipe data/struct/enum ke dalam fields. Inheritance sendiri memiliki masalah dalam dunia OOP karena cenderung menambah kompleksitas yang tidak diperlukan. Juga mempersulit *maintainance* dari suatu kode karena sedikit perubahan akan mengacaukan semua childs yang inherit suatu class, cenderung menjadi *spaghetti*. Selain itu juga bisa menimbulkan masalah yang disebut *diamond problem*. Inheritance bukan pilihan utama ketika membuat kode yang loosely coupled dan juga enkapsulasi lebih cenderung menggunakan interface(*composition*) ketimbang class inheritance. Rust memiliki relasi antar type yang disebut dengan *Subtyping*.

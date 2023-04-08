@@ -11,6 +11,7 @@ Secara gamblang, encapsulation merupakan cara meng-abstraksi API sehingga user t
 Definisi lain dari encapsulation adalah komposisi antara data dan behaviours(methods) ke dalam 1 entitas. Hal ini biasanya dideklarasi dalam bentuk `class` di kebanyakan bahasa OOP, dan di-instansiasi menjadi objek, semua akses API hanya lewat objek ini.
 
 Pada Rust, ada beberapa cara untuk mencapai ini, diantaranya:
+- Menggunakan associated items and methods, dan juga bisa di-ekstensi menggunakan trait.
 - Access modifier `pub`, semua komponen bersifat private, dengan `pub` membuatnya bisa di-akses oleh caller.
 - Menggunakan crate library `lib.rs` untuk mengekpose api-api yang bisa digunakan oleh client.
 - Menggunakan module untuk meng-segmentasi kode sedemikian rupa sehingga pengelompokkan API lebih terorganisir dan koheren.

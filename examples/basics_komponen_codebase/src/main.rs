@@ -1,9 +1,10 @@
+mod function_pointer;
 #[allow(unused)]
 mod module_a;
 
 use module_a::{
-    function, string, AliasString, CustomResult, Enum, Fff, Int32, Int64, Struct, Trait,
-    CONSTANT_STRING, STATIC_STRING,
+    function, string, CustomResult, Enum, Fff, Int32, Int64, Struct, Trait, CONSTANT_STRING,
+    STATIC_STRING,
 };
 
 fn main() {
@@ -72,8 +73,17 @@ fn main() {
     let g = [1, 2, 3, 4];
     dbg!(g.get(5));
     let v = vec![1, 2, 3, 4];
-    dbg!(v[5]);
+    // dbg!(v[5]); // panic
 
-    let setring: AliasString = "this".to_owned();
-    dbg!(setring);
+    println!(
+        "function_pointer::accept_fn: {}",
+        function_pointer::accept_fn(function_pointer::add, 1, 3)
+    );
+    println!(
+        "function_pointer::return_fn: {}",
+        function_pointer::return_fn()(4, 5)
+    )
+
+    // let setring: AliasString = "this".to_owned();
+    // dbg!(setring);
 }

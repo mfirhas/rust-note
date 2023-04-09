@@ -11,7 +11,7 @@ pub const CONSTANT_STRING: &str = "this is string constant";
 
 pub static STATIC_STRING: &str = "this is string static";
 
-pub type AliasString: Clone = String;
+// pub type AliasString: Clone = String;
 
 pub fn function(v: &str) -> String {
     let mut a = Struct {

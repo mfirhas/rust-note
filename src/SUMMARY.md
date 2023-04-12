@@ -32,3 +32,4 @@
   - [Zero-cost Abstraction](intermediate/4_zero-cost_abstraction.md)
   - [Smart Pointers](intermediate/5_smart_pointers.md)
   - [OOP](intermediate/6_OOP.md)
+  - [Subtyping](intermediate/7_subtyping.md)

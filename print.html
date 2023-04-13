@@ -2621,6 +2621,48 @@ println!(&quot;{}&quot;, o.de());
 println!(&quot;{}&quot;, O::not_de());
 <span class="boring">}</span></code></pre></pre>
 <p>Default implementation tidak mengharuskan tipe implementor mengimplementasikan fungsi/method dengan default behaviour tersebut. Akan tetapi jika kita mengimplementasikan fungsi/method dengan default behaviour, maka akan meng-overwrite default behaviour tersebut.</p>
+<h2 id="trait-associated-type"><a class="header" href="#trait-associated-type">Trait Associated Type</a></h2>
+<p>Merupakan placeholder type untuk tipe data yang akan digunakan oleh method-method pada trait.</p>
+<p>Perbedaan penggunaan associated type dengan generics, adalah dengan menggunakan associated API implementor tidak perlu membuat implementasi generic untuk suatu tipe, karena hal ini terlihat seolah-olah memiliki berbagai jenis tipe. Misal jika kita ada <code>trait Trait&lt;T&gt; {...}</code>, maka akan bisa di deklarasi berbagai tipe untuk T seperti <code>Trait&lt;String&gt;</code>, <code>Trait&lt;i32&gt;</code>, etc. Dari sudut pandang API user, mereka tidak perlu memberi spesifikasi tipe, karena implementor sudah meng-enkapsulasi type implementor dan tipe yang terasosiai ke dalam satu trait tersebut. API user bahkan tidak perlu membawa definisi trait ke dalam scope hanya untuk memenuhi fully qualified syntax dengan spesifikasi tipe generic. User hanya cukup tau suatu tipe sudah mengimplementasi suatu trait dengan semua data yang terasosiasi. Secara idiom, generic type pada trait menggunakan associated type, dan generic type sebenarnya akan digunakan oleh implementor type.</p>
+<p>Contoh:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::fmt::Debug;
+
+pub trait TraitAss {
+    type Item: Sized + Debug + Default;
+
+    fn method1(&amp;self) -&gt; &amp;Self::Item;
+
+    fn method2(&amp;self) -&gt; (Self::Item, i32) {
+        (Default::default(), 0)
+    }
+}
+
+pub struct Struct&lt;T&gt; {
+    field1: i32,
+    field2: T,
+}
+impl&lt;T&gt; Struct&lt;T&gt; {
+    pub fn new(name: T) -&gt; Self {
+        Self {
+            field1: 123,
+            field2: name,
+        }
+    }
+}
+
+impl&lt;T&gt; TraitAss for Struct&lt;T&gt;
+where
+    T: Sized + Debug + Default,
+{
+    type Item = T;
+
+    fn method1(&amp;self) -&gt; &amp;Self::Item {
+        &amp;self.field2
+    }
+}
+<span class="boring">}</span></code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="generic"><a class="header" href="#generic">Generic</a></h1>
 <p>Generic merupakan polimorfisme dari suatu tipe data. Rust menerapkan <em>Monomorphization</em> untuk generic type, yaitu dengan membuat setiap copy dari tipe data yang dideklarasikan pada saat compile time. Hal ini membuat generic pada Rust <em>fully zero-cost</em>, yang berbeda dengan generic pada Java dan Go dimana Java menerapkan <em>Type-erasure</em> dan golang menerapkan <em>Stenciling</em> yang keduanya masih menyisakan setidaknya sedikit runtime overhead.
 Generic dapat diterapkan pada tempat seperti: <code>functions</code>, <code>type aliases</code>, <code>structs</code>, <code>enumerations</code>, <code>unions</code>, <code>traits</code> and <code>implementations</code>.</p>
@@ -2759,6 +2801,35 @@ impl MyTrait&lt;String&gt; for MyStruct&lt;T&gt; {
 </span>type MyResult&lt;T&gt; = Result&lt;T, String&gt;
 <span class="boring">}</span></code></pre></pre>
 <p>Sehingga cukup menggunakan <code>MyResult</code> ketika ingin mengembalikan <em>fallible operation</em> dengan error tipe string.</p>
+<h2 id="generic-default-type"><a class="header" href="#generic-default-type">Generic Default Type</a></h2>
+<p>Memberika tipe default ketika tipe tidak didefinisikan.</p>
+<p>Contoh:</p>
+<pre><pre class="playground"><code class="language-rust">use std::fmt::Debug;
+
+#[derive(Debug)]
+pub struct Data&lt;T = i32&gt; {
+    field: T,
+}
+
+// default generic type parameter doesn't require us to give parameter type declaration and default will be used.
+impl Data {
+    pub fn new() -&gt; Self {
+        Data { field: 123 }
+    }
+}
+
+impl&lt;T: Copy + Debug&gt; Data&lt;T&gt; {
+    pub fn new_custom(t: T) -&gt; Self {
+        Data { field: t }
+    }
+}
+
+fn main() {
+    let dt = generic_default::Data::new();
+    dbg!(dt);
+    let dt = generic_default::Data::new_custom(&quot;anu&quot;);
+    dbg!(dt);
+}</code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="generic-bound-with-trait"><a class="header" href="#generic-bound-with-trait">Generic Bound with Trait</a></h1>
 <p>Ketika ingin membatasi tipe-tipe yang dibolehkan pada generic, kita bisa menggunakan <code>trait</code> sehingga tipe-tipe yang bisa dimasukkan ke dalam generic type hanya tipe yang sudah mengimplementasikan <code>trait</code> bersangkutan.</p>
 <p>Generic trait bound bisa dideklarasikan pada tempat-tempat dimana generic berada.</p>

@@ -282,6 +282,35 @@ impl MyTrait&lt;String&gt; for MyStruct&lt;T&gt; {
 </span>type MyResult&lt;T&gt; = Result&lt;T, String&gt;
 <span class="boring">}</span></code></pre></pre>
 <p>Sehingga cukup menggunakan <code>MyResult</code> ketika ingin mengembalikan <em>fallible operation</em> dengan error tipe string.</p>
+<h2 id="generic-default-type"><a class="header" href="#generic-default-type">Generic Default Type</a></h2>
+<p>Memberika tipe default ketika tipe tidak didefinisikan.</p>
+<p>Contoh:</p>
+<pre><pre class="playground"><code class="language-rust">use std::fmt::Debug;
+
+#[derive(Debug)]
+pub struct Data&lt;T = i32&gt; {
+    field: T,
+}
+
+// default generic type parameter doesn't require us to give parameter type declaration and default will be used.
+impl Data {
+    pub fn new() -&gt; Self {
+        Data { field: 123 }
+    }
+}
+
+impl&lt;T: Copy + Debug&gt; Data&lt;T&gt; {
+    pub fn new_custom(t: T) -&gt; Self {
+        Data { field: t }
+    }
+}
+
+fn main() {
+    let dt = generic_default::Data::new();
+    dbg!(dt);
+    let dt = generic_default::Data::new_custom(&quot;anu&quot;);
+    dbg!(dt);
+}</code></pre></pre>
 
                     </main>
 

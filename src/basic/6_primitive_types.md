@@ -60,3 +60,19 @@ let c: char = 'a';
 ```
 
 Semua tipe data di atas harus diketahui ukurannya pada saat compile time dan tetap dalam ukuran.
+
+## Pointer ##
+Ada 2 jenis pointer di rust, yaitu reference pointer dan raw pointer.
+- Reference Pointer(`&` & `&mut`): menggunakan ampersand `&`. Memiliki safety guaranty dari Rust menggunakan borrow checker. Reference pointer lebih sering digunakan karena safe dan dijamin oleh borrow checker rust. Tidak memerlukan unsafe operation dan value selalu valid.
+- Raw Pointer(`*const` & `*mut`): menggunakan asterisk `*`. Tidak memiliki safety guaranty dari Rust menggunakan borrow checker. Deferencing raw pointer is unsafe.
+Raw pointer jarang digunakan, biasanya untuk interop dengan FFI.
+
+Contoh: 
+```rust
+let a = 123;
+let p: *const i32 = &a;
+assert!(!p.is_null());
+let mut b = 123;
+let p_mut: *mut i32 = &mut b;
+assert!(!p_mut.is_null());
+```

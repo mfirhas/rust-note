@@ -203,6 +203,23 @@ Contoh:</p>
 </span>let c: char = 'a';
 <span class="boring">}</span></code></pre></pre>
 <p>Semua tipe data di atas harus diketahui ukurannya pada saat compile time dan tetap dalam ukuran.</p>
+<h2 id="pointer"><a class="header" href="#pointer">Pointer</a></h2>
+<p>Ada 2 jenis pointer di rust, yaitu reference pointer dan raw pointer.</p>
+<ul>
+<li>Reference Pointer(<code>&amp;</code> &amp; <code>&amp;mut</code>): menggunakan ampersand <code>&amp;</code>. Memiliki safety guaranty dari Rust menggunakan borrow checker. Reference pointer lebih sering digunakan karena safe dan dijamin oleh borrow checker rust. Tidak memerlukan unsafe operation dan value selalu valid.</li>
+<li>Raw Pointer(<code>*const</code> &amp; <code>*mut</code>): menggunakan asterisk <code>*</code>. Tidak memiliki safety guaranty dari Rust menggunakan borrow checker. Deferencing raw pointer is unsafe.
+Raw pointer jarang digunakan, biasanya untuk interop dengan FFI.</li>
+</ul>
+<p>Contoh: </p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let a = 123;
+let p: *const i32 = &amp;a;
+assert!(!p.is_null());
+let mut b = 123;
+let p_mut: *mut i32 = &amp;mut b;
+assert!(!p_mut.is_null());
+<span class="boring">}</span></code></pre></pre>
 
                     </main>
 

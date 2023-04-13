@@ -721,6 +721,23 @@ impl Trait for Struct {
     ...
 }
 <span class="boring">}</span></code></pre></pre>
+<h2 id="constant-function"><a class="header" href="#constant-function">Constant Function</a></h2>
+<p>Merupakan constant expression dalam bentuk fungsi yang bisa dievaluasi/komputasi pada saat compile-time.</p>
+<p>Contoh:</p>
+<pre><pre class="playground"><code class="language-rust">// calculate_at_compile computed at compile-time.
+const CONSTANT: [i32;5] = calculate_at_compile(true);
+
+const fn calculate_at_compile(b: bool) -&gt; [i32;5] {
+    if b {
+        return [1,2,3,4,5];
+    }
+    [6,7,8,9,10]
+}
+
+fn main() {
+    // after compiled, CONSTANT already replaced with `[1,2,3,4,5]`
+    println!(&quot;{:?}&quot;, CONSTANT);
+}</code></pre></pre>
 <h2 id="closures"><a class="header" href="#closures">Closures</a></h2>
 <p>Closures merupakan anonymous function atau lambda pada Rust yang digunakan ketika kita ingin menjadikan function sebagai argument pada parameter fungsi lainnya.
 Berbeda dengan fungsi biasa di Rust yang tidak bisa meng-<em>capture</em> data pada environment bersangkutan, Closures secara default akan menangkap environment sekitar dengan cara borrow/reference.

@@ -141,3 +141,36 @@ impl MyTrait<String> for MyStruct<T> {
 type MyResult<T> = Result<T, String>
 ```
 Sehingga cukup menggunakan `MyResult` ketika ingin mengembalikan *fallible operation* dengan error tipe string.
+
+## Generic Default Type ## 
+Memberika tipe default ketika tipe tidak didefinisikan.
+
+Contoh:
+```rust
+use std::fmt::Debug;
+
+#[derive(Debug)]
+pub struct Data<T = i32> {
+    field: T,
+}
+
+// default generic type parameter doesn't require us to give parameter type declaration and default will be used.
+impl Data {
+    pub fn new() -> Self {
+        Data { field: 123 }
+    }
+}
+
+impl<T: Copy + Debug> Data<T> {
+    pub fn new_custom(t: T) -> Self {
+        Data { field: t }
+    }
+}
+
+fn main() {
+    let dt = generic_default::Data::new();
+    dbg!(dt);
+    let dt = generic_default::Data::new_custom("anu");
+    dbg!(dt);
+}
+```

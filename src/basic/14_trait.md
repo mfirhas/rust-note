@@ -306,3 +306,47 @@ println!("{}", O::not_de());
 ```
 
 Default implementation tidak mengharuskan tipe implementor mengimplementasikan fungsi/method dengan default behaviour tersebut. Akan tetapi jika kita mengimplementasikan fungsi/method dengan default behaviour, maka akan meng-overwrite default behaviour tersebut.
+
+## Trait Associated Type ##
+Merupakan placeholder type untuk tipe data yang akan digunakan oleh method-method pada trait.
+
+Perbedaan penggunaan associated type dengan generics, adalah dengan menggunakan associated API implementor tidak perlu membuat implementasi generic untuk suatu tipe, karena hal ini terlihat seolah-olah memiliki berbagai jenis tipe. Misal jika kita ada `trait Trait<T> {...}`, maka akan bisa di deklarasi berbagai tipe untuk T seperti `Trait<String>`, `Trait<i32>`, etc. Dari sudut pandang API user, mereka tidak perlu memberi spesifikasi tipe, karena implementor sudah meng-enkapsulasi type implementor dan tipe yang terasosiai ke dalam satu trait tersebut. API user bahkan tidak perlu membawa definisi trait ke dalam scope hanya untuk memenuhi fully qualified syntax dengan spesifikasi tipe generic. User hanya cukup tau suatu tipe sudah mengimplementasi suatu trait dengan semua data yang terasosiasi. Secara idiom, generic type pada trait menggunakan associated type, dan generic type sebenarnya akan digunakan oleh implementor type.
+
+Contoh:
+```rust
+use std::fmt::Debug;
+
+pub trait TraitAss {
+    type Item: Sized + Debug + Default;
+
+    fn method1(&self) -> &Self::Item;
+
+    fn method2(&self) -> (Self::Item, i32) {
+        (Default::default(), 0)
+    }
+}
+
+pub struct Struct<T> {
+    field1: i32,
+    field2: T,
+}
+impl<T> Struct<T> {
+    pub fn new(name: T) -> Self {
+        Self {
+            field1: 123,
+            field2: name,
+        }
+    }
+}
+
+impl<T> TraitAss for Struct<T>
+where
+    T: Sized + Debug + Default,
+{
+    type Item = T;
+
+    fn method1(&self) -> &Self::Item {
+        &self.field2
+    }
+}
+```

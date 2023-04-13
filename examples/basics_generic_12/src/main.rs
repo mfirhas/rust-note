@@ -1,3 +1,5 @@
+mod generic_default;
+
 use std::fmt::{Debug, Display};
 
 fn main() {
@@ -50,7 +52,12 @@ fn main() {
     dbg!(ms.method1());
 
     let a: String = roll();
-    println!("--> {a}", )
+    println!("--> {a}",);
+
+    let dt = generic_default::Data::new();
+    dbg!(dt);
+    let dt = generic_default::Data::new_custom("anu");
+    dbg!(dt);
 }
 
 pub trait Rollable {

@@ -1,6 +1,8 @@
 mod a;
+mod ass;
 use a::{Enum, Struct, Trait};
 mod default;
+use ass::TraitAss;
 use default::{D, O, P};
 
 fn main() {
@@ -69,6 +71,14 @@ fn main() {
     let o = O;
     println!("{}", o.de());
     println!("{}", O::not_de());
+
+    // associated trait
+    println!("Associated Trait");
+    let s = ass::Struct::new("fathir".to_owned());
+    let t = s.method1();
+    dbg!("-->", t);
+    let t = s.method2();
+    dbg!("-->", t);
 }
 
 pub trait MyTrait {

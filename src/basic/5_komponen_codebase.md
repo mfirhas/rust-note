@@ -210,6 +210,27 @@ fn function_name(param1: Type1, param2: Type2, ...) -> ReturnType {
 }
 ```
 
+## Constant Function ##
+Merupakan constant expression dalam bentuk fungsi yang bisa dievaluasi/komputasi pada saat compile-time.
+
+Contoh:
+```rust
+// calculate_at_compile computed at compile-time.
+const CONSTANT: [i32;5] = calculate_at_compile(true);
+
+const fn calculate_at_compile(b: bool) -> [i32;5] {
+    if b {
+        return [1,2,3,4,5];
+    }
+    [6,7,8,9,10]
+}
+
+fn main() {
+    // after compiled, CONSTANT already replaced with `[1,2,3,4,5]`
+    println!("{:?}", CONSTANT);
+}
+```
+
 ## Closures ##
 Closures merupakan anonymous function atau lambda pada Rust yang digunakan ketika kita ingin menjadikan function sebagai argument pada parameter fungsi lainnya.
 Berbeda dengan fungsi biasa di Rust yang tidak bisa meng-*capture* data pada environment bersangkutan, Closures secara default akan menangkap environment sekitar dengan cara borrow/reference.

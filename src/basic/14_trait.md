@@ -312,6 +312,8 @@ Merupakan placeholder type untuk tipe data yang akan digunakan oleh method-metho
 
 Perbedaan penggunaan associated type dengan generics, adalah dengan menggunakan associated API implementor tidak perlu membuat implementasi generic untuk suatu tipe, karena hal ini terlihat seolah-olah memiliki berbagai jenis tipe. Misal jika kita ada `trait Trait<T> {...}`, maka akan bisa di deklarasi berbagai tipe untuk T seperti `Trait<String>`, `Trait<i32>`, etc. Dari sudut pandang API user, mereka tidak perlu memberi spesifikasi tipe, karena implementor sudah meng-enkapsulasi type implementor dan tipe yang terasosiai ke dalam satu trait tersebut. API user bahkan tidak perlu membawa definisi trait ke dalam scope hanya untuk memenuhi fully qualified syntax dengan spesifikasi tipe generic. User hanya cukup tau suatu tipe sudah mengimplementasi suatu trait dengan semua data yang terasosiasi. Secara idiom, generic type pada trait menggunakan associated type, dan generic type sebenarnya akan digunakan oleh implementor type.
 
+Perbedaan lainnya adalah menggunakan associated type tipe data dipilih oleh implementor, sedangkan menggunakan generics tipe data dipilih API user.
+
 Contoh:
 ```rust
 use std::fmt::Debug;

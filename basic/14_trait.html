@@ -447,6 +447,7 @@ println!(&quot;{}&quot;, O::not_de());
 <h2 id="trait-associated-type"><a class="header" href="#trait-associated-type">Trait Associated Type</a></h2>
 <p>Merupakan placeholder type untuk tipe data yang akan digunakan oleh method-method pada trait.</p>
 <p>Perbedaan penggunaan associated type dengan generics, adalah dengan menggunakan associated API implementor tidak perlu membuat implementasi generic untuk suatu tipe, karena hal ini terlihat seolah-olah memiliki berbagai jenis tipe. Misal jika kita ada <code>trait Trait&lt;T&gt; {...}</code>, maka akan bisa di deklarasi berbagai tipe untuk T seperti <code>Trait&lt;String&gt;</code>, <code>Trait&lt;i32&gt;</code>, etc. Dari sudut pandang API user, mereka tidak perlu memberi spesifikasi tipe, karena implementor sudah meng-enkapsulasi type implementor dan tipe yang terasosiai ke dalam satu trait tersebut. API user bahkan tidak perlu membawa definisi trait ke dalam scope hanya untuk memenuhi fully qualified syntax dengan spesifikasi tipe generic. User hanya cukup tau suatu tipe sudah mengimplementasi suatu trait dengan semua data yang terasosiasi. Secara idiom, generic type pada trait menggunakan associated type, dan generic type sebenarnya akan digunakan oleh implementor type.</p>
+<p>Perbedaan lainnya adalah menggunakan associated type tipe data dipilih oleh implementor, sedangkan menggunakan generics tipe data dipilih API user.</p>
 <p>Contoh:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {

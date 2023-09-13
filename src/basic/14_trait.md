@@ -314,6 +314,10 @@ Perbedaan penggunaan associated type dengan generics, adalah dengan menggunakan 
 
 Perbedaan lainnya adalah menggunakan associated type tipe data dipilih oleh implementor, sedangkan menggunakan generics tipe data dipilih API user.
 
+General Rule-of-thumb penggunaan associated type dan generics type([source](https://github.com/pretzelhammer/rust-blog/blob/master/posts/tour-of-rusts-standard-library-traits.md)):
+- Use associated types when there should only be a single impl of the trait per type.
+- Use generic types when there can be many possible impls of the trait per type.
+
 Contoh:
 ```rust
 use std::fmt::Debug;

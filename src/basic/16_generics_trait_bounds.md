@@ -257,10 +257,6 @@ impl<T: Display> Trait<T> for Struct<T> {
 }
 
 fn main() {
-    let name = "fathir";
-    let n = 100;
-    print_name(name, n);
-
     let s = Struct{field: "this"};
     s.method("that", 123_f64);
     

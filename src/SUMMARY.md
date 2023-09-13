@@ -19,7 +19,7 @@
   - [Associated Items](basic/13_associated_items.md)
   - [Trait](basic/14_trait.md)
   - [Generic](basic/15_generic.md)
-  - [Generic Bound with Trait](basic/16_generic_bound_with_trait.md)
+  - [Generics Trait Bounds](basic/16_generics_trait_bounds.md)
   - [Lifetime](basic/17_lifetime.md)
   - [Error Handling](basic/18_error_handling.md)
   - [Unit Test](basic/19_unit_test.md)
@@ -33,3 +33,4 @@
   - [Smart Pointers](intermediate/5_smart_pointers.md)
   - [OOP](intermediate/6_OOP.md)
   - [Subtyping](intermediate/7_subtyping.md)
+  - [Standard Traits](intermediate/8_standard_traits.md)

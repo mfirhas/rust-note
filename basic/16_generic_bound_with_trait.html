@@ -88,11 +88,33 @@
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
@@ -145,251 +167,6 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="generic-bound-with-trait"><a class="header" href="#generic-bound-with-trait">Generic Bound with Trait</a></h1>
-<p>Ketika ingin membatasi tipe-tipe yang dibolehkan pada generic, kita bisa menggunakan <code>trait</code> sehingga tipe-tipe yang bisa dimasukkan ke dalam generic type hanya tipe yang sudah mengimplementasikan <code>trait</code> bersangkutan.</p>
-<p>Generic trait bound bisa dideklarasikan pada tempat-tempat dimana generic berada.</p>
-<p>Berikut beberapa tempat mendeklarasi trait bound pada generic type:</p>
-<h2 id="function-params"><a class="header" href="#function-params">Function Params</a></h2>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>use core::fmt::Display;
-
-fn my_format&lt;T: Display&gt;(param: T) {
-    println!(&quot;--&gt;: {}&quot;, param);
-}
-<span class="boring">}</span></code></pre></pre>
-<p>Trait <code>Display</code> diimport dari module <code>core::fmt</code>. Trait ini merupakan trait untuk tipe-tipe yang bisa di-print ke stdout atau stderr. Semua tipe-tipe primitive sudah memiliki implementasi ini built-in, beberapa tipe non-primitive lain juga sudah. Untuk tipe yang belum kita bisa implement sendiri trait tersebut.</p>
-<p>Trait <code>Display</code> dibutuhkan karena tipe T akan digunakan di dalam <code>println!()</code> yang membutuhkan data dengan tipe yang implement <code>Display</code> trait.</p>
-<ul>
-<li>Multiple generics:</li>
-</ul>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>fn function_generic_multiple_bounds&lt;T: Display + Clone&gt;(param: T) {
-    println!(&quot;{}&quot;, param.clone());
-}
-
-fn function_multiple_generic_multiple_bounds&lt;T: Display + Clone, U: Debug&gt;(param1: T, param2: U) {
-    println!(&quot;{} -&gt; {:?}&quot;, param1.clone(), param2)
-}
-<span class="boring">}</span></code></pre></pre>
-<ul>
-<li>Memanggil multiple generics:</li>
-</ul>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>// memanggil dengan definisi tipe
-function_generic_multiple_bounds::&lt;&amp;str&gt;(&quot;this is testing&quot;); 
-function_multiple_generic_multiple_bounds::&lt;&amp;str, i64&gt;(&quot;test&quot;, 123);
-
-// memanggil dengan tipe data infered
-function_generic_multiple_bounds(&quot;this is testing&quot;);
-function_multiple_generic_multiple_bounds(&quot;test&quot;, 123);
-<span class="boring">}</span></code></pre></pre>
-<ul>
-<li>Multiple generics dengan <code>where</code>:</li>
-</ul>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>fn function_generic_trait_bounds_where&lt;T, U, V&gt;(param1: T, param2: U, param3: V) -&gt; String
-where
-    T: Clone + Display,
-    U: Debug,
-    V: Display,
-    String: From&lt;V&gt;
-{
-    println!(&quot;{} {:?}&quot;, param1, param2);
-    String::from(param3)
-}
-<span class="boring">}</span></code></pre></pre>
-<ul>
-<li>Memanggil multiple generics dengan <code>where</code>:</li>
-</ul>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let resp: String = function_generic_trait_bounds_where(&quot;test&quot;, 123, &quot;this&quot;);
-println!(&quot;{}&quot;, resp);
-<span class="boring">}</span></code></pre></pre>
-<h2 id="struct-dan-enum-beserta-associated-functions-dan-methods"><a class="header" href="#struct-dan-enum-beserta-associated-functions-dan-methods">Struct dan Enum beserta associated functions dan methods</a></h2>
-<h3 id="struct"><a class="header" href="#struct">Struct</a></h3>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>#[derive(Debug)]
-struct MyStruct&lt;T, U&gt; {
-    field1: T,
-    field2: U,
-}
-
-impl&lt;T: Display, U: Debug + Display&gt; MyStruct&lt;T, U&gt; {
-    pub fn method1(param1: T, param2: U) {
-        println!(&quot;{}, {}&quot;, param1, param2);
-    }
-
-    pub fn method2(&amp;self) {
-        println!(&quot;{}, {}&quot;, self.field1, self.field2);
-    }
-}
-<span class="boring">}</span></code></pre></pre>
-<ul>
-<li>Implementasi menggunakan <code>where</code> clause:</li>
-</ul>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>impl&lt;T, U&gt; MyStruct&lt;T, U&gt; where
-    T: Display,
-    U: Debug + Display
-{
-    pub fn method1(param1: T, param2: U) {
-        println!(&quot;{}, {}&quot;, param1, param2);
-    }
-
-    pub fn method2(&amp;self) {
-        println!(&quot;{}, {}&quot;, self.field1, self.field2);
-    }
-}
-<span class="boring">}</span></code></pre></pre>
-<ul>
-<li>Memanggil:</li>
-</ul>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>MyStruct::&lt;i32, &amp;str&gt;::method1(123, &quot;test&quot;);
-MyStruct::method1(123, &quot;test&quot;); // infered
-<span class="boring">}</span></code></pre></pre>
-<h3 id="enum"><a class="header" href="#enum">Enum</a></h3>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>#[derive(Debug)]
-pub enum MyEnum&lt;T,U&gt; {
-    Value1(T),
-    Value2(U),
-}
-
-impl&lt;T: Debug + Display, U: Debug + Display&gt; MyEnum&lt;T,U&gt; {
-    pub fn method1(param1: T, param2: U) {
-        println!(&quot;{:?}, {:?}&quot;, param1, param2);
-    }
-
-    pub fn method2(&amp;self) {
-        println!(&quot;{:?}&quot;, self);
-    }
-}
-<span class="boring">}</span></code></pre></pre>
-<ul>
-<li>Implementasi menggunakan <code>where</code> clause:</li>
-</ul>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>impl&lt;T, U&gt; MyEnum&lt;T,U&gt; where
-    T: Debug + Display,
-    U: Debug + Display
-{
-    pub fn method1(param1: T, param2: U) {
-        println!(&quot;{:?}, {:?}&quot;, param1, param2);
-    }
-
-    pub fn method2(&amp;self) {
-        println!(&quot;{:?}&quot;, self);
-    }
-}
-<span class="boring">}</span></code></pre></pre>
-<ul>
-<li>Memanggil:</li>
-</ul>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>MyEnum::&lt;i32, f32&gt;::Value1(9999).method2();
-<span class="boring">}</span></code></pre></pre>
-<p>Untuk <code>Struct</code> dan <code>Enum</code> trait bounds lebih baik di deklarasikan untuk <code>impl</code> karena filter tipe berlaku ketika ada operasi terhadap data generic tersebut. Jika hanya struct dan enum saja, maka tidak berarti apa-apa bounds yang diberikan karena kita tidak melakukan apa-apa terhadap data tersebut.</p>
-<h2 id="trait"><a class="header" href="#trait">Trait</a></h2>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>trait MyTrait&lt;T: Display, U: Display + Clone&gt; {
-    fn method1(param: T);
-    fn method2(&amp;self, param: U);
-    fn method3(&amp;self, param: T) -&gt; U;
-}
-
-struct MyStruct4 {
-    field1: String,
-    field2: i32,
-}
-
-impl MyTrait&lt;i32, String&gt; for MyStruct4 {
-    fn method1(param: i32) {
-        println!(&quot;{}&quot;, param);
-    }
-
-    fn method2(&amp;self, param: String) {
-        println!(&quot;{} : {}&quot;, self.field2, param.clone());
-    }
-
-    fn method3(&amp;self, param: i32) -&gt; String {
-        format!(&quot;field1: {}, field2: {}, param: {}&quot;, self.field1, self.field2, param)
-    }
-}
-<span class="boring">}</span></code></pre></pre>
-<ul>
-<li>Pemanggilan kode di atas:</li>
-</ul>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>MyStruct4::method1(123);
-let my_struct4 = MyStruct4 {
-    field1: String::from(&quot;this&quot;),
-    field2: 234,
-};
-my_struct4.method2(String::from(&quot;lskdmf&quot;));
-&lt;MyStruct4 as MyTrait&lt;i32, String&gt;&gt;::method1(4999);
-let resp = my_struct4.method3(7890);
-println!(&quot;{}&quot;, resp);
-<span class="boring">}</span></code></pre></pre>
-<ul>
-<li>Implementasi trait dengan generic implementor:</li>
-</ul>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>trait MyTrait&lt;T: Display, U: Display + Clone&gt; {
-    fn method1(param: T);
-    fn method2(&amp;self, param: U);
-    fn method3(&amp;self, param: T) -&gt; U;
-}
-
-struct MyStruct4&lt;T, U&gt; {
-    field1: T,
-    field2: U,
-}
-
-impl&lt;T: Display, U: Clone + Display&gt; MyTrait&lt;i32, String&gt; for MyStruct4&lt;T, U&gt; {
-    fn method1(param: i32) {
-        println!(&quot;{}&quot;, param);
-    }
-
-    fn method2(&amp;self, param: String) {
-        println!(&quot;{} : {}&quot;, self.field2, param.clone());
-    }
-
-    fn method3(&amp;self, param: i32) -&gt; String {
-        format!(&quot;field1: {}, field2: {}, param: {}&quot;, self.field1, self.field2, param)
-    }
-}
-<span class="boring">}</span></code></pre></pre>
-<ul>
-<li>Pemanggilan kode di atas:</li>
-</ul>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>MyStruct4::&lt;String, i32&gt;::method1(123);
-let my_struct4 = MyStruct4 {
-    field1: String::from(&quot;this&quot;),
-    field2: 234,
-};
-my_struct4.method2(String::from(&quot;lskdmf&quot;));
-&lt;MyStruct4&lt;String, i32&gt; as MyTrait&lt;i32, String&gt;&gt;::method1(4999);
-let resp = my_struct4.method3(7890);
-println!(&quot;{}&quot;, resp);
-<span class="boring">}</span></code></pre></pre>
-<p>Untuk <code>trait</code> bounds dapat ditaruh pada deklarasi trait, sehingga bound ini akan diterapkan pada setiap tipe yang mengimplementasikan trait tersebut.</p>
-<p>Perbedaan generic bounds pada <code>impl</code> antara trait dengan inherent adalah dengan trait kita bisa deklarasi generic return type, yang akan didefinisikan tipenya saat implementasi oleh suatu tipe. Seperti contoh di atas, fungsi <code>fn method3(&amp;self, param: T) -&gt; U;</code> memiliki generic return dan tipe dari return didefinisikan pada saat implementasi <code>impl MyTrait&lt;i32, String&gt; for MyStruct4</code> sehingga return type menjadi String.</p>
 
                     </main>
 

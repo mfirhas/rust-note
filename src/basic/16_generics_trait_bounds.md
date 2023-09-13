@@ -1,4 +1,4 @@
-# Generic Bound with Trait #
+# Generics Trait Bounds #
 
 Ketika ingin membatasi tipe-tipe yang dibolehkan pada generic, kita bisa menggunakan `trait` sehingga tipe-tipe yang bisa dimasukkan ke dalam generic type hanya tipe yang sudah mengimplementasikan `trait` bersangkutan.
 
@@ -230,3 +230,41 @@ println!("{}", resp);
 Untuk `trait` bounds dapat ditaruh pada deklarasi trait, sehingga bound ini akan diterapkan pada setiap tipe yang mengimplementasikan trait tersebut.
 
 Perbedaan generic bounds pada `impl` antara trait dengan inherent adalah dengan trait kita bisa deklarasi generic return type, yang akan didefinisikan tipenya saat implementasi oleh suatu tipe. Seperti contoh di atas, fungsi `fn method3(&self, param: T) -> U;` memiliki generic return dan tipe dari return didefinisikan pada saat implementasi `impl MyTrait<i32, String> for MyStruct4` sehingga return type menjadi String.
+
+## Generic Method ##
+
+Generic method merupakan deklarasi generics parameter pada method di dalam trait. 
+
+Rule: Generic parameter pada method di dalam deklarasi trait harus **lebih atau sama strict** dibanding method generic parameter di dalam trait impl. 
+
+Contoh:
+```rust
+trait Trait<T> {
+    // fn method<U: Display>(&self, t: T, u: U); // minimal
+    fn method<U: Display + Debug>(&self, t: T, u: U);
+}
+
+struct Struct<T> {
+    field: T
+}
+
+impl<T: Display> Trait<T> for Struct<T> {
+    fn method<U: Display>(&self, t: T, u: U) {
+        println!("{}", self.field);
+        println!("{}", t);
+        println!("{}", u);
+    }
+}
+
+fn main() {
+    let name = "fathir";
+    let n = 100;
+    print_name(name, n);
+
+    let s = Struct{field: "this"};
+    s.method("that", 123_f64);
+    
+}
+```
+Pada contoh code di atas, generic parameter pada trait memiliki trait bounds: `Display + Debug` lebih strict dari impl yang cuma `Display`.
+Hal ini supaya ketika trait digunakan, tidak akan konflik ketika mengdefinisikan dan menggunakan method bersangkutan. Karena jika impl method masih di dalam boundaries trait methods, maka value-value yang diharapkan masih bisa masuk.

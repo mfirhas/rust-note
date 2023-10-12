@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
-<html lang="id" class="sidebar-visible no-js light">
+<html lang="id" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Rust Note</title>
-        <meta name="robots" content="noindex" />
+        <meta name="robots" content="noindex">
 
 
         <!-- Custom HTML head -->
         
         <meta name="description" content="Rust dalam Bahasa Indonesia">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -32,7 +32,7 @@
         <!-- Custom theme stylesheets -->
 
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -62,24 +62,29 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
@@ -117,9 +122,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -5583,99 +5588,16 @@ impl Struct {
 <span class="boring">}</span></code></pre></pre>
 <p>Rust memiliki pendekatan OOP yang berbeda dengan kebanyakan bahasa OOP, dimana tidak ada inheritance, dan kebanyakan variable adalah value, bukan object seperti di bahasa OOP. Beberapa pattern juga akan sangat berbeda jika diterapkan OOP dengan Rust. Trait object juga bisa di-inject ke dalam smart pointer jenis lain, sesuai kebutuhan. </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="subtyping"><a class="header" href="#subtyping">Subtyping</a></h1>
-<p>Subtyping adalah cara Rust untuk memberikan relasi terhadap tipe data. Subtyping dilakukan untuk memberikan fleksibilitas terhadap penggunaan tipe data. Contoh subtyping sudah kita bahas sebelumnya salah satunya dalam OOP yaitu inheritance, dimana relasi yang terjadi ada parent-child. Definisi lain menyatakan inheritance bukan subtyping, akan tetapi interface lah yang merupakan subtyping, karena memberikan sifat <em>substitutability</em> pada tipe data/objek.</p>
+<p>Subtyping adalah teknik memberikan sifat <em><strong>substitutability</strong></em> terhadap tipe data karena adanya relasi tertentu antar tipe data tersebut. Teknik ini merupakan upaya untuk memberikan semacam <em>polymorphism</em> terhadap tidak data sehingga lebih flexible dan <em>safe</em> dalam penggunaannya. Teknik ini berkembang menjadi salah satu prinsip dalam pemograman yang dikenal dengan Liskov Substitution Principle.</p>
+<p>Setiap bahasa memiliki <em>notion</em> yang berbeda terhadap subtyping, bahkan ada yang tidak memiliki subtyping sekalipun.</p>
 <p>Pada Rust, ada beberapa subtyping diantaranya:</p>
 <ul>
-<li>Trait</li>
 <li>Closures and Function pointer</li>
+<li>Immutability and Mutability</li>
 <li>Lifetime</li>
 </ul>
-<h2 id="trait-2"><a class="header" href="#trait-2">Trait</a></h2>
-<p>Trait bisa di-ekstensi menggunakan notasi <code>:</code>, menjadi subtrait. Semua type yang implements suatu subtrait, juga harus implement supertrait nya, tapi tidak sebaliknya.</p>
-<p>Contoh:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>/// subtyping in rust, replacing inheritance.
-
-// trait subtyping
-pub trait Base {
-    fn walk(&amp;self);
-}
-
-pub trait Child: Base {
-    fn run(&amp;self);
-    fn fly(&amp;self);
-}
-
-#[derive(Debug, Clone)]
-pub struct A {
-    name: String,
-}
-
-impl A {
-    pub fn new(name: &amp;str) -&gt; Self {
-        Self {
-            name: name.to_string(),
-        }
-    }
-}
-
-impl Base for A {
-    fn walk(&amp;self) {}
-}
-
-impl Child for A {
-    fn run(&amp;self) {}
-    fn fly(&amp;self) {}
-}
-
-#[derive(Debug, Clone)]
-pub struct B {
-    name: String,
-}
-impl B {
-    pub fn new(name: &amp;str) -&gt; Self {
-        B {
-            name: String::from(name),
-        }
-    }
-}
-impl Base for B {
-    fn walk(&amp;self) {}
-}
-
-fn process&lt;T: Base&gt;(b: T) {
-    println!(&quot;process called&quot;);
-    b.walk();
-}
-
-fn process_return_base() -&gt; impl Base {
-    B::new(&quot;anu&quot;)
-}
-
-fn process_sub&lt;C: Child&gt;(c: C) {
-    println!(&quot;process_sub called&quot;);
-    c.run();
-    c.fly();
-}
-
-pub fn do_trait() {
-    let a = A {
-        name: &quot;this A&quot;.to_string(),
-    };
-    process(a.clone());
-    process_sub(a);
-
-    let b = B {
-        name: &quot;this B&quot;.to_string(),
-    };
-    process(b.clone());
-    // process_sub(b); // failed, because process_sub require Child trait, subtype of Base trait, but B only implement Base trait.
-    let base = process_return_base();
-}
-<span class="boring">}</span></code></pre></pre>
 <h2 id="closures-and-function-pointer"><a class="header" href="#closures-and-function-pointer">Closures and Function Pointer</a></h2>
-<p>Closures merupakan supertype dari function pointer, sehingga bisa saling substituable/covariant.</p>
+<p>Closures dan Function Pointer saling substitutable satu sama lain.</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>struct A {
@@ -5699,6 +5621,18 @@ fn f_lt(x: &amp;i32) -&gt; &amp;i32 {
     x
 }
 
+fn return_function_pointer() -&gt; impl FnMut(i32) -&gt; i32 {
+    fp
+}
+
+fn return_closure_from_inside() -&gt; fn(i32) -&gt; i32 {
+    |x| x
+}
+
+fn fp(a: i32) -&gt; i32 {
+    a
+}
+
 pub fn f_a() {
     let c = |x: i32| -&gt; i32 { x };
     let a = A { f: c, g: f_lt };
@@ -5707,6 +5641,33 @@ pub fn f_a() {
 
     accept_closure(f, 5);
     return_closure()(5);
+    println!(&quot;123-&gt; {}&quot;, return_function_pointer()(123));
+    println!(&quot;234-&gt; {}&quot;, return_closure_from_inside()(234));
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="immutability-and-mutability"><a class="header" href="#immutability-and-mutability">Immutability and Mutability</a></h2>
+<p>Value yang bersifat immutable dan mutable memiliki relasi subtyping tersendiri, yaitu: </p>
+<ul>
+<li>Mutable value invariant terhadap sesama mutable value, </li>
+<li>Mutable value covariance terhadap immutable value, meaning mutable is subtype of immutable (Mu &lt;: Immu).</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// mutable invariances
+let a: &amp;str = &quot;this&quot;;
+accept_immutable(a);
+// accept_mutable(a); // failed because parameter is mutable and only accept mutable since it's invariant
+
+// mutable covariance over immutable
+let mut a: &amp;str = &quot;this&quot;;
+accept_immutable(a); // works because parameter is immutable and mutable values are covariance over immutable parameters.
+accept_mutable(&amp;mut a);
+
+fn accept_immutable(a: &amp;str) {
+    // even if a get value from mutable reference, it becomes immutable in this function scope.
+}
+fn accept_mutable(a: &amp;mut &amp;str) {
+    *a = &quot;lskdfm&quot;;
 }
 <span class="boring">}</span></code></pre></pre>
 <h2 id="lifetime-1"><a class="header" href="#lifetime-1">Lifetime</a></h2>
@@ -5728,12 +5689,7 @@ pub fn lifetime_subtyping() {
         // c = lifetime_a(&amp;a, &amp;b);
         println!(&quot;{c}&quot;);
 
-        // d get value of lifetime 'a, which is the current lifetime.
-        // while lifetime of d declared above is 'b.
-        // this works because lifetime is covariant each other.
-        // means that lifetime can be substituted with its variances.
-        // d is declared inside lifetime 'b, and 'b is subtype of 'a, hence 'a and 'b have relations eachother that 'b extends 'a lifetime.
-        // based on this, d will have shorter lifetime than it was declared above, hence cannot live beyond this scope.
+        // compiler is smart enough to shorten d's lifetime from 'b(longer) to 'a(shorter) since it's only used here and getting return value of 'a lifetime from function `lifetime_a`
         d = lifetime_a(&amp;a, &amp;b);
         println!(&quot;{d}&quot;);
     }
@@ -5867,6 +5823,45 @@ fn co_example&lt;'short&gt;(
 }
 <span class="boring">}</span></code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="standard-traits"><a class="header" href="#standard-traits">Standard Traits</a></h1>
+<p>Berikut kita akan membahas beberapa trait standard yang biasa digunakan dalam development Rust. </p>
+<h2 id="auto-dan-marker-traits"><a class="header" href="#auto-dan-marker-traits">Auto dan Marker Traits</a></h2>
+<p>Trait yang sudah secara otomatis di-implementasikan oleh compiler untuk hampir semua tipe data di Rust. 
+Terdapat beberapa auto traits:</p>
+<h3 id="send"><a class="header" href="#send">Send</a></h3>
+<p><a href="https://doc.rust-lang.org/std/marker/trait.Send.html">Send</a>: Trait yang menandakan tipe data yang <em>safe</em> untuk dikirim antar threads. Hampir semua tipe data pada Rust sudah implement <code>Send</code> secara automatis, pengecualian: <code>Rc&lt;T&gt;</code> karena smart pointer untuk borrow di dalam thread yang sama, versi <em>Send</em> dari Rc adalah Arc.</p>
+<h3 id="sync"><a class="header" href="#sync">Sync</a></h3>
+<p><a href="https://doc.rust-lang.org/std/marker/trait.Sync.html">Sync</a>: Trait yang menandakan tipe data yang <em>safe</em> untuk mengirim reference dari suatu data antar threads. Pengecualian adalah tipe data yang memiliki pattern interior mutability seperti <code>Cell</code>, <code>RefCell</code>, dll.</p>
+<h3 id="sized"><a class="header" href="#sized">Sized</a></h3>
+<p>Tipe dengan trait Sized memiliki size yang diketahui pada saat compile-time sehingga bisa ditaruh di stack.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn function&lt;T: Sized&gt;(t: T) {
+    ...
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Tipe yang tidak memiliki known sized at compile time:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let arr: [i32] = [2, 3, 4, 5];
+// [i32] has no known size at compile time.
+// use [i32; N] where N is fixed size, or
+// use &amp;[i32] where &amp; indicates it's a reference pointer which size is pointer's size and data referenced from other defined places.
+let s: S&lt;[i32]&gt; = arr;
+<span class="boring">}</span></code></pre></pre>
+<p>Optional Sized:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn function&lt;T: ?Sized&gt;(t: T) {
+    ...
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Tanda tanya didepan <code>Sized</code> menandakan bahwa bisa menaruh <em>Dynamically Sized Type</em> juga(tidak strict sized).</p>
+<h3 id="unpin"><a class="header" href="#unpin">Unpin</a></h3>
+<p><em>Advance</em></p>
+<h3 id="unwindsafe"><a class="header" href="#unwindsafe">UnwindSafe</a></h3>
+<p><em>Advance</em></p>
+<h3 id="refunwindsafe"><a class="header" href="#refunwindsafe">RefUnwindSafe</a></h3>
+<p><em>Advance</em></p>
 
                     </main>
 

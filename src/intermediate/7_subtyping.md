@@ -1,6 +1,6 @@
 # Subtyping #
 
-Subtyping adalah teknik memberikan sifat ***substitutability*** terhadap tipe data karena adanya relasi tertentu antar tipe data tersebut. Teknik ini merupakan upaya untuk memberikan semacam *polymorphism* terhadap tidak data sehingga lebih flexible dan *safe* dalam penggunaannya. Teknik ini berkembang menjadi salah satu prinsip dalam pemograman yang dikenal dengan Liskov Substitution Principle.
+Subtyping adalah teknik memberikan sifat ***substitutability*** terhadap tipe data karena adanya relasi tertentu antar tipe data tersebut. Teknik ini merupakan upaya untuk memberikan semacam *polymorphism* terhadap tipe data sehingga lebih flexible dan *safe* dalam penggunaannya. Teknik ini berkembang menjadi salah satu prinsip dalam pemograman yang dikenal dengan Liskov Substitution Principle.
 
 Setiap bahasa memiliki *notion* yang berbeda terhadap subtyping, bahkan ada yang tidak memiliki subtyping sekalipun.
 
@@ -60,9 +60,9 @@ pub fn f_a() {
 ```
 
 ## Immutability and Mutability ##
-Value yang bersifat immutable dan mutable memiliki relasi subtyping tersendiri, yaitu: 
-- Mutable value invariant terhadap sesama mutable value, 
-- Mutable value covariance terhadap immutable value, meaning mutable is subtype of immutable (Mu <: Immu).
+Value yang bersifat immutable dan mutable memiliki relasi subtyping tersendiri, yaitu:
+- Mutable value invariant sehingga hanya bisa digunakan untuk mutable value juga.
+- Immutable value covariance terhadap mutable value, meaning mutable is subtype of immutable (Mu <: Immu) and can pass through becoming immutable.
 
 ```rust
 // mutable invariances

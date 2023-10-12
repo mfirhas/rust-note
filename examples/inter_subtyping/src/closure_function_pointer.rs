@@ -19,6 +19,18 @@ fn f_lt(x: &i32) -> &i32 {
     x
 }
 
+fn return_function_pointer() -> impl FnMut(i32) -> i32 {
+    fp
+}
+
+fn return_closure_from_inside() -> fn(i32) -> i32 {
+    |x| x
+}
+
+fn fp(a: i32) -> i32 {
+    a
+}
+
 pub fn f_a() {
     let c = |x: i32| -> i32 { x };
     let a = A { f: c, g: f_lt };
@@ -27,4 +39,6 @@ pub fn f_a() {
 
     accept_closure(f, 5);
     return_closure()(5);
+    println!("123-> {}", return_function_pointer()(123));
+    println!("234-> {}", return_closure_from_inside()(234));
 }

@@ -1,99 +1,16 @@
 # Subtyping #
 
-Subtyping adalah cara Rust untuk memberikan relasi terhadap tipe data. Subtyping dilakukan untuk memberikan fleksibilitas terhadap penggunaan tipe data. Contoh subtyping sudah kita bahas sebelumnya salah satunya dalam OOP yaitu inheritance, dimana relasi yang terjadi ada parent-child. Definisi lain menyatakan inheritance bukan subtyping, akan tetapi interface lah yang merupakan subtyping, karena memberikan sifat *substitutability* pada tipe data/objek.
+Subtyping adalah teknik memberikan sifat ***substitutability*** terhadap tipe data karena adanya relasi tertentu antar tipe data tersebut. Teknik ini merupakan upaya untuk memberikan semacam *polymorphism* terhadap tidak data sehingga lebih flexible dan *safe* dalam penggunaannya. Teknik ini berkembang menjadi salah satu prinsip dalam pemograman yang dikenal dengan Liskov Substitution Principle.
+
+Setiap bahasa memiliki *notion* yang berbeda terhadap subtyping, bahkan ada yang tidak memiliki subtyping sekalipun.
 
 Pada Rust, ada beberapa subtyping diantaranya:
-- Trait
 - Closures and Function pointer
+- Immutability and Mutability
 - Lifetime
 
-## Trait ##
-Trait bisa di-ekstensi menggunakan notasi `:`, menjadi subtrait. Semua type yang implements suatu subtrait, juga harus implement supertrait nya, tapi tidak sebaliknya.
-
-Contoh:
-```rust
-/// subtyping in rust, replacing inheritance.
-
-// trait subtyping
-pub trait Base {
-    fn walk(&self);
-}
-
-pub trait Child: Base {
-    fn run(&self);
-    fn fly(&self);
-}
-
-#[derive(Debug, Clone)]
-pub struct A {
-    name: String,
-}
-
-impl A {
-    pub fn new(name: &str) -> Self {
-        Self {
-            name: name.to_string(),
-        }
-    }
-}
-
-impl Base for A {
-    fn walk(&self) {}
-}
-
-impl Child for A {
-    fn run(&self) {}
-    fn fly(&self) {}
-}
-
-#[derive(Debug, Clone)]
-pub struct B {
-    name: String,
-}
-impl B {
-    pub fn new(name: &str) -> Self {
-        B {
-            name: String::from(name),
-        }
-    }
-}
-impl Base for B {
-    fn walk(&self) {}
-}
-
-fn process<T: Base>(b: T) {
-    println!("process called");
-    b.walk();
-}
-
-fn process_return_base() -> impl Base {
-    B::new("anu")
-}
-
-fn process_sub<C: Child>(c: C) {
-    println!("process_sub called");
-    c.run();
-    c.fly();
-}
-
-pub fn do_trait() {
-    let a = A {
-        name: "this A".to_string(),
-    };
-    process(a.clone());
-    process_sub(a);
-
-    let b = B {
-        name: "this B".to_string(),
-    };
-    process(b.clone());
-    // process_sub(b); // failed, because process_sub require Child trait, subtype of Base trait, but B only implement Base trait.
-    let base = process_return_base();
-}
-```
-
 ## Closures and Function Pointer ##
-Closures merupakan supertype dari function pointer, sehingga bisa saling substituable/covariant.
+Closures dan Function Pointer saling substitutable satu sama lain.
 
 ```rust
 struct A {
@@ -117,6 +34,18 @@ fn f_lt(x: &i32) -> &i32 {
     x
 }
 
+fn return_function_pointer() -> impl FnMut(i32) -> i32 {
+    fp
+}
+
+fn return_closure_from_inside() -> fn(i32) -> i32 {
+    |x| x
+}
+
+fn fp(a: i32) -> i32 {
+    a
+}
+
 pub fn f_a() {
     let c = |x: i32| -> i32 { x };
     let a = A { f: c, g: f_lt };
@@ -125,6 +54,32 @@ pub fn f_a() {
 
     accept_closure(f, 5);
     return_closure()(5);
+    println!("123-> {}", return_function_pointer()(123));
+    println!("234-> {}", return_closure_from_inside()(234));
+}
+```
+
+## Immutability and Mutability ##
+Value yang bersifat immutable dan mutable memiliki relasi subtyping tersendiri, yaitu: 
+- Mutable value invariant terhadap sesama mutable value, 
+- Mutable value covariance terhadap immutable value, meaning mutable is subtype of immutable (Mu <: Immu).
+
+```rust
+// mutable invariances
+let a: &str = "this";
+accept_immutable(a);
+// accept_mutable(a); // failed because parameter is mutable and only accept mutable since it's invariant
+
+// mutable covariance over immutable
+let mut a: &str = "this";
+accept_immutable(a); // works because parameter is immutable and mutable values are covariance over immutable parameters.
+accept_mutable(&mut a);
+
+fn accept_immutable(a: &str) {
+    // even if a get value from mutable reference, it becomes immutable in this function scope.
+}
+fn accept_mutable(a: &mut &str) {
+    *a = "lskdfm";
 }
 ```
 
@@ -147,12 +102,7 @@ pub fn lifetime_subtyping() {
         // c = lifetime_a(&a, &b);
         println!("{c}");
 
-        // d get value of lifetime 'a, which is the current lifetime.
-        // while lifetime of d declared above is 'b.
-        // this works because lifetime is covariant each other.
-        // means that lifetime can be substituted with its variances.
-        // d is declared inside lifetime 'b, and 'b is subtype of 'a, hence 'a and 'b have relations eachother that 'b extends 'a lifetime.
-        // based on this, d will have shorter lifetime than it was declared above, hence cannot live beyond this scope.
+        // compiler is smart enough to shorten d's lifetime from 'b(longer) to 'a(shorter) since it's only used here and getting return value of 'a lifetime from function `lifetime_a`
         d = lifetime_a(&a, &b);
         println!("{d}");
     }

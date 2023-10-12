@@ -5588,7 +5588,7 @@ impl Struct {
 <span class="boring">}</span></code></pre></pre>
 <p>Rust memiliki pendekatan OOP yang berbeda dengan kebanyakan bahasa OOP, dimana tidak ada inheritance, dan kebanyakan variable adalah value, bukan object seperti di bahasa OOP. Beberapa pattern juga akan sangat berbeda jika diterapkan OOP dengan Rust. Trait object juga bisa di-inject ke dalam smart pointer jenis lain, sesuai kebutuhan. </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="subtyping"><a class="header" href="#subtyping">Subtyping</a></h1>
-<p>Subtyping adalah teknik memberikan sifat <em><strong>substitutability</strong></em> terhadap tipe data karena adanya relasi tertentu antar tipe data tersebut. Teknik ini merupakan upaya untuk memberikan semacam <em>polymorphism</em> terhadap tidak data sehingga lebih flexible dan <em>safe</em> dalam penggunaannya. Teknik ini berkembang menjadi salah satu prinsip dalam pemograman yang dikenal dengan Liskov Substitution Principle.</p>
+<p>Subtyping adalah teknik memberikan sifat <em><strong>substitutability</strong></em> terhadap tipe data karena adanya relasi tertentu antar tipe data tersebut. Teknik ini merupakan upaya untuk memberikan semacam <em>polymorphism</em> terhadap tipe data sehingga lebih flexible dan <em>safe</em> dalam penggunaannya. Teknik ini berkembang menjadi salah satu prinsip dalam pemograman yang dikenal dengan Liskov Substitution Principle.</p>
 <p>Setiap bahasa memiliki <em>notion</em> yang berbeda terhadap subtyping, bahkan ada yang tidak memiliki subtyping sekalipun.</p>
 <p>Pada Rust, ada beberapa subtyping diantaranya:</p>
 <ul>
@@ -5646,10 +5646,10 @@ pub fn f_a() {
 }
 <span class="boring">}</span></code></pre></pre>
 <h2 id="immutability-and-mutability"><a class="header" href="#immutability-and-mutability">Immutability and Mutability</a></h2>
-<p>Value yang bersifat immutable dan mutable memiliki relasi subtyping tersendiri, yaitu: </p>
+<p>Value yang bersifat immutable dan mutable memiliki relasi subtyping tersendiri, yaitu:</p>
 <ul>
-<li>Mutable value invariant terhadap sesama mutable value, </li>
-<li>Mutable value covariance terhadap immutable value, meaning mutable is subtype of immutable (Mu &lt;: Immu).</li>
+<li>Mutable value invariant sehingga hanya bisa digunakan untuk mutable value juga.</li>
+<li>Immutable value covariance terhadap mutable value, meaning mutable is subtype of immutable (Mu &lt;: Immu) and can pass through becoming immutable.</li>
 </ul>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {

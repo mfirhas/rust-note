@@ -4,6 +4,8 @@ Associated Items merupakan tipe data yang memiliki kaitan dengan tipe, constants
 
 Associated items bisa dilakukan di dalam traits atau type implementations.
 
+Associated items langsung pada struct/enum/UDT disebut `inherent`
+
 Associated items secara keseluruhan bisa dibagi kedalam 3 jenis:
 - Associated functions and methods
 - Associated types
@@ -274,4 +276,169 @@ Ketika memanggil:
 println!("{}", MyStruct::C);
 println!("{}", MyStruct::D);
 println!("{}", <MyStruct as MyTrait>::D);
+```
+
+## Kesimpulan
+User Defined Type(struct, enum, etc) implementation disebut sebagai **inherent** implementation.
+
+UDT inherent implementations bisa memiliki:
+- public & private associated constants
+- public & private associated functions
+- public & private associated methods
+
+Trait declarations bisa memiliki:
+- default associated constants
+- associated constants
+- default associated functions implementation 
+- associated functions
+- default associated methods implementation
+- associated methods
+- associated types (along with additional trait bounds(optional))
+
+Visibility dari trait items are following trait visibility.
+
+Non-default associated items must be defined by implementor.
+
+Ketika sebuah UDT implement sebuah trait, ketika struct tersebut digunakan, jika method yang dipanggil memiliki nama yang sama antara inherent dan trait implementations, maka secara *default* akan menggunakan *inherent* implementations.
+
+```rust
+use std::fmt::{Debug, Display};
+
+#[derive(Debug)]
+pub struct Struct {
+    pub field_1: i32,
+    pub field_2: String,
+}
+
+impl Struct {
+    // public inherent associated constants
+    pub const CONSTANT: &str = "haha";
+
+    // private inherent associated constants
+    const CONSTANT_2: &str = "hehe";
+
+    // CANNOT has inherent associated type, unstable
+    // type Err;
+
+    // public inherent associated function
+    pub fn function() {
+        ()
+    }
+
+    // public inherent associated consuming/moving method
+    pub fn method_1(self) -> String {
+        self.field_2
+    }
+
+    // public inherent associated borrowing method
+    pub fn method_2(&self) -> i32 {
+        self.field_1
+    }
+
+    // private inherent associated mutably-borrowed method
+    fn method_3(&mut self) {
+        self.field_1 = self.field_1 + 5;
+    }
+
+    // public inherent associated mutable borrowing method
+    pub fn method_4(&mut self) -> i32 {
+        self.method_3();
+        self.field_1
+    }
+}
+
+pub trait Trait {
+    // all visibilities follow trait visibility
+
+    // associated constant without default value
+    const T_CONSTANT: &'static str;
+
+    // associated constant with default value
+    // it can be override by implementor if they redefine it
+    const T_CONSTANT_DEFAULT: &'static str = "hihi";
+
+    // associated type (not used), all associated types must be used.
+    // type Unused;
+
+    // associated type (without traits bounds)
+    type Val;
+
+    // associated type (with trait bounds)
+    // any implementor of this trait must define Err with satisfy such trait bounds
+    type Err: Display + Debug;
+
+    // associated function with default
+    fn function_default() {
+        println!("function_default()");
+        ()
+    }
+
+    // associated function
+    fn function();
+    
+    fn method_default_1(&self)
+    where
+        Self: Debug,
+    {
+        println!("{:#?}", self);
+    }
+
+    fn method_1(&self) -> &Self::Val;
+
+    fn method_2(&self) -> Result<Self::Val, Self::Err>;
+}
+
+impl Trait for Struct {
+    const T_CONSTANT: &'static str = "T_CONSTANT in Struct's Trait implementation";
+
+    type Val = i32;
+
+    type Err = String;
+
+    fn function() {
+        println!("trait function()");
+        ()
+    }
+
+    fn method_1(&self) -> &Self::Val {
+        println!("trait method_1");
+        &self.field_1
+    }
+
+    fn method_2(&self) -> Result<Self::Val, Self::Err> {
+        println!("trait method_2");
+        Ok(self.field_1)
+    }
+}
+
+fn main() {
+    let mut s = Struct {
+        field_1: 123,
+        field_2: String::from("This is String"),
+    };
+
+    // default using inherent implementations
+    println!("{}", Struct::CONSTANT);
+    println!("{:?}", s.method_2());
+    println!("{:?}", s.method_4());
+    println!("{:?}", s.method_2());
+    println!("{:?}", s.method_1());
+    println!("{:?}", Struct::function());
+
+    println!("---");
+
+    let mut s = Struct {
+        field_1: 234,
+        field_2: String::from("This is String 2"),
+    };
+    // use fully qualified syntax to use trait implementations when facing same name.
+    println!("{:?}", <Struct as Trait>::T_CONSTANT_DEFAULT);
+    println!("{:?}", <Struct as Trait>::T_CONSTANT);
+    println!("{:?}", <Struct as Trait>::function_default());
+    println!("{:?}", <Struct as Trait>::function());
+    println!("{:?}", <Struct as Trait>::method_default_1(&s));
+    println!("{:?}", <Struct as Trait>::method_1(&s));
+    println!("{:?}", <Struct as Trait>::method_2(&s));
+    println!("{:?}", <Struct as Trait>::method_2(&s).unwrap());
+}
 ```

@@ -22,16 +22,21 @@ Terdapat 2 jenis crate di dalam rust yaitu:
 ## Komponen Codebase ##
 Di dalam codebase Rust terdapat beberapa jenis komponen-komponen yang keseluruhannya membentuk projek utuh yang ditulis dalam Rust.
 Berikut komponen-komponen tersebut mulai dari yang terkecil:
-- **Types**: Tipe data yang merupakan komponen terakhir yang bisa diakses dalam struktur codebase. Ada beberapa jenis tipe data di dalam Rust yaitu:
+- **Types**: Tipe data yang merupakan komponen terakhir yang bisa diakses dalam struktur codebase(kecuali `let` binding). Ada beberapa jenis tipe data di dalam Rust yaitu:
   
-  |Types       | Desc.                                                        | Naming Convention    |
-  |------------|--------------------------------------------------------------|----------------------|
-  | **const**  | Values embedded at compile time                              | SCREAMING_SNAKE_CASE |
-  | **static** | Values allocated once at compile time                        | SCREAMING_SNAKE_CASE |
-  | **trait**  | Declaration of shared types, constants, and functions/methods| PascalCase           | 
-  | **struct** | Product Type                                                 | PascalCase           | 
-  | **enum**   | Sum Type                                                     | PascalCase           | 
-  | **fn**     | Functions or Methods                                         | snake_case           | 
+  |Types              | Desc.                                                        | Naming Convention    |
+  |-------------------|--------------------------------------------------------------|----------------------|
+  | **let**           | local variables with let binding                             | snake_case           |
+  | **const**         | Values embedded at compile time                              | SCREAMING_SNAKE_CASE |
+  | **static**        | Values allocated once at compile time                        | SCREAMING_SNAKE_CASE |
+  | **trait**         | Declaration of shared types, constants, and functions/methods| PascalCase           | 
+  | **struct**        | Product Type                                                 | PascalCase           | 
+  | **enum**          | Sum Type                                                     | PascalCase           |
+  | Associated Items  | Associated constants                                         | SCREAMING_SNAKE_CASE |
+  | --**--            | Associated functions                                         | snake_case           |
+  | --**--            | Associated methods                                           | snake_case           |
+  | --**--            | Associated types (trait only)                                | PascalCase           |
+  | **fn**            | Functions or Methods                                         | snake_case           | 
   
 - Module(**mod**) : Module merupakan segment kode yang memiliki cakupan kecil dan besar hingga satu file. Komponen ini berguna untuk memisahkan segment program dan melakukan enkapsulasi struktur program. Untuk naming conventions menggunakan *snake_case*. Module memiliki 3 lokasi ketika program dibuild yaitu:
   - Inline: deklarasi mod langsung dengan kode menggunakan kurung kurawal.

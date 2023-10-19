@@ -174,6 +174,7 @@
                         <h1 id="associated-item"><a class="header" href="#associated-item">Associated Item</a></h1>
 <p>Associated Items merupakan tipe data yang memiliki kaitan dengan tipe, constants, fungsi, atau method. Hal ini juga bisa digunakan sebagai salah satu metode untuk <em>&quot;namespacing&quot;</em> di dalam Rust.</p>
 <p>Associated items bisa dilakukan di dalam traits atau type implementations.</p>
+<p>Associated items langsung pada struct/enum/UDT disebut <code>inherent</code></p>
 <p>Associated items secara keseluruhan bisa dibagi kedalam 3 jenis:</p>
 <ul>
 <li>Associated functions and methods</li>
@@ -444,6 +445,166 @@ impl MyTrait for MyStruct {
 println!(&quot;{}&quot;, MyStruct::D);
 println!(&quot;{}&quot;, &lt;MyStruct as MyTrait&gt;::D);
 <span class="boring">}</span></code></pre></pre>
+<h2 id="kesimpulan"><a class="header" href="#kesimpulan">Kesimpulan</a></h2>
+<p>User Defined Type(struct, enum, etc) implementation disebut sebagai <strong>inherent</strong> implementation.</p>
+<p>UDT inherent implementations bisa memiliki:</p>
+<ul>
+<li>public &amp; private associated constants</li>
+<li>public &amp; private associated functions</li>
+<li>public &amp; private associated methods</li>
+</ul>
+<p>Trait declarations bisa memiliki:</p>
+<ul>
+<li>default associated constants</li>
+<li>associated constants</li>
+<li>default associated functions implementation </li>
+<li>associated functions</li>
+<li>default associated methods implementation</li>
+<li>associated methods</li>
+<li>associated types (along with additional trait bounds(optional))</li>
+</ul>
+<p>Visibility dari trait items are following trait visibility.</p>
+<p>Non-default associated items must be defined by implementor.</p>
+<p>Ketika sebuah UDT implement sebuah trait, ketika struct tersebut digunakan, jika method yang dipanggil memiliki nama yang sama antara inherent dan trait implementations, maka secara <em>default</em> akan menggunakan <em>inherent</em> implementations.</p>
+<pre><pre class="playground"><code class="language-rust">use std::fmt::{Debug, Display};
+
+#[derive(Debug)]
+pub struct Struct {
+    pub field_1: i32,
+    pub field_2: String,
+}
+
+impl Struct {
+    // public inherent associated constants
+    pub const CONSTANT: &amp;str = &quot;haha&quot;;
+
+    // private inherent associated constants
+    const CONSTANT_2: &amp;str = &quot;hehe&quot;;
+
+    // CANNOT has inherent associated type, unstable
+    // type Err;
+
+    // public inherent associated function
+    pub fn function() {
+        ()
+    }
+
+    // public inherent associated consuming/moving method
+    pub fn method_1(self) -&gt; String {
+        self.field_2
+    }
+
+    // public inherent associated borrowing method
+    pub fn method_2(&amp;self) -&gt; i32 {
+        self.field_1
+    }
+
+    // private inherent associated mutably-borrowed method
+    fn method_3(&amp;mut self) {
+        self.field_1 = self.field_1 + 5;
+    }
+
+    // public inherent associated mutable borrowing method
+    pub fn method_4(&amp;mut self) -&gt; i32 {
+        self.method_3();
+        self.field_1
+    }
+}
+
+pub trait Trait {
+    // all visibilities follow trait visibility
+
+    // associated constant without default value
+    const T_CONSTANT: &amp;'static str;
+
+    // associated constant with default value
+    // it can be override by implementor if they redefine it
+    const T_CONSTANT_DEFAULT: &amp;'static str = &quot;hihi&quot;;
+
+    // associated type (not used), all associated types must be used.
+    // type Unused;
+
+    // associated type (without traits bounds)
+    type Val;
+
+    // associated type (with trait bounds)
+    // any implementor of this trait must define Err with satisfy such trait bounds
+    type Err: Display + Debug;
+
+    // associated function with default
+    fn function_default() {
+        println!(&quot;function_default()&quot;);
+        ()
+    }
+
+    // associated function
+    fn function();
+    
+    fn method_default_1(&amp;self)
+    where
+        Self: Debug,
+    {
+        println!(&quot;{:#?}&quot;, self);
+    }
+
+    fn method_1(&amp;self) -&gt; &amp;Self::Val;
+
+    fn method_2(&amp;self) -&gt; Result&lt;Self::Val, Self::Err&gt;;
+}
+
+impl Trait for Struct {
+    const T_CONSTANT: &amp;'static str = &quot;T_CONSTANT in Struct's Trait implementation&quot;;
+
+    type Val = i32;
+
+    type Err = String;
+
+    fn function() {
+        println!(&quot;trait function()&quot;);
+        ()
+    }
+
+    fn method_1(&amp;self) -&gt; &amp;Self::Val {
+        println!(&quot;trait method_1&quot;);
+        &amp;self.field_1
+    }
+
+    fn method_2(&amp;self) -&gt; Result&lt;Self::Val, Self::Err&gt; {
+        println!(&quot;trait method_2&quot;);
+        Ok(self.field_1)
+    }
+}
+
+fn main() {
+    let mut s = Struct {
+        field_1: 123,
+        field_2: String::from(&quot;This is String&quot;),
+    };
+
+    // default using inherent implementations
+    println!(&quot;{}&quot;, Struct::CONSTANT);
+    println!(&quot;{:?}&quot;, s.method_2());
+    println!(&quot;{:?}&quot;, s.method_4());
+    println!(&quot;{:?}&quot;, s.method_2());
+    println!(&quot;{:?}&quot;, s.method_1());
+    println!(&quot;{:?}&quot;, Struct::function());
+
+    println!(&quot;---&quot;);
+
+    let mut s = Struct {
+        field_1: 234,
+        field_2: String::from(&quot;This is String 2&quot;),
+    };
+    // use fully qualified syntax to use trait implementations when facing same name.
+    println!(&quot;{:?}&quot;, &lt;Struct as Trait&gt;::T_CONSTANT_DEFAULT);
+    println!(&quot;{:?}&quot;, &lt;Struct as Trait&gt;::T_CONSTANT);
+    println!(&quot;{:?}&quot;, &lt;Struct as Trait&gt;::function_default());
+    println!(&quot;{:?}&quot;, &lt;Struct as Trait&gt;::function());
+    println!(&quot;{:?}&quot;, &lt;Struct as Trait&gt;::method_default_1(&amp;s));
+    println!(&quot;{:?}&quot;, &lt;Struct as Trait&gt;::method_1(&amp;s));
+    println!(&quot;{:?}&quot;, &lt;Struct as Trait&gt;::method_2(&amp;s));
+    println!(&quot;{:?}&quot;, &lt;Struct as Trait&gt;::method_2(&amp;s).unwrap());
+}</code></pre></pre>
 
                     </main>
 

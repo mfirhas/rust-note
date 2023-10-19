@@ -194,13 +194,18 @@ Terdapat 2 jenis crate di dalam rust yaitu: </p>
 Berikut komponen-komponen tersebut mulai dari yang terkecil:</p>
 <ul>
 <li>
-<p><strong>Types</strong>: Tipe data yang merupakan komponen terakhir yang bisa diakses dalam struktur codebase. Ada beberapa jenis tipe data di dalam Rust yaitu:</p>
+<p><strong>Types</strong>: Tipe data yang merupakan komponen terakhir yang bisa diakses dalam struktur codebase(kecuali <code>let</code> binding). Ada beberapa jenis tipe data di dalam Rust yaitu:</p>
 <div class="table-wrapper"><table><thead><tr><th>Types</th><th>Desc.</th><th>Naming Convention</th></tr></thead><tbody>
+<tr><td><strong>let</strong></td><td>local variables with let binding</td><td>snake_case</td></tr>
 <tr><td><strong>const</strong></td><td>Values embedded at compile time</td><td>SCREAMING_SNAKE_CASE</td></tr>
 <tr><td><strong>static</strong></td><td>Values allocated once at compile time</td><td>SCREAMING_SNAKE_CASE</td></tr>
 <tr><td><strong>trait</strong></td><td>Declaration of shared types, constants, and functions/methods</td><td>PascalCase</td></tr>
 <tr><td><strong>struct</strong></td><td>Product Type</td><td>PascalCase</td></tr>
 <tr><td><strong>enum</strong></td><td>Sum Type</td><td>PascalCase</td></tr>
+<tr><td>Associated Items</td><td>Associated constants</td><td>SCREAMING_SNAKE_CASE</td></tr>
+<tr><td>--**--</td><td>Associated functions</td><td>snake_case</td></tr>
+<tr><td>--**--</td><td>Associated methods</td><td>snake_case</td></tr>
+<tr><td>--**--</td><td>Associated types (trait only)</td><td>PascalCase</td></tr>
 <tr><td><strong>fn</strong></td><td>Functions or Methods</td><td>snake_case</td></tr>
 </tbody></table>
 </div></li>

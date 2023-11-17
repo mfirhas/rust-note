@@ -9,7 +9,7 @@ Merupakan catatan OP selama mempelajari Bahasa Pemograman Rust yang di tulis dal
 - [Cargo Examples](https://doc.rust-lang.org/rust-by-example)
 - dan lainnya yang mungkin akan ditambahkan kedepannya...
 
-Rust Version: **1.66.0 stable**++
+Rust Version: **1.73.0 stable**++
 
 Repo: [rust-note](https://github.com/mfathirirhas/rust-note)
 

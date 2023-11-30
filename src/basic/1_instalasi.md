@@ -4,6 +4,8 @@ Rust memiliki tools installer untuk menginstal semua *toolschain* untuk memudahk
 ```
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
+*Untuk Windows bisa download file .exe pada link di atas.*
+
 Pilih default installation, dan tunggu sampai installasi selesai. Di unix-based OS biasanya diinstall ke dalam 2 direktori yaitu `$HOME/.rustup` dan `$HOME/.cargo`. Direktori pertama tempat menyimpan master data program rustup. Sedangkan direktori ke dua tempat menyimpan toolschain yang dimanage oleh rustup itu sendiri. Biasanya rustup akan secara otomatis meng-ekspor env yang ada di `$HOME/.cargo/env` ke dalam env variable, misal `$HOME/.zshenv` atau `$HOME/.zshrc`. Path env yang dituju adalah `$HOME/.cargo/bin`, tempat executable dari toolschain rust bersemayam. Kalau path nya belum ada, tinggal diarahkan ke `$HOME/.cargo/bin`. Tools yang diinstall diantaranya:
 - cargo : builder serta package management untuk Rust
 - cargo-clippy dan clippy-driver: linting tools

@@ -81,7 +81,7 @@ fn reference_mut(n: &mut i32) {
 ```
 
 ## `Rc<T>` ##
-Merupakan smart poninter untuk membagikan ownership terhadap suatu data(*shared ownership*) atau meminjamkan suatu data ke-berbagai borrower(*multiple borrower*) secara *immutable*. Digunakan ketika kita ingin membagian reference tanpa harus berurusan dengan lifetime dan data dapat dengan mudah di-bagikan.
+Merupakan smart pointer untuk membagikan ownership terhadap suatu data(*shared ownership*) atau meminjamkan suatu data ke-berbagai borrower(*multiple borrower*) secara *immutable*. Digunakan ketika kita ingin membagian reference tanpa harus berurusan dengan lifetime dan data dapat dengan mudah di-bagikan.
 
 Diantara sifat-sifat dari Rc:
 - Multiple ownership.

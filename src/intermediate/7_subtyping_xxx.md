@@ -1,8 +1,87 @@
 # Subtyping #
 
-Subtyping merupakan relasi suatu tipe data dengan tipe data lain, sehingga suatu tipe data bisa digantikan dengan tipe data lain(Substituable).
+Subtyping adalah teknik memberikan sifat ***substitutability*** terhadap tipe data karena adanya relasi tertentu antar tipe data tersebut. Teknik ini merupakan upaya untuk memberikan semacam *polymorphism* terhadap tipe data sehingga lebih flexible dan *safe* dalam penggunaannya. Teknik ini berkembang menjadi salah satu prinsip dalam pemograman yang dikenal dengan Liskov Substitution Principle.
 
-Rust tidak memiliki konsep Subtyping seperti pada kebanyakan bahasa OOP lainnya, khususnya yang berhubungan dengan inheritance subtyping. Satu-satunya subtyping pada Rust adalah *lifetime* subtyping, yaitu ketika kita melakukan *borrowing* terhadap suatu data, maka lifetime dari *pinjaman* tersebut bisa memiliki relasi dengan lifetime lainnya atau disebut *outliving*. 
+Setiap bahasa memiliki *notion* yang berbeda terhadap subtyping, bahkan ada yang tidak memiliki subtyping sekalipun.
+
+Pada Rust, ada beberapa subtyping diantaranya:
+- Closures and Function pointer
+- Immutability and Mutability
+- Lifetime
+
+## Closures and Function Pointer ##
+Closures dan Function Pointer saling substitutable satu sama lain.
+
+```rust
+struct A {
+    f: fn(i32) -> i32,
+    g: for<'a> fn(&'a i32) -> &'a i32,
+}
+
+fn accept_closure<F: Fn(i32) -> i32>(f: F, x: i32) {
+    println!("{}", f(x))
+}
+
+fn return_closure() -> impl Fn(i32) -> i32 {
+    f
+}
+
+fn f(x: i32) -> i32 {
+    x
+}
+
+fn f_lt(x: &i32) -> &i32 {
+    x
+}
+
+fn return_function_pointer() -> impl FnMut(i32) -> i32 {
+    fp
+}
+
+fn return_closure_from_inside() -> fn(i32) -> i32 {
+    |x| x
+}
+
+fn fp(a: i32) -> i32 {
+    a
+}
+
+pub fn f_a() {
+    let c = |x: i32| -> i32 { x };
+    let a = A { f: c, g: f_lt };
+    println!("{}", (a.f)(123));
+    println!("{}", (a.g)(&234));
+
+    accept_closure(f, 5);
+    return_closure()(5);
+    println!("123-> {}", return_function_pointer()(123));
+    println!("234-> {}", return_closure_from_inside()(234));
+}
+```
+
+## Immutability and Mutability ##
+Value yang bersifat immutable dan mutable memiliki relasi subtyping tersendiri, yaitu:
+- Mutable value invariant sehingga hanya bisa digunakan untuk mutable value juga.
+- Immutable value covariance terhadap mutable value, meaning mutable is subtype of immutable (Mu <: Immu) and can pass through becoming immutable.
+
+```rust
+// mutable invariances
+let a: &str = "this";
+accept_immutable(a);
+// accept_mutable(a); // failed because parameter is mutable and only accept mutable since it's invariant
+
+// mutable covariance over immutable
+let mut a: &str = "this";
+accept_immutable(a); // works because parameter is immutable and mutable values are covariance over immutable parameters.
+accept_mutable(&mut a);
+
+fn accept_immutable(a: &str) {
+    // even if a get value from mutable reference, it becomes immutable in this function scope.
+}
+fn accept_mutable(a: &mut &str) {
+    *a = "lskdfm";
+}
+```
 
 ## Lifetime ##
 Lifetime bisa memiliki subtyping, disebut outliving. Ketika 'a: 'b, berarti lifetime a outlives lifetime b.

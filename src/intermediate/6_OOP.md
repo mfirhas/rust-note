@@ -1,124 +1,62 @@
 # Object Oriented Programming in Rust #
 
 OOP memiliki banyak definisi seiring waktu. Bermula dari Simula yang mengenalkan konsep object, program disusun sedemikian rupa dari sekumpulan object-object yang dibangung dari class, attributes, dan virtual procedures(methods). Selanjutnya oleh Smalltalk menambahkan konsep message passing, dimana object akan menerima suatu *message* melalui method-method nya, dan menyesuaikan state berdasarkan itu. Java datang dengan konsep yang mirip-mirip dan dijadikan acuan dalam OOP yaitu memiliki:
-- Encapsulation: Information hiding terhadap detail implementasi dengan hanya memberi akses API lewat public API.
-- Inheritance: Ekstensi object memberikan relasi "is a".
+- Encapsulation: Data dan Behaviours di-*wrap* menjadi satu dan interaksi terjadi melalui access modifier terhadap public methods mutating shared data.
+- Abstraction: Memodelkan komponen yang memiliki kesamaan dalam attributes/data dan behaviours/methods dan menyembunyikan implementation details.
+- Inheritance: Memberikan relasi antar komponen code dengan relasi "is a". Digunakan untuk code reuse dan ekstensi attributes dan behaviours.
 - Polymorphism: Deklarasi common behaviour antar multiple objects. Diimplementasikan dengan menggunakan Vtable, dynamically checked.
 
 ## Encapsulation ##
-Secara gamblang, encapsulation merupakan cara meng-abstraksi API sehingga user tidak perlu melihat daleman API dan hanya berinteraksi melalui exposed interface. Di sebagian bahasa OOP hal ini dilakukan menggunakan access modifier seperti *public* dan *private*. Hal ini untuk mencapai *loosely coupling* pada design API sehingga implementor bisa fokus terhadap implementasi, dan client/user dari API bisa tetap menggunakan API yang sama tanpa peduli detail implementasi.
+Pada Rust enkapsulasi bisa dicapai melalui associated items, yaitu ketika User-Defined Types(Struct & Enum) memiliki fields/attributes dan `impl`.
 
-Definisi lain dari encapsulation adalah komposisi antara data dan behaviours(methods) ke dalam 1 entitas. Hal ini biasanya dideklarasi dalam bentuk `class` di kebanyakan bahasa OOP, dan di-instansiasi menjadi objek, semua akses API hanya lewat objek ini.
-
-Pada Rust, ada beberapa cara untuk mencapai ini, diantaranya:
-- Menggunakan associated items and methods, dan juga bisa di-ekstensi menggunakan trait.
-- Access modifier `pub`, semua komponen bersifat private, dengan `pub` membuatnya bisa di-akses oleh caller.
-- Menggunakan crate library `lib.rs` untuk mengekpose api-api yang bisa digunakan oleh client.
-- Menggunakan module untuk meng-segmentasi kode sedemikian rupa sehingga pengelompokkan API lebih terorganisir dan koheren.
-- Menggunakan inherent methods dengan beberapa public methods, dan private methods.
-- Menggunakan traits dengan shared custom types, methods, dan default types. Traits juga digunakan sebagai bound untuk type parameter API.
-- Menggunakan procedure macro untuk meng-abstraksi berbagai komputasi. Contoh yang sering kita lihat: `print!()`, `println!()`, `dbg!()`, `assert!()`, etc.
-
-## Inheritance ##
-Rust tidak memiliki inherintance layaknya kebanyakan bahasa OOP lainnya. Akan tetapi Rust menerapkan komposisi yaitu dengan meng-*embed* tipe data/struct/enum ke dalam fields. Inheritance sendiri memiliki masalah dalam dunia OOP karena cenderung menambah kompleksitas yang tidak diperlukan. Juga mempersulit *maintainance* dari suatu kode karena sedikit perubahan akan mengacaukan semua childs yang inherit suatu class, cenderung menjadi *spaghetti*. Selain itu juga bisa menimbulkan masalah yang disebut *diamond problem*. Inheritance bukan pilihan utama ketika membuat kode yang loosely coupled dan juga enkapsulasi lebih cenderung menggunakan interface(*composition*) ketimbang class inheritance. Rust memiliki relasi antar type yang disebut dengan *Subtyping*.
-
-## Polymorphism ##
-Pada bahasa OOP umumnya polymorphism dilakukan menggunakan *interface*. Interface merupakan salah satu jenis inheritance yang bersifat *has-a* untuk mencapai composition.
-
-Rust mengimplementasikan konsep polymorfisme melalui dua cara yaitu: *generic* dan *trait object*. Kita telah membahas generic pada pembahasan sebelumnya yaitu bersifat statis dan diperiksa pada saat compile-time. Akan tetapi pendekatan generics ini memiliki kekurangan yaitu hanya memiliki satu instance dalam satu waktu. Selain itu tipe data yang akan digunakan pada generic/type parameter harus diketahui size nya pada saat compile-time. Berangkat dari kekurangan inilah kita membutuhkan polymorfisme yang bersifat lebih dinamis dan semua tipe bisa di-inject pada saat runtime, sehingga tidak perlu di-specify semua pada saat run-time, cara ini disebut *trait object*.
-
-Perbedaan generics dan trait object:
-- Generic resolve at *compile-time*, while trait object resolve at *run-time*.
-- Hanya ada 1 instance tipe data pada tipe yang memiliki generic parameter, sedangkan trait object bisa memiliki menampung berbagai tipe selama tipe tersebut mengimplementasi deklarasi trait object tersebut.
-- Generic tidak memiliki runtime cost karena statically dispatched, sedangkan trait object memiliki runtime cost karena dynamically dispatched(seperti penggunaan vtable yang menampung semua pointer ke fungsi/methods yang digunakan).
-
-# OOP Implementations in Rust #
-
-## States ##
-States adalah data yang berubah-ubah sepanjang program berjalan. Data ini biasanya disebut attributes di dalam bahasa OO yang mana states transitions nya dikendalikan oleh method-method dari object tersebut. Rust secara default bersifat *immutable*, karena kecenderungan functional programming. Akan tetapi kita bisa membuat sifat statefulness dari Rust ini dengan menggunakan keyword `&mut self` pada deklarasi method. States merupakan efek dari behaviour object terhadap data yang dikandung object.
+Contoh:
 ```rust
-#[derive(Debug)]
-pub struct Object {
+pub Object struct {
     field1: String,
     field2: i32,
-    field3: u64,
 }
 
 impl Object {
-    pub fn new(field1: String, field2: i32, field3: u64) -> Self {
-        Object {
-            field1,
-            field2,
-            field3,
-        }
+    pub fn method1(&self) -> String {
+        // ...
     }
 
-    pub fn method1(&mut self) {
-        self.field1.push_str("new str");
+    pub fn method2(&mut self) -> String {
+        // ...
     }
 
-    pub fn method2(&mut self) {
-        self.field2 += 1;
-    }
-
-    pub fn method3(&mut self) {
-        self.field3 += 340;
-    }
-
-    pub fn print(&self) {
-        println!("{:?}", self);
+    pub fn method3(self) -> String {
+        // ...
     }
 }
 ```
 
-## Encapsulation ##
-Encapsulation bisa memanfaatkan access modifier `pub` untuk public access, dan memanfaatkan komponen-komponen yang accessible lewat path `::` dan method.
-Contoh:
-```rust
-// encapsulation
-#[derive(Debug)]
-struct A {
-    field1: String,
-    field2: i32,
-}
+Perbedaan enkapsulasi antara bahasa OOP umumnya(Java, C#, etc) dengan Rust adalah, pada kebanyakan bahasa OOP lainnya, object memiliki dynamic dispatch dan juga kadang late binding(runtime binding). Hal ini biasanya diimplementasikan melalui semacam "informasi" yang diembed pada runtime dan diakses pada saat program berjalan, biasanya disebut *vtable*. Pada Rust, associated items bersifat static dan compile-time binded(di tambah dengan sistem ownership dan borrow).
 
-impl A {
-    fn new() -> Self {
-        A {
-            field1: String::from("this A"),
-            field2: 123,
-        }
-    }
-    fn method_a(&self, n: u64) {
-        println!("A: {n}")
-    }
-}
+## Abstraction ##
+Bisa dicapai dengan memanfaatkan:
 
-// kita meng-enkapsulasi A ke dalam B, sehingga A tidak perlu di-ekpose ke user.
-#[derive(Debug)]
-pub struct B {
-    a: A,
-    field3: u64,
-}
+- Module system pada rust, dengan menciptakan inner module for implementation details untuk public API/interfaces
+Pada Rust bisa memanfaatkan access modifier seperti `pub`(public interfaces), `pub(self)`(private), `pub(crate)`(same crate only), `pub(super)`(protected).
 
-impl B {
-    pub fn new() -> Self {
-        B {
-            a: A::new(),
-            field3: 234,
-        }
-    }
-    pub fn method_b(&self) {
-        println!("printing B");
-        self.a.method_a(self.field3);
-    }
+- Trait, dengan associated types untuk common attributes shared, dan default implementations untuk common behaviours shared, serta required methods untuk common behaviours with different implementations. Contoh: trait [Iterator](https://doc.rust-lang.org/std/iter/trait.Iterator.html).
+Iterator adalah contoh abstraksi untuk tipe data collections seperti list, map, tree, dan lainnya.
 
-    // data A di-enkapsulasi ke dalam B, sehingga bisa di akses tanpa akses ke A.
-    pub fn method_b_2(&self) -> (&str, i32) {
-        (self.a.field1.as_str(), self.a.field2)
-    }
-}
-```
+## Inheritance ##
+Rust tidak memiliki inherintance layaknya kebanyakan bahasa OOP lainnya. Hal ini serupa dengan kebanyakan bahasa FP lainnya. Hal ini karena sifat strongly typed setiap tipe data pada Rust, dan juga implementasi Algebraic Data Types. Inherintance pada Rust bisa diganti dengan komposisi, atau memanfaatkan `trait`.
+
+## Polymorphism ##
+Bahasa seperti Java, memiliki beberapa jenis polymorfisme seperti methods overloading, methods overriding, coercions, subtyping dan parametric.
+
+Di antara polimorfisme pada Rust:
+- Operator overloading
+- Coercions: konversi tipe secara implisit seperti `let a: f32 = 123_i32 as f32;`, `&mut T -> &T`, dll. (more)[https://doc.rust-lang.org/reference/type-coercions.html#coercion-types]
+- Lifetime polymorphism melalui lifetime behavioural subtyping(Liskov Substitution Principle)
+- `std::any` & function pointer, *dynamically typed* and procedural polymorphism. (Procedural Programming style of Polymorphism)
+- Trait object, dynamically dispatched. (Object-Oriented Programming style polymorphism)
+- Parametric Polymorphism menggunakan traits dan type parameter. (Functional Programming style polymorphism)
+
+Rust tidak memiliki method/function overloading, hal ini berkaitan dengan optimisasi yang berhubungan dengan penerapan generic. Instead, kita bisa menerapkan method/function overloading dengan cara generic/parametric polymorphism dengan trait dan associated types.
 
 ## Polymorphism menggunakan trait object(`dyn Trait`) ##
 Polymorphism pada bahasa OOP umumnya merupakan dynamic polymorphism yang menggunakan `interface` untuk memasukkan object yang share common behaviours.

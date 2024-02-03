@@ -34,3 +34,5 @@
   - [OOP](intermediate/6_OOP.md)
   - [Subtyping](intermediate/7_subtyping.md)
   - [Standard Traits](intermediate/8_standard_traits.md)
+  - [Conversion Traits]()
+  - [Operator Traits]()

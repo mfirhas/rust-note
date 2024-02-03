@@ -31,6 +31,13 @@ impl Object {
 }
 ```
 
+Rust memiliki beberapa jenis access modifier di antaranya:
+- `pub` public membuat komponen/tipe dapat diakses di manapun dari manapun.
+- `pub(in *path*)` public sesuai dengan *path* yang dideklarasikan.
+- `pub(crate)` public hanya di dalam crate yang sama(current crate).
+- `pub(super)` public hanya terhadap parent module. (kurleb mirip seperti protected pada Java) 
+- `pub(self)` public hanya di dalam module yang sama(current module), ini sama saja dengan private tanpa menggunakan keyword `pub`.
+
 Perbedaan enkapsulasi antara bahasa OOP umumnya(Java, C#, etc) dengan Rust adalah, pada kebanyakan bahasa OOP lainnya, object memiliki dynamic dispatch dan juga kadang late binding(runtime binding). Hal ini biasanya diimplementasikan melalui semacam "informasi" yang diembed pada runtime dan diakses pada saat program berjalan, biasanya disebut *vtable*. Pada Rust, associated items bersifat static dan compile-time binded(di tambah dengan sistem ownership dan borrow).
 
 ## Abstraction ##
